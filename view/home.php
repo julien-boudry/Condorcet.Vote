@@ -8,17 +8,21 @@
 
 <div class="container">
 
-<form name="new_vote" method="post">
+<div class="page-header">
+  <h2>Create a new vote</h2>
+</div>
+
+<form name="new_vote" action="?route=Create" method="post">
   <section>
     <div class="page-header">
-      <h2>Add Candidates</h2>
+      <h3>Add Candidates</h3>
     </div>
     <textarea name="candidates" required class="form-control" rows="3" placeholder="Candidate 1"></textarea>
   </section>
 
   <section>
     <div class="page-header">
-      <h2>Add Votes</h2>
+      <h3>Add Votes</h3>
     </div>
     <textarea name="votes" class="form-control" rows="3" required></textarea>
   </section>

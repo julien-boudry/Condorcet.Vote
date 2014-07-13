@@ -1,37 +1,34 @@
 <?php
 
-// Condorcet Class
-
 // Model
-require_once 'model/functions.php';
-require_once 'model/rb.php';
-require_once 'model/Condorcet/lib/Condorcet/Condorcet.php';
+	require_once 'model/functions.php';
+	require_once 'model/rb.php';
+	require_once 'model/Condorcet/lib/Condorcet/Condorcet.php';
 
 // Config
-require_once 'config/config.php';
-require_once 'config/schema.php';
+	require_once 'config/config.php';
 
 // Controller
-require_once 'view/head.php';
-require_once 'view/header.php';
+	require_once 'controllers/main.php';
 
-$config_routes = array(
-	'home',
-	'result',
-	'edit'
-);
+	if (isset($_GET['ajax']))
+		{Controller::$_ajax = true;}
 
-if (!isset($_GET['route']))
-{
-	require_once 'controller'.DIRECTORY_SEPARATOR.'home_controller.php' ;
-}
-elseif (in_array($_GET['route'], $routes, true))
-{
-	require_once 'controller'.DIRECTORY_SEPARATOR.$_GET['route'].'_controler.php' ;
-}
-else
-{
-	require_once 'controller'.DIRECTORY_SEPARATOR.'error_controller.php' ;
-}
 
-require_once 'view/footer.php';
+	if (!isset($_GET['route']))
+	{
+		$controller = new Home_Controller() ;
+	}
+	elseif (class_exists($_GET['route'].'_Controller'))
+	{
+		$object_name = $_GET['route'].'_Controller' ;
+
+		$controller = new $object_name () ;
+	}
+	else
+	{
+		$controller = new Error_Controller(404) ;
+	}
+
+	$controller->showPage() ;
+

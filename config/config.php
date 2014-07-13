@@ -3,11 +3,15 @@
 // PROD
 if ($_SERVER['SERVER_NAME'] !== 'localhost')
 {
+	define('CONFIG_ENV', 'PROD');
 
+	R::setup('mysql:host=localhost;dbname=condorcet-vote','root','');
 }
 // DEV
 else
 {
+	define('CONFIG_ENV', 'DEV');
+
 	R::setup('mysql:host=localhost;dbname=condorcet-vote','root','');
 }
 
