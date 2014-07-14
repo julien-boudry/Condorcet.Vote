@@ -2,6 +2,7 @@
 
 class Condorcet_Vote
 {
+	protected $_load = true ;
 	protected $_bean ;
 	protected $_objectCondorcet ;
 	protected $_originalChecksum ;
@@ -55,7 +56,7 @@ class Condorcet_Vote
 		$this->_bean = R::findOne( 'condorcet', ' read_code = ? ', [ $read_code ]);
 
 		if (is_null($this->_bean))
-			{ return false ; }
+			{ throw new Exception ('Impossible de charger le vote'); }
 		else
 		{
 			$this->_objectCondorcet = unserialize($this->_bean->condorcet_object) ;
