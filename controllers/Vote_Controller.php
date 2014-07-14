@@ -5,6 +5,7 @@ class Vote_Controller extends Controller
 	protected $_view = 'vote' ;
 
 	protected $_Condorcet_Vote ;
+	protected $_objectCondorcet ;
 
 		//////
 
@@ -21,6 +22,7 @@ class Vote_Controller extends Controller
 		{
 			try {
 				$this->_Condorcet_Vote = new Condorcet_Vote ($_GET['vote']);
+				$this->_objectCondorcet = $this->_Condorcet_Vote->_objectCondorcet ;
 			} catch (Exception $e) {
 				$this->_Condorcet_Vote = false ;				
 			}
@@ -41,5 +43,9 @@ class Vote_Controller extends Controller
 			$error->showPage();
 		}
 	}
+
+		//////
+
+	
 
 }

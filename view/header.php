@@ -26,9 +26,9 @@
             <li><a href="#">Separated link</a></li>
             <li><a href="#">One more separated link</a></li>
           </ul>
-           -->
         </li>
+        -->
       </ul>
-    </div><!--/.nav-collapse -->
+    </nav><!--/.nav-collapse -->
   </div>
 </header>

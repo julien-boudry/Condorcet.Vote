@@ -22,7 +22,8 @@ class Create_Controller extends Controller
 		if	(
 				!empty($_POST['candidates']) &&
 				!empty($_POST['votes']) &&
-				!empty($_POST['title']) && strlen($_POST['title']) < 80
+				!empty($_POST['title']) && strlen($_POST['title']) <= 80 &&
+				isset($_POST['comment']) && strlen($_POST['comment']) <= 500
 			)
 			{ return true ;	}
 		else
@@ -60,7 +61,7 @@ class Create_Controller extends Controller
 			return false ;
 		}
 
-		$this->_new_condorcet = new Condorcet_Vote($new_condorcet, $_POST['title']) ;
+		$this->_new_condorcet = new Condorcet_Vote($new_condorcet, $_POST['title'], $_POST['comment']) ;
 
 		return true ;
 	}

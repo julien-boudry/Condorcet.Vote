@@ -4,14 +4,14 @@ class Condorcet_Vote
 {
 	protected $_load = true ;
 	protected $_bean ;
-	protected $_objectCondorcet ;
+	public $_objectCondorcet ;
 	protected $_originalChecksum ;
 
-	public function __construct ($vote, $title = null)
+	public function __construct ($vote, $title = null, $comment = null)
 	{		
 		if (is_object($vote))
 		{
-			$this->register($vote, $title);
+			$this->register($vote, $title, $comment);
 		}
 		else
 		{
@@ -28,13 +28,17 @@ class Condorcet_Vote
 		}
 	}
 
-	protected function register (Condorcet\Condorcet $vote, $title)
+	protected function register (Condorcet\Condorcet $vote, $title, $comment)
 	{
 		$true = true ;
 
 		$this->_bean = R::dispense( 'condorcet' );
 
-		$this->_bean->title = htmlspecialchars($title);
+		$this->_bean->title = $title;
+		$this->_bean->comment = (empty($comment)) ? null : $comment;
+		$this->_bean->date = R::isoDateTime();
+		$this->_bean->last_update = $this->_bean->date;
+		$this->_bean->count_update = 0;
 		$this->_bean->read_code = bin2hex(openssl_random_pseudo_bytes(4, $true));
 		$this->_bean->admin_code = bin2hex(openssl_random_pseudo_bytes(4, $true));
 
@@ -67,5 +71,38 @@ class Condorcet_Vote
 	protected function saveVotesList ()
 	{
 		$this->_bean->votes_list = serialize($this->_objectCondorcet->getVotesList());
+	}
+
+
+		//////
+
+	public function getTitle ()
+	{
+		return htmlspecialchars($this->_bean->title) ;
+	}
+
+	public function getComment ()
+	{
+		return  htmlspecialchars($this->_bean->comment) ;
+	}
+
+	public function getDate ()
+	{
+		return $this->_bean->date ;
+	}
+
+	public function getUpdateDate ()
+	{
+		return $this->_bean->last_update ;
+	}
+
+	public function getCountUpdate ()
+	{
+		return $this->_bean->count_update ;
+	}
+
+	public function format_VotesList ()
+	{
+
 	}
 }
