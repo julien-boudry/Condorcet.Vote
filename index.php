@@ -4,6 +4,7 @@
 	require_once 'model/functions.php';
 	require_once 'model/rb.php';
 	require_once 'model/Condorcet/lib/Condorcet/Condorcet.php';
+	require_once 'model/Condorcet_Vote.php';
 
 // Config
 	require_once 'config/config.php';

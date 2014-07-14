@@ -7,7 +7,7 @@ class Create_Controller extends Controller
 
 	protected $_inputError = true ;
 
-	public function __construct ($type = '500')
+	public function __construct ()
 	{
 		parent::__construct();
 		
@@ -33,11 +33,25 @@ class Create_Controller extends Controller
 	{
 		try
 		{
-			$new_vote = new Condorcet\Condorcet();
+			$new_condorcet = new Condorcet\Condorcet();
 
-			$new_vote->parseCandidates($_POST['candidates']);
+			if (Condorcet\Condorcet::isJson ($_POST['candidates']))
+			{
+				$new_condorcet->jsonCandidates($_POST['candidates']);
+			}
+			else
+			{
+				$new_condorcet->parseCandidates($_POST['candidates']);
+			}
 
-			$new_vote->parseVotes($_POST['votes']);
+			if (Condorcet\Condorcet::isJson ($_POST['votes']))
+			{
+				$new_condorcet->jsonVotes($_POST['votes']);
+			}
+			else
+			{
+				$new_condorcet->parseVotes($_POST['votes']);
+			}
 		}
 		catch (Exception $e)
 		{
@@ -46,7 +60,7 @@ class Create_Controller extends Controller
 			return false ;
 		}
 
-		$this->_new_vote = $new_vote ;
+		$this->_new_condorcet = new Condorcet_Vote($new_condorcet, $_POST['title']) ;
 
 		return true ;
 	}
@@ -60,10 +74,11 @@ class Create_Controller extends Controller
 		{
 			$error = new Error_Controller(500);
 			$error->showPage();
-		}		
+		}
 		else
 		{
-			var_dump($this->_new_vote->getWinner());
+			$vote_admin_page = new Edit_Controller($this->_new_condorcet);
+			$vote_admin_page->showPage();
 		}
 	}
 
