@@ -17,9 +17,25 @@ else
 
 // All
 
+	date_default_timezone_set('UTC');
+
 	// Condorcet
 		Condorcet\Condorcet::setMaxParseIteration(500);
 		Condorcet\KemenyYoung::setMaxCandidates(4);
 
 	// JS
 		define('CONFIG_JQUERY', '2.1.1');
+
+
+	// Methodes de Condorcet
+		define('CONDORCET_METHOD', serialize(array(
+			'Schulze (Winning variant, recommand by M.Schulze itself)' => 'Schulze',
+			'Schulze (Margin variant)' => 'Schulze_Margin',
+			'Kemeny-Young' =>  'KemenyYoung',
+			'Copeland' => 'Copeland',
+			'Minimax (Winning variant)' =>  'Minimax_Winning',
+			'Minimax (Margin variant)' =>  'Minimax_Margin',
+			'Minimax (Opposition variant)' =>  'Minimax_Opposition',
+			'Ranked Pairs' =>  'RankedPairs'
+
+		)));
