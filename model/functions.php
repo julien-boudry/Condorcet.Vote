@@ -13,8 +13,17 @@
 		}				
 	}
 
-	function check_frontInput_method(array $post_methods)
+	function check_frontInput_method()
 	{
+		if (!isset($_POST['methods']) || !is_array($_POST['methods']))
+		{
+			$post_methods = array();
+		}
+		else
+		{
+			$post_methods = $_POST['methods'];
+		}
+
 		$accept_methods = unserialize(CONDORCET_METHOD);
 
 		foreach ($post_methods as $testMethod)
@@ -25,5 +34,5 @@
 			}
 		}
 
-		return true ;
+		return $post_methods ;
 	}

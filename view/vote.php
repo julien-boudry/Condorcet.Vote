@@ -149,6 +149,7 @@
 		</section>
 	</section>
 
+	<?php if (!empty(unserialize($this->_Condorcet_Vote->_bean->methods))) : ?>
 	<section>
 		<header class="page-header">
 			<h2>Advanced Results</h2>
@@ -214,6 +215,7 @@
 		<?php endforeach; ?>
 		</div>
 	</section>
+	<?php endif; ?>
 
 
 </section> <!-- /container -->

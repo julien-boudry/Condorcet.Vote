@@ -4,20 +4,28 @@ class Vote_Controller extends Controller
 {
 	protected $_view = 'vote' ;
 
-	protected $_Condorcet_Vote ;
+	protected $_Condorcet_Vote = false ;
 	protected $_objectCondorcet ;
 
 		//////
 
 
-	public function __construct ()
+	public function __construct ($build = false)
 	{
 		parent::__construct();
 
-		if (empty($_GET['vote']))
+		// Construction depuis Edit
+		if (is_object($build))
+		{
+			$this->_Condorcet_Vote = $build ;
+			$this->_objectCondorcet = $this->_Condorcet_Vote->_objectCondorcet ;
+		}
+		// Construction depuis URL avec parametre(s) manquant(s)
+		elseif (empty($_GET['vote']))
 		{
 			$this->_Condorcet_Vote = false;
 		}
+		// Tentative de construction depuis URL
 		else
 		{
 			try {
@@ -31,7 +39,7 @@ class Vote_Controller extends Controller
 
 		//////
 
-	public function showPage ()
+	public function showPage ($follow = null, $position = 'after')
 	{
 		if ($this->_Condorcet_Vote !== false)
 		{

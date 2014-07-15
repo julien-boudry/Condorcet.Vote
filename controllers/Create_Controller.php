@@ -19,16 +19,21 @@ class Create_Controller extends Controller
 
 	public function checkEmpty ()
 	{
+		$this->_accept_methods = check_frontInput_method();
+
 		if	(
 				!empty($_POST['candidates']) &&
 				!empty($_POST['votes']) &&
 				!empty($_POST['title']) && strlen($_POST['title']) <= 80 &&
 				isset($_POST['comment']) && strlen($_POST['comment']) <= 1000 &&
-				!empty($_POST['methods']) && is_array($_POST['methods']) && check_frontInput_method($_POST['methods'])
+				$this->_accept_methods !== false
 			)
 			{ return true ;	}
 		else
-			{ return false ; }
+			{
+				$this->_inputError = 'Wrong input';
+				return false ;
+			}
 	}
 
 	public function registerCondorcet ()
@@ -57,12 +62,12 @@ class Create_Controller extends Controller
 		}
 		catch (Exception $e)
 		{
-			echo $e->getMessage() ;
+			$this->_inputError = $e->getMessage() ;
 
 			return false ;
 		}
 
-		$this->_new_condorcet = new Condorcet_Vote($new_condorcet, $_POST['title'], $_POST['methods'], $_POST['comment']) ;
+		$this->_new_condorcet = new Condorcet_Vote($new_condorcet, $_POST['title'], $this->_accept_methods, $_POST['comment']) ;
 
 		return true ;
 	}
@@ -70,11 +75,11 @@ class Create_Controller extends Controller
 		//////
 
 
-	public function showPage ()
+	public function showPage ($follow = null, $position = 'after')
 	{
 		if ($this->_inputError)
 		{
-			$error = new Error_Controller(500);
+			$error = new Error_Controller( $this->_inputError );
 			$error->showPage();
 		}
 		else

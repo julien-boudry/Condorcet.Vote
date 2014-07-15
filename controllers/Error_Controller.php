@@ -17,6 +17,11 @@ class Error_Controller extends Controller
 
 	public function getType ()
 	{
-		return $this->_type ;
+		return (is_int($this->_type)) ? $this->_type : '' ;
+	}
+
+	public function getDetails ()
+	{
+		return (is_string($this->_type)) ? $this->_type : '' ;
 	}
 }
