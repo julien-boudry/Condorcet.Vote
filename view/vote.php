@@ -2,9 +2,11 @@
 
 	<header>
 		<h1 class="text-center"><?php echo $this->_Condorcet_Vote->getTitle(); ?> <small>Vote</small></h1>
-		<p>
+		<?php if (!empty($this->_Condorcet_Vote->getComment())) : ?>
+		<p class="breadcrumb">
 			<?php echo $this->_Condorcet_Vote->getComment(); ?>
 		</p>
+		<?php endif; ?>
 	</header>
 
 	<section>
@@ -32,7 +34,7 @@
 						<?php echo $this->_Condorcet_Vote->getDate(); ?>
 					</li>
 					<li>
-						<strong>Number of update:</strong>
+						<strong>Update count:</strong>
 						<?php echo $this->_Condorcet_Vote->getCountUpdate(); ?>
 					</li>
 					<?php if ($this->_Condorcet_Vote->getCountUpdate() > 0) : ?>
@@ -42,7 +44,7 @@
 					</li>
 					<?php endif; ?>
 					<li>
-						<strong>Computing time:</strong>
+						<strong>Cumulated computing time:</strong>
 						<?php echo number_format($this->_objectCondorcet->getGlobalTimer(true),2); ?> second(s)
 					</li>
 				</ul>
@@ -64,16 +66,36 @@
 						<header class="panel-heading" data-toggle="collapse" data-parent="#votes_accordion" data-target="#<?php echo $vote['tag'][0] ; ?>_voteid" style="cursor:pointer;">
 							<h4 class="panel-title">
 								<span class="glyphicon glyphicon-indent-left margin-icon"></span>
-								Vote N° <?php echo $vote['tag'][0] ; ?>
-								<small>
-
-								</small>
 								<span class="caret pull-right"></span>
+								Vote N° <?php echo $vote['tag'][0] ; ?>
+								
+								<?php foreach ($vote['tag'] as $key_tag => $tag) :
+								if ($key_tag === 0) {continue;} ?>
+
+								<span class="label label-info pull-right"><?php echo $tag; ?></span>
+
+								<?php endforeach; ?>
 							</h4>
 						</header>
 						<div id="<?php echo $vote['tag'][0] ; ?>_voteid" class="panel-collapse collapse">
 							<div class="panel-body">
-								<?php echo $vote['tag']; ?>
+								<ul class="list-group">
+									<?php
+									unset($vote['tag']);
+									$i = 0 ;
+									foreach ($vote as $rank => $rank_vote) : ?>
+									<li class="list-group-item <?php echo ($i === 0) ? 'list-group-item-success' : '' ; ?>">
+										<span class="badge">
+											<?php echo $rank; ?>
+										</span>
+										<?php 
+											echo implode(' / ', $rank_vote);
+										?>
+									</li>
+									<?php 
+										$i++;
+										endforeach; ?>
+								</ul>
 							</div>
 						</div>
 					</div>
@@ -134,7 +156,12 @@
 
 		<div class="panel-group" id="results_accordion">
 		  <?php
-		  foreach (unserialize(CONDORCET_METHOD) as $title => $method) : ?>
+		  foreach (unserialize(CONDORCET_METHOD) as $title => $method) : 
+		  if (!in_array($method, unserialize($this->_Condorcet_Vote->_bean->methods), true))
+		  {
+		  	continue ;
+		  }
+		  ?>
 			<section class="panel panel-info">
 			    <header class="panel-heading" data-toggle="collapse" data-parent="#results_accordion" data-target="#<?php echo $method ; ?>" style="cursor:pointer;">
 			      <h3 class="panel-title">
@@ -176,6 +203,9 @@
 								</ul>
 							</div>
 							<div class="tab-pane fade in" id="<?php echo $method ; ?>_details">
+								<pre>
+									<?php print_r($this->_objectCondorcet->getResultStats($method)); ?>
+								</pre>
 							</div>
 						</div>
 					</div>

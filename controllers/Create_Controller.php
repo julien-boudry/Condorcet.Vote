@@ -23,7 +23,8 @@ class Create_Controller extends Controller
 				!empty($_POST['candidates']) &&
 				!empty($_POST['votes']) &&
 				!empty($_POST['title']) && strlen($_POST['title']) <= 80 &&
-				isset($_POST['comment']) && strlen($_POST['comment']) <= 500
+				isset($_POST['comment']) && strlen($_POST['comment']) <= 1000 &&
+				!empty($_POST['methods']) && is_array($_POST['methods']) && check_frontInput_method($_POST['methods'])
 			)
 			{ return true ;	}
 		else
@@ -61,7 +62,7 @@ class Create_Controller extends Controller
 			return false ;
 		}
 
-		$this->_new_condorcet = new Condorcet_Vote($new_condorcet, $_POST['title'], $_POST['comment']) ;
+		$this->_new_condorcet = new Condorcet_Vote($new_condorcet, $_POST['title'], $_POST['methods'], $_POST['comment']) ;
 
 		return true ;
 	}

@@ -2,14 +2,14 @@
 
 class Condorcet_Vote
 {
-	protected $_bean ;
+	public $_bean ;
 	public $_objectCondorcet ;
 
-	public function __construct ($vote, $title = null, $comment = null)
+	public function __construct ($vote, $title = null, $methods = null, $comment = null)
 	{		
 		if (is_object($vote))
 		{
-			$this->register($vote, $title, $comment);
+			$this->register($vote, $title, $methods, $comment);
 		}
 		else
 		{
@@ -22,21 +22,23 @@ class Condorcet_Vote
 		if	( $this->_bean->vote_checksum !== $this->_objectCondorcet->getChecksum() )
 		{
 			$this->saveVotesList();
+			$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
 			$this->_bean->condorcet_object = serialize($this->_objectCondorcet);
 			$this->_bean->last_update = R::isoDateTime();
 			$this->_bean->count_update++ ;
-
-			R::store($this->_bean);
 		}
+
+		R::store($this->_bean);
 	}
 
-	protected function register (Condorcet\Condorcet $vote, $title, $comment)
+	protected function register (Condorcet\Condorcet $vote, $title, $methods, $comment)
 	{
 		$true = true ;
 
 		$this->_bean = R::dispense( 'condorcet' );
 
 		$this->_bean->title = $title;
+		$this->_bean->methods = serialize($methods);
 		$this->_bean->comment = (empty($comment)) ? null : $comment;
 		$this->_bean->date = R::isoDateTime();
 		$this->_bean->last_update = $this->_bean->date;
@@ -79,9 +81,10 @@ class Condorcet_Vote
 	{
 		$this->_objectCondorcet->getWinner();
 
-		foreach (unserialize(CONDORCET_METHOD) as $method)
+		foreach (unserialize($this->_bean->methods) as $method)
 		{
 			$this->_objectCondorcet->getResult($method);
+			$this->_objectCondorcet->getResultStats($method);
 		}
 	}
 
@@ -111,10 +114,5 @@ class Condorcet_Vote
 	public function getCountUpdate ()
 	{
 		return $this->_bean->count_update ;
-	}
-
-	public function format_VotesList ()
-	{
-
 	}
 }
