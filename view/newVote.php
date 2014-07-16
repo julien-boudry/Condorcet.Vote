@@ -5,8 +5,8 @@
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h2 class="modal-title" id="myModalLabel">Create a new Vote</h2>
 			</div>
+			<form name="new_vote" action="?route=Create" method="post">
 			<div class="modal-body">
-				<form name="new_vote" action="?route=Create" method="post">
 					<section>
 							<header class="page-header" style="margin-top:1%;">
 									<h3>Add Candidates</h3>
@@ -15,9 +15,9 @@
 					</section>
 
 					<section>
-							<div class="page-header">
+							<header class="page-header">
 									<h3>Add Votes</h3>
-							</div>
+							</header>
 							<textarea name="votes" class="form-control" rows="3" required></textarea>
 					</section>
 
@@ -46,7 +46,7 @@
 							<header class="page-header">
 									<h3><small>(Optionnal)</small> Description</h3>
 							</header>
-							<textarea name="comment" class="form-control" rows="2"></textarea>
+							<textarea name="description" class="form-control" rows="2"></textarea>
 					</section>
 
 			</div>
@@ -57,8 +57,8 @@
 								<button class="btn btn-success" type="submit">Create Vote!</button>
 						</span>
 				</div>
-				</form>
 			</div>
+			</form>			
 		</div>
 	</div>
 </div>

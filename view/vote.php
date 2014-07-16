@@ -2,9 +2,9 @@
 
 	<header>
 		<h1 class="text-center"><?php echo $this->_Condorcet_Vote->getTitle(); ?> <small>Vote</small></h1>
-		<?php if (!empty($this->_Condorcet_Vote->getComment())) : ?>
+		<?php if (!empty($this->_Condorcet_Vote->getDescription())) : ?>
 		<p class="breadcrumb">
-			<?php echo $this->_Condorcet_Vote->getComment(); ?>
+			<?php echo $this->_Condorcet_Vote->getDescription(); ?>
 		</p>
 		<?php endif; ?>
 	</header>
@@ -157,8 +157,9 @@
 
 		<div class="panel-group" id="results_accordion">
 		  <?php
+		  $allow_methods = unserialize($this->_Condorcet_Vote->_bean->methods);
 		  foreach (unserialize(CONDORCET_METHOD) as $title => $method) : 
-		  if (!in_array($method, unserialize($this->_Condorcet_Vote->_bean->methods), true))
+		  if (!in_array($method, $allow_methods, true))
 		  {
 		  	continue ;
 		  }

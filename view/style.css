@@ -9,3 +9,8 @@
 .panel-title .caret {
 	margin-left:5%;
 }
+
+#public_url_alert {
+	margin-bottom:0px;
+	margin-top:2%;
+}

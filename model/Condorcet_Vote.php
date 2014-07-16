@@ -5,11 +5,11 @@ class Condorcet_Vote
 	public $_bean ;
 	public $_objectCondorcet ;
 
-	public function __construct ($vote, $title = null, $methods = null, $comment = null)
+	public function __construct ($vote, $title = null, $methods = null, $description = null)
 	{		
 		if (is_object($vote))
 		{
-			$this->register($vote, $title, $methods, $comment);
+			$this->register($vote, $title, $methods, $description);
 		}
 		else
 		{
@@ -31,7 +31,7 @@ class Condorcet_Vote
 		R::store($this->_bean);
 	}
 
-	protected function register (Condorcet\Condorcet $vote, $title, $methods, $comment)
+	protected function register (Condorcet\Condorcet $vote, $title, $methods, $description)
 	{
 		$true = true ;
 
@@ -39,7 +39,7 @@ class Condorcet_Vote
 
 		$this->_bean->title = $title;
 		$this->_bean->methods = serialize($methods);
-		$this->_bean->comment = (empty($comment)) ? null : $comment;
+		$this->_bean->description = (empty($description)) ? null : $description;
 		$this->_bean->date = R::isoDateTime();
 		$this->_bean->last_update = $this->_bean->date;
 		$this->_bean->count_update = 0;
@@ -96,9 +96,9 @@ class Condorcet_Vote
 		return htmlspecialchars($this->_bean->title) ;
 	}
 
-	public function getComment ()
+	public function getDescription ()
 	{
-		return  htmlspecialchars($this->_bean->comment) ;
+		return  htmlspecialchars($this->_bean->description) ;
 	}
 
 	public function getDate ()
@@ -114,5 +114,15 @@ class Condorcet_Vote
 	public function getCountUpdate ()
 	{
 		return $this->_bean->count_update ;
+	}
+
+	public function getPublicURL ()
+	{
+		return BASE_URL . 'Vote/' . $this->_bean->read_code ;
+	}
+
+	public function getAdminURL ()
+	{
+		return BASE_URL . 'Edit/' . $this->_bean->read_code . '/' . $this->_bean->admin_code ;
 	}
 }
