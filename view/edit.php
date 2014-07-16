@@ -32,7 +32,7 @@
 				<header class="page-header">
 					<h3>Delete Votes by tags</h3>
 				</header>
-				<input type="text" name="votes_delete" class="form-control"
+				<input type="text" name="delete_votes" class="form-control"
 				placeholder="Julian;Mike;Christelle # All votes with one of this three tags will be deleting (before adding your new votes)">
 			</section>
 
@@ -66,7 +66,9 @@
 				<header class="page-header">
 					<h3><small>(Optionnal)</small> Description</h3>
 				</header>
-				<textarea name="edit_description" class="form-control" rows="2"><?php echo htmlspecialchars($this->_Condorcet_Vote->getDescription()) ; ?>				</textarea>
+				<textarea name="edit_description" class="form-control" rows="2"
+				maxlength=<?php echo CONFIG_DESCRIPTION_LENGHT ; ?>
+				><?php echo htmlspecialchars($this->_Condorcet_Vote->getDescription()) ; ?></textarea>
 			</section>
 
 			<button class="btn btn-success" type="submit">Create Vote!</button>

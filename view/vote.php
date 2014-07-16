@@ -31,7 +31,7 @@
 					</li>
 					<li>
 						<strong>Create on:</strong>
-						<?php echo $this->_Condorcet_Vote->getDate(); ?>
+						UTC <?php echo $this->_Condorcet_Vote->getDate(); ?>
 					</li>
 					<li>
 						<strong>Update count:</strong>
@@ -39,8 +39,8 @@
 					</li>
 					<?php if ($this->_Condorcet_Vote->getCountUpdate() > 0) : ?>
 					<li>
-						<strong>Create on:</strong>
-						<?php echo $this->_Condorcet_Vote->getUpdateDate(); ?>
+						<strong>Last update on on:</strong>
+						UTC <?php echo $this->_Condorcet_Vote->getUpdateDate(); ?>
 					</li>
 					<?php endif; ?>
 					<li>

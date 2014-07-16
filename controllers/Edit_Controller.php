@@ -48,6 +48,7 @@ class Edit_Controller extends Controller
 
 	protected function update_vote ()
 	{
+		// Update (ou non) de la description
 		if	(
 				$_POST['edit_description'] !== $this->_Condorcet_Vote->_bean->description
 				&&
@@ -57,12 +58,63 @@ class Edit_Controller extends Controller
 			$this->_Condorcet_Vote->_bean->description = $_POST['edit_description'] ;
 		}
 
+		// Update (ou non) de la des methods
 		$this->_Condorcet_Vote->update_methods(
 			( empty($_POST['edit_methods']) ) ? array() : $_POST['edit_methods']
 		);
+
+
+		// Delete Votes
+		if (!empty($_POST['delete_votes']))
+		{
+			try
+			{
+				$delete_votes = $_POST['delete_votes'];
+
+				if (Condorcet\Condorcet::isJson($delete_votes))
+				{
+					$delete_votes = Condorcet\Condorcet::prepareJson($delete_votes);
+
+					if (!is_array($delete_votes))
+						{$delete_votes = array();}
+				}
+				else
+				{
+					$delete_votes = Condorcet\Condorcet::prepareParse($delete_votes, false);
+				}
+
+				foreach ($delete_votes as &$value) {
+					if (is_numeric($value))
+						{$value = intval($value);}
+				}
+				
+				$this->_Condorcet_Vote->_objectCondorcet->removeVote($delete_votes);
+
+			}
+			catch (Exception $e)
+			{}
+		}
+
+		// Add votes
+		if (!empty($_POST['add_votes']))
+		{
+			try
+			{
+				if (Condorcet\Condorcet::isJson($_POST['add_votes']))
+				{
+					$this->_Condorcet_Vote->_objectCondorcet->jsonVotes($_POST['add_votes']);
+				}
+				else
+				{
+					$this->_Condorcet_Vote->_objectCondorcet->parseVotes($_POST['add_votes']);
+				}
+
+			}
+			catch (Exception $e)
+			{}
+		}
 	}
 
-		//////
 
 	public function showPage ($follow = null, $position = 'after')
 	{

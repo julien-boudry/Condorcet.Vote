@@ -4,6 +4,8 @@ class Condorcet_Vote
 {
 	public $_bean ;
 	public $_objectCondorcet ;
+	protected $_isNew = false ;
+	protected $_checksum_change = false ;
 
 	public function __construct ($vote, $title = null, $methods = null, $description = null)
 	{		
@@ -19,27 +21,44 @@ class Condorcet_Vote
 
 	public function __destruct ()
 	{
-		if	(
-				$this->_bean->vote_checksum !== $this->_objectCondorcet->getChecksum()
-				||
-				$this->_bean->hasChanged( 'methods' )
-				||
-				$this->_bean->hasChanged( 'description' )
-			)
+		if	( $this->willUpdate() )
 		{
-			$this->saveVotesList();
-			$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
-			$this->_bean->condorcet_object = serialize($this->_objectCondorcet);
 			$this->_bean->last_update = R::isoDateTime();
 			$this->_bean->count_update++ ;
+
+			if ($this->_checksum_change)
+			{
+				$this->saveVotesList();
+				$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
+				$this->_bean->condorcet_object = serialize($this->_objectCondorcet);
+			}
 		}
 
 		R::store($this->_bean);
 	}
 
+		public function willUpdate ()
+		{
+			$this->_checksum_change = ($this->_bean->vote_checksum !== $this->_objectCondorcet->getChecksum()) ? true : false ;
+
+			if	( 
+					!$this->_isNew && (
+					$this->_checksum_change
+					||
+					$this->_bean->hasChanged( 'methods' )
+					||
+					$this->_bean->hasChanged( 'description' )
+					)			
+				 )
+					: return true ;
+			else	: return false ;
+			endif;
+		}
+
 	protected function register (Condorcet\Condorcet $vote, $title, $methods, $description)
 	{
 		$true = true ;
+		$this->_isNew = true ;
 
 		$this->_bean = R::dispense( 'condorcet' );
 
@@ -62,8 +81,6 @@ class Condorcet_Vote
 		$this->prepareCondorcet();
 		$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
 		$this->_bean->condorcet_object = serialize($this->_objectCondorcet);
-
-		R::store($this->_bean) ;
 	}
 
 	protected function load ($read_code)
@@ -97,7 +114,11 @@ class Condorcet_Vote
 
 			if ($prepare)
 				{$this->prepareCondorcet();}
+
+			return true ;
 		}
+
+		return false ;
 	}
 
 	protected function prepareCondorcet ()
@@ -136,7 +157,7 @@ class Condorcet_Vote
 
 	public function getCountUpdate ()
 	{
-		return $this->_bean->count_update ;
+		return ($this->willUpdate()) ? $this->_bean->count_update + 1 : $this->_bean->count_update ;
 	}
 
 	public function getPublicURL ()

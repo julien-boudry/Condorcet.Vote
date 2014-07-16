@@ -46,7 +46,9 @@
 							<header class="page-header">
 									<h3><small>(Optionnal)</small> Description</h3>
 							</header>
-							<textarea name="description" class="form-control" rows="2"></textarea>
+							<textarea name="description" class="form-control" rows="2"
+							maxlength=<?php echo CONFIG_DESCRIPTION_LENGHT ; ?>
+							></textarea>
 					</section>
 
 			</div>
