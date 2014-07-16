@@ -5,7 +5,7 @@
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h2 class="modal-title" id="myModalLabel">Create a new Vote</h2>
 			</div>
-			<form name="new_vote" action="?route=Create" method="post">
+			<form name="new_vote" action="Create/" method="post">
 			<div class="modal-body">
 					<section>
 							<header class="page-header" style="margin-top:1%;">

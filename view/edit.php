@@ -15,7 +15,7 @@
 			<h2 class="text-center"><?php echo $this->_Condorcet_Vote->getTitle(); ?> <small>Editor</small></h2>
 		</header>
 
-		<form name="edit_vote" action="" method="post">
+		<form name="edit_vote" action="<?php echo $this->_Condorcet_Vote->getAdminURL() ; ?>" method="post">
 			<section>
 				<header class="page-header">
 					<h3>Add Votes</h3>

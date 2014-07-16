@@ -118,11 +118,11 @@ class Condorcet_Vote
 
 	public function getPublicURL ()
 	{
-		return BASE_URL . 'Vote/' . $this->_bean->read_code ;
+		return BASE_URL . 'Vote/' . $this->_bean->read_code . '/' ;
 	}
 
 	public function getAdminURL ()
 	{
-		return BASE_URL . 'Edit/' . $this->_bean->read_code . '/' . $this->_bean->admin_code ;
+		return BASE_URL . 'Edit/' . $this->_bean->read_code . '/' . $this->_bean->admin_code . '/' ;
 	}
 }
