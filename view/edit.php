@@ -49,7 +49,7 @@
 						<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 							<div class="btn-group">
 								<span class="input-group-addon">
-									<input type="checkbox" name="methods[]" value="<?php echo $method; ?>"
+									<input type="checkbox" name="edit_methods[]" value="<?php echo $method; ?>"
 			<?php echo (in_array($method, $allow_methods, true)) ? 'checked' : '' ; ?>
 									>
 								</span>

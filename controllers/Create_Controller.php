@@ -25,7 +25,7 @@ class Create_Controller extends Controller
 				!empty($_POST['candidates']) &&
 				!empty($_POST['votes']) &&
 				!empty($_POST['title']) && strlen($_POST['title']) <= 80 &&
-				isset($_POST['description']) && strlen($_POST['description']) <= 1000 &&
+				isset($_POST['description']) && strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT &&
 				$this->_accept_methods !== false
 			)
 			{ return true ;	}

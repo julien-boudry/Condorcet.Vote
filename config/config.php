@@ -41,3 +41,6 @@ else
 			'Ranked Pairs' =>  'RankedPairs'
 
 		)));
+
+	//INTERFACE
+	define('CONFIG_DESCRIPTION_LENGHT', 1000);

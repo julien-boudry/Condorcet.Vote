@@ -19,7 +19,13 @@ class Condorcet_Vote
 
 	public function __destruct ()
 	{
-		if	( $this->_bean->vote_checksum !== $this->_objectCondorcet->getChecksum() )
+		if	(
+				$this->_bean->vote_checksum !== $this->_objectCondorcet->getChecksum()
+				||
+				$this->_bean->hasChanged( 'methods' )
+				||
+				$this->_bean->hasChanged( 'description' )
+			)
 		{
 			$this->saveVotesList();
 			$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
@@ -38,7 +44,8 @@ class Condorcet_Vote
 		$this->_bean = R::dispense( 'condorcet' );
 
 		$this->_bean->title = $title;
-		$this->_bean->methods = serialize($methods);
+		$this->_bean->methods = serialize(array()) ;
+		$this->update_methods($methods, false);
 		$this->_bean->description = (empty($description)) ? null : $description;
 		$this->_bean->date = R::isoDateTime();
 		$this->_bean->last_update = $this->_bean->date;
@@ -75,6 +82,22 @@ class Condorcet_Vote
 	protected function saveVotesList ()
 	{
 		$this->_bean->votes_list = serialize($this->_objectCondorcet->getVotesList());
+	}
+
+	public function update_methods ($methods, $prepare = true)
+	{
+		if (!is_array($methods) || count($methods) > 12)
+			{ return false ;}
+
+		$new_methods = serialize($methods) ;
+
+		if ($new_methods !== $this->_bean->methods)
+		{
+			$this->_bean->methods = $new_methods;
+
+			if ($prepare)
+				{$this->prepareCondorcet();}
+		}
 	}
 
 	protected function prepareCondorcet ()
