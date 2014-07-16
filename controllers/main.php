@@ -43,6 +43,7 @@ abstract class Controller
 
 		if (!self::$_ajax || $this->_partial)
 		{
+			require_once 'view/newVote.php';
 			require_once 'view/footer.php';
 		}
 	}

@@ -1,14 +1,18 @@
 <div class="container">
 
-<div id="public_url_alert" class="alert alert-success text-center" role="alert">
-	This vote is publicly accessible by this link:
-	<a href="<?php echo $this->_Condorcet_Vote->getPublicURL() ; ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getPublicURL() ; ?></a>
-</div>
-<div class="alert alert-danger text-center" role="alert">
-	You can admin this vote by this link :
-	<a href="<?php echo $this->_Condorcet_Vote->getAdminURL() ; ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getAdminURL() ; ?></a>
-	(not share it !)
-</div>
+	<div id="vote_url_box">
+		<div class="alert alert-success text-center" role="alert">
+			<span class="glyphicon glyphicon-globe pull-left ranking_icon"></span>
+			This vote is publicly accessible by this link:
+			<a href="<?php echo $this->_Condorcet_Vote->getPublicURL() ; ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getPublicURL() ; ?></a>
+		</div>
+		<div class="alert alert-danger text-center" role="alert">
+			<span class="glyphicon glyphicon-eye-close pull-left ranking_icon"></span>
+			You can admin this vote by this link :
+			<a href="<?php echo $this->_Condorcet_Vote->getAdminURL() ; ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getAdminURL() ; ?></a>
+			(not share it !)
+		</div>
+	</div>
 
 	<section class="breadcrumb">
 		<header>
@@ -16,6 +20,7 @@
 		</header>
 
 		<form name="edit_vote" action="<?php echo $this->_Condorcet_Vote->getAdminURL() ; ?>" method="post">
+			<input type="hidden" name="is_edit" value="true">
 			<section>
 				<header class="page-header">
 					<h3>Add Votes</h3>
@@ -27,7 +32,8 @@
 				<header class="page-header">
 					<h3>Delete Votes by tags</h3>
 				</header>
-				<input type="text" name="votes_delete" class="form-control"></textarea>
+				<input type="text" name="votes_delete" class="form-control"
+				placeholder="Julian;Mike;Christelle # All votes with one of this three tags will be deleting (before adding your new votes)">
 			</section>
 
 			<section>
@@ -60,7 +66,7 @@
 				<header class="page-header">
 					<h3><small>(Optionnal)</small> Description</h3>
 				</header>
-				<textarea name="edit_description" class="form-control" rows="2"><?php echo $this->_Condorcet_Vote->getDescription() ; ?>				</textarea>
+				<textarea name="edit_description" class="form-control" rows="2"><?php echo htmlspecialchars($this->_Condorcet_Vote->getDescription()) ; ?>				</textarea>
 			</section>
 
 			<button class="btn btn-success" type="submit">Create Vote!</button>

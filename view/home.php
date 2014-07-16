@@ -13,7 +13,4 @@
 	</button>
 
 
-
-<?php include 'view/newVote.php'; ?>
-
 </div> <!-- /container -->
