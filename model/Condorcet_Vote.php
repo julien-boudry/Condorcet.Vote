@@ -173,15 +173,25 @@ class Condorcet_Vote
 
 	public function getAdminURL ()
 	{
-		return BASE_URL . 'Edit/' . $this->_bean->read_code . '/' . $this->_bean->admin_code . '/' ;
+		return BASE_URL . 'Edit/' . $this->_bean->read_code . '/' . $this->getAdminCode() . '/' ;
 	}
+
+		public function getAdminCode ()
+		{
+			return $this->_bean->admin_code ;
+		}
+
+		public function getHashCode ()
+		{
+			return $this->_bean->hash_code ;
+		}
 
 	public function getFreeVoteUrl ()
 	{
 		return BASE_URL . 'Add/' . $this->_bean->read_code . '/Public/' . $this->getFreeVoteCode() . '/' ;
 	}
 
-		protected function getFreeVoteCode ()
+		public function getFreeVoteCode ()
 		{
 			return substr(hash('sha224', $this->_bean->admin_code . $this->_bean->hash_code), 5,7) ; ;
 		}

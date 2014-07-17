@@ -1,10 +1,42 @@
 $(document).ready(function()
 {
-	$( "#edit_personnal_identifiant" ).on('change keyup click', null, function() {
+	// Gestion de la génération d'adresses personnelles
+	$( "#edit_personnal_identifiant" ).on('change keyup', null, function() {
 		
-		var hash = CryptoJS.SHA224("Message" + $(this).val()).toString(CryptoJS.enc.Hex).substr(10,6);
+		new_personnal_url = false ;
 
-		$('#edit_personnal_code').text( ( ($(this).val() != '') ? hash : '***' ) );
+		var valid = ( /^[a-zA-Z]*$/.test($(this).val()) && $(this).val().length > 0 ) ? true : false ;
 
+		if (!valid) { 
+			$(this).addClass('red-background');
+			$('#keynote_add_button').attr('disabled', 'true');
+		}
+		else { 
+			$(this).removeClass('red-background');
+			$('#keynote_add_button').removeAttr('disabled');
+		}
+
+		// Hashing
+		var hash = CryptoJS.SHA224 (
+									$(this).data('admin_code') + 
+									$(this).data('hash_code') +
+									$(this).val()
+									).toString(CryptoJS.enc.Hex).substr(10,6);
+
+		$('#edit_personnal_code').text( ( ($(this).val() != '' && valid === true) ? '/'+hash : '/***' ) );
+
+		if (valid)
+		{
+			new_personnal_url = $(this).data('base_url') + $(this).val() + '/' + hash
+		}
+
+	});
+
+	$('#keynote_add_button').on('click', function()
+	{
+		if (typeof new_personnal_url !== 'undefined' && new_personnal_url !== false)
+		{
+			$('#personnal_keynote').append(new_personnal_url + '\r\n');
+		}
 	});
 });

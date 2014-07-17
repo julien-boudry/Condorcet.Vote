@@ -101,25 +101,37 @@
 	</section>
 
 <section class="modal fade" id="edit_personnal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
+	<div class="modal-dialog modal-lg">
 	<div class="modal-content">
 		<header class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 			<h4 class="modal-title" id="myModalLabel">Modal title</h4>
 		</header>
 		<div class="modal-body">
-			<form>
+
 			<div class="input-group">
 				<span class="input-group-addon"><?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl(); ?></span>
-				<input type="text" id="edit_personnal_identifiant" class="form-control" placeholder="name or identifiant" pattern="[a-zA-Z]+" required>
-				<span id="edit_personnal_code" class="input-group-addon">***</span>
+
+				<input type="text" id="edit_personnal_identifiant" class="form-control"
+				placeholder="name or identifiant (alphabetic, without space)" maxlength="25" size="25" 
+				pattern="[a-zA-Z]+"
+				required autocomplete="off"
+				data-admin_code="<?php echo $this->_Condorcet_Vote->getAdminCode(); ?>"
+				data-hash_code="<?php echo $this->_Condorcet_Vote->getHashCode(); ?>"
+				data-base_url="<?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl() ; ?>"
+				>
+
+				<span id="edit_personnal_code" class="input-group-addon">/***</span>
 			</div>
-			<button type="submit" class="btn btn-default center-block" style="margin-top:2%;">Add to keynote</button>
-			</form>
+			<button id="keynote_add_button" type="button" class="btn btn-default center-block" style="margin-top:2%;" disabled>Add to keynote</button>
+
 			<hr>
-		</div>
+
+			<textarea id="personnal_keynote" rows="10" class="center-block" readonly></textarea>
+			</div>
+
 		<div class="modal-footer">
-			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 		</div>
 	</div>
 	</div>

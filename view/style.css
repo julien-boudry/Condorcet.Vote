@@ -19,3 +19,13 @@
 	margin-bottom:0px;
 	margin-top:2%;
 }
+
+.red-background {
+	background-color:#A94442;
+}
+
+#personnal_keynote {
+	width:100%;
+	background-color:#F5F5F5;
+	border:none;
+}
