@@ -21,7 +21,7 @@ $(document).ready(function()
 									$(this).data('admin_code') + 
 									$(this).data('hash_code') +
 									$(this).val()
-									).toString(CryptoJS.enc.Hex).substr(10,6);
+									).toString(CryptoJS.enc.Hex).substr(10,6).toUpperCase();
 
 		$('#edit_personnal_code').text( ( ($(this).val() != '' && valid === true) ? '/'+hash : '/***' ) );
 

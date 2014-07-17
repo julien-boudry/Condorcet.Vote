@@ -75,7 +75,7 @@ class Condorcet_Vote
 		$this->_bean->read_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $true)));
 		$this->_bean->admin_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $true)));
 
-		$this->_bean->hash_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $true)));
+		$this->_bean->set_new_hashCode();
 		$this->_bean->open = true ;
 
 		$this->_objectCondorcet = $vote ;
@@ -193,11 +193,27 @@ class Condorcet_Vote
 
 		public function getFreeVoteCode ()
 		{
-			return substr(hash('sha224', $this->_bean->admin_code . $this->_bean->hash_code), 5,7) ; ;
+			return strtoupper(substr(hash('sha224', $this->_bean->admin_code . $this->_bean->hash_code), 5,7)) ;
 		}
 
 	public function getPersonnalVoteBaseUrl ()
 	{
 		return BASE_URL . 'Add/' . $this->_bean->read_code . '/Personnal/';
+	}
+
+	public function getPersonnalVoteCode ($name)
+	{
+		return strtoupper( 
+							substr(
+								hash('sha224',
+									$this->getAdminCode() . 
+									$this->getHashCode() . 
+									$name),
+		 					10, 6) );
+	}
+
+	public function set_new_hashCode ()
+	{
+		$this->_bean->hash_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $true)));
 	}
 }

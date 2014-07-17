@@ -130,9 +130,7 @@ class Edit_Controller extends Controller
 	{
 		if ($this->_Condorcet_Vote !== false)
 		{
-			$vote_view = new Vote_Controller ($this->_Condorcet_Vote);
-
-			parent::showPage($vote_view);
+			parent::showPage(new Vote_Controller ($this->_Condorcet_Vote));
 		}
 		else
 		{
