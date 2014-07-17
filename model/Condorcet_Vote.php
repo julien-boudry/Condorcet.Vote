@@ -63,14 +63,20 @@ class Condorcet_Vote
 		$this->_bean = R::dispense( 'condorcet' );
 
 		$this->_bean->title = $title;
+		$this->_bean->description = (empty($description)) ? null : $description;
+
 		$this->_bean->methods = serialize(array()) ;
 		$this->update_methods($methods, false);
-		$this->_bean->description = (empty($description)) ? null : $description;
+
 		$this->_bean->date = R::isoDateTime();
 		$this->_bean->last_update = $this->_bean->date;
 		$this->_bean->count_update = 0;
+
 		$this->_bean->read_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $true)));
 		$this->_bean->admin_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $true)));
+
+		$this->_bean->hash_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $true)));
+		$this->_bean->status = true ;
 
 		$this->_objectCondorcet = $vote ;
 		$this->_bean->condorcet_version = $this->_objectCondorcet->getObjectVersion();
@@ -168,5 +174,12 @@ class Condorcet_Vote
 	public function getAdminURL ()
 	{
 		return BASE_URL . 'Edit/' . $this->_bean->read_code . '/' . $this->_bean->admin_code . '/' ;
+	}
+
+	public function getFreeVoteUrl ()
+	{
+		$code = substr(hash('sha224', $this->_bean->admin_code . $this->_bean->hash_code), 5,7) ;
+
+		return BASE_URL . 'Add/' . $this->_bean->read_code . '/Public/' . $code . '/' ;
 	}
 }

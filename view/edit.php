@@ -71,6 +71,24 @@
 				><?php echo htmlspecialchars($this->_Condorcet_Vote->getDescription()) ; ?></textarea>
 			</section>
 
+			<section>
+				<header class="page-header">
+					<h3>Public voting
+						<small class="pull-right">Disallow any method of public voting
+							<input type="checkbox" name="close">
+						</small>
+					</h3>
+				</header>
+				<section id="external_voting">
+					<div class="alert alert-info text-center" role="alert">
+						<?php $freeVoteUrl = $this->_Condorcet_Vote->getFreeVoteUrl() ; ?>
+						<span class="glyphicon glyphicon-envelope pull-left ranking_icon"></span>
+						This URL can be use by anyone to vote... if you share it :
+						<a href="<?php echo $freeVoteUrl; ?>" class="alert-link"><?php echo $freeVoteUrl ; ?></a>
+					</div>
+				</section>
+			</section>
+
 			<button class="btn btn-success" type="submit">Create Vote!</button>
 		</form>
 	</section>
