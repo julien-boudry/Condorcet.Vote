@@ -75,7 +75,9 @@
 				<header class="page-header">
 					<h3>Public voting
 						<small class="pull-right">Disallow any method of public voting
-							<input type="checkbox" name="close">
+							<input type="checkbox" name="close"
+							<?php echo (!$this->_Condorcet_Vote->_bean->open) ? 'checked' : '' ; ?>
+							>
 						</small>
 					</h3>
 				</header>
@@ -86,12 +88,43 @@
 						This URL can be use by anyone to vote... if you share it :
 						<a href="<?php echo $freeVoteUrl; ?>" class="alert-link"><?php echo $freeVoteUrl ; ?></a>
 					</div>
+
+					<div class="alert alert-warning text-center" role="alert">
+						<span class="glyphicon glyphicon-list-alt pull-left ranking_icon"></span>
+					<button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#edit_personnal">Set personnal & unique access</button>
+					</div>
 				</section>
 			</section>
 
 			<button class="btn btn-success" type="submit">Create Vote!</button>
 		</form>
 	</section>
+
+<section class="modal fade" id="edit_personnal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	<div class="modal-content">
+		<header class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+			<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+		</header>
+		<div class="modal-body">
+			<form>
+			<div class="input-group">
+				<span class="input-group-addon"><?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl(); ?></span>
+				<input type="text" id="edit_personnal_identifiant" class="form-control" placeholder="name or identifiant" pattern="[a-zA-Z]+" required>
+				<span id="edit_personnal_code" class="input-group-addon">***</span>
+			</div>
+			<button type="submit" class="btn btn-default center-block" style="margin-top:2%;">Add to keynote</button>
+			</form>
+			<hr>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		</div>
+	</div>
+	</div>
+</section>
+
 
 </div> <!-- /container -->
 

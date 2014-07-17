@@ -63,6 +63,16 @@ class Edit_Controller extends Controller
 			( empty($_POST['edit_methods']) ) ? array() : $_POST['edit_methods']
 		);
 
+		// Open or close
+		if ( isset($_POST['close']) )
+		{
+			$this->_Condorcet_Vote->_bean->open = false ;
+		}
+		else
+		{
+			$this->_Condorcet_Vote->_bean->open = true ;
+		}
+
 
 		// Delete Votes
 		if (!empty($_POST['delete_votes']))

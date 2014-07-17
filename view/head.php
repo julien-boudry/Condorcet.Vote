@@ -21,8 +21,13 @@
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
+
+		<?php if ($this->_view === 'edit') : ?>
+			<script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha224.js"></script>
+		<?php endif; ?>
+
 		<script src="<?php echo BASE_URL . 'view/self.js'; ?>"></script>
 
-		<link rel="icon" type="image/png" href="<?php echo BASE_URL . '/images/favicon.png'; ?>" />
+		<link rel="icon" type="image/png" href="<?php echo BASE_URL . 'images/favicon.png'; ?>" />
 </head>
 <body style="padding-top:50px;">
