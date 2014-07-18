@@ -96,7 +96,7 @@
 				</section>
 			</section>
 
-			<button class="btn btn-success" type="submit">Create Vote!</button>
+			<button class="btn btn-info center-block" type="submit">Create Vote!</button>
 		</form>
 	</section>
 
