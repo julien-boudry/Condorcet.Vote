@@ -8,6 +8,9 @@ class Add_Controller extends Controller
 
 	protected $_Condorcet_Vote = false ;
 
+	protected $_mode ;
+	protected $_etat ;
+
 
 	public function __construct ($condorcet_vote = null)
 	{
@@ -32,25 +35,48 @@ class Add_Controller extends Controller
 				return false ;
 			}
 
+			// Public Mode
 			if	(
 					$_GET['mode'] === 'Public' &&
 					isset($_GET['free_vote_code'])
 				)
 			{
+				$this->_mode = 'Public' ;
+
 				if	( $this->_Condorcet_Vote->getFreeVoteCode() !== $_GET['free_vote_code']	)
 				{
 					$this->_Condorcet_Vote = false ;
 					return false ;
 				}
+
+				// Reception des votes
+				if	(
+						isset($_POST['add_vote_content']) &&
+						isset($_POST['add_name'])
+					)
+				{
+					$this->_etat = ($this->try_add_vote($_POST['add_name'], $_POST['add_vote_content'])) ? true : false ;
+				}
 			}
-			elseif	( 	$_GET['mode'] === 'Personnal' &&
+			// Personnal mode
+			elseif	(
+						$_GET['mode'] === 'Personnal' &&
 						isset($_GET['personnal_name']) &&
-						isset($_GET['personnal_code']) )
+						isset($_GET['personnal_code'])
+					)
 			{
+				$this->_mode = 'Personnal' ;
+
 				if	( $this->_Condorcet_Vote->getPersonnalVoteCode($_GET['personnal_name']) !== $_GET['personnal_code'] )
 				{
 					$this->_Condorcet_Vote = false ;
 					return false ;
+				}
+
+				// Reception des votes
+				if (isset($_POST['add_vote_content']))
+				{
+					$this->_etat = ($this->try_add_vote($_GET['personnal_name'], $_POST['add_vote_content'])) ? true : false ;
 				}
 			}
 			else
@@ -59,6 +85,25 @@ class Add_Controller extends Controller
 				return false ;
 			}
 		}
+	}
+
+	protected function try_add_vote ($name, $vote)
+	{
+		if	( 
+				(empty($name) && $this->_mode === 'Personnal') || // ligne de pure sécurité parano.
+				(!empty($name) && $this->_mode === 'Public' && strlen($name > 20) && !ctype_alpha($name))				
+			)
+		{
+			return false ;
+		}
+
+		try {
+			$this->_Condorcet_Vote->_objectCondorcet->addVote($vote, $name);		
+		} catch (Exception $e) {
+			return false ;
+		}
+
+		return true ;
 	}
 
 
