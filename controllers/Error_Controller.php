@@ -6,22 +6,27 @@ class Error_Controller extends Controller
 
 		//////
 
-	protected $_type = 500 ;
-
-	public function __construct ($type = 500)
+	public function __construct ($error_type = null)
 	{
 		parent::__construct();
 
-		$this->_type = $type ;
+		if ($error_type !== null) { parent::$_error_type = $error_type ; }
 	}
+
+	public function getErrorPage ()
+	{
+		require_once 'view/error.php';
+	}
+
+		//////
 
 	public function getType ()
 	{
-		return (is_int($this->_type)) ? $this->_type : '' ;
+		return parent::$_error_type ;
 	}
 
 	public function getDetails ()
 	{
-		return (is_string($this->_type)) ? $this->_type : '' ;
+		return parent::$_error_details ;
 	}
 }

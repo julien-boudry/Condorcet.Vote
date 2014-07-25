@@ -102,7 +102,10 @@ class Edit_Controller extends Controller
 
 			}
 			catch (Exception $e)
-			{}
+			{
+				parent::$_error_type = 500 ;
+				parent::$_error_details = 'Failling removing votes' ;
+			}
 		}
 
 		// Add votes
@@ -121,7 +124,10 @@ class Edit_Controller extends Controller
 
 			}
 			catch (Exception $e)
-			{}
+			{
+				parent::$_error_type = 500 ;
+				parent::$_error_details = 'Bad vote format' ;
+			}
 		}
 	}
 
@@ -131,11 +137,6 @@ class Edit_Controller extends Controller
 		if ($this->_Condorcet_Vote !== false)
 		{
 			parent::showPage(new Vote_Controller ($this->_Condorcet_Vote));
-		}
-		else
-		{
-			$error = new Error_Controller(500);
-			$error->showPage();
 		}
 	}
 

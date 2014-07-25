@@ -166,6 +166,11 @@ class Condorcet_Vote
 		return ($this->willUpdate()) ? $this->_bean->count_update + 1 : $this->_bean->count_update ;
 	}
 
+	public function isOpen ()
+	{
+		return $this->_bean->open ;
+	}
+
 	public function getPublicURL ()
 	{
 		return BASE_URL . 'Vote/' . $this->_bean->read_code . '/' ;

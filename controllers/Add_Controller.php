@@ -16,22 +16,22 @@ class Add_Controller extends Controller
 	{
 		parent::__construct();
 		
-		// Edit Controller est appellé depuis Create Controller
-		if (is_object($condorcet_vote))
-		{
-			$this->_Condorcet_Vote = $condorcet_vote ;
-		}
-		// Edit Controller est appelé directement via URL (pas d'API)
-		elseif	(	is_null($condorcet_vote) && 
-					isset($_GET['vote']) &&
-					isset($_GET['mode'])
-				)
+		if	(	isset($_GET['vote']) &&
+				isset($_GET['mode'])
+			)
 		{
 			try {
 				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);
 			} catch (Exception $e)
 			{
 				$this->_Condorcet_Vote = false ;
+				return false ;
+			}
+
+			// Is Open ?
+			if (!$this->_Condorcet_Vote->isOpen())
+			{
+				parent::$_error_type = 404 ;
 				return false ;
 			}
 
@@ -139,8 +139,7 @@ class Add_Controller extends Controller
 		}
 		else
 		{
-			$error = new Error_Controller(500);
-			$error->showPage();
+			parent::$_error_type = 500 ;
 		}
 	}
 
