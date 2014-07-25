@@ -36,3 +36,19 @@
 
 		return $post_methods ;
 	}
+
+	function showOneTagClass ($tag)
+	{
+		if ($tag === 'Public-Vote')
+		{
+			return 'label-success' ;
+		}
+		elseif ($tag === 'Personnal-Vote')
+		{
+			return 'label-default' ;
+		}
+		else
+		{
+			return 'label-info' ;
+		}
+	}

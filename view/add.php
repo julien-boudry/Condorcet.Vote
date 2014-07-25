@@ -1,14 +1,19 @@
 <div class="container">
 
 <?php if ($this->_etat === false) : ?>
-<div class="alert -warning" role="alert">
+<div class="alert alert-danger" role="danger">
 	<span class="glyphicon glyphicon-remove ranking_icon pull-left margin-icon"></span>
 	Error
+</div>
+<?php elseif ($this->_etat === 'double') : ?>
+<div class="alert alert-danger" role="danger">
+	<span class="glyphicon glyphicon-remove ranking_icon pull-left margin-icon"></span>
+	Vous avez déjà voté
 </div>
 <?php endif; ?>
 
 <?php if ($this->_etat === true) : ?>
-<div class="alert alert-success" role="alert">
+<div class="alert alert-success" role="success">
 	<span class="glyphicon glyphicon-ok ranking_icon pull-left margin-icon"></span>
 	Your vote has been succefull register
 </div>
@@ -39,10 +44,7 @@
 		</header>
 		<div class="row">
 				<div class="col-lg-6 col-md-6 .col-sm-8 col-xs-6 center-block input-group">
-					<input type="text" name="add_vote_content" class="form-control" required placeholder="A>B>C=D=E>Z" autocomplete="off" pattern="[a-zA-Z0-9> ]+">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button">Go!</button>
-					</span>
+					<input type="text" name="add_vote_content" class="form-control" required placeholder="A>B>C=D=E>Z" autocomplete="off" pattern="[a-zA-Z0-9>= ]+">
 				</div><!-- /input-group -->
 		</div><!-- /.row -->
 	</section>

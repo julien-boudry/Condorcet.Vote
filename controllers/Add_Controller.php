@@ -55,13 +55,24 @@ class Add_Controller extends Controller
 						isset($_POST['add_name'])
 					)
 				{
+					// Check vote déjà existant
+					if	(
+							!empty($_POST['add_name']) && 
+							!empty($this->_Condorcet_Vote->_objectCondorcet->getVotesList($_POST['add_name']))
+						)
+					{
+						$this->_etat = 'double' ;
+						return false ;
+					}
+
+					// Test d'enregistrement
 					$this->_etat = ($this->try_add_vote($_POST['add_name'], $_POST['add_vote_content'])) ? true : false ;
 				}
 			}
 			// Personnal mode
 			elseif	(
 						$_GET['mode'] === 'Personnal' &&
-						isset($_GET['personnal_name']) &&
+						isset($_GET['personnal_name']) && !empty($_GET['personnal_name']) &&
 						isset($_GET['personnal_code'])
 					)
 			{
@@ -73,9 +84,17 @@ class Add_Controller extends Controller
 					return false ;
 				}
 
+				// Check vote déjà existant
+				if ( !empty($this->_Condorcet_Vote->_objectCondorcet->getVotesList($_GET['personnal_name'])) )
+				{
+					$this->_etat = 'double' ;
+					return false ;
+				}
+
 				// Reception des votes
 				if (isset($_POST['add_vote_content']))
 				{
+					// Test d'enregistrement
 					$this->_etat = ($this->try_add_vote($_GET['personnal_name'], $_POST['add_vote_content'])) ? true : false ;
 				}
 			}
@@ -96,6 +115,11 @@ class Add_Controller extends Controller
 		{
 			return false ;
 		}
+
+		$name = array(
+			($this->_mode === 'Personnal') ? 'Personnal-Vote' : 'Public-Vote'
+			,$name
+		);
 
 		try {
 			$this->_Condorcet_Vote->_objectCondorcet->addVote($vote, $name);		

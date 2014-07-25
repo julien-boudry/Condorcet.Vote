@@ -72,7 +72,7 @@
 								<?php foreach ($vote['tag'] as $key_tag => $tag) :
 								if ($key_tag === 0) {continue;} ?>
 
-								<span class="label label-info pull-right"><?php echo htmlspecialchars($tag); ?></span>
+								<span class="pull-right tag-icon label <?php echo showOneTagClass($tag); ?>"><?php echo htmlspecialchars($tag); ?></span>
 
 								<?php endforeach; ?>
 							</h4>
