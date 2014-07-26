@@ -103,7 +103,7 @@ class Admin_Controller extends Controller
 			}
 			catch (Exception $e)
 			{
-				parent::$_error_type = 500 ;
+				parent::$_error_type = 502 ;
 				parent::$_error_details = 'Failling removing votes' ;
 			}
 		}
@@ -125,7 +125,7 @@ class Admin_Controller extends Controller
 			}
 			catch (Exception $e)
 			{
-				parent::$_error_type = 500 ;
+				parent::$_error_type = 502 ;
 				parent::$_error_details = 'Bad vote format' ;
 			}
 		}

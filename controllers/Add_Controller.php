@@ -139,7 +139,8 @@ class Add_Controller extends Controller
 		}
 		else
 		{
-			parent::$_error_type = 500 ;
+			parent::$_error_type = 502 ;
+			parent::showPage();
 		}
 	}
 

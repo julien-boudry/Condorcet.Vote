@@ -79,8 +79,10 @@ class Create_Controller extends Controller
 	{
 		if ($this->_inputError)
 		{
-			$error = new Error_Controller( $this->_inputError );
-			$error->showPage();
+			parent::$_error_type = 502 ;
+			parent::$_error_details = 'Bad inputs' ;
+
+			parent::showPage() ;
 		}
 		else
 		{
