@@ -14,6 +14,7 @@ abstract class Controller
 
 	private static $_head_JS ;
 	private static $_head_CSS ;
+	private static $_head_Canonical ;
 
 	protected static function AddJS ($url, $priority = 0)
 	{
@@ -31,6 +32,11 @@ abstract class Controller
 
 		for ($i = $priority * 100 ; isset(Controller::$_head_CSS[$i]) ; $i++ ) {}
 		Controller::$_head_CSS[$i] = $url ;
+	}
+
+	protected static function AddCanonical ($url)
+	{
+		self::$_head_Canonical = $url ;
 	}
 
 	protected static function setHead ()
@@ -65,7 +71,11 @@ abstract class Controller
 
 		';
 
-		echo '<link rel="icon" type="image/png" href="'.BASE_URL.'images/favicon.png" />' ;
+		echo '<link rel="icon" type="image/png" href="'.BASE_URL.'images/favicon.png" />
+		' ;
+
+		if (!is_null(self::$_head_Canonical))
+			{ echo '<link rel="canonical" href="'.self::$_head_Canonical.'">'; }
 	}
 
 

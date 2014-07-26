@@ -28,14 +28,19 @@ class Vote_Controller extends Controller
 		// Tentative de construction depuis URL
 		else
 		{
-			try {
+			try
+			{
 				$this->_Condorcet_Vote = new Condorcet_Vote ($_GET['vote']);
-				$this->_objectCondorcet = $this->_Condorcet_Vote->_objectCondorcet ;
-			} catch (Exception $e) {
+				$this->_objectCondorcet = $this->_Condorcet_Vote->_objectCondorcet ;				
+			}
+			catch (Exception $e) {
 				$this->_Condorcet_Vote = false ;
 				parent::$_error_type = 404 ;			
 			}
 		}
+
+		if ($this->_Condorcet_Vote !== false)
+			{ Controller::AddCanonical( $this->_Condorcet_Vote->getPublicURL() ); }
 	}
 
 
