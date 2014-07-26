@@ -22,9 +22,9 @@
 	}
 	elseif (class_exists($_GET['route'].'_Controller'))
 	{
-		$object_name = $_GET['route'].'_Controller' ;
+		$controller_name = $_GET['route'].'_Controller' ;
 
-		$controller = new $object_name () ;
+		$controller = new $controller_name () ;
 	}
 	else
 	{

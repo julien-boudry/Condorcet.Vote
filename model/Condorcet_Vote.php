@@ -178,7 +178,7 @@ class Condorcet_Vote
 
 	public function getAdminURL ()
 	{
-		return BASE_URL . 'Edit/' . $this->_bean->read_code . '/' . $this->getAdminCode() . '/' ;
+		return BASE_URL . 'Vote/' . $this->_bean->read_code . '/Admin/' . $this->getAdminCode() . '/' ;
 	}
 
 		public function getAdminCode ()
@@ -193,7 +193,7 @@ class Condorcet_Vote
 
 	public function getFreeVoteUrl ()
 	{
-		return BASE_URL . 'Add/' . $this->_bean->read_code . '/Public/' . $this->getFreeVoteCode() . '/' ;
+		return BASE_URL . 'Vote/' . $this->_bean->read_code . '/Public/' . $this->getFreeVoteCode() . '/' ;
 	}
 
 		public function getFreeVoteCode ()
@@ -203,7 +203,7 @@ class Condorcet_Vote
 
 	public function getPersonnalVoteBaseUrl ()
 	{
-		return BASE_URL . 'Add/' . $this->_bean->read_code . '/Personnal/';
+		return BASE_URL . 'Vote/' . $this->_bean->read_code . '/Personnal/';
 	}
 
 	public function getPersonnalVoteCode ($name)

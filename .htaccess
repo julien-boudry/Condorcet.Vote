@@ -2,17 +2,21 @@
 Options +FollowSymlinks
 RewriteEngine On
 
-# Vote corrects
-	RewriteRule ^(Vote)\/([a-zA-Z0-9]+) index.php?route=$1&vote=$2 [L] 
 
 # Edit corrects
-	RewriteRule ^(Edit)\/([a-zA-Z0-9]+)\/([a-zA-Z0-9]+) index.php?route=$1&vote=$2&admin_code=$3 [L] 
+	RewriteRule ^Vote\/([a-zA-Z0-9]+)\/Admin\/([a-zA-Z0-9]+) index.php?route=Admin&vote=$1&admin_code=$2 [L] 
 
 # Add corrects
+
 	# Public
-	RewriteRule ^(Add)\/([a-zA-Z0-9]+)\/(Public)\/([a-zA-Z0-9]+) index.php?route=$1&vote=$2&mode=$3&free_vote_code=$4 [L]
+	RewriteRule ^Vote\/([a-zA-Z0-9]+)\/Public\/([a-zA-Z0-9]+) index.php?route=Add&vote=$1&mode=Public&free_vote_code=$2 [L] 
+
 	# Personnal
-	RewriteRule ^(Add)\/([a-zA-Z0-9]+)\/(Personnal)\/([a-zA-Z]+)\/([a-zA-Z0-9]+) index.php?route=$1&vote=$2&mode=$3&personnal_name=$4&personnal_code=$5 [L]
+	RewriteRule ^Vote\/([a-zA-Z0-9]+)\/Personnal\/([a-zA-Z0-9]+)\/([a-zA-Z0-9]+) index.php?route=Add&vote=$1&mode=Personnal&personnal_name=$2&personnal_code=$3 [L]
+
+
+# Vote
+	RewriteRule ^Vote\/([a-zA-Z0-9]+) index.php?route=Vote&vote=$1 [L] 
 
 # Routes simples
 	RewriteRule ^([a-zA-Z]+)$ index.php?route=$1 [L]

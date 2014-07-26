@@ -1,6 +1,6 @@
 <?php
 
-class Edit_Controller extends Controller
+class Admin_Controller extends Controller
 {
 	protected $_view = 'edit' ;
 
