@@ -2,6 +2,7 @@
 
 class Create_Controller extends Controller
 {
+	protected $_view = 'create' ;
 
 		//////
 
@@ -86,8 +87,8 @@ class Create_Controller extends Controller
 		}
 		else
 		{
-			$vote_admin_page = new Admin_Controller($this->_new_condorcet);
-			$vote_admin_page->showPage();
+			Controller::AddCanonical( $this->_new_condorcet->getPublicURL() );
+			parent::showPage(new Admin_Controller($this->_new_condorcet), 'after');
 		}
 	}
 
