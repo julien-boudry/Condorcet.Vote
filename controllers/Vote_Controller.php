@@ -36,6 +36,12 @@ class Vote_Controller extends Controller
 				parent::$_error_type = 404 ;			
 			}
 		}
-	}	
+	}
+
+
+	protected function contextTitle ()
+	{
+		return $this->_Condorcet_Vote->_bean->title ;
+	}
 
 }

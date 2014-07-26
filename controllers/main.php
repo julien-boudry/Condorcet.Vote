@@ -75,9 +75,24 @@ abstract class Controller
 	public $_partial = false ;
 
 	public function __construct ()
-	{
+	{}
 
+	protected function getTitle ()
+	{
+		if (self::$_error_type !== false)
+		{
+			return 'Error ' . self::$_error_type ;
+		}
+		else
+		{
+			return $this->contextTitle() ;
+		}
 	}
+
+		protected function contextTitle ()
+		{
+			return $this->_view ;
+		}
 
 	public function showPage ($follow = null, $position = 'after')
 	{
