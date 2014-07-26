@@ -1,21 +1,25 @@
 <?php
 
-class Create_Controller extends Controller
+class Create_Controller extends Admin_Controller
 {
-	protected $_view = 'create' ;
-
-		//////
-
 	protected $_inputError = true ;
 
 	public function __construct ()
 	{
-		parent::__construct();
-		
 		if ($this->checkEmpty() && $this->registerCondorcet())
 		{
 			$this->_inputError = false ;
+
+			parent::__construct($this->_new_condorcet);
+
+			$this->_new_condorcet = true ;
 		}
+		else
+		{
+
+		}
+
+
 	}
 
 	public function checkEmpty ()
@@ -82,14 +86,9 @@ class Create_Controller extends Controller
 		{
 			parent::$_error_type = 502 ;
 			parent::$_error_details = 'Bad inputs' ;
+		}
 
-			parent::showPage() ;
-		}
-		else
-		{
-			Controller::AddCanonical( $this->_new_condorcet->getPublicURL() );
-			parent::showPage(new Admin_Controller($this->_new_condorcet), 'after');
-		}
+		parent::showPage() ;
 	}
 
 }
