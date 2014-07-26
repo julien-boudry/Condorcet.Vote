@@ -2,7 +2,7 @@
 
 class Admin_Controller extends Controller
 {
-	protected $_view = 'edit' ;
+	protected $_view = 'admin' ;
 
 		//////
 
@@ -136,6 +136,7 @@ class Admin_Controller extends Controller
 	{
 		if ($this->_Condorcet_Vote !== false)
 		{
+			parent::AddJS('http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha224.js', 3);
 			parent::showPage(new Vote_Controller ($this->_Condorcet_Vote));
 		}
 	}

@@ -10,6 +10,67 @@ abstract class Controller
 
 		///////
 
+	// Construction du head
+
+	private static $_head_JS ;
+	private static $_head_CSS ;
+
+	protected static function AddJS ($url, $priority = 0)
+	{
+		if (!is_array(Controller::$_head_JS))
+			{ Controller::$_head_JS = array(); }
+
+		for ($i = $priority * 100 ; isset(Controller::$_head_JS[$i]) ; $i++ ) {}
+		Controller::$_head_JS[$i] = $url ;
+	}
+
+	protected static function AddCSS ($url, $priority = 0)
+	{
+		if (!is_array(Controller::$_head_CSS))
+			{ Controller::$_head_CSS = array(); }
+
+		for ($i = $priority * 100 ; isset(Controller::$_head_CSS[$i]) ; $i++ ) {}
+		Controller::$_head_CSS[$i] = $url ;
+	}
+
+	protected static function setHead ()
+	{
+		if (!is_array(Controller::$_head_JS))
+			{ Controller::$_head_JS = array(); }
+		if (!is_array(Controller::$_head_CSS))
+			{ Controller::$_head_CSS = array(); }
+
+		ksort(Controller::$_head_JS);
+		ksort(Controller::$_head_CSS);
+
+
+		foreach ( Controller::$_head_CSS as $url )
+		{
+			echo '<link href="'.$url.'" rel="stylesheet">
+			' ;
+		}
+
+		echo '
+
+		';
+
+
+		foreach ( Controller::$_head_JS as $url )
+		{
+			echo '<script src="'.$url.'"></script>
+			' ;
+		}
+
+		echo '
+
+		';
+
+		echo '<link rel="icon" type="image/png" href="'.BASE_URL.'images/favicon.png" />' ;
+	}
+
+
+		//////
+
 	protected $_view = 'home' ;
 	public $_partial = false ;
 
@@ -34,6 +95,17 @@ abstract class Controller
 		// Un peu d'Ajax ?
 		if (!self::$_ajax || $this->_partial)
 		{
+			self::AddCSS('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css');
+			self::AddCSS('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', 1);
+			self::AddCSS(BASE_URL.'view/style_custom_bootstrap.css', 2);
+			self::AddCSS(BASE_URL.'view/style.css', 3);
+
+			self::AddJS('//ajax.googleapis.com/ajax/libs/jquery/'.CONFIG_JQUERY.'/jquery.min.js');
+			// self::AddJS('//ajax.googleapis.com/ajax/libs/jqueryui/'.CONFIG_JQUERY_UI.'/jquery-ui.min.js');
+			self::AddJS('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js', 1);
+			self::AddJS(BASE_URL.'view/self.js', 9);
+
+
 			require_once 'view/head.php';
 			require_once 'view/header.php';
 		}
