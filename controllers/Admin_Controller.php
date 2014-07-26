@@ -25,6 +25,7 @@ class Admin_Controller extends Controller
 				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);		
 			} catch (Exception $e) {
 				$this->_Condorcet_Vote = false ;
+				Controller::$_error_type = 502 ;
 				return false ;
 			}
 
@@ -138,6 +139,10 @@ class Admin_Controller extends Controller
 		{
 			parent::AddJS('http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha224.js', 3);
 			parent::showPage(new Vote_Controller ($this->_Condorcet_Vote));
+		}
+		else
+		{
+			parent::showPage();
 		}
 	}
 

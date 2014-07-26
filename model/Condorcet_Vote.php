@@ -79,7 +79,7 @@ class Condorcet_Vote
 		$this->_bean->open = true ;
 
 		$this->_objectCondorcet = $vote ;
-		$this->_bean->condorcet_version = $this->_objectCondorcet->getObjectVersion();
+		$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion('MAJOR');
 
 		$this->_bean->candidates = serialize($this->_objectCondorcet->getCandidatesList());
 		$this->saveVotesList();
@@ -94,11 +94,48 @@ class Condorcet_Vote
 		$this->_bean = R::findOne( 'condorcet', ' read_code = ? ', [ $read_code ]);
 
 		if (is_null($this->_bean))
-			{ throw new Exception ('Impossible de charger le vote'); }
+			{ throw new Exception ('Vote inexistant'); }
 		else
 		{
-			$this->_objectCondorcet = unserialize($this->_bean->condorcet_object) ;
-			$this->prepareCondorcet();
+			try	{
+				$this->_objectCondorcet = unserialize($this->_bean->condorcet_object) ;
+				$this->prepareCondorcet();
+			}
+			catch (Condorcet\CondorcetException $e) {
+
+				// Update de l'objet & reconstruction
+				if ($e->getCode() === 11)
+				{
+					$this->_objectCondorcet = new Condorcet\Condorcet () ;
+
+					// Reconstruction
+
+						// Candidats
+						$this->_objectCondorcet->jsonCandidates(json_encode(unserialize($this->_bean->candidates)));
+					
+						// Votes
+						foreach ( unserialize($this->_bean->votes_list) as $vote )
+						{
+							$tag = $vote['tag'];
+							unset($vote['tag']);
+
+							$this->_objectCondorcet->addVote($vote, $tag);
+						}
+
+					// Mise à jour
+					$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion('MAJOR');
+					$this->saveVotesList();
+					$this->prepareCondorcet();
+					$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
+					$this->_bean->condorcet_object = serialize($this->_objectCondorcet);
+				}
+				// Drôle d'erreur
+				else
+				{
+					throw new Exception ('Impossible de reconstituer le vote');
+				}
+			}
+
 		}
 	}
 

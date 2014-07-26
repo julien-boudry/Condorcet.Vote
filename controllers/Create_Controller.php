@@ -86,7 +86,7 @@ class Create_Controller extends Controller
 		}
 		else
 		{
-			$vote_admin_page = new Edit_Controller($this->_new_condorcet);
+			$vote_admin_page = new Admin_Controller($this->_new_condorcet);
 			$vote_admin_page->showPage();
 		}
 	}
