@@ -19,6 +19,4 @@ RewriteEngine On
 	RewriteRule ^Vote\/([a-zA-Z0-9]+) index.php?route=Vote&vote=$1 [L] 
 
 # Routes simples
-	RewriteRule ^([a-zA-Z]+)$ index.php?route=$1 [L]
-	# Avec / de fin
-	RewriteRule ^([a-zA-Z]+)\/$ index.php?route=$1 [L]
+	RewriteRule ^([a-zA-Z]+)(\/)*$ index.php?route=$1 [L]
