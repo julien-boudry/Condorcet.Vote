@@ -136,7 +136,7 @@ abstract class Controller
 		}
 
 			// On veut une erreur
-			if (self::$_error_type)
+			if (Events::getFatalErrors() !== null)
 			{
 				$error = new Error_Controller () ;
 				$error->getErrorPage();

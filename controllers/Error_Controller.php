@@ -6,11 +6,9 @@ class Error_Controller extends Controller
 
 		//////
 
-	public function __construct ($error_type = null)
+	public function __construct ()
 	{
 		parent::__construct();
-
-		if ($error_type !== null) { parent::$_error_type = $error_type ; }
 	}
 
 	public function getErrorPage ()

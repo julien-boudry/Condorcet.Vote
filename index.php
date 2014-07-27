@@ -5,6 +5,7 @@
 	require_once 'model/rb.php';
 	require_once 'model/Condorcet/lib/Condorcet/Condorcet.php';
 	require_once 'model/Condorcet_Vote.php';
+	require_once 'model/Events.class.php';
 
 // Config
 	require_once 'config/config.php';
@@ -28,7 +29,9 @@
 	}
 	else
 	{
-		$controller = new Error_Controller(404) ;
+		Events::add ( new Error('Index', 404, null, null) );
+
+		$controller = new Home_Controller() ;
 	}
 
 	$controller->showPage() ;
