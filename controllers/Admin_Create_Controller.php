@@ -11,8 +11,6 @@ class Create_Controller extends Admin_Controller
 			$this->_inputError = false ;
 
 			parent::__construct($this->_new_condorcet);
-
-			$this->_new_condorcet = true ;
 		}
 		else
 		{

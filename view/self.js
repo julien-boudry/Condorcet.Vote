@@ -39,4 +39,96 @@ $(document).ready(function()
 			$('#personnal_keynote').append(new_personnal_url + '\r\n');
 		}
 	});
+
+	// Vérification des input de vote
+	$( ".vote-parser" ).on('change keyup', null, function() {
+
+		// Is empty ?
+		if ($(this).val() == "" || $(this).val() == null)
+		{
+			authorize_votes(false);
+			return ;
+		}
+
+		// Is Json ?
+		if ( isJson($(this).val()) )
+		{
+			authorize_votes(true);
+			return ;
+		}
+
+		// OK, on test le parsing
+		var input = $(this).val().replace(/(\r\n|\n|\r)/g,';');
+		var input = explode(';', input);
+
+		input.forEach (prepare_parse , input);
+		console.log(input);
+
+		var regexVote = new RegExp(
+		"^(:?[a-zA-Z0-9, ]+[|]{2} *)?(:?[a-zA-Z0-9]+)(:?( *[>=]{1} *)(:?[a-zA-Z0-9]+ *))*([*] *[0-9]+ *)?$"
+		);
+		var is_correct = true ;
+		input.forEach (function (element,index) {
+			if (!regexVote.test(element))
+				{is_correct = false ;}
+		});
+
+		if (is_correct)
+			{
+				authorize_votes(true);
+				return ;
+			}
+		else
+			{
+				authorize_votes(false);
+				return ;
+			}
+
+
+		// Final
+		authorize_votes(true);
+	});
+
+		function prepare_parse (element, index) {
+
+			// Delete comments
+			var is_comment = strpos(this[index], '#') ;
+			if (is_comment !== false)
+			{
+				this[index] = substr(this[index], 0, is_comment) ;
+			}
+
+			// Trim
+			this[index] = trim(this[index]);
+		}
+
+
+		function isJson (input)
+		{
+			var isJson = true ;
+			try
+			{
+				var jsonObject = jQuery.parseJSON(input);
+			}
+			catch(e)
+			{
+				isJson = false ;
+			}
+
+			return isJson ;
+		}
+
+		function authorize_votes (valid)
+		{
+			if (!valid) { 
+				$(this).addClass('red-background');
+				$('#edit_vote').attr('disabled', 'true');
+			}
+			else { 
+				$(this).removeClass('red-background');
+				$('#edit_vote').removeAttr('disabled');
+			}
+
+			console.log('change : ' + valid)
+		}
 });

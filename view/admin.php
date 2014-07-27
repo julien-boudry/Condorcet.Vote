@@ -42,7 +42,7 @@
 				<header class="page-header">
 					<h3>Add Votes</h3>
 				</header>
-				<textarea name="add_votes" class="form-control" rows="3"></textarea>
+				<textarea name="add_votes" class="form-control vote-parser" rows="3"></textarea>
 			</section>
 
 			<section>
@@ -113,7 +113,7 @@
 				</section>
 			</section>
 
-			<button class="btn btn-info center-block" type="submit">Edit Vote!</button>
+			<button id="edit_vote" class="btn btn-info center-block" type="submit">Edit Vote!</button>
 		</form>
 	</section>
 
