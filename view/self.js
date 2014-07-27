@@ -1,7 +1,7 @@
 $(document).ready(function()
 {
 	// Gestion de la génération d'adresses personnelles
-	$( "#edit_personnal_identifiant" ).on('change keyup', null, function() {
+	$( "#edit_personnal_identifiant" ).on('ready change keyup click hover', null, function() {
 		
 		new_personnal_url = false ;
 
@@ -41,19 +41,19 @@ $(document).ready(function()
 	});
 
 	// Vérification des input de vote
-	$( ".vote-parser" ).on('change keyup', null, function() {
+	$( ".vote-parser" ).on('ready change keyup click hover', null, function() {
 
 		// Is empty ?
 		if ($(this).val() == "" || $(this).val() == null)
 		{
-			authorize_votes(false);
+			authorize_edit(true, $(this));
 			return ;
 		}
 
 		// Is Json ?
 		if ( isJson($(this).val()) )
 		{
-			authorize_votes(true);
+			authorize_edit(true, $(this));
 			return ;
 		}
 
@@ -62,10 +62,9 @@ $(document).ready(function()
 		var input = explode(';', input);
 
 		input.forEach (prepare_parse , input);
-		console.log(input);
 
 		var regexVote = new RegExp(
-		"^(:?[a-zA-Z0-9, ]+[|]{2} *)?(:?[a-zA-Z0-9]+)(:?( *[>=]{1} *)(:?[a-zA-Z0-9]+ *))*([*] *[0-9]+ *)?$"
+		"^(:?[a-zA-Z0-9, ]+[|]{2} *)?(:?[a-zA-Z0-9]+)(:?( *[>=]{1} *)(:?[a-zA-Z0-9]+ *))*(:?[*] *[0-9]+ *)?$"
 		);
 		var is_correct = true ;
 		input.forEach (function (element,index) {
@@ -75,18 +74,18 @@ $(document).ready(function()
 
 		if (is_correct)
 			{
-				authorize_votes(true);
+				authorize_edit(true, $(this));
 				return ;
 			}
 		else
 			{
-				authorize_votes(false);
+				authorize_edit(false, $(this));
 				return ;
 			}
 
 
 		// Final
-		authorize_votes(true);
+		authorize_edit(true, $(this));
 	});
 
 		function prepare_parse (element, index) {
@@ -118,17 +117,17 @@ $(document).ready(function()
 			return isJson ;
 		}
 
-		function authorize_votes (valid)
+		function authorize_edit (valid, boite)
 		{
+			var button = $('form button[type="submit"]') ;
+
 			if (!valid) { 
-				$(this).addClass('red-background');
-				$('#edit_vote').attr('disabled', 'true');
+				$(boite).css('box-shadow', '0 0 2px 1px red');
+				$(button).attr('disabled', 'true');
 			}
 			else { 
-				$(this).removeClass('red-background');
-				$('#edit_vote').removeAttr('disabled');
+				$(boite).css('box-shadow', 'none');
+				$(button).removeAttr('disabled');
 			}
-
-			console.log('change : ' + valid)
 		}
 });

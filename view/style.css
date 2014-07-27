@@ -33,3 +33,7 @@
 	background-color:#F5F5F5;
 	border:none;
 }
+
+input:invalid {
+	box-shadow: 0 0 2px 1px red;
+}

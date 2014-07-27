@@ -11,14 +11,14 @@
 							<header class="page-header" style="margin-top:1%;">
 									<h3>Add Candidates</h3>
 							</header>
-							<textarea name="candidates" required class="form-control" rows="1" placeholder="Candidate 1"></textarea>
+							<input type="text" name="candidates" required class="form-control" placeholder="Candidate 1" pattern="( *[a-zA-Z0-9]+ *;{1}){1,}( *[a-zA-Z0-9]+ *)"></textarea>
 					</section>
 
 					<section>
 							<header class="page-header">
 									<h3>Add Votes</h3>
 							</header>
-							<textarea name="votes" class="form-control" rows="3" required></textarea>
+							<textarea name="votes" class="form-control vote-parser" rows="3"></textarea>
 					</section>
 
 					<section>
