@@ -4,6 +4,8 @@ class Admin_Controller extends Controller
 {
 	protected $_view = 'Admin' ;
 
+	const ERROR_URL = 'This vote or this admin code do not exist.' ;
+
 		//////
 
 	protected $_Condorcet_Vote = false ;
@@ -25,9 +27,9 @@ class Admin_Controller extends Controller
 				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);		
 			} catch (Exception $e) {
 
-				$this->_Condorcet_Vote = false ;
+				Events::add( new Error (404, null, null, self::ERROR_URL) );
 
-				Events::add( new Error (404) );
+				$this->_Condorcet_Vote = false ;
 
 				return false ;
 			}
@@ -35,7 +37,10 @@ class Admin_Controller extends Controller
 			// Controle de la validité du code
 			if ($this->_Condorcet_Vote->_bean->admin_code !== $_GET['admin_code'])
 			{
+				Events::add( new Error (404, null, null, self::ERROR_URL) );
+
 				$this->_Condorcet_Vote = false ;
+
 				return false ;
 			}
 
@@ -52,30 +57,26 @@ class Admin_Controller extends Controller
 
 	protected function update_vote ()
 	{
-		// Update (ou non) de la description
+		// Update (ou non) de la description (l'affichage de l'erreur est exclusivement géré en front)
 		if	(
 				$_POST['edit_description'] !== $this->_Condorcet_Vote->_bean->description
 				&&
-				$_POST['edit_description'] <= CONFIG_DESCRIPTION_LENGHT
+				strlen($_POST['edit_description']) <= CONFIG_DESCRIPTION_LENGHT
 			)
 		{
 			$this->_Condorcet_Vote->_bean->description = $_POST['edit_description'] ;
 		}
 
-		// Update (ou non) de la des methods
+		// Update (ou non) de la des methods (l'affichage de l'erreur est exclusivement géré en front)
 		$this->_Condorcet_Vote->update_methods(
 			( empty($_POST['edit_methods']) ) ? array() : $_POST['edit_methods']
 		);
 
 		// Open or close
 		if ( isset($_POST['close']) )
-		{
-			$this->_Condorcet_Vote->_bean->open = false ;
-		}
+			{ $this->_Condorcet_Vote->_bean->open = false ; }
 		else
-		{
-			$this->_Condorcet_Vote->_bean->open = true ;
-		}
+			{ $this->_Condorcet_Vote->_bean->open = true ; }
 
 
 		// Delete Votes
@@ -102,13 +103,13 @@ class Admin_Controller extends Controller
 						{$value = intval($value);}
 				}
 				
-				$this->_Condorcet_Vote->_objectCondorcet->removeVote($delete_votes);
+				$counter_remove = $this->_Condorcet_Vote->_objectCondorcet->removeVote($delete_votes);
+
+				Events::add( new Success ($counter_remove . 'deleted votes') );
 
 			}
 			catch (Exception $e)
-			{
-				Events::add( new Error (502, null, null, 'Failling removing votes') );
-			}
+			{}
 		}
 
 		// Add votes
@@ -128,7 +129,7 @@ class Admin_Controller extends Controller
 			}
 			catch (Exception $e)
 			{
-				Events::add( new Error (502, null, null, 'Bad vote format') );
+				Events::add( new Error (502, null, null, 'Bad vote format', 2, 0) );
 			}
 		}
 	}

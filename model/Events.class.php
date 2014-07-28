@@ -1,71 +1,174 @@
 <?php
 
-class Events
+abstract class Events
 {
-	public static $_error_list = array() ;
-	public static $_message_list = array() ;
+	public static $_errors_list = array() ;
+	public static $_success_list = array() ;
+	public static $_infos_list = array() ;
 
 	public static function add (Events $event)
 	{
 		if (get_class($event) === 'Error') :
-			self::$_error_list[] = $event ;
-		elseif (get_class($event) === 'Message') :
-			self::$_message_list[] = $event ;
+			self::$_errors_list[] = $event ;
+		elseif (get_class($event) === 'Success') :
+			self::$_success_list[] = $event ;
+		elseif (get_class($event) === 'Info') :
+			self::$_infos_list[] = $event ;
 		endif;
 	}
 
-	public static function getFatalErrors ()
+	public static function isAnyEvent ($minLevel = 0, $maxLevel = null)
 	{
-		$retour = array();
-
-		foreach (self::$_error_list as $error)
-		{
-			if ($error->_visibility > 0 && $error->_level > 0)
-			{
-				$retour[] = $error ;
-			}
-		}
-
-		return (!empty($retour)) ? $retour : null ;
-	}
-
-	public static function getErrorCode ()
-	{
-		foreach (self::$_error_list as $error)
-		{
-			if (is_int($error->_server_code))
-			{
-				return $error->_server_code ;
-			}
-		}
-
-		// Pas d'erreur :
-		return null ;
-	}
-
-	public static function isAnyError ($minLevel = 0)
-	{
-		if ($minLevel === 0 && empty(self::$_error_list))
-			{ return false ; }
-		elseif ($minLevel === 0)
+		if	(
+				self::isAnyError($minLevel, $maxLevel) ||
+				self::isAnySuccess($minLevel, $maxLevel) ||
+				self::isAnyInfo($minLevel, $maxLevel)
+			)
 			{ return true ; }
-		elseif ($minLevel !== 0)
-		{ 
-			foreach (self::$_error_list as $error)
+		else
+			{ return false ; }
+	}
+
+
+	// Errors
+		public static function getFatalErrors ()
+		{
+			$retour = array();
+
+			foreach (self::$_errors_list as $error)
 			{
-				if ($error->_level >= $minLevel)
+				if ($error->_visibility > 0 && $error->_level > 0)
 				{
-					return true ;
+					$retour[] = $error ;
+				}
+			}
+
+			return (!empty($retour)) ? $retour : null ;
+		}
+
+		public static function getNormalErrors ()
+		{
+			$retour = array();
+
+			foreach (self::$_errors_list as $error)
+			{
+				if ($error->_visibility > 0 && $error->_level === 0)
+				{
+					$retour[] = $error ;
+				}
+			}
+
+			return (!empty($retour)) ? $retour : null ;
+		}
+
+		public static function getErrorCode ()
+		{
+			foreach (self::$_errors_list as $error)
+			{
+				if (is_int($error->_server_code))
+				{
+					return $error->_server_code ;
+				}
+			}
+
+			// Pas d'erreur :
+			return null ;
+		}
+
+		public static function isAnyError ($minLevel = 0, $maxLevel = null)
+		{
+			if ($minLevel === 0 && empty(self::$_errors_list))
+				{ return false ; }
+			elseif ($maxLevel === null)
+			{ 
+				foreach (self::$_errors_list as $error)
+				{
+					if ($error->_level >= $minLevel)
+					{
+						return true ;
+					}
+				}
+			}
+			elseif ($maxLevel >= $minLevel)
+			{ 
+				foreach (self::$_errors_list as $error)
+				{
+					if ($error->_level >= $minLevel && $error->_level <= $maxLevel)
+					{
+						return true ;
+					}
 				}
 			}
 
 			return false ;
-		}		
-	}
+		}
+
+	// Success
+
+		public static function isAnysuccess ($minLevel = 0, $maxLevel = null)
+		{
+			if ($minLevel === 0 && empty(self::$_success_list))
+				{ return false ; }
+			elseif ($maxLevel === null)
+			{ 
+				foreach (self::$_success_list as $succes)
+				{
+					if ($succes->_level >= $minLevel)
+					{
+						return true ;
+					}
+				}
+			}
+			elseif ($maxLevel >= $minLevel)
+			{ 
+				foreach (self::$_success_list as $succes)
+				{
+					if ($succes->_level >= $minLevel && $succes->_level <= $maxLevel)
+					{
+						return true ;
+					}
+				}
+			}
+
+			return false ;
+		}
+
+	// Infos
+
+		public static function isAnyinfo ($minLevel = 0, $maxLevel = null)
+		{
+			if ($minLevel === 0 && empty(self::$_infos_list))
+				{ return false ; }
+			elseif ($maxLevel === null)
+			{ 
+				foreach (self::$_infos_list as $info)
+				{
+					if ($info->_level >= $minLevel)
+					{
+						return true ;
+					}
+				}
+			}
+			elseif ($maxLevel >= $minLevel)
+			{ 
+				foreach (self::$_infos_list as $info)
+				{
+					if ($info->_level >= $minLevel && $info->_level <= $maxLevel)
+					{
+						return true ;
+					}
+				}
+			}
+
+			return false ;
+		}
 
 		//////
 
-	public $_source ;
+	public $_level ;  // 0=service normal / 1=Erreur remarquable / 3=Erreur grave
+	public $_public_details ;
+	public $_visibility ; // 2 = tjs visible / 1 = Visible en mode DEV / 0 = Jamais visible
+
 }
 
 
@@ -73,17 +176,21 @@ class Error extends Events
 {
 	public $_server_code ;
 	public $_name ;
-	public $_public_details ;
 	public $_private_details ;
-	public $_visibility ; // 2 = tjs visible / 1 = Visible en mode DEV / 0 = Jamais visible
-	public $_level ; // 0=service normal / 1=Erreur remarquable / Erreur grave
 
 	protected $_line ;
 	protected $_timestamp ;
 
 		//////
 
-	public function __construct ($server_code = null, $name = null, $private_details = null, $public_details = null, $visibility = 2, $level = 1)
+	public function __construct (
+		$server_code = null,
+		$name = null,
+		$private_details = null,
+		$public_details = null,
+		$visibility = 2,
+		$level = 2,
+		$line = null)
 	{
 		$this->_server_code = $server_code ;
 		$this->_name = $name ;
@@ -92,12 +199,21 @@ class Error extends Events
 		$this->_visibility = $visibility ;
 		$this->_level = $level;
 
-		$this->_timestamp = time() ;	
+		$this->_timestamp = time() ;
 
-		$this->_line = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1) ;
-		$this->_line = $this->_line[0]['file'] . ' - l.' . $this->_line[0]['line'] ;
+		if ($line !== null)
+		{
+
+		}
+		else
+		{
+			$this->_line = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1) ;
+			$this->_line = $this->_line[0]['file'] . ' - l.' . $this->_line[0]['line'] ;
+		}
 
 		$this->autoComplete() ;
+
+		// if (CONFIG_ENV === 'DEV') { var_dump(debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS)); }
 	}
 
 	public function __destruct ()
@@ -127,7 +243,12 @@ class Error extends Events
 		if ($this->_server_code === 404)
 		{
 			if (is_null($this->_name)) 
-				{ $this->_name = 'Error 404'; }
+				{ $this->_name = '404'; }
+		}
+		elseif ($this->_server_code === 500)
+		{
+			if (is_null($this->_name)) 
+				{ $this->_name = '500'; }
 		}
 
 			///
@@ -138,3 +259,19 @@ class Error extends Events
 		}
 	}
 }
+
+abstract class Message extends Events
+{	
+	public function __construct ($public_details, $visibility = 2, $level = 2)
+	{
+		$this->_public_details = $public_details ;
+		$this->_visibility = $visibility ;
+		$this->_level = $level;
+	}
+}
+
+class Success extends Message
+{}
+
+class Info extends Message
+{}

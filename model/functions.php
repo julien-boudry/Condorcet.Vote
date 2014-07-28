@@ -39,3 +39,14 @@
 			return 'label-info' ;
 		}
 	}
+
+set_error_handler(function($type, $msg, $file, $line, $context = array()) {
+
+   if (CONFIG_ENV === 'DEV') {return FALSE ;}
+
+    Events::add(new Error(500, null, $type.' - '.$msg, null, 2, 3) );
+
+    ( new Error_Controller() )->showPage();
+
+    exit();
+});

@@ -59,7 +59,7 @@ class Condorcet_Vote
 			endif;
 		}
 
-	protected function register (Condorcet\Condorcet $vote, $title, $methods, $description)
+	protected function register (Condorcet\Condorcet $vote, $title, $methods, $description = null)
 	{
 		$true = true ;
 		$this->_isNew = true ;

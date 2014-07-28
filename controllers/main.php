@@ -96,6 +96,10 @@ abstract class Controller
 
 	public function showPage ($follow = null, $position = 'after')
 	{
+		// On passe le partiel cas échant
+		if (is_object($follow))
+			{ $follow->_partial = true ; }
+
 		// On veut une erreur
 		if ($this->_view !== 'Error' && Events::getFatalErrors() !== null)
 		{
@@ -106,7 +110,7 @@ abstract class Controller
 
 		// Error - Header
 		$error_code = Events::getErrorCode() ;
-		if ($error_code !== null)
+		if ($error_code !== null && !$this->_partial)
 		{
 			if ($error_code === 404)
 				{ header($_SERVER['SERVER_PROTOCOL'] . " 404 Not Found"); }
@@ -117,7 +121,7 @@ abstract class Controller
 		}
 
 		// Un peu d'Ajax ?
-		if (!self::$_ajax || $this->_partial)
+		if (!self::$_ajax && !$this->_partial)
 		{
 			self::AddCSS('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css');
 			self::AddCSS('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', 1);
@@ -136,18 +140,19 @@ abstract class Controller
 
 		// Route classique
 		if (is_object($follow) && $position === 'before')
-		{
-			$follow->_partial = true ;
-			$follow->showPage();
-		}
+			{ $follow->showPage(); }
 
-		require_once 'view'.DIRECTORY_SEPARATOR.$this->_view .'.php';
+			// Message d'erreurs
+			if (Events::isAnyEvent(0,0))
+			{
+				require 'view'.DIRECTORY_SEPARATOR.'message.php';
+			}
+
+			// Base
+			require_once 'view'.DIRECTORY_SEPARATOR.$this->_view .'.php';
 
 		if (is_object($follow) && $position === 'after')
-		{
-			$follow->_partial = true ;
-			$follow->showPage();
-		}
+			{ $follow->showPage(); }
 
 
 		// Un peu d'Ajax ?

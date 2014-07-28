@@ -71,7 +71,12 @@ class Create_Controller extends Admin_Controller
 			return false ;
 		}
 
-		$this->_new_condorcet = new Condorcet_Vote($new_condorcet, $_POST['title'], $this->_accept_methods, $_POST['description']) ;
+		$this->_new_condorcet = new Condorcet_Vote(
+			$new_condorcet
+			, $_POST['title']
+			, $this->_accept_methods
+			, (strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT) ? $_POST['description'] : null
+			);
 
 		return true ;
 	}
