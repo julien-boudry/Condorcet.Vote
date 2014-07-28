@@ -107,13 +107,14 @@ abstract class Controller
 	public function showPage ($follow = null, $position = 'after')
 	{
 		// Error - Header
-		if (self::$_error_type)
+		$error_code = Events::getErrorCode() ;
+		if ($error_code !== null)
 		{
-			if (self::$_error_type === 404)
+			if ($error_code === 404)
 				{ header($_SERVER['SERVER_PROTOCOL'] . " 404 Not Found"); }
-			elseif (self::$_error_type === 500)
+			elseif ($error_code === 500)
 				{ header($_SERVER['SERVER_PROTOCOL'] . " 500 Internal Server Error"); }
-			elseif (self::$_error_type === 502)
+			elseif ($error_code === 502)
 				{ header($_SERVER['SERVER_PROTOCOL'] . " 502 Bad Gateway"); }
 		}
 

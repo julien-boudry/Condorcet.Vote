@@ -29,6 +29,20 @@ class Events
 		return (!empty($retour)) ? $retour : null ;
 	}
 
+	public static function getErrorCode ()
+	{
+		foreach (self::$_error_list as $error)
+		{
+			if (is_int($error->_server_code))
+			{
+				return $error->_server_code ;
+			}
+		}
+
+		// Pas d'erreur :
+		return null ;
+	}
+
 		//////
 
 	public $_source ;
