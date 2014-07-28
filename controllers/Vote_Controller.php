@@ -23,7 +23,7 @@ class Vote_Controller extends Controller
 		// Construction depuis URL avec parametre(s) manquant(s)
 		elseif (empty($_GET['vote']))
 		{
-			parent::$_error_type = 404 ;
+			Events::add( new Error (404) );
 		}
 		// Tentative de construction depuis URL
 		else
@@ -35,7 +35,7 @@ class Vote_Controller extends Controller
 			}
 			catch (Exception $e) {
 				$this->_Condorcet_Vote = false ;
-				parent::$_error_type = 404 ;			
+				Events::add( new Error (404) );		
 			}
 		}
 

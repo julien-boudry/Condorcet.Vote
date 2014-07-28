@@ -24,8 +24,11 @@ class Admin_Controller extends Controller
 			try {
 				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);		
 			} catch (Exception $e) {
+
 				$this->_Condorcet_Vote = false ;
-				Controller::$_error_type = 502 ;
+
+				Events::add( new Error (404) );
+
 				return false ;
 			}
 
@@ -104,8 +107,7 @@ class Admin_Controller extends Controller
 			}
 			catch (Exception $e)
 			{
-				parent::$_error_type = 502 ;
-				parent::$_error_details = 'Failling removing votes' ;
+				Events::add( new Error (502, null, null, 'Failling removing votes') );
 			}
 		}
 
@@ -126,8 +128,7 @@ class Admin_Controller extends Controller
 			}
 			catch (Exception $e)
 			{
-				parent::$_error_type = 502 ;
-				parent::$_error_details = 'Bad vote format' ;
+				Events::add( new Error (502, null, null, 'Bad vote format') );
 			}
 		}
 	}

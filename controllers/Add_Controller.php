@@ -31,7 +31,7 @@ class Add_Controller extends Controller
 			// Is Open ?
 			if (!$this->_Condorcet_Vote->isOpen())
 			{
-				parent::$_error_type = 404 ;
+				Events::add( new Error (404, null, 'Le vote est fermé') );
 				return false ;
 			}
 
@@ -139,7 +139,9 @@ class Add_Controller extends Controller
 		}
 		else
 		{
-			parent::$_error_type = 502 ;
+			Events::add( new Error (502) );
+				return false ;
+
 			parent::showPage();
 		}
 	}

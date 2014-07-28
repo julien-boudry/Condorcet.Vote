@@ -53,24 +53,29 @@ class Error extends Events
 {
 	public $_server_code ;
 	public $_name ;
-	public $_details ;
+	public $_public_details ;
+	public $_private_details ;
 	public $_visibility ; // 2 = tjs visible / 1 = Visible en mode DEV / 0 = Jamais visible
 	public $_level ; // 0=service normal / 1=Erreur remarquable / Erreur grave
 
+	protected $_line ;
 	protected $_timestamp ;
 
 		//////
 
-	public function __construct ($source = null, $server_code = null, $name = null, $details = null, $visibility = 2, $level = 1)
+	public function __construct ($server_code = null, $name = null, $private_details = null, $public_details = null, $visibility = 2, $level = 1)
 	{
 		$this->_server_code = $server_code ;
 		$this->_name = $name ;
-		$this->_details = $details ;
+		$this->_private_details = $private_details ;
+		$this->_public_details = $public_details ;
 		$this->_visibility = $visibility ;
 		$this->_level = $level;
-		$this->_source = $source;
 
-		$this->_timestamp = time() ;
+		$this->_timestamp = time() ;	
+
+		$this->_line = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 1) ;
+		$this->_line = $this->_line[0]['file'] . ' - l.' . $this->_line[0]['line'] ;
 
 		$this->autoComplete() ;
 	}
@@ -85,10 +90,11 @@ class Error extends Events
 
 			$bean->server_code = $this->_server_code;
 			$bean->name = $this->_name ;
-			$bean->details = $this->_details ;
+			$bean->public_details = $this->_public_details ;
+			$bean->private_details = $this->_private_details ;
 			$bean->visibility = $this->_visibility ;
 			$bean->level = $this->_level ;
-			$bean->source = $this->_source ;
+			$bean->line = $this->_line ;
 
 			R::store($bean);
 		}
@@ -102,9 +108,13 @@ class Error extends Events
 		{
 			if (is_null($this->_name)) 
 				{ $this->_name = 'Error 404'; }
+		}
 
-			if (is_null($this->_details)) 
-				{ $this->_details = '???'; }
+			///
+
+		if (is_null($this->_private_details) && !is_null($this->_public_details))
+		{
+			$this->_private_details = $this->_public_details ;
 		}
 	}
 }

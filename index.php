@@ -29,7 +29,7 @@
 	}
 	else
 	{
-		Events::add ( new Error('Index', 404, null, null) );
+		Events::add ( new Error(404, null, 'Route inexistante') );
 
 		$controller = new Error_Controller() ;
 	}

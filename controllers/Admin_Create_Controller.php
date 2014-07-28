@@ -35,6 +35,7 @@ class Create_Controller extends Admin_Controller
 		else
 			{
 				$this->_inputError = 'Wrong input';
+
 				return false ;
 			}
 	}
@@ -82,8 +83,7 @@ class Create_Controller extends Admin_Controller
 	{
 		if ($this->_inputError)
 		{
-			parent::$_error_type = 502 ;
-			parent::$_error_details = 'Bad inputs' ;
+			Events::add( new Error (502, null, null, 'Bad input format') );
 		}
 
 		parent::showPage() ;
