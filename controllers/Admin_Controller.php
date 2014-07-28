@@ -2,7 +2,7 @@
 
 class Admin_Controller extends Controller
 {
-	protected $_view = 'admin' ;
+	protected $_view = 'Admin' ;
 
 		//////
 

@@ -2,7 +2,7 @@
 
 class Add_Controller extends Controller
 {
-	protected $_view = 'add' ;
+	protected $_view = 'Add' ;
 
 		//////
 

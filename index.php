@@ -31,7 +31,7 @@
 	{
 		Events::add ( new Error('Index', 404, null, null) );
 
-		$controller = new Home_Controller() ;
+		$controller = new Error_Controller() ;
 	}
 
 	$controller->showPage() ;

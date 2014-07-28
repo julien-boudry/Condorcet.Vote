@@ -2,7 +2,7 @@
 
 class Vote_Controller extends Controller
 {
-	protected $_view = 'vote' ;
+	protected $_view = 'Vote' ;
 
 	protected $_Condorcet_Vote = false ;
 	protected $_objectCondorcet ;

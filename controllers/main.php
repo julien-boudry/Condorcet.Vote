@@ -4,10 +4,6 @@ abstract class Controller
 {
 	public static $_ajax = false ;
 
-	// Gestion des erreurs
-	protected static $_error_type = false ;
-	protected static $_error_details ;
-
 		///////
 
 	// Construction du head
@@ -81,7 +77,7 @@ abstract class Controller
 
 		//////
 
-	protected $_view = 'home' ;
+	protected $_view = 'Home' ;
 	public $_partial = false ;
 
 	public function __construct ()
@@ -89,14 +85,8 @@ abstract class Controller
 
 	protected function getTitle ()
 	{
-		if (self::$_error_type !== false)
-		{
-			return 'Error ' . self::$_error_type ;
-		}
-		else
-		{
-			return $this->contextTitle() ;
-		}
+		return $this->contextTitle() ;
+
 	}
 
 		protected function contextTitle ()
@@ -106,6 +96,14 @@ abstract class Controller
 
 	public function showPage ($follow = null, $position = 'after')
 	{
+		// On veut une erreur
+		if ($this->_view !== 'Error' && Events::getFatalErrors() !== null)
+		{
+			( new Error_Controller() )->showPage() ;
+
+			return Events::getFatalErrors() ;
+		}
+
 		// Error - Header
 		$error_code = Events::getErrorCode() ;
 		if ($error_code !== null)
@@ -136,29 +134,21 @@ abstract class Controller
 			require_once 'view/header.php';
 		}
 
-			// On veut une erreur
-			if (Events::getFatalErrors() !== null)
-			{
-				$error = new Error_Controller () ;
-				$error->getErrorPage();
-			}
-			// Ou une page normale
-			else
-			{
-				if (is_object($follow) && $position === 'before')
-				{
-					$follow->_partial = true ;
-					$follow->showPage();
-				}
+		// Route classique
+		if (is_object($follow) && $position === 'before')
+		{
+			$follow->_partial = true ;
+			$follow->showPage();
+		}
 
-				require_once 'view'.DIRECTORY_SEPARATOR.$this->_view .'.php';
+		require_once 'view'.DIRECTORY_SEPARATOR.$this->_view .'.php';
 
-				if (is_object($follow) && $position === 'after')
-				{
-					$follow->_partial = true ;
-					$follow->showPage();
-				}
-			}
+		if (is_object($follow) && $position === 'after')
+		{
+			$follow->_partial = true ;
+			$follow->showPage();
+		}
+
 
 		// Un peu d'Ajax ?
 		if (!self::$_ajax || $this->_partial)

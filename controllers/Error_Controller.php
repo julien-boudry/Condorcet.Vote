@@ -2,7 +2,7 @@
 
 class Error_Controller extends Controller
 {
-	protected $_view = 'error' ;
+	protected $_view = 'Error' ;
 
 		//////
 
@@ -10,21 +10,11 @@ class Error_Controller extends Controller
 	{
 		parent::__construct();
 	}
-
-	public function getErrorPage ()
-	{
-		require_once 'view/error.php';
-	}
-
 		//////
 
-	public function getType ()
+	protected function contextTitle ()
 	{
-		return parent::$_error_type ;
+		return Events::getFatalErrors()[0]->_name ;
 	}
 
-	public function getDetails ()
-	{
-		return parent::$_error_details ;
-	}
 }
