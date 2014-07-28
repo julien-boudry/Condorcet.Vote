@@ -11,9 +11,10 @@
 
 <?php else : foreach (Events::$_success_list as $success) : ?>
 
+
 	<div class="alert alert-success" role="alert">
 		<span class="glyphicon glyphicon-ok ranking_icon pull-left margin-icon"></span>
-		<?php echo $success->_private_details ; ?>
+		<?php echo $success->_public_details ; ?>
 	</div>
 
 <?php endforeach; ?>
@@ -22,7 +23,7 @@
 
 	<div class="alert alert-info" role="alert">
 		<span class="glyphicon glyphicon-ok ranking_icon pull-left margin-icon"></span>
-		<?php echo $info->_private_details ; ?>
+		<?php echo $info->_public_details ; ?>
 	</div>
 
 <?php endforeach; endif; ?>

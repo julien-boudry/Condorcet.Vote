@@ -262,7 +262,7 @@ class Error extends Events
 
 abstract class Message extends Events
 {	
-	public function __construct ($public_details, $visibility = 2, $level = 2)
+	public function __construct ($public_details, $visibility = 2, $level = 0)
 	{
 		$this->_public_details = $public_details ;
 		$this->_visibility = $visibility ;
