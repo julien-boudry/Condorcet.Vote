@@ -12,12 +12,6 @@ class Create_Controller extends Admin_Controller
 
 			parent::__construct($this->_new_condorcet);
 		}
-		else
-		{
-
-		}
-
-
 	}
 
 	public function checkEmpty ()

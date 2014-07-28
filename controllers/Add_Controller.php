@@ -79,6 +79,7 @@ class Add_Controller extends Controller
 
 				if	( $this->_Condorcet_Vote->getPersonnalVoteCode($_GET['personnal_name']) !== $_GET['personnal_code'] )
 				{
+					Events::add( new Error (404, null, null, 'This vote or this code are false') );
 					$this->_Condorcet_Vote = false ;
 					return false ;
 				}
@@ -124,7 +125,6 @@ class Add_Controller extends Controller
 			$this->_Condorcet_Vote->_objectCondorcet->addVote($vote, $name);
 
 			Events::add( new Success('Your vote has been succefull register') ) ;
-			var_dump(Events::isAnyEvent(0));
 
 		} catch (Exception $e) {
 			

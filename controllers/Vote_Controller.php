@@ -34,8 +34,8 @@ class Vote_Controller extends Controller
 				$this->_objectCondorcet = $this->_Condorcet_Vote->_objectCondorcet ;				
 			}
 			catch (Exception $e) {
-				$this->_Condorcet_Vote = false ;
 				Events::add( new Error (404) );		
+				$this->_Condorcet_Vote = false ;
 			}
 		}
 

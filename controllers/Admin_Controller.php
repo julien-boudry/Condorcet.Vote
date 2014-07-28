@@ -105,7 +105,7 @@ class Admin_Controller extends Controller
 				
 				$counter_remove = $this->_Condorcet_Vote->_objectCondorcet->removeVote($delete_votes);
 
-				Events::add( new Success ($counter_remove . 'deleted votes') );
+				Events::add( new Success ($counter_remove . ' deleted votes') );
 
 			}
 			catch (Exception $e)
