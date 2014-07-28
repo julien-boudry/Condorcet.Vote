@@ -43,6 +43,26 @@ class Events
 		return null ;
 	}
 
+	public static function isAnyError ($minLevel = 0)
+	{
+		if ($minLevel === 0 && empty(self::$_error_list))
+			{ return false ; }
+		elseif ($minLevel === 0)
+			{ return true ; }
+		elseif ($minLevel !== 0)
+		{ 
+			foreach (self::$_error_list as $error)
+			{
+				if ($error->_level >= $minLevel)
+				{
+					return true ;
+				}
+			}
+
+			return false ;
+		}		
+	}
+
 		//////
 
 	public $_source ;

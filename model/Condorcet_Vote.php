@@ -34,7 +34,11 @@ class Condorcet_Vote
 			}
 		}
 
-		R::store($this->_bean);
+		// Enregistrement final conditionné à l'absence totale d'erreur
+		if (!Events::isAnyError())
+		{
+			R::store($this->_bean);
+		}
 	}
 
 		public function willUpdate ()
