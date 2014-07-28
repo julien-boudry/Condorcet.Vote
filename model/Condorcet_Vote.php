@@ -150,8 +150,17 @@ class Condorcet_Vote
 
 	public function update_methods ($methods, $prepare = true)
 	{
+		// Check
+
 		if (!is_array($methods) || count($methods) > 12)
 			{ return false ;}
+
+		$auth_methods = unserialize(CONDORCET_METHOD);
+		foreach ($methods as $oneMethod)
+		{
+			if (!in_array($oneMethod, $auth_methods, true))
+				{ return false ; }
+		}
 
 		$new_methods = serialize($methods) ;
 
