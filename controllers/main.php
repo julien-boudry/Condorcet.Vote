@@ -125,16 +125,16 @@ abstract class Controller
 		{
 			self::AddCSS('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css');
 			self::AddCSS('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', 1);
-			self::AddCSS(BASE_URL.'view/style_custom_bootstrap.css', 2);
-			self::AddCSS(BASE_URL.'view/style.css', 3);
+			self::AddCSS(BASE_URL.'view/CSS/style_custom_bootstrap.css', 2);
+			self::AddCSS(BASE_URL.'view/CSS/style.css', 3);
 
 			self::AddJS('//ajax.googleapis.com/ajax/libs/jquery/'.CONFIG_JQUERY.'/jquery.min.js');
 			self::AddJS('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js', 1);
-			self::AddJS(BASE_URL.'view/self.js', 9);
+			self::AddJS(BASE_URL.'view/JS/self.js', 9);
 
 
-			require_once 'view/head.php';
-			require_once 'view/header.php';
+			require_once 'view/Skeleton/head.php';
+			require_once 'view/Skeleton/header.php';
 		}
 
 		// Route classique
@@ -144,7 +144,7 @@ abstract class Controller
 			// Message d'erreurs
 			if (Events::isAnyEvent(0,0))
 			{
-				require 'view'.DIRECTORY_SEPARATOR.'message.php';
+				require 'view/Parts/message.php';
 			}
 
 			// Base
@@ -157,13 +157,13 @@ abstract class Controller
 		// Un peu d'Ajax ?
 		if (!self::$_ajax || $this->_partial)
 		{
-			require_once 'view/newVote.php';
-			require_once 'view/footer.php';
+			require_once 'view/Parts/newVote.php';
+			require_once 'view/Skeleton/footer.php';
 		}
 	}
 }
 
-// Include Algorithms
+// Include Controllers
 foreach (glob( __DIR__ . "/*_Controller.php" ) as $filename)
 {
 	require_once $filename ;
