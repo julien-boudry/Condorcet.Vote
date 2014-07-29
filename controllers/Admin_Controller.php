@@ -67,17 +67,13 @@ class Admin_Controller extends Controller
 			$this->_Condorcet_Vote->_bean->description = $_POST['edit_description'] ;
 		}
 
-		// Update (ou non) de la des methods (l'affichage de l'erreur est exclusivement géré en front)
+		// Update (ou non) de la des methodes (l'affichage de l'erreur est exclusivement géré en front)
 		$this->_Condorcet_Vote->update_methods(
 			( empty($_POST['edit_methods']) ) ? array() : $_POST['edit_methods']
 		);
 
 		// Open or close
-		if ( isset($_POST['close']) )
-			{ $this->_Condorcet_Vote->_bean->open = false ; }
-		else
-			{ $this->_Condorcet_Vote->_bean->open = true ; }
-
+		$this->_Condorcet_Vote->_bean->open = (isset($_POST['close'])) ? false : true ;
 
 		// Delete Votes
 		if (!empty($_POST['delete_votes']))

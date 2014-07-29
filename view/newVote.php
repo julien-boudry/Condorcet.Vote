@@ -11,14 +11,24 @@
 							<header class="page-header" style="margin-top:1%;">
 									<h3>Add Candidates</h3>
 							</header>
-							<input type="text" name="candidates" spellcheck="false" required class="form-control" placeholder="Candidate 1" pattern="( *[a-zA-Z0-9]+ *;{1}){1,}( *[a-zA-Z0-9]+ *)"></textarea>
+							<input type="text" name="candidates" spellcheck="false" required class="form-control" pattern="([a-zA-Z0-9 ]+;{1}){1,}[a-zA-Z0-9 ]+"
+							placeholder="Richard Wagner ; Gustav Mahler ; Claude Debussy ; Charles Koechlin" 
+							></textarea>
+							<?php setHelper('enter_candidates'); ?>
 					</section>
 
 					<section>
 							<header class="page-header">
-									<h3>Add Votes</h3>
+									<h3>Add Vote(s)
+										<small class="pull-right">Disallow any method of public voting
+											<input type="checkbox" name="close">
+										</small>
+									</h3>
 							</header>
-							<textarea name="votes" class="form-control vote-parser" rows="3" spellcheck="false"></textarea>
+							<textarea name="votes" class="form-control vote-parser" rows="3" spellcheck="false"
+							placeholder="Claude Debussy > Richard Wagner = Gustav Mahler > Charles Koechlin" 
+							></textarea>
+							<?php setHelper('enter_votes'); ?>
 					</section>
 
 					<section>
@@ -40,6 +50,7 @@
 									</div>
 									<?php endforeach; ?>
 								</div><!-- /.row -->
+							<?php setHelper('methods_infos', 'warning'); ?>
 					</section>
 
 					<section>

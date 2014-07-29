@@ -7,11 +7,11 @@ class Condorcet_Vote
 	protected $_isNew = false ;
 	protected $_checksum_change = false ;
 
-	public function __construct ($vote, $title = null, $methods = null, $description = null)
+	public function __construct ($vote, $title = null, $methods = null, $description = null, $open = true)
 	{		
 		if (is_object($vote))
 		{
-			$this->register($vote, $title, $methods, $description);
+			$this->register($vote, $title, $methods, $description, $open);
 		}
 		else
 		{
@@ -59,7 +59,7 @@ class Condorcet_Vote
 			endif;
 		}
 
-	protected function register (Condorcet\Condorcet $vote, $title, $methods, $description = null)
+	protected function register (Condorcet\Condorcet $vote, $title, $methods, $description = null, $open)
 	{
 		$true = true ;
 		$this->_isNew = true ;
@@ -80,7 +80,7 @@ class Condorcet_Vote
 		$this->_bean->admin_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(5, $true)));
 
 		$this->_bean->set_new_hashCode();
-		$this->_bean->open = true ;
+		$this->_bean->open = $open ;
 
 		$this->_objectCondorcet = $vote ;
 		$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion('MAJOR');

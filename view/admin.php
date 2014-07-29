@@ -40,7 +40,8 @@
 				<header class="page-header">
 					<h3>Add Votes</h3>
 				</header>
-				<textarea name="add_votes" class="form-control vote-parser" rows="3" spellcheck="false"></textarea>
+				<textarea name="add_votes" class="form-control vote-parser" rows="3" spellcheck="false" placeholder="Claude Debussy > Richard Wagner = Gustav Mahler > Charles Koechlin"></textarea>
+				<?php setHelper('enter_votes'); ?>
 			</section>
 
 			<section>
@@ -77,6 +78,7 @@
 						</div>
 						<?php endforeach; ?>
 					</div><!-- /.row -->
+					<?php setHelper('methods_infos', 'warning'); ?>
 			</section>
 
 			<section>

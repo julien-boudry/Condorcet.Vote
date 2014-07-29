@@ -69,8 +69,9 @@ class Create_Controller extends Admin_Controller
 			$new_condorcet
 			, $_POST['title']
 			, $this->_accept_methods
-			, (strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT) ? $_POST['description'] : null
-			);
+			, (strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT && !empty($_POST['description'])) ? $_POST['description'] : null
+			, (isset($_POST['close'])) ? false : true
+		);
 
 		return true ;
 	}
