@@ -30,6 +30,30 @@ abstract class Events
 	}
 
 
+	public static function showMessages ($type, $mark = false)
+	{
+		if		($type === 'Success')	{ $list =& self::$_success_list ; }
+		elseif	($type === 'Infos')		{ $list =& self::$_infos_list ; }
+		else							{ return false ; }
+
+			///
+
+		$retour = array();
+		foreach ($list as &$message)
+		{
+			if ($message->_show !== false && $mark)
+				{ continue ; }
+
+			$retour[] = $message ;
+
+			if ($mark)
+				{$message->_show = true ;}
+		}
+
+		return $retour ;
+	}
+
+
 	// Errors
 		public static function getFatalErrors ()
 		{
@@ -46,15 +70,21 @@ abstract class Events
 			return (!empty($retour)) ? $retour : null ;
 		}
 
-		public static function getNormalErrors ()
+		public static function showNormalErrors ($mark = false)
 		{
 			$retour = array();
 
-			foreach (self::$_errors_list as $error)
+			foreach (self::$_errors_list as &$error)
 			{
+				if ($error->_show !== false && $mark)
+					{ continue ; }
+
 				if ($error->_visibility > 0 && $error->_level === 0)
 				{
 					$retour[] = $error ;
+
+					if ($mark)
+						{ $error->_show = true ; }
 				}
 			}
 
@@ -168,7 +198,7 @@ abstract class Events
 	public $_level ;  // 0=service normal / 1=Erreur remarquable / 3=Erreur grave
 	public $_public_details ;
 	public $_visibility ; // 2 = tjs visible / 1 = Visible en mode DEV / 0 = Jamais visible
-
+	public $_show = false ;
 }
 
 

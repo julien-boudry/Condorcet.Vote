@@ -1,15 +1,15 @@
 <div class="container">
 
-<?php if ( !empty(Events::getNormalErrors()) ) : foreach (Events::getNormalErrors() as $success) : ?>
+<?php if ( !empty(Events::showNormalErrors(true)) ) : foreach (Events::getNormalErrors() as $error) : ?>
 
 	<div class="alert alert-danger" role="alert">
 		<span class="glyphicon glyphicon-remove ranking_icon pull-left margin-icon"></span>
-		<?php echo $success->_private_details ; ?>
+		<?php echo $error->_private_details ; ?>
 	</div>
 
 <?php endforeach; ?>
 
-<?php else : foreach (Events::$_success_list as $success) : ?>
+<?php else : foreach (Events::showMessages('Success', true) as $success) : ?>
 
 
 	<div class="alert alert-success" role="alert">
@@ -19,7 +19,7 @@
 
 <?php endforeach; ?>
 
-<?php foreach (Events::$_infos_list as $info) : ?>
+<?php foreach (Events::showMessages('Infos', true) as $info) : ?>
 
 	<div class="alert alert-info" role="alert">
 		<span class="glyphicon glyphicon-ok ranking_icon pull-left margin-icon"></span>
