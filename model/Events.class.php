@@ -207,6 +207,7 @@ class Error extends Events
 	public $_server_code ;
 	public $_name ;
 	public $_private_details ;
+	protected $_IP ;
 
 	protected $_line ;
 	protected $_timestamp ;
@@ -229,11 +230,12 @@ class Error extends Events
 		$this->_visibility = $visibility ;
 		$this->_level = $level;
 
+		$this->_IP = $_SERVER["REMOTE_ADDR"] ;
 		$this->_timestamp = time() ;
 
 		if ($line !== null)
 		{
-
+			$this->_line = $line ;
 		}
 		else
 		{
@@ -261,6 +263,8 @@ class Error extends Events
 			$bean->visibility = $this->_visibility ;
 			$bean->level = $this->_level ;
 			$bean->line = $this->_line ;
+
+			$bean->ip = $this->_IP ;
 
 			R::store($bean);
 		}
