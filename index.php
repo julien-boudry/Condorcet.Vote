@@ -1,4 +1,6 @@
 <?php
+define('SCRIPT_START',microtime(true));
+
 
 // Model
 	require_once 'model/functions.php';
