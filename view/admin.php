@@ -40,7 +40,7 @@
 				<header class="page-header">
 					<h3>Add Votes</h3>
 				</header>
-				<textarea name="add_votes" class="form-control vote-parser" rows="3"></textarea>
+				<textarea name="add_votes" class="form-control vote-parser" rows="3" spellcheck="false"></textarea>
 			</section>
 
 			<section>
@@ -49,7 +49,7 @@
 				</header>
 				<input type="text" name="delete_votes" class="form-control"
 				placeholder="Julian;Mike;Christelle # All votes with one of this three tags will be deleting (before adding your new votes)"
-				pattern="( *[a-zA-Z0-9]+ *;{1})*( *[a-zA-Z0-9]+ *)"
+				pattern="( *[a-zA-Z0-9]+ *;{1})*( *[a-zA-Z0-9]+ *)" spellcheck="false"
 				>
 			</section>
 
@@ -83,7 +83,7 @@
 				<header class="page-header">
 					<h3><small>(Optionnal)</small> Description</h3>
 				</header>
-				<textarea name="edit_description" class="form-control" rows="2"
+				<textarea name="edit_description" class="form-control" rows="2" spellcheck="true"
 				maxlength=<?php echo CONFIG_DESCRIPTION_LENGHT ; ?>
 				><?php echo htmlspecialchars($this->_Condorcet_Vote->getDescription()) ; ?></textarea>
 			</section>
@@ -129,7 +129,7 @@
 			<div class="input-group">
 				<span class="input-group-addon"><?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl(); ?></span>
 
-				<input type="text" id="edit_personnal_identifiant" class="form-control"
+				<input type="text" id="edit_personnal_identifiant" class="form-control" spellcheck="false"
 				placeholder="name or identifiant (alphabetic, without space)" maxlength="25" size="25" 
 				pattern="[a-zA-Z]+"
 				required autocomplete="off"

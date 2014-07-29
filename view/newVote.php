@@ -11,14 +11,14 @@
 							<header class="page-header" style="margin-top:1%;">
 									<h3>Add Candidates</h3>
 							</header>
-							<input type="text" name="candidates" required class="form-control" placeholder="Candidate 1" pattern="( *[a-zA-Z0-9]+ *;{1}){1,}( *[a-zA-Z0-9]+ *)"></textarea>
+							<input type="text" name="candidates" spellcheck="false" required class="form-control" placeholder="Candidate 1" pattern="( *[a-zA-Z0-9]+ *;{1}){1,}( *[a-zA-Z0-9]+ *)"></textarea>
 					</section>
 
 					<section>
 							<header class="page-header">
 									<h3>Add Votes</h3>
 							</header>
-							<textarea name="votes" class="form-control vote-parser" rows="3"></textarea>
+							<textarea name="votes" class="form-control vote-parser" rows="3" spellcheck="false"></textarea>
 					</section>
 
 					<section>
@@ -46,7 +46,7 @@
 							<header class="page-header">
 									<h3><small>(Optionnal)</small> Description</h3>
 							</header>
-							<textarea name="description" class="form-control" rows="2"
+							<textarea spellcheck="true" name="description" class="form-control" rows="2"
 							maxlength=<?php echo CONFIG_DESCRIPTION_LENGHT ; ?>
 							></textarea>
 					</section>
@@ -54,7 +54,7 @@
 			</div>
 			<div class="modal-footer">
 				<div class="input-group col-xs-12 col-sm-8 col-md-7 col-lg-6 pull-right">
-						<input name="title" type="text" class="form-control" placeholder="Vote Title" required>
+						<input name="title" type="text" class="form-control" placeholder="Vote Title" required spellcheck="true">
 						<span class="input-group-btn">
 								<button class="btn btn-success" type="submit">Create Vote!</button>
 						</span>
