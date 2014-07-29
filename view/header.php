@@ -13,7 +13,7 @@
 		<nav class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="active" data-toggle="modal" data-target="#new_vote"><a href="#">New Vote</a></li>
-				<li><a href="#about">About</a></li> <!--
+				<li><a href="#about">Condorcet explanations</a></li> <!--
 				<li><a href="#contact">Contact</a></li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
@@ -29,6 +29,9 @@
 				</li>
 				-->
 			</ul>
+			<div class="nav navbar-nav pull-right" style="margin-top:10px;">
+				<span class="label label-info"><strong>BETA</strong></span>
+			</div>
 		</nav><!--/.nav-collapse -->
 	</div>
 </header>
