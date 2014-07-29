@@ -183,8 +183,13 @@ class Condorcet_Vote
 
 		foreach (unserialize($this->_bean->methods) as $method)
 		{
-			$this->_objectCondorcet->getResult($method);
-			$this->_objectCondorcet->getResultStats($method);
+			try {
+				$this->_objectCondorcet->computeResult($method);
+			} catch (Condorcet\CondorcetException $e) {
+				if ($e->getCode() !== 101)
+					{ Events::add( new Error(500) ); }
+			}
+
 		}
 	}
 

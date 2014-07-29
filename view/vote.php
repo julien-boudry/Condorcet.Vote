@@ -176,6 +176,20 @@
 			    </header>
 			    <div id="<?php echo $method ; ?>" class="panel-collapse collapse">
 					<div class="panel-body">
+					<?php 
+						if ($method === 'KemenyYoung') :
+							try { $this->_objectCondorcet->getResult($method); }
+							catch (Condorcet\CondorcetException $e) {
+								if ($e->getCode() === 101) : ?>		
+								<em> You have to many candidate to use Kemeny-Young method (limit is : <?php echo Condorcet\KemenyYoung::$_maxCandidates ;?> candidates) </em>
+
+								</div></div></section>
+								<?php endif; 
+								continue ;
+							}
+						endif;
+
+					?>
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
 						  <li class="active"><a href="#<?php echo $method ; ?>_ranking" role="tab" data-toggle="tab">Ranking</a></li>
