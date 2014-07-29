@@ -15,6 +15,12 @@ else
 	define('BASE_URL', 'http://localhost/PROJECTS/condorcet-vote/');
 
 	R::setup('mysql:host=localhost;dbname=condorcet-vote','root','');
+
+	// Gestionnaire d'exception
+	set_exception_handler( function ($exception) {
+		echo '<h1>Exception non-attrapée</h1>';
+		var_dump($exception);}
+	);
 }
 
 // All

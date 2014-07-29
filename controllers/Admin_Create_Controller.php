@@ -20,7 +20,7 @@ class Create_Controller extends Admin_Controller
 
 		if	(
 				!empty($_POST['candidates']) &&
-				!empty($_POST['votes']) &&
+				isset($_POST['votes']) &&
 				!empty($_POST['title']) && strlen($_POST['title']) <= 80 &&
 				isset($_POST['description']) && strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT &&
 				$this->_accept_methods !== false
@@ -28,7 +28,7 @@ class Create_Controller extends Admin_Controller
 			{ return true ;	}
 		else
 			{
-				$this->_inputError = 'Wrong input';
+				$this->_inputError = 'Wrong input format';
 
 				return false ;
 			}
@@ -82,7 +82,7 @@ class Create_Controller extends Admin_Controller
 	{
 		if ($this->_inputError)
 		{
-			Events::add( new Error (502, null, null, 'Bad input format') );
+			Events::add( new Error (502, null, null, $this->_inputError) );
 		}
 
 		parent::showPage() ;

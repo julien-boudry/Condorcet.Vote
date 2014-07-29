@@ -107,6 +107,7 @@
 		</div>
 	</section>
 
+<?php if ($this->_objectCondorcet->countVotes() > 0) : ?>
 	<section>
 		<header class="page-header">
 			<h2>Natural Condorcet Winner & Loser</h2>
@@ -233,6 +234,8 @@
 		</div>
 	</section>
 	<?php endif; ?>
+
+<?php endif; ?>
 
 
 </section> <!-- /container -->

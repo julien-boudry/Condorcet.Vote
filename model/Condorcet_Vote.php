@@ -179,14 +179,17 @@ class Condorcet_Vote
 
 	protected function prepareCondorcet ()
 	{
-		$this->_objectCondorcet->getWinner();
+		try {
+			$this->_objectCondorcet->getWinner();
+		} catch (Condorcet\CondorcetException  $e) {}
+
 
 		foreach (unserialize($this->_bean->methods) as $method)
 		{
 			try {
 				$this->_objectCondorcet->computeResult($method);
 			} catch (Condorcet\CondorcetException $e) {
-				if ($e->getCode() !== 101)
+				if ($e->getCode() !== 101 && $e->getCode() !== 6)
 					{ Events::add( new Error(500) ); }
 			}
 
