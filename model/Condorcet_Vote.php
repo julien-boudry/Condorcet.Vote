@@ -34,7 +34,11 @@ class Condorcet_Vote
 			}
 		}
 
-		R::store($this->_bean);
+		// Enregistrement final conditionné à l'absence totale d'erreur
+		if (!Events::isAnyError())
+		{
+			R::store($this->_bean);
+		}
 	}
 
 		public function willUpdate ()
@@ -55,7 +59,7 @@ class Condorcet_Vote
 			endif;
 		}
 
-	protected function register (Condorcet\Condorcet $vote, $title, $methods, $description)
+	protected function register (Condorcet\Condorcet $vote, $title, $methods, $description = null)
 	{
 		$true = true ;
 		$this->_isNew = true ;
@@ -72,8 +76,8 @@ class Condorcet_Vote
 		$this->_bean->last_update = $this->_bean->date;
 		$this->_bean->count_update = 0;
 
-		$this->_bean->read_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $true)));
-		$this->_bean->admin_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $true)));
+		$this->_bean->read_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(5, $true)));
+		$this->_bean->admin_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(5, $true)));
 
 		$this->_bean->set_new_hashCode();
 		$this->_bean->open = true ;
@@ -146,8 +150,17 @@ class Condorcet_Vote
 
 	public function update_methods ($methods, $prepare = true)
 	{
+		// Check
+
 		if (!is_array($methods) || count($methods) > 12)
 			{ return false ;}
+
+		$auth_methods = unserialize(CONDORCET_METHOD);
+		foreach ($methods as $oneMethod)
+		{
+			if (!in_array($oneMethod, $auth_methods, true))
+				{ return false ; }
+		}
 
 		$new_methods = serialize($methods) ;
 
@@ -235,7 +248,7 @@ class Condorcet_Vote
 
 		public function getFreeVoteCode ()
 		{
-			return strtoupper(substr(hash('sha224', $this->_bean->admin_code . $this->_bean->hash_code), 5,7)) ;
+			return strtoupper(substr(hash('sha224', $this->_bean->admin_code . $this->_bean->hash_code), 5,8)) ;
 		}
 
 	public function getPersonnalVoteBaseUrl ()
@@ -251,11 +264,11 @@ class Condorcet_Vote
 									$this->getAdminCode() . 
 									$this->getHashCode() . 
 									$name),
-		 					10, 6) );
+		 					10, 8) );
 	}
 
 	public function set_new_hashCode ()
 	{
-		$this->_bean->hash_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(4, $true)));
+		$this->_bean->hash_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(5, $true)));
 	}
 }

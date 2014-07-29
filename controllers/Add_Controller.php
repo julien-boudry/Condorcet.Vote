@@ -2,14 +2,13 @@
 
 class Add_Controller extends Controller
 {
-	protected $_view = 'add' ;
+	protected $_view = 'Add' ;
 
 		//////
 
 	protected $_Condorcet_Vote = false ;
 
 	protected $_mode ;
-	protected $_etat ;
 
 
 	public function __construct ($condorcet_vote = null)
@@ -24,14 +23,14 @@ class Add_Controller extends Controller
 				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);
 			} catch (Exception $e)
 			{
-				$this->_Condorcet_Vote = false ;
+				Events::add( new Error (404) );
 				return false ;
 			}
 
 			// Is Open ?
 			if (!$this->_Condorcet_Vote->isOpen())
 			{
-				parent::$_error_type = 404 ;
+				Events::add( new Error (404, null, 'Le vote est fermé') );
 				return false ;
 			}
 
@@ -45,7 +44,7 @@ class Add_Controller extends Controller
 
 				if	( $this->_Condorcet_Vote->getFreeVoteCode() !== $_GET['free_vote_code']	)
 				{
-					$this->_Condorcet_Vote = false ;
+					Events::add( new Error (404) );
 					return false ;
 				}
 
@@ -61,12 +60,12 @@ class Add_Controller extends Controller
 							!empty($this->_Condorcet_Vote->_objectCondorcet->getVotesList($_POST['add_name']))
 						)
 					{
-						$this->_etat = 'double' ;
+						Events::add( new Error(502, 'Double', null, 'You have already vote', 2 , 0) );
 						return false ;
 					}
 
 					// Test d'enregistrement
-					$this->_etat = ($this->try_add_vote($_POST['add_name'], $_POST['add_vote_content'])) ? true : false ;
+					$this->try_add_vote($_POST['add_name'], $_POST['add_vote_content']);
 				}
 			}
 			// Personnal mode
@@ -80,6 +79,7 @@ class Add_Controller extends Controller
 
 				if	( $this->_Condorcet_Vote->getPersonnalVoteCode($_GET['personnal_name']) !== $_GET['personnal_code'] )
 				{
+					Events::add( new Error (404, null, null, 'This vote or this code are false') );
 					$this->_Condorcet_Vote = false ;
 					return false ;
 				}
@@ -87,7 +87,7 @@ class Add_Controller extends Controller
 				// Check vote déjà existant
 				if ( !empty($this->_Condorcet_Vote->_objectCondorcet->getVotesList($_GET['personnal_name'])) )
 				{
-					$this->_etat = 'double' ;
+					Events::add( new Error(502, 'Double', null, 'You have already vote', 2 , 0) );
 					return false ;
 				}
 
@@ -95,7 +95,7 @@ class Add_Controller extends Controller
 				if (isset($_POST['add_vote_content']))
 				{
 					// Test d'enregistrement
-					$this->_etat = ($this->try_add_vote($_GET['personnal_name'], $_POST['add_vote_content'])) ? true : false ;
+					$this->try_add_vote($_GET['personnal_name'], $_POST['add_vote_content']);
 				}
 			}
 			else
@@ -122,8 +122,13 @@ class Add_Controller extends Controller
 		);
 
 		try {
-			$this->_Condorcet_Vote->_objectCondorcet->addVote($vote, $name);		
+			$this->_Condorcet_Vote->_objectCondorcet->addVote($vote, $name);
+
+			Events::add( new Success('Your vote has been succefull register') ) ;
+
 		} catch (Exception $e) {
+			
+			Events::add( new Error(502, 'Bad Input', null, 'Bad Input', 2 , 0) );
 			return false ;
 		}
 
@@ -139,7 +144,8 @@ class Add_Controller extends Controller
 		}
 		else
 		{
-			parent::$_error_type = 502 ;
+			Events::add( new Error (502) );
+
 			parent::showPage();
 		}
 	}

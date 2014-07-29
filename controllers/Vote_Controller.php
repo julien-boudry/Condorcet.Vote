@@ -2,7 +2,7 @@
 
 class Vote_Controller extends Controller
 {
-	protected $_view = 'vote' ;
+	protected $_view = 'Vote' ;
 
 	protected $_Condorcet_Vote = false ;
 	protected $_objectCondorcet ;
@@ -23,7 +23,7 @@ class Vote_Controller extends Controller
 		// Construction depuis URL avec parametre(s) manquant(s)
 		elseif (empty($_GET['vote']))
 		{
-			parent::$_error_type = 404 ;
+			Events::add( new Error (404) );
 		}
 		// Tentative de construction depuis URL
 		else
@@ -34,8 +34,8 @@ class Vote_Controller extends Controller
 				$this->_objectCondorcet = $this->_Condorcet_Vote->_objectCondorcet ;				
 			}
 			catch (Exception $e) {
+				Events::add( new Error (404) );		
 				$this->_Condorcet_Vote = false ;
-				parent::$_error_type = 404 ;			
 			}
 		}
 

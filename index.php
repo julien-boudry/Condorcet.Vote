@@ -5,6 +5,7 @@
 	require_once 'model/rb.php';
 	require_once 'model/Condorcet/lib/Condorcet/Condorcet.php';
 	require_once 'model/Condorcet_Vote.php';
+	require_once 'model/Events.class.php';
 
 // Config
 	require_once 'config/config.php';
@@ -28,7 +29,9 @@
 	}
 	else
 	{
-		$controller = new Error_Controller(404) ;
+		Events::add ( new Error(404, null, 'Route inexistante') );
+
+		$controller = new Error_Controller() ;
 	}
 
 	$controller->showPage() ;

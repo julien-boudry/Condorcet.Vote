@@ -1,24 +1,4 @@
 <div class="container">
-
-<?php if ($this->_etat === false) : ?>
-<div class="alert alert-danger" role="danger">
-	<span class="glyphicon glyphicon-remove ranking_icon pull-left margin-icon"></span>
-	Error
-</div>
-<?php elseif ($this->_etat === 'double') : ?>
-<div class="alert alert-danger" role="danger">
-	<span class="glyphicon glyphicon-remove ranking_icon pull-left margin-icon"></span>
-	Vous avez déjà voté
-</div>
-<?php endif; ?>
-
-<?php if ($this->_etat === true) : ?>
-<div class="alert alert-success" role="success">
-	<span class="glyphicon glyphicon-ok ranking_icon pull-left margin-icon"></span>
-	Your vote has been succefull register
-</div>
-<?php elseif (is_null($this->_etat) || $this->_etat === false) : ?>
-<section class="breadcrumb">
 	<header>
 		<h2 class="text-center">Voting</h2>
 	</header>
@@ -53,9 +33,6 @@
 	<button class="btn btn-info center-block" type="submit">Add you vote</button>
 
 	</form>
-
-</section>
-<?php endif; ?>
 
 </div> <!-- /container -->
 

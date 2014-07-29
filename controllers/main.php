@@ -4,10 +4,6 @@ abstract class Controller
 {
 	public static $_ajax = false ;
 
-	// Gestion des erreurs
-	protected static $_error_type = false ;
-	protected static $_error_details ;
-
 		///////
 
 	// Construction du head
@@ -81,7 +77,7 @@ abstract class Controller
 
 		//////
 
-	protected $_view = 'home' ;
+	protected $_view = 'Home' ;
 	public $_partial = false ;
 
 	public function __construct ()
@@ -89,14 +85,8 @@ abstract class Controller
 
 	protected function getTitle ()
 	{
-		if (self::$_error_type !== false)
-		{
-			return 'Error ' . self::$_error_type ;
-		}
-		else
-		{
-			return $this->contextTitle() ;
-		}
+		return $this->contextTitle() ;
+
 	}
 
 		protected function contextTitle ()
@@ -106,19 +96,32 @@ abstract class Controller
 
 	public function showPage ($follow = null, $position = 'after')
 	{
-		// Error - Header
-		if (self::$_error_type)
+		// On passe le partiel cas échant
+		if (is_object($follow))
+			{ $follow->_partial = true ; }
+
+		// On veut une erreur
+		if ($this->_view !== 'Error' && Events::getFatalErrors() !== null)
 		{
-			if (self::$_error_type === 404)
+			( new Error_Controller() )->showPage() ;
+
+			return Events::getFatalErrors() ;
+		}
+
+		// Error - Header
+		$error_code = Events::getErrorCode() ;
+		if ($error_code !== null && !$this->_partial)
+		{
+			if ($error_code === 404)
 				{ header($_SERVER['SERVER_PROTOCOL'] . " 404 Not Found"); }
-			elseif (self::$_error_type === 500)
+			elseif ($error_code === 500)
 				{ header($_SERVER['SERVER_PROTOCOL'] . " 500 Internal Server Error"); }
-			elseif (self::$_error_type === 502)
+			elseif ($error_code === 502)
 				{ header($_SERVER['SERVER_PROTOCOL'] . " 502 Bad Gateway"); }
 		}
 
 		// Un peu d'Ajax ?
-		if (!self::$_ajax || $this->_partial)
+		if (!self::$_ajax && !$this->_partial)
 		{
 			self::AddCSS('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css');
 			self::AddCSS('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', 1);
@@ -135,29 +138,22 @@ abstract class Controller
 			require_once 'view/header.php';
 		}
 
-			// On veut une erreur
-			if (self::$_error_type)
-			{
-				$error = new Error_Controller () ;
-				$error->getErrorPage();
-			}
-			// Ou une page normale
-			else
-			{
-				if (is_object($follow) && $position === 'before')
-				{
-					$follow->_partial = true ;
-					$follow->showPage();
-				}
+		// Route classique
+		if (is_object($follow) && $position === 'before')
+			{ $follow->showPage(); }
 
-				require_once 'view'.DIRECTORY_SEPARATOR.$this->_view .'.php';
-
-				if (is_object($follow) && $position === 'after')
-				{
-					$follow->_partial = true ;
-					$follow->showPage();
-				}
+			// Message d'erreurs
+			if (Events::isAnyEvent(0,0))
+			{
+				require 'view'.DIRECTORY_SEPARATOR.'message.php';
 			}
+
+			// Base
+			require_once 'view'.DIRECTORY_SEPARATOR.$this->_view .'.php';
+
+		if (is_object($follow) && $position === 'after')
+			{ $follow->showPage(); }
+
 
 		// Un peu d'Ajax ?
 		if (!self::$_ajax || $this->_partial)

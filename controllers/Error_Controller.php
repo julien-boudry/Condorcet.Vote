@@ -2,31 +2,19 @@
 
 class Error_Controller extends Controller
 {
-	protected $_view = 'error' ;
+	protected $_view = 'Error' ;
 
 		//////
 
-	public function __construct ($error_type = null)
+	public function __construct ()
 	{
 		parent::__construct();
-
-		if ($error_type !== null) { parent::$_error_type = $error_type ; }
 	}
-
-	public function getErrorPage ()
-	{
-		require_once 'view/error.php';
-	}
-
 		//////
 
-	public function getType ()
+	protected function contextTitle ()
 	{
-		return parent::$_error_type ;
+		return Events::getFatalErrors()[0]->_name ;
 	}
 
-	public function getDetails ()
-	{
-		return parent::$_error_details ;
-	}
 }

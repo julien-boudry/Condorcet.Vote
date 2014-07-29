@@ -12,12 +12,6 @@ class Create_Controller extends Admin_Controller
 
 			parent::__construct($this->_new_condorcet);
 		}
-		else
-		{
-
-		}
-
-
 	}
 
 	public function checkEmpty ()
@@ -35,6 +29,7 @@ class Create_Controller extends Admin_Controller
 		else
 			{
 				$this->_inputError = 'Wrong input';
+
 				return false ;
 			}
 	}
@@ -70,7 +65,12 @@ class Create_Controller extends Admin_Controller
 			return false ;
 		}
 
-		$this->_new_condorcet = new Condorcet_Vote($new_condorcet, $_POST['title'], $this->_accept_methods, $_POST['description']) ;
+		$this->_new_condorcet = new Condorcet_Vote(
+			$new_condorcet
+			, $_POST['title']
+			, $this->_accept_methods
+			, (strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT) ? $_POST['description'] : null
+			);
 
 		return true ;
 	}
@@ -82,8 +82,7 @@ class Create_Controller extends Admin_Controller
 	{
 		if ($this->_inputError)
 		{
-			parent::$_error_type = 502 ;
-			parent::$_error_details = 'Bad inputs' ;
+			Events::add( new Error (502, null, null, 'Bad input format') );
 		}
 
 		parent::showPage() ;
