@@ -38,10 +38,9 @@ define('SCRIPT_START',microtime(true));
 
 	$controller->showPage() ;
 
-function shutdown()
-{
-    echo 'Script exécuté avec succès', PHP_EOL;
-}
+
+// Fin du script
+unset($controller);
 
 register_shutdown_function(function () {
 	echo '<!-- Génération : '.number_format(microtime(true) - SCRIPT_START, 4).' seconde -->';
