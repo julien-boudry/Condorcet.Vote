@@ -1,6 +1,12 @@
 # Directory
 Options -Indexes -FollowSymLinks
 
+# Filter
+<FilesMatch "(?<!index).php?$"> 
+	Order Deny,Allow 
+	Deny from all
+</FilesMatch>
+
 # Rewrite
 Options +FollowSymlinks
 RewriteEngine On
