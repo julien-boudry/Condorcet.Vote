@@ -123,13 +123,13 @@ abstract class Controller
 		// Un peu d'Ajax ?
 		if (!self::$_ajax && !$this->_partial)
 		{
-			self::AddCSS('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css');
-			self::AddCSS('//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', 1);
+			self::AddCSS(BASE_URL.'view/CSS/bootstrap.min.css');
+			self::AddCSS(BASE_URL.'view/CSS/font-awesome.min.css', 1);
 			self::AddCSS(BASE_URL.'view/CSS/style_custom_bootstrap.css', 2);
 			self::AddCSS(BASE_URL.'view/CSS/style.css', 3);
 
 			self::AddJS('//ajax.googleapis.com/ajax/libs/jquery/'.CONFIG_JQUERY.'/jquery.min.js');
-			self::AddJS('//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js', 1);
+			self::AddJS(BASE_URL.'view/JS/bootstrap.min.js', 1);
 			self::AddJS(BASE_URL.'view/JS/self.js', 9);
 
 
