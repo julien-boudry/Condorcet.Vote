@@ -7,6 +7,9 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost')
 	define('BASE_URL', 'http://localhost/PROJECTS/condorcet-vote/');
 
 	R::setup('mysql:host=localhost;dbname=condorcet-vote','root','');
+
+	// Analytics
+	define('GOOGLE_ANALYTICS', '');
 }
 // DEV
 else
@@ -21,6 +24,9 @@ else
 		echo '<h1>Exception non-attrapée</h1>';
 		var_dump($exception);}
 	);
+
+	// Analytics
+	define('GOOGLE_ANALYTICS', '');
 }
 
 // All
