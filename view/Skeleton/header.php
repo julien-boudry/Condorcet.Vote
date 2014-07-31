@@ -1,5 +1,5 @@
 <!-- Fixed navbar -->
-<header class="navbar navbar-inverse navbar-fixed-top navbar-custom" role="navigation">
+<header class="navbar navbar-fixed-top navbar-custom" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -8,14 +8,16 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
+			<img id="logo" src="<?php echo BASE_URL . 'view/IMG/mini-logo.png'; ?>" alt="Logo">
 			<a class="navbar-brand" href="<?php echo BASE_URL; ?>">Condorcet Vote</a>
 		</div>
 		<nav class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li class="active" data-toggle="modal" data-target="#new_vote"><a href="#">New Vote</a></li>
-				<li><a href="#about">Condorcet explanations</a></li> <!--
-				<li><a href="#contact">Contact</a></li>
-				<li class="dropdown">
+				<li><a href="Methods">Condorcet explanations</a></li>
+				<li><a href="About">About</a></li>
+				 <!--
+				 <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li><a href="#">Action</a></li>

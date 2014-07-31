@@ -67,7 +67,7 @@ abstract class Controller
 
 		';
 
-		echo '<link rel="icon" type="image/png" href="'.BASE_URL.'images/favicon.png" />
+		echo '<link rel="icon" type="image/png" href="'.BASE_URL.'view/IMG/favicon.png" />
 		' ;
 
 		if (!is_null(self::$_head_Canonical))
