@@ -1,14 +1,53 @@
+html{
+	position:relative;
+	min-height:100%;
+}
+
+body {
+	padding-top:50px;
+	margin-bottom:120px;
+}
+
 .home-section {
 	margin-top:5%;
 }
 
-.home-section h3 {
+.page-section {
+	margin-top:5%;
+}
+
+.page-section h1 {
+	padding-top:3%;
+	padding-bottom:5%;
+}
+
+.page-section h2, .page-section h1 {
 	text-align:center;
 }
 
 .home-icon {
 	font-size:140px;
 	color:black;
+}
+
+@media (max-width:767px){
+	.home-icon {
+		font-size:70px;
+	}
+}
+
+.manual-icon {
+	float:left;
+}
+
+@media (max-width:500px){
+	.home-icon {
+		float:none;
+	}
+
+	.page-section {
+		text-align:center;
+	}
 }
 
 .ranking_icon {

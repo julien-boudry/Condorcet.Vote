@@ -10,4 +10,4 @@
 	<?php Controller::setHead(); ?>
 
 </head>
-<body style="padding-top:50px;">
+<body>

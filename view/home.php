@@ -79,27 +79,12 @@
 			The voting list is editable from the creation or after creation, in addition and deletion.
 
 			It is also possible to choose the results of advanced display methods, and associate each vote one or more tags (useful for associating a vote and a person).</p>
-
-		<h3>1 - Create a vote</h3>
-		<p></p>
-
-		<h3>2 - Edit a vote</h3>
-		<p></p>
-
-				<h4>2.1 Global options</h4>
-				<p></p>
-
-				<h4>2.2 Deleting vote</h4>
-				<p></p>
-
-		<h3>3 - Allow public consultation</h3>
-		<p></p>
-
-		<h3>4 - Allow external private voting</h3>
-		<p></p>
-
-		<h3>5 - Allow global public voting</h3>
-		<p></p>
+		<br><br>
+		<a href="<?php echo BASE_URL.'Manual' ; ?>">
+			<button class="btn btn-success btn-lg center-block">
+				Go to manual &rarr;
+			</button>
+		</a>
 	</section>
 
 </div> <!-- /container -->

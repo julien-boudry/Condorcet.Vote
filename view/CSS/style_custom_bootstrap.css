@@ -170,19 +170,31 @@
 		color: #c0c0c0;
 }
 
+/* Footer */
+
+.footer {
+	position:absolute;
+	bottom:0;
+	margin-top:4%;
+	width: 100%;
+	/* Set the fixed height of the footer here */
+	height: 60px;
+	background-color: #f5f5f5;
+}
+
 /* Surcouche Julien */
 
 .navbar-custom .navbar-nav > .active > a, .navbar-custom .navbar-nav > .active > a:hover, .navbar-custom .navbar-nav > .active > a:focus {
-    color: #FFF;
-    background-color: #5BC0DE;
+		color: #FFF;
+		background-color: #5BC0DE;
 }
 
 #logo {
-    float: left;
-    height: 50px;
-    position: absolute;
-    left: -177%;
-    left: 2%;
+		float: left;
+		height: 50px;
+		position: absolute;
+		left: -177%;
+		left: 2%;
 }
 
 @media (max-width:979px){

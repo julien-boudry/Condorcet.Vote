@@ -15,7 +15,7 @@
 			<ul class="nav navbar-nav">
 				<li class="active" data-toggle="modal" data-target="#new_vote"><a href="#">New Vote</a></li>
 				<li><a href="Condorcet_Methods">Condorcet methods</a></li>
-				<li><a href="<?php echo BASE_URL ; ?>#home-how">Help</a></li>
+				<li><a href="<?php echo BASE_URL ; ?>Manual">Help</a></li>
 				<li><a href="About">About</a></li>
 				 <!--
 				 <li class="dropdown">
