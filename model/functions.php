@@ -80,7 +80,7 @@ B>C # Equivalent to B>C>A=D</code></pre>";
 
 	case 'methods_infos':
 		echo
-			'All these methods meet the criteria of Condorcet. For more information on the different methods of calculation, look <a href="#" target="_blank">this page</a>.';
+			'All these methods meet the criteria of Condorcet. For more information on the different methods of calculation, look <a href="'.BASE_URL.'Condorcet_Methods" target="_blank">this page</a>.';
 		break;
 
 		default:

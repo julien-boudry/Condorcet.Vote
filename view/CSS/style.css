@@ -25,6 +25,10 @@ body {
 	text-align:center;
 }
 
+.page-section h2 {
+	margin-top:5%;
+}
+
 .home-icon {
 	font-size:140px;
 	color:black;
@@ -36,7 +40,7 @@ body {
 	}
 }
 
-.manual-icon {
+.page-icon {
 	float:left;
 }
 

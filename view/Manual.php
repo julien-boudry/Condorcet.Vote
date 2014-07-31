@@ -2,7 +2,7 @@
 
 	<section class="page-section">
 		<header>
-			<span class="fa fa-graduation-cap home-icon manual-icon"></span>
+			<span class="fa fa-graduation-cap home-icon page-icon"></span>
 			<h1>How to create and administer a vote ?</h1>
 		</header>
 
