@@ -46,12 +46,13 @@
 		<b>Complete list of supported method by Condorcet-Vote.org :</b>
 		<br><br>
 		<?php require 'view/Parts/methods_list.php' ; ?>
-		<br><br>
-		<a href="<?php echo BASE_URL.'Condorcet_Methods' ; ?>">
+		<br><br>		
 			<button class="btn btn-success btn-lg center-block">
+				<a href="<?php echo BASE_URL.'Condorcet_Methods' ; ?>">
 				Learn more about methods &rarr;
+				</a>
 			</button>
-		</a>
+		
 	</section>
 	<hr class="clearfix">
 
@@ -69,11 +70,11 @@
 
 			It is also possible to choose the results of advanced display methods, and associate each vote one or more tags (useful for associating a vote and a person).</p>
 		<br><br>
-		<a href="<?php echo BASE_URL.'Manual' ; ?>">
 			<button class="btn btn-success btn-lg center-block">
+				<a href="<?php echo BASE_URL.'Manual' ; ?>">
 				Go to manual &rarr;
+				</a>
 			</button>
-		</a>
 	</section>
 
 </div> <!-- /container -->
