@@ -1,6 +1,6 @@
 <div class="container">
 
-<?php if ( !empty(Events::showNormalErrors(true)) ) : foreach (Events::getNormalErrors() as $error) : ?>
+<?php if ( !empty(Events::showNormalErrors(true)) ) : foreach (Events::showNormalErrors() as $error) : ?>
 
 	<div class="alert alert-danger" role="alert">
 		<span class="glyphicon glyphicon-remove ranking_icon pull-left margin-icon"></span>

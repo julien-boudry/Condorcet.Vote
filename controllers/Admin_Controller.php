@@ -47,7 +47,8 @@ class Admin_Controller extends Controller
 			// Demande d'édition ?
 			if	(
 					isset($_POST['is_edit']) &&
-					isset($_POST['edit_description'])
+					isset($_POST['edit_description']) &&
+					isset($_POST['delete_type'])
 				)
 			{
 				$this->update_vote();
@@ -98,8 +99,10 @@ class Admin_Controller extends Controller
 					if (is_numeric($value))
 						{$value = intval($value);}
 				}
+
+				$delete_mode = ($_POST['delete_type'] === 'without') ? false : true ;
 				
-				$counter_remove = $this->_Condorcet_Vote->_objectCondorcet->removeVote($delete_votes);
+				$counter_remove = $this->_Condorcet_Vote->_objectCondorcet->removeVote($delete_votes, $delete_mode);
 
 				Events::add( new Success ($counter_remove . ' deleted votes') );
 
@@ -123,9 +126,9 @@ class Admin_Controller extends Controller
 				}
 
 			}
-			catch (Exception $e)
+			catch (Condorcet\CondorcetException $e)
 			{
-				Events::add( new Error (502, null, null, 'Bad vote format', 2, 0) );
+				Events::add( new Error (502, null, null, $e->getMessage(), 2, 0) );
 			}
 		}
 	}

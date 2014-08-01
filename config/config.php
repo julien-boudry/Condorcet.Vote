@@ -34,7 +34,7 @@ else
 	date_default_timezone_set('UTC');
 
 	// Condorcet
-		Condorcet\Condorcet::setMaxParseIteration(500);
+		Condorcet\Condorcet::setMaxParseIteration(50000);
 		Condorcet\KemenyYoung::setMaxCandidates(5);
 
 	// JS
