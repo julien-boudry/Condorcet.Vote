@@ -125,3 +125,8 @@ input:invalid {
 .wikitable .red-cell {
 	background:#F99;vertical-align:middle;text-align:center;
 }
+
+.kemeny-arbitrary {
+	color:red;
+	margin-bottom:2%;
+}

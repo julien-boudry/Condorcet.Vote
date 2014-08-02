@@ -15,9 +15,9 @@
 		</header>
 
 		<ul class="nav nav-tabs" role="tablist">
-		  <li class="active"><a href="#vote_global_info" role="tab" data-toggle="tab">Global Informations</a></li>
-		  <li><a href="#vote_candidates" role="tab" data-toggle="tab"><span class="badge"><?php echo $this->_objectCondorcet->countCandidates() ; ?></span> Candidates</a></li>
-		  <li><a href="#vote_votes" role="tab" data-toggle="tab"><span class="badge"><?php echo $this->_objectCondorcet->countVotes() ; ?></span> Votes</a></li>
+			<li class="active"><a href="#vote_global_info" role="tab" data-toggle="tab">Global Informations</a></li>
+			<li><a href="#vote_candidates" role="tab" data-toggle="tab"><span class="badge"><?php echo $this->_objectCondorcet->countCandidates() ; ?></span> Candidates</a></li>
+			<li><a href="#vote_votes" role="tab" data-toggle="tab"><span class="badge"><?php echo $this->_objectCondorcet->countVotes() ; ?></span> Votes</a></li>
 		</ul>
 
 		<div class="tab-content" style="padding-top:2%;">
@@ -159,42 +159,63 @@
 		</header>
 
 		<div class="panel-group" id="results_accordion">
-		  <?php
-		  $allow_methods = unserialize($this->_Condorcet_Vote->_bean->methods);
-		  foreach (unserialize(CONDORCET_METHOD) as $title => $method) : 
-		  if (!in_array($method, $allow_methods, true))
-		  {
-		  	continue ;
-		  }
-		  ?>
+		<?php
+		$allow_methods = unserialize($this->_Condorcet_Vote->_bean->methods);
+		foreach (unserialize(CONDORCET_METHOD) as $title => $method) : 
+			if (!in_array($method, $allow_methods, true))
+			{
+				continue ;
+			}
+			?>
 			<section class="panel panel-info">
-			    <header class="panel-heading" data-toggle="collapse" data-parent="#results_accordion" data-target="#<?php echo $method ; ?>" style="cursor:pointer;">
-			      <h3 class="panel-title">
-			      		<span class="glyphicon glyphicon-th-list margin-icon"></span>
+					<header class="panel-heading" data-toggle="collapse" data-parent="#results_accordion" data-target="#<?php echo $method ; ?>" style="cursor:pointer;">
+						<h3 class="panel-title">
+							<span class="glyphicon glyphicon-th-list margin-icon"></span>
 						<?php echo $title ; ?>
-			      		<span class="caret pull-right"></span>
-			      </h3>
-			    </header>
-			    <div id="<?php echo $method ; ?>" class="panel-collapse collapse">
+							<span class="caret pull-right"></span>
+						</h3>
+					</header>
+					<div id="<?php echo $method ; ?>" class="panel-collapse collapse">
 					<div class="panel-body">
 					<?php 
+						$arbitrary = false ;
 						if ($method === 'KemenyYoung') :
-							try { $this->_objectCondorcet->getResult($method); }
+							
+							// Limite de candidat
+							try
+							{
+								$test_kemeny = $this->_objectCondorcet->getResult( $method, array('noConflict' => true) );
+							}
 							catch (Condorcet\CondorcetException $e) {
 								if ($e->getCode() === 101) : ?>		
 								<em> You have to many candidate to use Kemeny-Young method (limit is : <?php echo Condorcet\KemenyYoung::$_maxCandidates ;?> candidates) </em>
-
 								</div></div></section>
 								<?php endif; 
 								continue ;
 							}
+
+							// Résultats arbitraire
+
+							if (is_string($test_kemeny)) :
+
+								$test_kemeny = explode(';', $test_kemeny);
+
+								echo '
+								<div class="kemeny-arbitrary">
+									<strong>Arbitrary results: Kemeny-Young has '.$test_kemeny[0].' possible solutions at score '.$test_kemeny[1].'</strong><br>
+									<em>This vote can not be resolved, and the following result is arbitrary but indicative. See calculation details for more information.</em>
+								</div>
+								';
+							endif;
+
+							unset($test_kemeny);
 						endif;
 
 					?>
 						<!-- Nav tabs -->
 						<ul class="nav nav-tabs" role="tablist">
-						  <li class="active"><a href="#<?php echo $method ; ?>_ranking" role="tab" data-toggle="tab">Ranking</a></li>
-						  <li><a href="#<?php echo $method ; ?>_details" role="tab" data-toggle="tab">Details</a></li>
+							<li class="active"><a href="#<?php echo $method ; ?>_ranking" role="tab" data-toggle="tab">Ranking</a></li>
+							<li><a href="#<?php echo $method ; ?>_details" role="tab" data-toggle="tab">Details</a></li>
 						</ul>
 
 						<!-- Tab panes -->
@@ -234,7 +255,8 @@
 		</div>
 	</section>
 	<?php endif; ?>
-
+<?php else: ?>
+<section><em>This election does not yet contain any vote.</em></section>
 <?php endif; ?>
 
 
