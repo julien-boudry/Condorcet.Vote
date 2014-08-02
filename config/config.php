@@ -4,9 +4,10 @@
 if ($_SERVER['SERVER_NAME'] !== 'localhost')
 {
 	define('CONFIG_ENV', 'PROD');
-	define('BASE_URL', 'http://localhost/PROJECTS/condorcet-vote/');
+	define('BASE_URL', 'http://www.condorcet-vote.org/');
 
-	R::setup('mysql:host=localhost;dbname=condorcet-vote','root','');
+	// Ligne non-versionnées : BDD
+	require_once 'config/prod.php';
 
 	// Analytics
 	define('GOOGLE_ANALYTICS', '');
