@@ -1,4 +1,4 @@
-button a:hover, button a:focus, button a:visited {
+.home-button-wrapper a:hover, .home-button-wrapper a:focus, .home-button-wrapper a:visited {
 	text-decoration:none;
 	color:white;
 }
@@ -87,4 +87,41 @@ button a:hover, button a:focus, button a:visited {
 
 input:invalid {
 	box-shadow: 0 0 2px 1px red;
+}
+
+.method_description {
+	padding-top: 3%;
+	border-bottom: 1px solid #808080;
+	padding-bottom: 2%;
+}
+
+	.method_description:last-of-type {
+		border-bottom:none;
+		padding-bottom:0px;
+	}
+
+.method_description h3
+{
+	float:left;
+	margin-bottom:3%;
+}
+
+.method_description h4
+{
+	clear:both;
+}
+
+.method_description aside
+{
+	float:right;
+	font-style:italic;
+	margin-top: 20px;
+}
+
+.wikitable .green-cell {
+	background:#9F9;vertical-align:middle;text-align:center;
+}
+
+.wikitable .red-cell {
+	background:#F99;vertical-align:middle;text-align:center;
 }
