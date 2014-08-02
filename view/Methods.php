@@ -335,6 +335,31 @@
 
 	<?php require 'view/Parts/methods_list.php' ; ?>
 
+
+	<h2>Condorcet Methods Overview</h2>
+
+		<h3>Schulze</h3>
+
+		<h4>Resume</h5>
+		<p>If for a pairwise contest X either beats or ties Y, then we say that X has a path to Y, with a strength equal to the number of voters ranking X over Y. <br>
+		If X has a path to Y of strength m, and Y has a path to Z of strength n, then we say that X has a path to Z equal to the minimum of m and n. <br>
+		Of all the paths from X to Y, a maximum path strength can be found. If the maximum path strength from X to Y is greater than the maximum path strength from Y to X, then Y cannot win. The winner is the candidate that does not lose any such maximum path strength comparisons.</p>
+
+		<h4>Documentation by Martin Schulze himself :</h5>
+
+		<ul><li><a href="http://m-schulze.9mail.de/" target="_blank">http://m-schulze.9mail.de</a></li></ul>
+
+		<h3></h3>
+		<h3></h3>
+		<h3></h3>
+		<h3></h3>
+		<h3></h3>
+		<h3></h3>
+		<h3></h3>
+		<h3></h3>
+		<h3></h3>
+
+
 </section>
 
 </div> <!-- /container -->

@@ -35,6 +35,7 @@ else
 
 	// Condorcet
 		Condorcet\Condorcet::setMaxParseIteration(50000);
+		Condorcet\Condorcet::setMaxVoteNumber(100000);
 		Condorcet\KemenyYoung::setMaxCandidates(5);
 
 	// JS

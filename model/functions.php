@@ -68,7 +68,7 @@ function setHelper($type, $color = 'info')
 			echo
 				"
 				<h4>Syntax</h4>
-Example with 4 candidates : A;B;C;D
+				Example with 4 candidates : A;B;C;D
 <pre><code>tag1,tag2,tag3[...] || A>B=D>C # A comment at the end of the line prefixed by '#'. Never use ';' in comment!
 Titan,CoteBoeuf || A>B=D>C # Tags at first, vote at second, separated by '||'
 A>C>D>B # Line break to start a new vote. Tags are optionals. View above for vote syntax.
@@ -81,6 +81,11 @@ B>C # Equivalent to B>C>A=D</code></pre>";
 	case 'methods_infos':
 		echo
 			'All these methods meet the criteria of Condorcet. For more information on the different methods of calculation, look <a href="'.BASE_URL.'Condorcet_Methods" target="_blank">this page</a>.';
+		break;
+
+	case 'delete_infos':
+		echo
+			'Vote tag or number separated by semicolon. The operation will be performed before adding your new votes.';
 		break;
 
 		default:

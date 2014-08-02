@@ -58,6 +58,7 @@
 							<option value="with" class="form-control">Remove all votes having any of these tags.</option>
 							<option value="without" class="form-control">Remove all votes having no such tags.</option>
 					</select>
+				<?php setHelper('delete_infos'); ?>
 			</section>
 
 			<section>

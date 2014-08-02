@@ -128,7 +128,7 @@ class Add_Controller extends Controller
 
 		} catch (Exception $e) {
 			
-			Events::add( new Error(502, 'Bad Input', null, 'Bad Input', 2 , 0) );
+			Events::add( new Error(502, 'Add Register Vote Error', null, $e->getMessage(), 2 , 0) );
 			return false ;
 		}
 
