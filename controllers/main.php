@@ -112,12 +112,7 @@ abstract class Controller
 		$error_code = Events::getErrorCode() ;
 		if ($error_code !== null && !$this->_partial)
 		{
-			if ($error_code === 404)
-				{ header($_SERVER['SERVER_PROTOCOL'] . " 404 Not Found"); }
-			elseif ($error_code === 500)
-				{ header($_SERVER['SERVER_PROTOCOL'] . " 500 Internal Server Error"); }
-			elseif ($error_code === 502)
-				{ header($_SERVER['SERVER_PROTOCOL'] . " 502 Bad Gateway"); }
+			http_response_code($error_code);
 		}
 
 		// Un peu d'Ajax ?
