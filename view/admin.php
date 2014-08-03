@@ -108,6 +108,8 @@
 					</h3>
 				</header>
 				<section id="external_voting">
+				<?php setHelper('public_voting'); ?>
+				<?php setHelper('reset_url', 'danger'); ?>
 					<div class="alert alert-info text-center" role="alert">
 						<?php $freeVoteUrl = $this->_Condorcet_Vote->getFreeVoteUrl() ; ?>
 						<span class="glyphicon glyphicon-envelope pull-left ranking_icon"></span>
@@ -134,6 +136,7 @@
 			<h4 class="modal-title">Personnal Vote</h4>
 		</header>
 		<div class="modal-body">
+			<?php setHelper('personnal_vote'); ?>
 
 			<div class="input-group">
 				<span class="input-group-addon"><?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl(); ?></span>

@@ -75,7 +75,7 @@ class Admin_Controller extends Controller
 		);
 
 		// Open or close
-		$this->_Condorcet_Vote->_bean->open = (isset($_POST['close'])) ? false : true ;
+		$this->_Condorcet_Vote->setOpen( (isset($_POST['close'])) ? false : true );
 
 		// Delete Votes
 		if (!empty($_POST['delete_votes']))

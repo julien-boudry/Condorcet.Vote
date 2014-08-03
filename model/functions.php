@@ -88,6 +88,20 @@ B>C # Equivalent to B>C>A=D</code></pre>";
 			'Vote tag or number separated by semicolon. The operation will be performed before adding your new votes.';
 		break;
 
+	case 'personnal_vote':
+		echo
+			'The staff is used to allow voting once the voting for a person identified by name. The vote will then be provided specifically identifiable by a tag matching that name. <br>
+			You must individually contact the url provided to the voter. ';
+		break;
+
+	case 'public_voting':
+		echo 'If checked the vote will be disabled as well as the URL of public vote that personal URL.';
+		break;
+
+	case 'reset_url':
+		echo 'Warning: Disable and re-enable the external voting also resets all URL. Public or personnal vote.';
+		break;
+
 		default:
 			echo '????';
 	}

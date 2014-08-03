@@ -79,8 +79,7 @@ class Condorcet_Vote
 		$this->_bean->read_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(5, $true)));
 		$this->_bean->admin_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(5, $true)));
 
-		$this->_bean->set_new_hashCode();
-		$this->_bean->open = $open ;
+		$this->setOpen(true);
 
 		$this->_objectCondorcet = $vote ;
 		$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion('MAJOR');
@@ -227,6 +226,24 @@ class Condorcet_Vote
 	public function isOpen ()
 	{
 		return $this->_bean->open ;
+	}
+
+	public function setOpen ($state)
+	{
+		if (!is_bool($state))
+			{return false ;}
+		else
+		{
+			if ($state && !$this->_bean->open)
+			{
+				$this->set_new_hashCode();
+				$this->_bean->open = true ;
+			}
+			else
+			{ $this->_bean->open = false ; }
+		}
+
+		return $this->isOpen() ;
 	}
 
 	public function getPublicURL ()
