@@ -386,104 +386,103 @@
 				<td class="red-cell">No</td>
 				<td class="green-cell">Yes</td>
 			</tr>
-</table>
-<aside class="text-right"><em><a href="https://en.wikipedia.org/wiki/Schulze_method#Comparison_table" target="_blank">Source : Wikipedia EN &rarr;</a></em></aside>
+		</table>
+		<aside class="text-right"><em><a href="https://en.wikipedia.org/wiki/Schulze_method#Comparison_table" target="_blank">Source : Wikipedia EN &rarr;</a></em></aside>
 
-	<h2>Supported method on Condorcet-Vote.org</h2>
+		<h2>Supported method on Condorcet-Vote.org</h2>
 
-	<?php require 'view/Parts/methods_list.php' ; ?>
-
-
-	<h2>Condorcet Methods Overview</h2>
-
-	<article class="method_description">
-		<h3>Schulze</h3><aside><a href="https://en.wikipedia.org/wiki/Schulze_method" target="_blank">Schulze Method on Wikipedia &rarr;</a></aside>
-
-		<h4>Resume</h4>
-		<p>If for a pairwise contest X either beats or ties Y, then we say that X has a path to Y, with a strength equal to the number of voters ranking X over Y. <br>
-		If X has a path to Y of strength m, and Y has a path to Z of strength n, then we say that X has a path to Z equal to the minimum of m and n. <br>
-		Of all the paths from X to Y, a maximum path strength can be found. If the maximum path strength from X to Y is greater than the maximum path strength from Y to X, then Y cannot win. The winner is the candidate that does not lose any such maximum path strength comparisons.</p>
-
-		<p>The Schulze method is undoubtedly the most popular advanced Condorcet method. It is commonly used in organizations to collaborative vocation as Wikipedia, Debian, KDE, Pirate Party, Free Software Foundation Europe, OpenStack...</p>
-
-		<h4>Documentation by Martin Schulze himself :</h4>
-
-		<ul><li><a href="http://m-schulze.9mail.de/" target="_blank">http://m-schulze.9mail.de</a></li></ul>
-
-		<h4>Variants</h4>
-
-		<ol>
-			<li>Schulze Winning (Recommanded by M.Schulze)</li>
-			<li>Schulze Margin</li>
-			<li>Schulze Ratio</li>
-		</ol>
-
-		<h4>Note</h4>
-
-		<p>Our implementation is simple and safe. It does not include the complex and heavy possible supplements (STV. ..) for advanced tie-breaking. Schulze meet the criterion of resolvability, the possibility of a draw as then already very low and increasingly unlikely when the number of voters exceeds the number of candidates.</p>
-
-	</article>
-
-	<article class="method_description">
-		<h3>Ranked Pairs</h3><aside><a href="http://en.wikipedia.org/wiki/Ranked_pairs" target="_blank">Ranked Pairs on Wikipedia &rarr;</a></aside>
-
-		<h4>Resume</h4>
-		<p>Ranked Pairs finds a complete ranking. pairwise victories are processed starting from the greatest margin, and working down. These victories are locked, which means that the final ranking will agree with this pairwise decision. If a victory is processed that is incompatible with the previously locked victories, it is skipped. Once all victories are processed, a complete ranking is left.</p>
-
-		<h4>Documentation</h4>
-
-		<ul>
-			<li><a href="<?php echo BASE_URL; ?>view/DOCS/IndependenceofClones.pdf" target="_blank">Independence of Clones</a></li>
-			<li><a href="<?php echo BASE_URL; ?>view/DOCS/CompleteIndependenceofClones.pdf" target="_blank">Complete Independence of Clones</a></li>
-		</ul>
-
-		<h4>Note</h4>
-
-		<p>Our own implementation of this method is actually strange and experimental. <br>
-		The results look good, but do not take care of contingencies equalities, yet frequent votes on small, sharp then these disputes arbitrarily.
-		Paradoxically, our implementation is more reliable on large elections as small.</p>
-	</article>
-
-	<article class="method_description">
-		<h3>Kemeny-Young</h3><aside><a href="http://en.wikipedia.org/wiki/Kemeny%E2%80%93Young_method" target="_blank">Kemeny-Young on Wikipedia &rarr;</a></aside>
-
-		<h4>Resume</h4>
-		<p>Each possible complete ranking of the candidates is given a "distance" score. For each pair of candidates, find the number of ballots that order them the the opposite way as the given ranking. The distance is the sum across all such pairs. The ranking with the least distance wins.</p>
-
-		<h4>Note</h4>
-		<p>This method, particularly heavy, simply involves a series of calculations for each final classification possible. It is therefore dependent on the number of candidates in the presence (and not specifically the number of voters). Thus, if five candidates are 120 possibilities to calculate, six are 720 and ten are 3 628 800 possible solutions to compute and store! <br>
-		<span style="color:red;">For this reason, the results of this method will here provides for election comprising at most 5 candidates.</span></p>
-
-		<p>Also, this method although excellent, tends not to reach a solution in the case of a very small number of voters (less than the number of candidates). This will be indicated in bold, and an arbitrary classification (but realistic) is provided for reference only.</p>
-	</article>
-
-	<article class="method_description">
-		<h3>Copeland</h3><aside><a href="http://en.wikipedia.org/wiki/Copeland%27s_method" target="_blank">Copeland on Wikipedia &rarr;</a></aside>
-
-		<h4>Resume</h4>
-		<p>Each alternative's Copeland score is calculated by subtracting the number of alternatives that pairwise beat it from the number that it beats. The alternatives with the highest Copeland score win.</p>
-
-		<p>Copeland method is very fast and simple. But this method failed to the criterion of resolvability, so there is often tie on result. Of its ease of understanding, this method has been proposed and is still some local elections by universal suffrage around the world.</p>
-	</article>
-
-	<article class="method_description">
-		<h3>MiniMax</h3><aside><a href="http://en.wikipedia.org/wiki/Minimax_Condorcet" target="_blank">MiniMax on Wikipedia &rarr;</a></aside>
-
-		<h4>Resume</h4>
-		<p>Minimax selects as the winner the candidate whose greatest pairwise defeat is smaller than the greatest pairwise defeat of any other candidate.</p>
-
-		<h4>Variants</h4>
-		<p>When it is permitted to rank candidates equally, or to not rank all the candidates, three interpretations of the rule are possible. When voters must rank all the candidates, all three variants are equivalent.</p>
-
-		<ol>
-			<li>MiniMax Winning</li>
-			<li>MiniMax Margin</li>
-			<li>MiniMax Opposition <em>This is not a Condorcet method, because it fails occasionally its criteria!</em></li>
-		</ol>
-
-	</article>
+		<?php require 'view/Parts/methods_list.php' ; ?>
 
 
-</section>
+		<h2>Condorcet Methods Overview</h2>
+
+		<article class="method_description">
+			<h3>Schulze</h3><aside><a href="https://en.wikipedia.org/wiki/Schulze_method" target="_blank">Schulze Method on Wikipedia &rarr;</a></aside>
+
+			<h4>Resume</h4>
+			<p>If for a pairwise contest X either beats or ties Y, then we say that X has a path to Y, with a strength equal to the number of voters ranking X over Y. <br>
+			If X has a path to Y of strength m, and Y has a path to Z of strength n, then we say that X has a path to Z equal to the minimum of m and n. <br>
+			Of all the paths from X to Y, a maximum path strength can be found. If the maximum path strength from X to Y is greater than the maximum path strength from Y to X, then Y cannot win. The winner is the candidate that does not lose any such maximum path strength comparisons.</p>
+
+			<p>The Schulze method is undoubtedly the most popular advanced Condorcet method. It is commonly used in organizations to collaborative vocation as Wikipedia, Debian, KDE, Pirate Party, Free Software Foundation Europe, OpenStack...</p>
+
+			<h4>Documentation by Martin Schulze himself :</h4>
+
+			<ul><li><a href="http://m-schulze.9mail.de/" target="_blank">http://m-schulze.9mail.de</a></li></ul>
+
+			<h4>Variants</h4>
+
+			<ol>
+				<li>Schulze Winning (Recommanded by M.Schulze)</li>
+				<li>Schulze Margin</li>
+				<li>Schulze Ratio</li>
+			</ol>
+
+			<h4>Note</h4>
+
+			<p>Our implementation is simple and safe. It does not include the complex and heavy possible supplements (STV. ..) for advanced tie-breaking. Schulze meet the criterion of resolvability, the possibility of a draw as then already very low and increasingly unlikely when the number of voters exceeds the number of candidates.</p>
+
+		</article>
+
+		<article class="method_description">
+			<h3>Ranked Pairs</h3><aside><a href="http://en.wikipedia.org/wiki/Ranked_pairs" target="_blank">Ranked Pairs on Wikipedia &rarr;</a></aside>
+
+			<h4>Resume</h4>
+			<p>Ranked Pairs finds a complete ranking. pairwise victories are processed starting from the greatest margin, and working down. These victories are locked, which means that the final ranking will agree with this pairwise decision. If a victory is processed that is incompatible with the previously locked victories, it is skipped. Once all victories are processed, a complete ranking is left.</p>
+
+			<h4>Documentation</h4>
+
+			<ul>
+				<li><a href="<?php echo BASE_URL; ?>view/DOCS/IndependenceofClones.pdf" target="_blank">Independence of Clones</a></li>
+				<li><a href="<?php echo BASE_URL; ?>view/DOCS/CompleteIndependenceofClones.pdf" target="_blank">Complete Independence of Clones</a></li>
+			</ul>
+
+			<h4>Note</h4>
+
+			<p>Our own implementation of this method is actually strange and experimental. <br>
+			The results look good, but do not take care of contingencies equalities, yet frequent votes on small, sharp then these disputes arbitrarily.
+			Paradoxically, our implementation is more reliable on large elections as small.</p>
+		</article>
+
+		<article class="method_description">
+			<h3>Kemeny-Young</h3><aside><a href="http://en.wikipedia.org/wiki/Kemeny%E2%80%93Young_method" target="_blank">Kemeny-Young on Wikipedia &rarr;</a></aside>
+
+			<h4>Resume</h4>
+			<p>Each possible complete ranking of the candidates is given a "distance" score. For each pair of candidates, find the number of ballots that order them the the opposite way as the given ranking. The distance is the sum across all such pairs. The ranking with the least distance wins.</p>
+
+			<h4>Note</h4>
+			<p>This method, particularly heavy, simply involves a series of calculations for each final classification possible. It is therefore dependent on the number of candidates in the presence (and not specifically the number of voters). Thus, if five candidates are 120 possibilities to calculate, six are 720 and ten are 3 628 800 possible solutions to compute and store! <br>
+			<span style="color:red;">For this reason, the results of this method will here provides for election comprising at most 5 candidates.</span></p>
+
+			<p>Also, this method although excellent, tends not to reach a solution in the case of a very small number of voters (less than the number of candidates). This will be indicated in bold, and an arbitrary classification (but realistic) is provided for reference only.</p>
+		</article>
+
+		<article class="method_description">
+			<h3>Copeland</h3><aside><a href="http://en.wikipedia.org/wiki/Copeland%27s_method" target="_blank">Copeland on Wikipedia &rarr;</a></aside>
+
+			<h4>Resume</h4>
+			<p>Each alternative's Copeland score is calculated by subtracting the number of alternatives that pairwise beat it from the number that it beats. The alternatives with the highest Copeland score win.</p>
+
+			<p>Copeland method is very fast and simple. But this method failed to the criterion of resolvability, so there is often tie on result. Of its ease of understanding, this method has been proposed and is still some local elections by universal suffrage around the world.</p>
+		</article>
+
+		<article class="method_description">
+			<h3>MiniMax</h3><aside><a href="http://en.wikipedia.org/wiki/Minimax_Condorcet" target="_blank">MiniMax on Wikipedia &rarr;</a></aside>
+
+			<h4>Resume</h4>
+			<p>Minimax selects as the winner the candidate whose greatest pairwise defeat is smaller than the greatest pairwise defeat of any other candidate.</p>
+
+			<h4>Variants</h4>
+			<p>When it is permitted to rank candidates equally, or to not rank all the candidates, three interpretations of the rule are possible. When voters must rank all the candidates, all three variants are equivalent.</p>
+
+			<ol>
+				<li>MiniMax Winning</li>
+				<li>MiniMax Margin</li>
+				<li>MiniMax Opposition <em>This is not a Condorcet method, because it fails occasionally its criteria!</em></li>
+			</ol>
+
+		</article>
+
+	</section>
 
 </div> <!-- /container -->
