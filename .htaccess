@@ -1,5 +1,5 @@
 # Directory
-Options -Indexes -FollowSymLinks
+Options -Indexes
 
 # Filter
 <FilesMatch "(?<!index).php?$"> 
