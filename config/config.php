@@ -60,12 +60,11 @@ else
 			'Schulze (Winning variant, recommand by M.Schulze itself)' => 'Schulze',
 			'Schulze (Margin variant)' => 'Schulze_Margin',
 			'Kemeny-Young' =>  'KemenyYoung',
+			'Ranked Pairs' =>  'RankedPairs',
 			'Copeland' => 'Copeland',
 			'Minimax (Winning variant)' =>  'Minimax_Winning',
 			'Minimax (Margin variant)' =>  'Minimax_Margin',
-			'Minimax (Opposition variant)' =>  'Minimax_Opposition',
-			'Ranked Pairs' =>  'RankedPairs'
-
+			'Minimax (Opposition variant)' =>  'Minimax_Opposition'
 		)));
 
 	//INTERFACE
