@@ -47,11 +47,11 @@
 		<br><br>
 		<?php require 'view/Parts/methods_list.php' ; ?>
 		<br><br>
-		<a href="<?php echo BASE_URL.'Condorcet_Methods' ; ?>">
-			<span class="home-button-wrapper"><button class="btn btn-success btn-lg center-block">
+		<span class="home-button-wrapper"><a href="<?php echo BASE_URL.'Condorcet_Methods' ; ?>">
+			<button class="btn btn-success btn-lg center-block">
 				Learn more about methods &rarr;
-			</button></span>
-		</a>
+			</button>
+		</a></span>
 		
 	</section>
 	<hr class="clearfix">
