@@ -14,7 +14,7 @@
 
 	<section class="home-section">
 		<header class="text-center">
-			<a href="http://github.com/julien-boudry/Condorcet" target="_blank"><img src="https://raw.githubusercontent.com/julien-boudry/Condorcet/master/condorcet-logo.png" alt="Condorcet PHP logo" class="home-icon"></a>
+			<a href="http://github.com/julien-boudry/Condorcet" target="_blank"><img src="<?php echo BASE_URL; ?>view/IMG/condorcet-logo.png" alt="Condorcet PHP logo" class="home-icon"></a>
 			<h2>Condorcet PHP</h2>
 		</header>
 		<p>Condorcet-Vote is largely based on the open source Condorcet PHP library, using it to calculate both the election results for its advanced functions of micro-framework of election management.</p>
