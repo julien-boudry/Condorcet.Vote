@@ -50,8 +50,8 @@
 		<a href="<?php echo BASE_URL.'Condorcet_Methods' ; ?>">
 			<span class="home-button-wrapper"><button class="btn btn-success btn-lg center-block">
 				Learn more about methods &rarr;
-			</button>
-		</a></span>
+			</button></span>
+		</a>
 		
 	</section>
 	<hr class="clearfix">

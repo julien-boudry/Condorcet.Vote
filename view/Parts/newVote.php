@@ -13,7 +13,7 @@
 							</header>
 							<input type="text" name="candidates" spellcheck="false" required class="form-control" pattern="([a-zA-Z0-9 ]+;{1}){1,}[a-zA-Z0-9 ]+"
 							placeholder="Richard Wagner ; Gustav Mahler ; Claude Debussy ; Charles Koechlin" 
-							></textarea>
+							>
 							<?php setHelper('enter_candidates'); ?>
 					</section>
 

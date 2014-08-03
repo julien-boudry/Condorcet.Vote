@@ -131,7 +131,7 @@
 	<div class="modal-content">
 		<header class="modal-header">
 			<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			<h4 class="modal-title" id="myModalLabel">Modal title</h4>
+			<h4 class="modal-title">Personnal Vote</h4>
 		</header>
 		<div class="modal-body">
 

@@ -466,7 +466,7 @@
 
 		<article class="method_description">
 			<span class="anchor" id="copeland"></span>
-			<h3 id="copeland">Copeland</h3><aside><a href="http://en.wikipedia.org/wiki/Copeland%27s_method" target="_blank">Copeland on Wikipedia &rarr;</a></aside>
+			<h3>Copeland</h3><aside><a href="http://en.wikipedia.org/wiki/Copeland%27s_method" target="_blank">Copeland on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
 			<p>Each alternative's Copeland score is calculated by subtracting the number of alternatives that pairwise beat it from the number that it beats. The alternatives with the highest Copeland score win.</p>
