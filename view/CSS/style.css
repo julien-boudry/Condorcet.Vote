@@ -27,6 +27,7 @@
 .home-icon {
 	font-size:140px;
 	color:black;
+	max-height:140px;
 }
 
 @media (max-width:767px){
