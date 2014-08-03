@@ -13,7 +13,7 @@
 
 <?php endif; ?>
 
-<div class="container">
+<div class="container"> 
 
 	<div id="vote_url_box">
 		<div class="alert alert-success text-center" role="alert">
