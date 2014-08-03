@@ -146,7 +146,6 @@ class Admin_Controller extends Controller
 		if ($this->_Condorcet_Vote !== false)
 		{
 			parent::AddJS(BASE_URL.'view/JS/sha224.js', 3);
-			parent::AddJS(BASE_URL.'view/JS/php.js');
 			parent::showPage(new Vote_Controller ($this->_Condorcet_Vote));
 		}
 		else
