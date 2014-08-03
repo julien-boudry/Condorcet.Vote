@@ -58,3 +58,6 @@ else
 
 	//INTERFACE
 	define('CONFIG_DESCRIPTION_LENGHT', 1000);
+
+	// Title
+	define('SITE_HEAD_TITLE', 'Condorcet-Vote: Online Condorcet voting system | ');

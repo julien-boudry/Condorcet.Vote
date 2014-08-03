@@ -44,9 +44,9 @@ class Vote_Controller extends Controller
 	}
 
 
-	protected function contextTitle ()
+	protected function getTitle ()
 	{
-		return $this->_Condorcet_Vote->_bean->title ;
+		return 'Condorcet Vote: ' . $this->_Condorcet_Vote->getTitle() ;
 	}
 
 }

@@ -85,14 +85,9 @@ abstract class Controller
 
 	protected function getTitle ()
 	{
-		return $this->contextTitle() ;
-
+		return SITE_HEAD_TITLE . ( (isset($this->_title)) ? $this->_title : $this->_view ) ;
 	}
 
-		protected function contextTitle ()
-		{
-			return $this->_view ;
-		}
 
 	public function showPage ($follow = null, $position = 'after')
 	{

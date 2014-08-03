@@ -56,6 +56,7 @@ class Admin_Controller extends Controller
 		}
 	}
 
+
 	protected function update_vote ()
 	{
 		// Update (ou non) de la description (l'affichage de l'erreur est exclusivement géré en front)
@@ -131,6 +132,12 @@ class Admin_Controller extends Controller
 				Events::add( new Error (502, null, null, $e->getMessage(), 2, 0) );
 			}
 		}
+	}
+
+
+	protected function getTitle ()
+	{
+		return 'Admin Vote: ' . $this->_Condorcet_Vote->getTitle() ;
 	}
 
 

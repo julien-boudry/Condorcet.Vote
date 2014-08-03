@@ -136,6 +136,12 @@ class Add_Controller extends Controller
 	}
 
 
+	protected function getTitle ()
+	{
+		return $this->_mode . ' Vote: ' . $this->_Condorcet_Vote->getTitle() ;
+	}
+
+
 	public function showPage ($follow = null, $position = 'after')
 	{
 		if ($this->_Condorcet_Vote !== false)
