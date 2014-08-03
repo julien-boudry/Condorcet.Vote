@@ -1,12 +1,12 @@
 <div class="container">
 
-	<section class="page-section">
+	<section class="page-section col-md-11">
 		<header>
 			<span class="fa fa-cogs home-icon page-icon"></span>
 			<h1>A look around the various methods of Condorcet</h1>
 		</header>
 
-		<h2>Introduction</h2>
+		<h2 id="introduction">Introduction</h2>
 		
 		<p>These methods are modern mathematical algorithms, sometimes heavy, to extend and complement the original methods of the Marquis de Condorcet, without ever results do contradict.</p>
 
@@ -17,7 +17,7 @@
 		
 		<p><strong>If you do not have specific needs, we recommend the use of Schulze Winning method.</strong></p>
 
-		<h2>Specifications</h2>
+		<h2 id="specifications">Specifications</h2>
 
 		<p class="text-center">Above all, a small table summarizing the characteristics of the main methods of advanced votes, that they meet or fail the Condorcet criterions.</p><br>
 
@@ -389,15 +389,15 @@
 		</table>
 		<aside class="text-right"><em><a href="https://en.wikipedia.org/wiki/Schulze_method#Comparison_table" target="_blank">Source : Wikipedia EN &rarr;</a></em></aside>
 
-		<h2>Supported method on Condorcet-Vote.org</h2>
+		<h2 id="supported_methods">Supported method on Condorcet-Vote.org</h2>
 
 		<?php require 'view/Parts/methods_list.php' ; ?>
 
 
-		<h2>Condorcet Methods Overview</h2>
+		<h2 id="methods_overview">Condorcet Methods Overview</h2>
 
 		<article class="method_description">
-			<h3>Schulze</h3><aside><a href="https://en.wikipedia.org/wiki/Schulze_method" target="_blank">Schulze Method on Wikipedia &rarr;</a></aside>
+			<h3 id="Schulze">Schulze</h3><aside><a href="https://en.wikipedia.org/wiki/Schulze_method" target="_blank">Schulze Method on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
 			<p>If for a pairwise contest X either beats or ties Y, then we say that X has a path to Y, with a strength equal to the number of voters ranking X over Y. <br>
@@ -425,7 +425,7 @@
 		</article>
 
 		<article class="method_description">
-			<h3>Ranked Pairs</h3><aside><a href="http://en.wikipedia.org/wiki/Ranked_pairs" target="_blank">Ranked Pairs on Wikipedia &rarr;</a></aside>
+			<h3 id="rkpairs">Ranked Pairs</h3><aside><a href="http://en.wikipedia.org/wiki/Ranked_pairs" target="_blank">Ranked Pairs on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
 			<p>Ranked Pairs finds a complete ranking. pairwise victories are processed starting from the greatest margin, and working down. These victories are locked, which means that the final ranking will agree with this pairwise decision. If a victory is processed that is incompatible with the previously locked victories, it is skipped. Once all victories are processed, a complete ranking is left.</p>
@@ -445,7 +445,7 @@
 		</article>
 
 		<article class="method_description">
-			<h3>Kemeny-Young</h3><aside><a href="http://en.wikipedia.org/wiki/Kemeny%E2%80%93Young_method" target="_blank">Kemeny-Young on Wikipedia &rarr;</a></aside>
+			<h3 id="kem-young">Kemeny-Young</h3><aside><a href="http://en.wikipedia.org/wiki/Kemeny%E2%80%93Young_method" target="_blank">Kemeny-Young on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
 			<p>Each possible complete ranking of the candidates is given a "distance" score. For each pair of candidates, find the number of ballots that order them the the opposite way as the given ranking. The distance is the sum across all such pairs. The ranking with the least distance wins.</p>
@@ -458,7 +458,7 @@
 		</article>
 
 		<article class="method_description">
-			<h3>Copeland</h3><aside><a href="http://en.wikipedia.org/wiki/Copeland%27s_method" target="_blank">Copeland on Wikipedia &rarr;</a></aside>
+			<h3 id="copeland">Copeland</h3><aside><a href="http://en.wikipedia.org/wiki/Copeland%27s_method" target="_blank">Copeland on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
 			<p>Each alternative's Copeland score is calculated by subtracting the number of alternatives that pairwise beat it from the number that it beats. The alternatives with the highest Copeland score win.</p>
@@ -467,7 +467,7 @@
 		</article>
 
 		<article class="method_description">
-			<h3>MiniMax</h3><aside><a href="http://en.wikipedia.org/wiki/Minimax_Condorcet" target="_blank">MiniMax on Wikipedia &rarr;</a></aside>
+			<h3 id="minimax">MiniMax</h3><aside><a href="http://en.wikipedia.org/wiki/Minimax_Condorcet" target="_blank">MiniMax on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
 			<p>Minimax selects as the winner the candidate whose greatest pairwise defeat is smaller than the greatest pairwise defeat of any other candidate.</p>
@@ -484,5 +484,29 @@
 		</article>
 
 	</section>
+
+
+	<div class="col-md-1">
+		<nav id="flexible-nav-bar" class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" role="complementary" style="margin-top:8%;">
+			<ul class="nav bs-docs-sidenav" role="tablist">
+				<li class="active"><a href="#introduction">Introduction</a></li>
+				<li><a href="#specifications">Specifications</a></li>
+				<li><a href="#supported_methods">Supported methods</a></li>
+				<li>
+					<a href="#methods_overview">Condorcet Methods Overview</a>
+					<ul class="nav" style="display:block;">
+						<li><a href="#Schulze">Schulze</a></li>
+						<li><a href="#rkpairs">Ranked pairs</a></li>
+						<li><a href="#kem-young">Kemeny-Young</a></li>
+						<li><a href="#copeland">Copeland</a></li>
+						<li><a href="#minimax">Minimax</a></li>
+					</ul>
+				</li>
+			</ul>
+			<a class="back-to-top" href="#top">
+				Back to top
+			</a>
+		</nav>
+	</div>
 
 </div> <!-- /container -->

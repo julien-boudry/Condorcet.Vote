@@ -11,4 +11,4 @@
 	<?php Controller::setHead(); ?>
 
 </head>
-<body>
+<body data-spy="scroll" data-target="#flexible-nav-bar" data-offset="125">
