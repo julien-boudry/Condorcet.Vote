@@ -131,3 +131,10 @@ input:invalid {
 	color:red;
 	margin-bottom:2%;
 }
+
+.anchor{
+  display: block;
+  height: 50px; /*same height as header*/
+  margin-top: -50px; /*same height as header*/
+  visibility: hidden;
+}

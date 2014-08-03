@@ -6,7 +6,8 @@
 			<h1>A look around the various methods of Condorcet</h1>
 		</header>
 
-		<h2 id="introduction">Introduction</h2>
+		<span class="anchor" id="introduction"></span>
+		<h2>Introduction</h2>
 		
 		<p>These methods are modern mathematical algorithms, sometimes heavy, to extend and complement the original methods of the Marquis de Condorcet, without ever results do contradict.</p>
 
@@ -17,7 +18,8 @@
 		
 		<p><strong>If you do not have specific needs, we recommend the use of Schulze Winning method.</strong></p>
 
-		<h2 id="specifications">Specifications</h2>
+		<span class="anchor" id="specifications"></span>
+		<h2>Specifications</h2>
 
 		<p class="text-center">Above all, a small table summarizing the characteristics of the main methods of advanced votes, that they meet or fail the Condorcet criterions.</p><br>
 
@@ -389,15 +391,18 @@
 		</table>
 		<aside class="text-right"><em><a href="https://en.wikipedia.org/wiki/Schulze_method#Comparison_table" target="_blank">Source : Wikipedia EN &rarr;</a></em></aside>
 
-		<h2 id="supported_methods">Supported method on Condorcet-Vote.org</h2>
+
+		<span class="anchor" id="supported_methods"></span>
+		<h2>Supported method on Condorcet-Vote.org</h2>
 
 		<?php require 'view/Parts/methods_list.php' ; ?>
 
-
-		<h2 id="methods_overview">Condorcet Methods Overview</h2>
+		<span class="anchor" id="methods_overview"></span>
+		<h2>Condorcet Methods Overview</h2>
 
 		<article class="method_description">
-			<h3 id="Schulze">Schulze</h3><aside><a href="https://en.wikipedia.org/wiki/Schulze_method" target="_blank">Schulze Method on Wikipedia &rarr;</a></aside>
+			<span class="anchor" id="Schulze"></span>
+			<h3 >Schulze</h3><aside><a href="https://en.wikipedia.org/wiki/Schulze_method" target="_blank">Schulze Method on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
 			<p>If for a pairwise contest X either beats or ties Y, then we say that X has a path to Y, with a strength equal to the number of voters ranking X over Y. <br>
@@ -425,7 +430,8 @@
 		</article>
 
 		<article class="method_description">
-			<h3 id="rkpairs">Ranked Pairs</h3><aside><a href="http://en.wikipedia.org/wiki/Ranked_pairs" target="_blank">Ranked Pairs on Wikipedia &rarr;</a></aside>
+			<span class="anchor" id="rkpairs"></span>
+			<h3>Ranked Pairs</h3><aside><a href="http://en.wikipedia.org/wiki/Ranked_pairs" target="_blank">Ranked Pairs on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
 			<p>Ranked Pairs finds a complete ranking. pairwise victories are processed starting from the greatest margin, and working down. These victories are locked, which means that the final ranking will agree with this pairwise decision. If a victory is processed that is incompatible with the previously locked victories, it is skipped. Once all victories are processed, a complete ranking is left.</p>
@@ -445,7 +451,8 @@
 		</article>
 
 		<article class="method_description">
-			<h3 id="kem-young">Kemeny-Young</h3><aside><a href="http://en.wikipedia.org/wiki/Kemeny%E2%80%93Young_method" target="_blank">Kemeny-Young on Wikipedia &rarr;</a></aside>
+			<span class="anchor" id="kem-young"></span>
+			<h3>Kemeny-Young</h3><aside><a href="http://en.wikipedia.org/wiki/Kemeny%E2%80%93Young_method" target="_blank">Kemeny-Young on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
 			<p>Each possible complete ranking of the candidates is given a "distance" score. For each pair of candidates, find the number of ballots that order them the the opposite way as the given ranking. The distance is the sum across all such pairs. The ranking with the least distance wins.</p>
@@ -458,6 +465,7 @@
 		</article>
 
 		<article class="method_description">
+			<span class="anchor" id="copeland"></span>
 			<h3 id="copeland">Copeland</h3><aside><a href="http://en.wikipedia.org/wiki/Copeland%27s_method" target="_blank">Copeland on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
@@ -467,7 +475,8 @@
 		</article>
 
 		<article class="method_description">
-			<h3 id="minimax">MiniMax</h3><aside><a href="http://en.wikipedia.org/wiki/Minimax_Condorcet" target="_blank">MiniMax on Wikipedia &rarr;</a></aside>
+			<span class="anchor" id="minimax"></span>
+			<h3>MiniMax</h3><aside><a href="http://en.wikipedia.org/wiki/Minimax_Condorcet" target="_blank">MiniMax on Wikipedia &rarr;</a></aside>
 
 			<h4>Resume</h4>
 			<p>Minimax selects as the winner the candidate whose greatest pairwise defeat is smaller than the greatest pairwise defeat of any other candidate.</p>
