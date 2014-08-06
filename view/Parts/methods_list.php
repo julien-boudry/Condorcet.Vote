@@ -2,7 +2,7 @@
 	<li><strong>Schulze method</strong> <em>also know as: Schwartz Sequential Dropping (SSD), Cloneproof Schwartz Sequential Dropping (CSSD), the Beatpath Method...</em></li>
 	<li> <strong>Ranked Pairs</strong> <em>(exprimental implementation at this date)</em></li>
 	<li><strong>Kemeny-Young method</strong> <em>also know as: Kemeny rule, VoteFair popularity ranking, maximum likelihood method and the median relation.</em><br>
-	<em style="color:red;">(Cause of performance consideration, works only for election with less than 6 candidates)</em>
+	<em style="color:red;">(Cause of performance consideration, works only for election with less than 7 candidates)</em>
 	</li>
 	<li> <strong>Copeland method</strong> </li>
 	<li> <strong>MiniMax Family methods</strong> <em>also know as: Simpson-Kramer method, Successive reversal method</em></li>
