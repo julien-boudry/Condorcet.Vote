@@ -104,6 +104,7 @@ class Admin_Controller extends Controller
 				$delete_mode = ($_POST['delete_type'] === 'without') ? false : true ;
 				
 				$counter_remove = $this->_Condorcet_Vote->_objectCondorcet->removeVote($delete_votes, $delete_mode);
+				$this->_Condorcet_Vote->prepareCondorcet();
 
 				Events::add( new Success ($counter_remove . ' deleted votes') );
 
@@ -125,6 +126,8 @@ class Admin_Controller extends Controller
 				{
 					$this->_Condorcet_Vote->_objectCondorcet->parseVotes($_POST['add_votes']);
 				}
+
+				$this->_Condorcet_Vote->prepareCondorcet();
 
 			}
 			catch (Condorcet\CondorcetException $e)

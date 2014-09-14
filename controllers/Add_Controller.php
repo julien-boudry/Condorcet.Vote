@@ -123,6 +123,7 @@ class Add_Controller extends Controller
 
 		try {
 			$this->_Condorcet_Vote->_objectCondorcet->addVote($vote, $name);
+			$this->_Condorcet_Vote->prepareCondorcet();
 
 			Events::add( new Success('Your vote has been succefull register') ) ;
 

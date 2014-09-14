@@ -176,11 +176,11 @@ class Condorcet_Vote
 		return false ;
 	}
 
-	protected function prepareCondorcet ()
+	public function prepareCondorcet ()
 	{
 		try {
 			$this->_objectCondorcet->getWinner();
-		} catch (Condorcet\CondorcetException  $e) {}
+		} catch (Condorcet\CondorcetException $e) {}
 
 
 		foreach (unserialize($this->_bean->methods) as $method)
