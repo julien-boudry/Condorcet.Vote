@@ -141,7 +141,7 @@
 						<span class="caret pull-right"></span>
 					</h4>
 				</header>
-				<div id="the_pairwise" class="panel-collapse collapse">
+				<div id="the_pairwise" class="panel-collapse collapse in">
 					<div class="panel-body">
 						<?php setHtmlPairwise($this->_objectCondorcet->getPairwise()); ?>
 					</div>
