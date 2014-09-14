@@ -138,3 +138,7 @@ input:invalid {
   margin-top: -50px; /*same height as header*/
   visibility: hidden;
 }
+
+.pairwise-line th {
+	width:10%;
+}

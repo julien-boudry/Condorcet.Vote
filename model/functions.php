@@ -110,3 +110,61 @@ B>C # Equivalent to B>C>A=D</code></pre>";
 	}
 
 
+	function setHtmlPairwise (array $pairwise)
+	{ 
+	?>
+		<table class="table table-bordered text-center">
+			<tr>
+				<th class="text-center">#</th>
+	<?php
+
+				foreach ($pairwise as $candidate => $candidateValue)
+				{
+					echo '<th class="text-center"> x > ' . $candidate . '</th>' ;
+				}
+	?>
+			</tr>
+	<?php
+
+			$i = 1 ;
+			foreach ($pairwise as $candidate => $candidateValue)
+			{
+				echo '
+				<tr class="pairwise-line">
+					<th class="text-center">' . $candidate . ' > x</th>' ;
+
+					$j = 1 ;
+					foreach ($candidateValue['win'] as $adversaireName => $adversaireValue)
+					{
+						if ($i === $j)
+						{
+							echo '<td>-</td>';
+							$j++;
+
+						}
+							if ($adversaireValue > $candidateValue['lose'][$adversaireName]) :
+								$colorClass = 'success';
+							elseif ($adversaireValue < $candidateValue['lose'][$adversaireName]):
+								$colorClass = 'danger';
+							else:
+								$colorClass = 'info';
+							endif;
+							
+
+							echo '<td class="' . $colorClass . '">' .
+								$adversaireValue
+							.'</td>' ;
+
+						$j++;
+					}
+				echo ( (count($pairwise) === $i) ? '<td>-</td>' : '' ) ;
+				echo '
+				</tr>';
+
+				$i++;
+			}
+
+	?>
+		</table>
+	<?php
+	}
