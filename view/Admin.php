@@ -108,19 +108,22 @@
 					</h3>
 				</header>
 				<section id="external_voting">
-				<?php setHelper('public_voting'); ?>
-				<?php setHelper('reset_url', 'danger'); ?>
-					<div class="alert alert-info text-center" role="alert">
-						<?php $freeVoteUrl = $this->_Condorcet_Vote->getFreeVoteUrl() ; ?>
-						<span class="glyphicon glyphicon-envelope pull-left ranking_icon"></span>
-						This URL can be use by anyone to vote... if you share it :
-						<a href="<?php echo $freeVoteUrl; ?>" class="alert-link"><?php echo $freeVoteUrl ; ?></a>
-					</div>
+					<?php setHelper('public_voting'); ?>
+					<?php setHelper('reset_url', 'danger'); ?>
+					
+					<?php if ($this->_Condorcet_Vote->_bean->open) : ?>
+						<div class="alert alert-info text-center" role="alert">
+							<?php $freeVoteUrl = $this->_Condorcet_Vote->getFreeVoteUrl() ; ?>
+							<span class="glyphicon glyphicon-envelope pull-left ranking_icon"></span>
+							This URL can be use by anyone to vote... if you share it :
+							<a href="<?php echo $freeVoteUrl; ?>" class="alert-link"><?php echo $freeVoteUrl ; ?></a>
+						</div>
 
-					<div class="alert alert-warning text-center" role="alert">
-						<span class="glyphicon glyphicon-list-alt pull-left ranking_icon"></span>
-					<button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#edit_personnal">Set personnal & unique access</button>
-					</div>
+						<div class="alert alert-warning text-center" role="alert">
+							<span class="glyphicon glyphicon-list-alt pull-left ranking_icon"></span>
+						<button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#edit_personnal">Set personnal & unique access</button>
+						</div>
+					<?php endif; ?>
 				</section>
 			</section>
 
