@@ -20,7 +20,10 @@
 					<section>
 							<header class="page-header">
 									<h3>Add Vote(s)
-										<small class="pull-right">Disallow any method of public voting
+										<small class="pull-right tooltips" data-toggle="tooltip" data-placement="right"
+											title="If checked, your users can not vote anonymously or use their personal invitation."
+										>
+											Disallow any method of public voting
 											<input type="checkbox" name="close">
 										</small>
 									</h3>

@@ -1,5 +1,9 @@
 $(document).ready(function()
 {
+	// Tooltips
+	$('.tooltips').tooltip();
+
+
 	// Gestion de la génération d'adresses personnelles
 	$( "#edit_personnal_identifiant" ).on('ready change keyup click hover', null, function() {
 		
