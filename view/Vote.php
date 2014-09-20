@@ -39,7 +39,7 @@
 					</li>
 					<?php if ($this->_Condorcet_Vote->getCountUpdate() > 0) : ?>
 					<li>
-						<strong>Last update on on:</strong>
+						<strong>Last update on:</strong>
 						UTC <?php echo $this->_Condorcet_Vote->getUpdateDate(); ?>
 					</li>
 					<?php endif; ?>
