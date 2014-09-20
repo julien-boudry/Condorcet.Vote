@@ -156,5 +156,4 @@ class Admin_Controller extends Controller
 			parent::showPage();
 		}
 	}
-
 }
