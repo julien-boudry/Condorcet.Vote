@@ -145,7 +145,7 @@
 				<span class="input-group-addon"><?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl(); ?></span>
 
 				<input type="text" id="edit_personnal_identifiant" class="form-control" spellcheck="false"
-				placeholder="name or identifiant (alphabetic, without space)" maxlength="25" size="25" 
+				placeholder="name or identifiant (alphabetic, without space)" maxlength="<?php echo NAME_MAX_LENGHT ; ?>" size="25" 
 				pattern="[a-zA-Z]+"
 				required autocomplete="off"
 				data-admin_code="<?php echo $this->_Condorcet_Vote->getAdminCode(); ?>"
