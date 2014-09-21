@@ -68,7 +68,7 @@ $(document).ready(function()
 		input.forEach (prepare_parse , input);
 
 		var regexVote = new RegExp(
-		"^(:?[a-zA-Z0-9, ]+[|]{2} *)?(:?[a-zA-Z0-9 ]+)(:?( *[>=]{1} *)(:?[a-zA-Z0-9 ]+ *))*(:?[*] *[0-9]+ *)?$"
+		"^(:?[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ, ]+[|]{2} *)?(:?[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ ]+)(:?( *[>=]{1} *)(:?[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ ]+ *))*(:?[*] *[0-9]+ *)?$"
 		);
 		var is_correct = true ;
 		input.forEach (function (element,index) {
