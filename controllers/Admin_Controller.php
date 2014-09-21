@@ -11,17 +11,12 @@ class Admin_Controller extends Controller
 	protected $_Condorcet_Vote = false ;
 
 
-	public function __construct ($condorcet_vote = null)
+	public function __construct ()
 	{
 		parent::__construct();
-		
-		// Edit Controller est appellé depuis Create Controller
-		if (is_object($condorcet_vote))
-		{
-			$this->_Condorcet_Vote = $condorcet_vote ;
-		}
+
 		// Edit Controller est appelé directement via URL (pas d'API)
-		elseif (is_null($condorcet_vote) && isset($_GET['vote']) && isset($_GET['admin_code']))
+		if ($this->_Condorcet_Vote === false && isset($_GET['vote']) && isset($_GET['admin_code']))
 		{
 			try {
 				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);		

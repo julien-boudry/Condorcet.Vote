@@ -10,7 +10,9 @@ class Create_Controller extends Admin_Controller
 		{
 			$this->_inputError = false ;
 
-			parent::__construct($this->_new_condorcet);
+			Events::add( new Info('Your vote has been register') );
+
+			parent::__construct();
 		}
 	}
 
@@ -65,7 +67,7 @@ class Create_Controller extends Admin_Controller
 			return false ;
 		}
 
-		$this->_new_condorcet = new Condorcet_Vote(
+		$this->_Condorcet_Vote = new Condorcet_Vote(
 			$new_condorcet
 			, $_POST['title']
 			, $this->_accept_methods
