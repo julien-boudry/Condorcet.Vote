@@ -13,7 +13,7 @@
 			<strong style="font-weight:150%;"><?php echo htmlspecialchars($_GET['personnal_name']) ; ?></strong>
 		</div>
 	<?php elseif ($this->_mode === 'Public') : ?>
-		<input type="text" name="add_name" pattern="[a-zA-Z]+" maxlength="20" class="center-block" spellcheck="false">
+		<input type="text" name="add_name" pattern="[a-zA-Z]+" maxlength="<?php echo NAME_MAX_LENGHT ; ?>" class="center-block" spellcheck="false">
 	<?php endif; ?>
 	</section>
 

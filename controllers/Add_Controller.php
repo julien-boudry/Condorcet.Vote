@@ -108,16 +108,14 @@ class Add_Controller extends Controller
 
 	protected function try_add_vote ($name, $vote)
 	{
-		if	( 
-				(empty($name) && $this->_mode === 'Personnal') || // ligne de pure sécurité parano.
-				(!empty($name) && $this->_mode === 'Public' && strlen($name > 20) && !ctype_alpha($name))				
-			)
+		if	( $this->_mode === 'Public' && !empty($name) && ( strlen($name) > NAME_MAX_LENGHT || !ctype_alpha($name) || is_numeric($name)) )
 		{
+			Events::add( new Error(502, 'Add Register Vote Error', null, 'Incorrect Input', 2 , 0) );
 			return false ;
 		}
 
 		$name = array(
-			($this->_mode === 'Personnal') ? 'Personnal-Vote' : 'Public-Vote'
+			($this->_mode === 'Personnal') ? 'Personnal Vote' : 'Public Vote'
 			,$name
 		);
 
