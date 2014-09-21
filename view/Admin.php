@@ -1,12 +1,14 @@
 <div class="container"> 
 
 	<div id="vote_url_box">
-		<div class="alert alert-success text-center" role="alert">
+		<div class="alert alert-success text-center tooltips" role="alert" data-toggle="tooltip" data-placement="left"
+		title="You can share this address or keep it to yourself, Condorcet-Vote does not index it.">
 			<span class="glyphicon glyphicon-globe pull-left ranking_icon"></span>
 			This vote is publicly accessible by this link:
 			<a href="<?php echo $this->_Condorcet_Vote->getPublicURL() ; ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getPublicURL() ; ?></a>
 		</div>
-		<div class="alert alert-danger text-center" role="alert">
+		<div class="alert alert-danger text-center tooltips" role="alert" data-toggle="tooltip" data-placement="left"
+		title="Do not lose this link, in which case you can not manage your vote! Do not share that by measuring the consequence of such an act.">
 			<span class="glyphicon glyphicon-eye-close pull-left ranking_icon"></span>
 			You can admin this vote by this link :
 			<a href="<?php echo $this->_Condorcet_Vote->getAdminURL() ; ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getAdminURL() ; ?></a>
@@ -85,7 +87,10 @@
 			<section>
 				<header class="page-header">
 					<h3>Public voting
-						<small class="pull-right">Disallow any method of public voting
+						<small class="pull-right tooltips" data-toggle="tooltip" data-placement="right"
+							title="If checked, your users can not vote anonymously or use their personal invitation."
+						>
+							Disallow any method of public voting
 							<input type="checkbox" name="close"
 							<?php echo (!$this->_Condorcet_Vote->_bean->open) ? 'checked' : '' ; ?>
 							>

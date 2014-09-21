@@ -34,7 +34,10 @@
 						UTC <?php echo $this->_Condorcet_Vote->getDate(); ?>
 					</li>
 					<li>
-						<strong>Update count:</strong>
+						<strong class="tooltips" data-toggle="tooltip" data-placement="bottom"
+						title="Number of amendments to the vote since its inception.">
+							Update count:
+						</strong>
 						<?php echo $this->_Condorcet_Vote->getCountUpdate(); ?>
 					</li>
 					<?php if ($this->_Condorcet_Vote->getCountUpdate() > 0) : ?>
@@ -44,7 +47,10 @@
 					</li>
 					<?php endif; ?>
 					<li>
-						<strong>Cumulated computing time:</strong>
+						<strong class="tooltips" data-toggle="tooltip" data-placement="bottom"
+						title="Computation time accumulated by the algorithms after each update of the vote.">
+							Cumulated computing time:
+						</strong>
 						<?php echo number_format($this->_objectCondorcet->getGlobalTimer(true),2); ?> second(s)
 					</li>
 				</ul>
