@@ -11,6 +11,7 @@ define('SCRIPT_START',microtime(true));
 
 // Config
 	require_once 'config/config.php';
+	require_once 'config/regex.php';
 
 // Controller
 	require_once 'controllers/main.php';

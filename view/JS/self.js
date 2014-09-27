@@ -9,7 +9,7 @@ $(document).ready(function()
 		
 		new_personnal_url = false ;
 
-		var valid = ( /^[a-zA-Z]*$/.test($(this).val()) && $(this).val().length > 0 ) ? true : false ;
+		var valid = ( /^[a-zA-Z1-9]*$/.test($(this).val()) && $(this).val().length > 0 ) ? true : false ;
 
 		if (!valid) { 
 			$(this).addClass('red-background');

@@ -38,7 +38,7 @@
 					<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 						<input type="text" name="delete_votes" class="form-control"
 						placeholder="Julian;Mike;Christelle # All votes with one of this three tags will be deleting (before adding your new votes)"
-						pattern="([a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ ]+;{1})*([a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ ]+)" spellcheck="false"
+						pattern="<?php echo REGEX_ADMIN_DELETE_VOTE; ?>" spellcheck="false"
 						>
 					</div>
 					<select name="delete_type" id="delete-type" style="height:34px;">
@@ -136,7 +136,7 @@
 
 				<input type="text" id="edit_personnal_identifiant" class="form-control" spellcheck="false"
 				placeholder="name or identifiant (alphabetic, without space)" maxlength="<?php echo NAME_MAX_LENGHT ; ?>" size="25" 
-				pattern="[a-zA-Z]+"
+				pattern="<?php echo REGEX_ADMIN_ADD_PERSONNAL_ID; ?>"
 				required autocomplete="off"
 				data-admin_code="<?php echo $this->_Condorcet_Vote->getAdminCode(); ?>"
 				data-hash_code="<?php echo $this->_Condorcet_Vote->getHashCode(); ?>"

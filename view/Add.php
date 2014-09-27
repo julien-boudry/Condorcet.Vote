@@ -13,7 +13,7 @@
 			<strong style="font-weight:150%;"><?php echo htmlspecialchars($_GET['personnal_name']) ; ?></strong>
 		</div>
 	<?php elseif ($this->_mode === 'Public') : ?>
-		<input type="text" name="add_name" pattern="[a-zA-ZàáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ]+" maxlength="<?php echo NAME_MAX_LENGHT ; ?>" class="center-block" spellcheck="false">
+		<input type="text" name="add_name" pattern="<?php echo REGEX_ADD_NAME; ?>" maxlength="<?php echo NAME_MAX_LENGHT ; ?>" class="center-block" spellcheck="false">
 	<?php endif; ?>
 	</section>
 
@@ -24,7 +24,7 @@
 		</header>
 		<div class="row">
 				<div class="col-lg-6 col-md-6 .col-sm-8 col-xs-6 center-block input-group">
-					<input type="text" name="add_vote_content" class="form-control" required placeholder="A>B>C=D=E>Z" autocomplete="off" pattern="[a-zA-Z0-9>=àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ ]+" spellcheck="false">
+					<input type="text" name="add_vote_content" class="form-control" required placeholder="A>B>C=D=E>Z" autocomplete="off" pattern="<?php echo REGEX_ADD_VOTE; ?>" spellcheck="false">
 				</div><!-- /input-group -->
 		</div><!-- /.row -->
 	</section>

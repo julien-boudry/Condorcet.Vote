@@ -11,7 +11,7 @@
 							<header class="page-header" style="margin-top:1%;">
 									<h3>Add Candidates</h3>
 							</header>
-							<input type="text" name="candidates" spellcheck="false" required class="form-control" pattern="([a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ ]+;{1}){1,}[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ ]+"
+							<input type="text" name="candidates" spellcheck="false" required class="form-control" pattern="<?php echo REGEX_NEW_ADD_CANDIDATE; ?>"
 							placeholder="Richard Wagner ; Gustav Mahler ; Claude Debussy ; Charles Koechlin" 
 							>
 							<?php setHelper('enter_candidates'); ?>
