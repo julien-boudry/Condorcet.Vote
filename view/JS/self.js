@@ -9,20 +9,20 @@ $(document).ready(function()
 		
 		new_personnal_url = false ;
 
-		var valid = ( /^[a-zA-Z1-9]*$/.test($(this).val()) && $(this).val().length > 0 ) ? true : false ;
+		var valid = ( (new RegExp(REGEX_ADMIN_ADD_PERSONNAL_ID)).test($(this).val()) ) ? true : false ;
 
 		if (!valid) { 
 			$(this).addClass('red-background');
 			$('#keynote_add_button').attr('disabled', 'true');
 		}
-		else { 
+		else {
 			$(this).removeClass('red-background');
 			$('#keynote_add_button').removeAttr('disabled');
 		}
 
 		// Hashing
 		var hash = CryptoJS.SHA224 (
-									$(this).data('admin_code') + 
+									$(this).data('admin_code') +
 									$(this).data('hash_code') +
 									$(this).val()
 									).toString(CryptoJS.enc.Hex).substr(10,8).toUpperCase();
@@ -31,7 +31,7 @@ $(document).ready(function()
 
 		if (valid)
 		{
-			new_personnal_url = $(this).data('base_url') + $(this).val() + '/' + hash
+			new_personnal_url = $(this).data('base_url') + $(this).val() + '/' + hash ;
 		}
 
 	});
@@ -67,9 +67,7 @@ $(document).ready(function()
 
 		input.forEach (prepare_parse , input);
 
-		var regexVote = new RegExp(
-		"^(:?[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ, ]+[|]{2} *)?(:?[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ ]+)(:?( *[>=]{1} *)(:?[a-zA-Z0-9àáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ ]+ *))*(:?[*] *[0-9]+ *)?$"
-		);
+		var regexVote = new RegExp(REGEX_LINE_VOTE_FORMAT);
 		var is_correct = true ;
 		input.forEach (function (element,index) {
 			if (!regexVote.test(element))
@@ -95,10 +93,10 @@ $(document).ready(function()
 		function prepare_parse (element, index) {
 
 			// Delete comments
-			var is_comment = strpos(this[index], '#') ;
+			var is_comment = strpos(this[index], '#');
 			if (is_comment !== false)
 			{
-				this[index] = substr(this[index], 0, is_comment) ;
+				this[index] = substr(this[index], 0, is_comment);
 			}
 
 			// Trim
@@ -123,7 +121,7 @@ $(document).ready(function()
 
 		function authorize_edit (valid, boite)
 		{
-			var button = $('form button[type="submit"]') ;
+			var button = $('form button[type="submit"]');
 
 			if (!valid) { 
 				$(boite).css('box-shadow', '0 0 2px 1px red');

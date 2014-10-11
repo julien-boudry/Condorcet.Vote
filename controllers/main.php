@@ -57,6 +57,18 @@ abstract class Controller
 		';
 
 
+		// Constance REGEX pour Javascript
+		echo '<script>';
+			foreach (get_defined_constants(true)['user'] as $constanteKey => $constanteValue)
+			{
+				if (substr($constanteKey, 0, 5) === 'REGEX')
+				{
+					echo $constanteKey . '="' . $constanteValue . '";
+					' ;
+				}
+			}
+		echo '</script>';
+
 		foreach ( Controller::$_head_JS as $url )
 		{
 			echo '<script src="'.$url.'"></script>
