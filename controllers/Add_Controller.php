@@ -108,19 +108,19 @@ class Add_Controller extends Controller
 
 	protected function try_add_vote ($name, $vote)
 	{
-		if	( $this->_mode === 'Public' && !empty($name) && ( strlen($name) > NAME_MAX_LENGHT || !ctype_alpha($name) || is_numeric($name)) )
+		if	( $this->_mode === 'Public' && !empty($name) && !myPregMatch(REGEX_ADD_NAME, $name) )
 		{
 			Events::add( new Error(502, 'Add Register Vote Error', null, 'Incorrect Input', 2 , 0) );
 			return false ;
 		}
 
-		$name = array(
+		$tag = array(
 			($this->_mode === 'Personnal') ? 'Personnal Vote' : 'Public Vote'
 			,$name
 		);
 
 		try {
-			$this->_Condorcet_Vote->_objectCondorcet->addVote($vote, $name);
+			$this->_Condorcet_Vote->_objectCondorcet->addVote($vote, $tag);
 			$this->_Condorcet_Vote->prepareCondorcet();
 
 			Events::add( new Success('Your vote has been succefull register') ) ;

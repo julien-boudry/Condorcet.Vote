@@ -15,7 +15,12 @@
 
 // DIVERS
 
-	function check_frontInput_method()
+	function myPregMatch ($pattern, $subject)
+	{
+		return preg_match('/'.$pattern.'/', $subject);
+	}
+
+	function check_frontInput_method ()
 	{
 		if (!isset($_POST['methods']) || !is_array($_POST['methods']))
 		{
@@ -57,7 +62,7 @@
 
 	// Contenu des aides
 
-	function setHelper($type, $color = 'info')
+	function setHelper ($type, $color = 'info')
 	{
 		echo '<aside class="bs-callout bs-callout-'.$color.'">';
 
