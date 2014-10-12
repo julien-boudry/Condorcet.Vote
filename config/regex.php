@@ -12,7 +12,7 @@ define(
 
 define(
 	'REGEX_ADD_VOTE',
-	'^['.REGEX_ALPHANUM.'>= ]+$'
+	'^(:?['.REGEX_ALPHANUM.' ]+)(:?( *[>=]{1} *)(:?['.REGEX_ALPHANUM.' ]+ *))*?$'
 );
 
 define(
