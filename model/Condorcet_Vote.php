@@ -240,7 +240,7 @@ class Condorcet_Vote
 				$this->_bean->open = true ;
 			}
 			else
-			{ $this->_bean->open = false ; }
+			{ $this->_bean->open = $state ; }
 		}
 
 		return $this->isOpen() ;
