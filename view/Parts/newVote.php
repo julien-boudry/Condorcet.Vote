@@ -68,7 +68,7 @@
 			</div>
 			<div class="modal-footer">
 				<div class="input-group col-xs-12 col-sm-8 col-md-7 col-lg-6 pull-right">
-						<input name="title" type="text" class="form-control" placeholder="Vote Title" required spellcheck="true">
+						<input name="title" type="text" class="form-control" placeholder="Vote Title" required spellcheck="true" pattern="<?php echo REGEX_TITLE ; ?>">
 						<span class="input-group-btn">
 								<button class="btn btn-success" type="submit">Create Vote!</button>
 						</span>

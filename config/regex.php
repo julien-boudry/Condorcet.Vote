@@ -6,6 +6,11 @@ define('REGEX_ALPHANUM', REGEX_ALPHABET.'0-9');
 
 // Formats
 define(
+	'REGEX_TITLE',
+	'^['.REGEX_ALPHABET.' ]{2,'.TITLE_MAX_LENGHT.'}$'
+);
+
+define(
 	'REGEX_ADD_NAME',
 	'^['.REGEX_ALPHABET.']{2,'.NAME_MAX_LENGHT.'}$'
 );

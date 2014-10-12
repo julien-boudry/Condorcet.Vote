@@ -23,7 +23,7 @@ class Create_Controller extends Admin_Controller
 		if	(
 				!empty($_POST['candidates']) &&
 				isset($_POST['votes']) &&
-				!empty($_POST['title']) && strlen($_POST['title']) <= 80 &&
+				isset($_POST['title']) && myPregMatch(REGEX_TITLE, $_POST['title']) &&
 				isset($_POST['description']) && strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT &&
 				$this->_accept_methods !== false
 			)

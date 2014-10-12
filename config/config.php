@@ -68,6 +68,7 @@ else
 
 	//INTERFACE
 	define('CONFIG_DESCRIPTION_LENGHT', 1000);
+	define('TITLE_MAX_LENGHT', 60);
 	define('NAME_MAX_LENGHT', 20);
 
 	// Title
