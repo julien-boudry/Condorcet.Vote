@@ -10,7 +10,7 @@ class Create_Controller extends Admin_Controller
 		{
 			$this->_inputError = false ;
 
-			Events::add( new Info('Your vote has been register') );
+			// Events::add( new Info('Your vote has been register') );
 
 			parent::__construct();
 		}
@@ -86,9 +86,11 @@ class Create_Controller extends Admin_Controller
 		if ($this->_inputError)
 		{
 			Events::add( new Error (502, null, null, $this->_inputError) );
+			parent::showPage() ;
 		}
-
-		parent::showPage() ;
+		else
+		{
+			header('Location: ' . $this->_Condorcet_Vote->getAdminURL());
+		}
 	}
-
 }
