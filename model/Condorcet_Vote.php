@@ -294,6 +294,7 @@ class Condorcet_Vote
 
 	public function set_new_hashCode ()
 	{
+		$true = true ;
 		$this->_bean->hash_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(5, $true)));
 	}
 }
