@@ -90,6 +90,7 @@ abstract class Controller
 		//////
 
 	protected $_view = 'Home' ;
+	protected $_selfView = true ;
 	public $_partial = false ;
 
 	public function __construct ()
@@ -151,7 +152,8 @@ abstract class Controller
 			}
 
 			// Base
-			require_once 'view'.DIRECTORY_SEPARATOR.$this->_view .'.php';
+			if ($this->_selfView)
+				{require_once 'view'.DIRECTORY_SEPARATOR.$this->_view .'.php';}
 
 		if (is_object($follow) && $position === 'after')
 			{ $follow->showPage(); }

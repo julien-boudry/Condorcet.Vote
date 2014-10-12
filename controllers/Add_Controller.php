@@ -145,6 +145,9 @@ class Add_Controller extends Controller
 	{
 		if ($this->_Condorcet_Vote !== false)
 		{
+			if (Events::isAnysuccess())
+				{$this->_selfView = false ;}
+
 			parent::showPage(new Vote_Controller ($this->_Condorcet_Vote));
 		}
 		else
