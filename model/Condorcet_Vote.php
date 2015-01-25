@@ -84,7 +84,7 @@ class Condorcet_Vote
 		$this->_objectCondorcet = $vote ;
 		$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion('MAJOR');
 
-		$this->_bean->candidates = serialize($this->_objectCondorcet->getCandidatesList());
+		$this->_bean->candidates = serialize($this->_objectCondorcet->getCandidatesList(true));
 		$this->saveVotesList();
 
 		$this->prepareCondorcet();
@@ -115,14 +115,22 @@ class Condorcet_Vote
 
 						// Candidats
 						$this->_objectCondorcet->jsonCandidates(json_encode(unserialize($this->_bean->candidates)));
-					
+
 						// Votes
 						foreach ( unserialize($this->_bean->votes_list) as $vote )
 						{
 							$tag = $vote['tag'];
+								// Conversion from 0.14
+								$ownTimestamp = false ;
+								if (isset($tag['timestamp'])) :
+									$ownTimestamp = $tag['timestamp'];
+									unset($tag['timestamp']);
+								endif;
+								if (isset($tag['id'])) : unset($tag['id']); endif;
+
 							unset($vote['tag']);
 
-							$this->_objectCondorcet->addVote($vote, $tag);
+							$this->_objectCondorcet->addVote(new Condorcet\Vote ($vote, $tag, $ownTimestamp));
 						}
 
 					// Mise à jour
@@ -144,7 +152,16 @@ class Condorcet_Vote
 
 	protected function saveVotesList ()
 	{
-		$this->_bean->votes_list = serialize($this->_objectCondorcet->getVotesList());
+		$voteList = $this->_objectCondorcet->getVotesList();
+
+		foreach ($voteList as &$oneVote) {
+			$NewoneVote = $oneVote->getRanking();
+			$NewoneVote['tag'] = $oneVote->getTags();
+
+			$oneVote = $NewoneVote;
+		}
+
+		$this->_bean->votes_list = serialize(Condorcet\Condorcet::format($voteList,false,true));
 	}
 
 	public function update_methods ($methods, $prepare = true)

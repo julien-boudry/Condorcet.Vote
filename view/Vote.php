@@ -69,26 +69,25 @@
 				<?php foreach ($this->_objectCondorcet->getVotesList() as $voteid => $vote) : ?>
 				<div class="panel-group" id="votes_accordion">
 					<div class="panel panel-warning">
-						<header class="panel-heading" data-toggle="collapse" data-parent="#votes_accordion" data-target="#<?php echo $vote['tag']['id'] ; ?>_voteid" style="cursor:pointer;">
+						<header class="panel-heading" data-toggle="collapse" data-parent="#votes_accordion" data-target="#<?php echo $voteid ; ?>_voteid" style="cursor:pointer;">
 							<h4 class="panel-title">
 								<span class="glyphicon glyphicon-indent-left margin-icon"></span>
 								<span class="caret pull-right"></span>
-								Vote N° <?php echo $vote['tag']['id'] ; ?>
+								Vote N° <?php echo $voteid ; ?>
 								
-								<?php foreach ($vote['tag'] as $key_tag => $tag) :
-								if ($key_tag === 'id' || $key_tag === 'timestamp') {continue;} ?>
+								<?php foreach ($vote->getTags() as $tag) : ?>
 
-								<span class="pull-right tag-icon label <?php echo showOneTagClass($tag); ?>"><?php echo htmlspecialchars($tag); ?></span>
+									<span class="pull-right tag-icon label <?php echo showOneTagClass($tag); ?>"><?php echo htmlspecialchars($tag); ?></span>
 
 								<?php endforeach; ?>
 							</h4>
 						</header>
-						<div id="<?php echo $vote['tag']['id'] ; ?>_voteid" class="panel-collapse collapse">
+						<div id="<?php echo $voteid ; ?>_voteid" class="panel-collapse collapse">
 							<div class="panel-body">
 								<ul class="list-group">
 									<?php
-									$voteDate = date('l jS \of F Y, H:i:s',$vote['tag']['timestamp']);
-									unset($vote['tag']);
+									$voteDate = date('l jS \of F Y, H:i:s',$vote->getTimestamp());
+
 									$i = 0 ;
 									foreach ($vote as $rank => $rank_vote) : ?>
 									<li class="list-group-item <?php echo ($i === 0) ? 'list-group-item-success' : '' ; ?>">
