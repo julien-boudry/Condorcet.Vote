@@ -51,7 +51,7 @@ else
 		Condorcet\Condorcet::setMaxVoteNumber(100000);
 
 	// JS
-		define('CONFIG_JQUERY', '2.1.1');
+		define('CONFIG_JQUERY', '2.1.3');
 
 
 	// Methodes de Condorcet
