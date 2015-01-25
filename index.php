@@ -16,6 +16,9 @@ define('SCRIPT_START',microtime(true));
 // Controller
 	require_once 'controllers/main.php';
 
+// Update Script
+	require_once 'update.php';
+
 	if (isset($_GET['ajax']))
 		{Controller::$_ajax = true;}
 
