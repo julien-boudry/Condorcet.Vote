@@ -187,12 +187,12 @@
 							// Limite de candidat
 							try
 							{
-								$test_kemeny = $this->_objectCondorcet->getResult( $method, array('noConflict' => true) );
+								$test_kemeny = $this->_objectCondorcet->getResult( $method, ['algoOptions'=>['noConflict'=>true]] );
 							}
 							catch (Condorcet\CondorcetException $e) {
 								if ($e->getCode() === 101) : ?>		
-								<em> You have to many candidate to use Kemeny-Young method (limit is : <?php echo Condorcet\KemenyYoung::$_maxCandidates ;?> candidates) </em>
-								</div></div></section>
+									<em> You have to many candidate to use Kemeny-Young method (limit is : <?php echo Condorcet\KemenyYoung::$_maxCandidates ;?> candidates) </em>
+									</div></div></section>
 								<?php endif; 
 								continue ;
 							}
@@ -226,20 +226,20 @@
 							<div class="tab-pane fade in active" id="<?php echo $method ; ?>_ranking">
 								<ul class="list-group">
 									<?php
-									foreach ($this->_objectCondorcet->getResult($method) as $rank => $version) : 
+									foreach ($this->_objectCondorcet->getResult($method) as $rank => $rankContent) : 
 
-										$version = implode(' / ',explode(',', $version));
+										$rankContent = implode(' / ',$rankContent);
 										?>
 										<li class="list-group-item
 										<?php
-											echo ($version === $this->_objectCondorcet->getWinner()) ? 'list-group-item-success ' : '' ;
-											echo ($version === $this->_objectCondorcet->getLoser()) ? 'list-group-item-danger' : '' ;  
+											echo ($rankContent === $this->_objectCondorcet->getWinner()) ? 'list-group-item-success ' : '' ;
+											echo ($rankContent === $this->_objectCondorcet->getLoser()) ? 'list-group-item-danger' : '' ;  
 										?>">
 											<span class="badge">
 												<?php echo $rank; ?>
 											</span>
 											<?php 
-												echo $version;
+												echo $rankContent;
 											?>
 										</li>
 									<?php endforeach; ?>
