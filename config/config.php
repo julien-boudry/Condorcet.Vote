@@ -27,6 +27,15 @@ ga('send', 'pageview');
 // DEV
 else
 {
+	// DEBUG
+	ini_set('xdebug.var_display_max_depth', -1);
+	ini_set('xdebug.var_display_max_children', -1);
+	ini_set('xdebug.var_display_max_data', -1);
+	ini_set('display_errors', 1);
+	error_reporting(E_ALL); 
+
+
+
 	define('CONFIG_ENV', 'DEV');
 	define('BASE_URL', 'http://localhost/PROJECTS/condorcet-vote/');
 
@@ -49,6 +58,7 @@ else
 	// Condorcet
 		Condorcet\Condorcet::setMaxParseIteration(50000);
 		Condorcet\Condorcet::setMaxVoteNumber(100000);
+		Condorcet\KemenyYoung::$_maxCandidates = 7;
 
 	// JS
 		define('CONFIG_JQUERY', '2.1.3');

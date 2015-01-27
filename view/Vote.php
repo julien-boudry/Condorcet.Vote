@@ -155,7 +155,10 @@
 		</section>
 	</section>
 
-	<?php if (!empty(unserialize($this->_Condorcet_Vote->_bean->methods))) : ?>
+	<?php
+	$allow_methods = unserialize($this->_Condorcet_Vote->_bean->methods);
+
+	if (!empty($allow_methods)) : ?>
 	<section>
 		<header class="page-header">
 			<h2>Advanced Results</h2>
@@ -163,7 +166,6 @@
 
 		<div class="panel-group" id="results_accordion">
 		<?php
-		$allow_methods = unserialize($this->_Condorcet_Vote->_bean->methods);
 		foreach (unserialize(CONDORCET_METHOD) as $title => $method) : 
 			if (!in_array($method, $allow_methods, true))
 			{
