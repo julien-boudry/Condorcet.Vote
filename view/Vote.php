@@ -248,9 +248,18 @@
 								</ul>
 							</div>
 							<div class="tab-pane fade in" id="<?php echo $method ; ?>_details">
-								<pre>
-									<?php print_r($this->_objectCondorcet->getResultStats($method)); ?>
-								</pre>
+								<pre><?php
+										if ($method === 'KemenyYoung' && $this->_objectCondorcet->countCandidates() > 7) :											
+											echo 'To many candidate for Kemeny-Young to show it on a page.';
+										else :
+											print_r(
+												Condorcet\Condorcet::format(
+													$this->_objectCondorcet
+														->getResultStats($method),
+													false)
+												);
+										endif;
+									?></pre>
 							</div>
 						</div>
 					</div>

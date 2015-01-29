@@ -39,7 +39,7 @@ else
 	define('CONFIG_ENV', 'DEV');
 	define('BASE_URL', 'http://localhost/PROJECTS/condorcet-vote/');
 
-	R::setup('mysql:host=localhost;dbname=condorcet-vote','root','');
+	R::setup('mysql:host=localhost;dbname=condorcet-vote','root','jiju77');
 
 	// Gestionnaire d'exception
 	set_exception_handler( function ($exception) {
@@ -58,7 +58,7 @@ else
 	// Condorcet
 		Condorcet\Condorcet::setMaxParseIteration(50000);
 		Condorcet\Condorcet::setMaxVoteNumber(100000);
-		Condorcet\KemenyYoung::$_maxCandidates = 7;
+		# Condorcet\KemenyYoung::$_maxCandidates = 7;
 
 	// JS
 		define('CONFIG_JQUERY', '2.1.3');
