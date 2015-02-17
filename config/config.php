@@ -4,7 +4,7 @@
 if ($_SERVER['SERVER_NAME'] !== 'localhost')
 {
 	define('CONFIG_ENV', 'PROD');
-	define('BASE_URL', 'http://www.condorcet-vote.org/');
+	define('BASE_URL', 'http://www.condorcet.vote/');
 
 	// Ligne non-versionnées : BDD
 	require_once 'config/prod.php';
