@@ -4,7 +4,7 @@ class Home_Controller extends Page
 {}
 
 class About_Controller extends Page
-{ protected $_view = 'About' ; protected $_title = 'About Condorcet-Vote.org' ; }
+{ protected $_view = 'About' ; protected $_title = 'About Condorcet.Vote' ; }
 
 class Condorcet_Methods_Controller extends Page
 { protected $_view = 'Methods' ; protected $_title = 'The Condorcet methods' ; }
