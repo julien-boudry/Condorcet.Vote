@@ -123,17 +123,12 @@ class Condorcet_Vote
 						foreach ( unserialize($this->_bean->votes_list) as $vote )
 						{
 							$tag = $vote['tag'];
-								// Conversion from 0.14
-								$ownTimestamp = false ;
-								if (isset($tag['timestamp'])) :
-									$ownTimestamp = $tag['timestamp'];
-									unset($tag['timestamp']);
-								endif;
-								if (isset($tag['id'])) : unset($tag['id']); endif;
+							$timestamp = $vote['timestamp'];
 
 							unset($vote['tag']);
+							unset($vote['timestamp']);
 
-							$this->_objectCondorcet->addVote(new Condorcet\Vote ($vote, $tag, $ownTimestamp));
+							$this->_objectCondorcet->addVote(new Condorcet\Vote ($vote, $tag, $timestamp));
 						}
 
 					// Mise à jour
@@ -160,6 +155,7 @@ class Condorcet_Vote
 		foreach ($voteList as &$oneVote) {
 			$NewoneVote = $oneVote->getRanking();
 			$NewoneVote['tag'] = $oneVote->getTags();
+			$NewoneVote['timestamp'] = $oneVote->getTimestamp();
 
 			$oneVote = $NewoneVote;
 		}
