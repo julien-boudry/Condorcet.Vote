@@ -1,6 +1,6 @@
 <?php
 
-$to_update = R::find( 'condorcet', " condorcet_version = '-0.14' " );
+$to_update = R::find( 'condorcet', " condorcet_version = '-0.9' " );
 
 foreach ($to_update as $election)
 {

@@ -39,6 +39,9 @@ class Condorcet_Vote
 		{
 			R::store($this->_bean);
 		}
+
+		$this->saveVotesList();
+		R::store($this->_bean);
 	}
 
 		public function willUpdate ()
