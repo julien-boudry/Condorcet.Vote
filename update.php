@@ -1,6 +1,6 @@
 <?php
 
-$to_update = R::find( 'condorcet', " condorcet_version = '-0.9' " );
+$to_update = R::find( 'condorcet', " condorcet_version != -".Condorcet\Condorcet::getClassVersion() );
 
 foreach ($to_update as $election)
 {

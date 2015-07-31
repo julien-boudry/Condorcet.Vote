@@ -61,7 +61,7 @@ else
 		# Condorcet\KemenyYoung::$_maxCandidates = 7;
 
 	// JS
-		define('CONFIG_JQUERY', '2.1.3');
+		define('CONFIG_JQUERY', '2.1.4');
 
 
 	// Methodes de Condorcet
