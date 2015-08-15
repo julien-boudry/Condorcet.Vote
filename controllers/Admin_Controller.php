@@ -79,16 +79,16 @@ class Admin_Controller extends Controller
 			{
 				$delete_votes = $_POST['delete_votes'];
 
-				if (Condorcet\Condorcet::isJson($delete_votes))
+				if (Condorcet\Election::isJson($delete_votes))
 				{
-					$delete_votes = Condorcet\Condorcet::prepareJson($delete_votes);
+					$delete_votes = Condorcet\Election::prepareJson($delete_votes);
 
 					if (!is_array($delete_votes))
 						{$delete_votes = array();}
 				}
 				else
 				{
-					$delete_votes = Condorcet\Condorcet::prepareParse($delete_votes, false);
+					$delete_votes = Condorcet\Election::prepareParse($delete_votes, false);
 				}
 
 				foreach ($delete_votes as &$value) {
@@ -113,7 +113,7 @@ class Admin_Controller extends Controller
 		{
 			try
 			{
-				if (Condorcet\Condorcet::isJson($_POST['add_votes']))
+				if (Condorcet\Election::isJson($_POST['add_votes']))
 				{
 					$counter = count($this->_Condorcet_Vote->_objectCondorcet->jsonVotes($_POST['add_votes']));
 				}

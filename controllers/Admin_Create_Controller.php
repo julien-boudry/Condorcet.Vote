@@ -40,9 +40,9 @@ class Create_Controller extends Admin_Controller
 	{
 		try
 		{
-			$new_condorcet = new Condorcet\Condorcet();
+			$new_condorcet = new Condorcet\Election();
 
-			if (Condorcet\Condorcet::isJson ($_POST['candidates']))
+			if (Condorcet\Election::isJson ($_POST['candidates']))
 			{
 				$new_condorcet->jsonCandidates($_POST['candidates']);
 			}
@@ -51,7 +51,7 @@ class Create_Controller extends Admin_Controller
 				$new_condorcet->parseCandidates($_POST['candidates']);
 			}
 
-			if (Condorcet\Condorcet::isJson ($_POST['votes']))
+			if (Condorcet\Election::isJson ($_POST['votes']))
 			{
 				$new_condorcet->jsonVotes($_POST['votes']);
 			}

@@ -56,9 +56,8 @@ else
 	date_default_timezone_set('UTC');
 
 	// Condorcet
-		Condorcet\Condorcet::setMaxParseIteration(50000);
-		Condorcet\Condorcet::setMaxVoteNumber(100000);
-		# Condorcet\KemenyYoung::$_maxCandidates = 7;
+		Condorcet\Election::setMaxParseIteration(50000);
+		Condorcet\Election::setMaxVoteNumber(100000);
 
 	// JS
 		define('CONFIG_JQUERY', '2.1.4');

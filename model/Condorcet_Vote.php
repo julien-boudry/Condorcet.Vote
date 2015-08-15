@@ -59,7 +59,7 @@ class Condorcet_Vote
 			endif;
 		}
 
-	protected function register (Condorcet\Condorcet $vote, $title, $methods, $description = null, $open)
+	protected function register (Condorcet\Election $vote, $title, $methods, $description = null, $open)
 	{
 		$true = true ;
 		$this->_isNew = true ;
@@ -109,7 +109,7 @@ class Condorcet_Vote
 				// Update de l'objet & reconstruction
 				if ($e->getCode() === 11)
 				{
-					$this->_objectCondorcet = new Condorcet\Condorcet () ;
+					$this->_objectCondorcet = new Condorcet\Election () ;
 
 					// Reconstruction
 
