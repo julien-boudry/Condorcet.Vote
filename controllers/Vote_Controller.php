@@ -23,7 +23,7 @@ class Vote_Controller extends Controller
 		// Construction depuis URL avec parametre(s) manquant(s)
 		elseif (empty($_GET['vote']))
 		{
-			Events::add( new Error (404) );
+			Events::add( new EventsError (404) );
 		}
 		// Tentative de construction depuis URL
 		else
@@ -34,7 +34,7 @@ class Vote_Controller extends Controller
 				$this->_objectCondorcet = $this->_Condorcet_Vote->_objectCondorcet ;				
 			}
 			catch (Exception $e) {
-				Events::add( new Error (404) );		
+				Events::add( new EventsError (404) );		
 				$this->_Condorcet_Vote = false ;
 			}
 		}

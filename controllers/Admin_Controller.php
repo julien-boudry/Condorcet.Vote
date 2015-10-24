@@ -22,7 +22,7 @@ class Admin_Controller extends Controller
 				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);		
 			} catch (Exception $e) {
 
-				Events::add( new Error (404, null, null, self::ERROR_URL) );
+				Events::add( new EventsError (404, null, null, self::ERROR_URL) );
 
 				$this->_Condorcet_Vote = false ;
 
@@ -32,7 +32,7 @@ class Admin_Controller extends Controller
 			// Controle de la validité du code
 			if ($this->_Condorcet_Vote->_bean->admin_code !== $_GET['admin_code'])
 			{
-				Events::add( new Error (404, null, null, self::ERROR_URL) );
+				Events::add( new EventsError (404, null, null, self::ERROR_URL) );
 
 				$this->_Condorcet_Vote = false ;
 
@@ -129,7 +129,7 @@ class Admin_Controller extends Controller
 			}
 			catch (Condorcet\CondorcetException $e)
 			{
-				Events::add( new Error (502, null, null, $e->getMessage(), 2, 0) );
+				Events::add( new EventsError (502, null, null, $e->getMessage(), 2, 0) );
 			}
 		}
 	}

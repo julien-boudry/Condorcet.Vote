@@ -23,14 +23,14 @@ class Add_Controller extends Controller
 				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);
 			} catch (Exception $e)
 			{
-				Events::add( new Error (404) );
+				Events::add( new EventsError (404) );
 				return false ;
 			}
 
 			// Is Open ?
 			if (!$this->_Condorcet_Vote->isOpen())
 			{
-				Events::add( new Error (404, null, 'Le vote est fermé') );
+				Events::add( new EventsError (404, null, 'Le vote est fermé') );
 				return false ;
 			}
 
@@ -44,7 +44,7 @@ class Add_Controller extends Controller
 
 				if	( $this->_Condorcet_Vote->getFreeVoteCode() !== $_GET['free_vote_code']	)
 				{
-					Events::add( new Error (404) );
+					Events::add( new EventsError (404) );
 					return false ;
 				}
 
@@ -79,7 +79,7 @@ class Add_Controller extends Controller
 
 				if	( $this->_Condorcet_Vote->getPersonnalVoteCode($_GET['personnal_name']) !== $_GET['personnal_code'] )
 				{
-					Events::add( new Error (404, null, null, 'This vote or this code are false') );
+					Events::add( new EventsError (404, null, null, 'This vote or this code are false') );
 					$this->_Condorcet_Vote = false ;
 					return false ;
 				}
@@ -152,7 +152,7 @@ class Add_Controller extends Controller
 		}
 		else
 		{
-			Events::add( new Error (502) );
+			Events::add( new EventsError (502) );
 
 			parent::showPage();
 		}

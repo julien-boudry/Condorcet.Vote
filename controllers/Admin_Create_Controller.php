@@ -85,7 +85,7 @@ class Create_Controller extends Admin_Controller
 	{
 		if ($this->_inputError)
 		{
-			Events::add( new Error (502, null, null, $this->_inputError) );
+			Events::add( new EventsError (502, null, null, $this->_inputError) );
 			parent::showPage() ;
 		}
 		else
