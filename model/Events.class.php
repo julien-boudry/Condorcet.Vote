@@ -202,7 +202,7 @@ abstract class Events
 }
 
 
-class Error extends Events
+class EventsError extends Events
 {
 	public $_server_code ;
 	public $_name ;
