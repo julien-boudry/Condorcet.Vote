@@ -184,7 +184,7 @@
 					<div class="panel-body">
 					<?php 
 						$arbitrary = false ;
-						if ($method === 'KemenyYoung') :
+						if ($method === 'KemenyYoung' || $method === 'RankedPairs' ) :
 							
 							// Limite de candidat
 							try
@@ -193,7 +193,9 @@
 							}
 							catch (Condorcet\CondorcetException $e) {
 								if ($e->getCode() === 101) : ?>		
-									<em> You have to many candidate to use Kemeny-Young method (limit is : <?php echo Condorcet\Algo\Methods\KemenyYoung::$_maxCandidates ;?> candidates) </em>
+									<em> You have to many candidate to use this method (limit is : <?php 
+										// echo ('Condorcet\Algo\Methods\\'.$method)::$_maxCandidates ;
+										?> candidates) </em>
 									</div></div></section>
 								<?php endif; 
 								continue ;

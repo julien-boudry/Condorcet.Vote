@@ -101,8 +101,10 @@ class Condorcet_Vote
 		else
 		{
 			try	{
+				if ( $this->_bean->condorcet_version !== "-".Condorcet\Condorcet::getVersion('MAJOR') )
+					{ throw new Condorcet\CondorcetException(11); }
 				$this->_objectCondorcet = unserialize($this->_bean->condorcet_object) ;
-				$this->prepareCondorcet();
+				$this->prepareCondorcet(); 				
 			}
 			catch (Condorcet\CondorcetException $e) {
 

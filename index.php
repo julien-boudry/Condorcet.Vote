@@ -3,6 +3,7 @@ define('SCRIPT_START',microtime(true));
 
 
 // Model
+	require_once 'model/Condorcet/__CondorcetAutoload.php';
 	require_once 'model/functions.php';
 	require_once 'model/rb.php';
 	require_once 'model/Condorcet/lib/Condorcet.php';
