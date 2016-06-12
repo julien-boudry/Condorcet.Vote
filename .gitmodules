@@ -1,3 +1,3 @@
 [submodule "model/Condorcet"]
 	path = model/Condorcet
-url=git@github.com:julien-boudry/Condorcet.git
+	url = https://github.com/julien-boudry/Condorcet.git
