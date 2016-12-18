@@ -37,9 +37,9 @@ else
 
 
 	define('CONFIG_ENV', 'DEV');
-	define('BASE_URL', 'http://localhost/PROJECTS/condorcet-vote/');
+	define('BASE_URL', 'http://localhost/condorcet-vote/');
 
-	R::setup('mysql:host=localhost;dbname=condorcet-vote','root','jiju77');
+	R::setup('mysql:host=localhost;dbname=condorcet.vote','root','');
 
 	// Gestionnaire d'exception
 	set_exception_handler( function ($exception) {
