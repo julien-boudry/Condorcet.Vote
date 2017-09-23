@@ -89,7 +89,7 @@
 									$voteDate = date('l jS \of F Y, H:i:s',$vote->getTimestamp());
 
 									$i = 0 ;
-									foreach ($vote->getContextualVote($this->_objectCondorcet) as $rank => $rank_vote) : ?>
+									foreach ($vote->getContextualRanking($this->_objectCondorcet) as $rank => $rank_vote) : ?>
 									<li class="list-group-item <?php echo ($i === 0) ? 'list-group-item-success' : '' ; ?>">
 										<span class="badge">
 											<?php echo $rank; ?>
