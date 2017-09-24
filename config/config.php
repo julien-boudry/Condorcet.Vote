@@ -1,5 +1,7 @@
 <?php
 
+use RedBeanPHP\R;
+
 // PROD
 if ($_SERVER['SERVER_NAME'] !== 'localhost')
 {

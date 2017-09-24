@@ -1,5 +1,7 @@
 <?php
 
+use RedBeanPHP\R;
+
 abstract class Events
 {
 	public static $_errors_list = array() ;

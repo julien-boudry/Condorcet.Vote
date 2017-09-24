@@ -1,5 +1,7 @@
 <?php
 
+use RedBeanPHP\R;
+
 set_time_limit ( 600 );
 
 $manager = new Condorcet\Timer\Manager;

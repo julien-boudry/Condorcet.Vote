@@ -1,5 +1,7 @@
 <?php
 
+use RedBeanPHP\R;
+
 class Condorcet_Vote
 {
 	public $_bean ;
