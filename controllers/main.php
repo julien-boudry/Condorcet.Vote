@@ -12,22 +12,23 @@ abstract class Controller
 	private static $_head_CSS ;
 	private static $_head_Canonical ;
 
-	protected static function AddJS ($url, $priority = 0)
+	protected static function AddJS ($url, $priority = 0, $integrity = false, $crossorigin = false)
 	{
 		if (!is_array(Controller::$_head_JS))
 			{ Controller::$_head_JS = array(); }
 
 		for ($i = $priority * 100 ; isset(Controller::$_head_JS[$i]) ; $i++ ) {}
-		Controller::$_head_JS[$i] = $url ;
+
+		Controller::$_head_JS[$i] = ['url' => $url, 'integrity' => $integrity, 'crossorigin' => $crossorigin] ;
 	}
 
-	protected static function AddCSS ($url, $priority = 0)
+	protected static function AddCSS ($url, $priority = 0, $integrity = false, $crossorigin = false)
 	{
 		if (!is_array(Controller::$_head_CSS))
 			{ Controller::$_head_CSS = array(); }
 
 		for ($i = $priority * 100 ; isset(Controller::$_head_CSS[$i]) ; $i++ ) {}
-		Controller::$_head_CSS[$i] = $url ;
+		Controller::$_head_CSS[$i] = ['url' => $url, 'integrity' => $integrity, 'crossorigin' => $crossorigin] ;
 	}
 
 	protected static function AddCanonical ($url)
@@ -46,9 +47,19 @@ abstract class Controller
 		ksort(Controller::$_head_CSS);
 
 
-		foreach ( Controller::$_head_CSS as $url )
+		foreach ( Controller::$_head_CSS as $input )
 		{
-			echo '<link href="'.$url.'" rel="stylesheet">
+			$sup ='';
+
+			if ($input['integrity'] !== false) {
+				$sup .= 'integrity="'.$input['integrity'].'" ';
+			}
+
+			if ($input['crossorigin'] !== false) {
+				$sup .= 'crossorigin="'.$input['crossorigin'].'" ';
+			}
+
+			echo '<link href="'.$input['url'].'" rel="stylesheet" '.$sup.'>
 			' ;
 		}
 
@@ -69,9 +80,19 @@ abstract class Controller
 			}
 		echo '</script>';
 
-		foreach ( Controller::$_head_JS as $url )
+		foreach ( Controller::$_head_JS as $input )
 		{
-			echo '<script src="'.$url.'"></script>
+			$sup ='';
+
+			if ($input['integrity'] !== false) {
+				$sup .= 'integrity="'.$input['integrity'].'" ';
+			}
+
+			if ($input['crossorigin'] !== false) {
+				$sup .= 'crossorigin="'.$input['crossorigin'].'" ';
+			}
+
+			echo '<script src="'.$input['url'].'" '.$sup.'></script>
 			' ;
 		}
 
@@ -83,7 +104,7 @@ abstract class Controller
 		' ;
 
 		if (!is_null(self::$_head_Canonical))
-			{ echo '<link rel="canonical" href="'.self::$_head_Canonical.'">'; }
+			{ echo '<link rel="canonical" href="'.self::$_head_Canonical.'" int>'; }
 	}
 
 
@@ -126,16 +147,15 @@ abstract class Controller
 		// Un peu d'Ajax ?
 		if (!self::$_ajax && !$this->_partial)
 		{
-			self::AddCSS(BASE_URL.'view/CSS/bootstrap.min.css');
-			self::AddCSS(BASE_URL.'view/CSS/font-awesome.min.css', 1);
-			self::AddCSS(BASE_URL.'view/CSS/style_custom_bootstrap.css', 2);
-			self::AddCSS(BASE_URL.'view/CSS/style.css', 3);
+			self::AddCSS('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',1,'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u','anonymous');
+			self::AddCSS(BASE_URL.'view/CSS/font-awesome.min.css', 2);
+			self::AddCSS(BASE_URL.'view/CSS/style_custom_bootstrap.css', 3);
+			self::AddCSS(BASE_URL.'view/CSS/style.css', 4);
 
-			self::AddJS('//ajax.googleapis.com/ajax/libs/jquery/'.CONFIG_JQUERY.'/jquery.min.js');
-			self::AddJS(BASE_URL.'view/JS/bootstrap.min.js', 1);
-			self::AddJS(BASE_URL.'view/JS/php.js');
+			self::AddJS('//ajax.googleapis.com/ajax/libs/jquery/'.CONFIG_JQUERY.'/jquery.min.js',1);
+			self::AddJS('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', 2,'sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa','anonymous');
+			self::AddJS(BASE_URL.'view/JS/php.js',3);
 			self::AddJS(BASE_URL.'view/JS/self.js', 9);
-
 
 			require_once 'view/Skeleton/head.php';
 			require_once 'view/Skeleton/header.php';
