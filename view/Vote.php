@@ -183,18 +183,17 @@
 					<div id="<?php echo $method ; ?>" class="panel-collapse collapse">
 					<div class="panel-body">
 					<?php 
-						$arbitrary = false ;
 						if ($method === 'KemenyYoung' || $method === 'RankedPairs' ) :
 							
 							// Limite de candidat
 							try
 							{
-								$test_kemeny = $this->_objectCondorcet->getResult( $method, ['algoOptions'=>['noConflict'=>true]] );
+								$test_kemeny = $this->_objectCondorcet->getResult($method);
 							}
 							catch (Condorcet\CondorcetException $e) {
 								if ($e->getCode() === 101) : ?>		
 									<em> You have to many candidate to use this method (limit is : <?php 
-										// echo ('Condorcet\Algo\Methods\\'.$method)::$_maxCandidates ;
+										echo ('Condorcet\Algo\Methods\\'.$method)::$_maxCandidates ;
 										?> candidates) </em>
 									</div></div></section>
 								<?php endif; 
@@ -203,9 +202,9 @@
 
 							// Résultats arbitraire
 
-							if (is_string($test_kemeny)) :
+							if ( !empty($test_kemeny->getWarning(\Condorcet\Algo\Methods\KemenyYoung::CONFLICT_WARNING_CODE)) ) :
 
-								$test_kemeny = explode(';', $test_kemeny);
+								$test_kemeny = explode(';', $test_kemeny->getWarning(\Condorcet\Algo\Methods\KemenyYoung::CONFLICT_WARNING_CODE)[0]['msg']);
 
 								echo '
 								<div class="kemeny-arbitrary">
@@ -257,7 +256,7 @@
 											print_r(
 												Condorcet\Condorcet::format(
 													$this->_objectCondorcet
-														->getResultStats($method),
+														->getResult($method)->getStats(),
 													false)
 												);
 										endif;
