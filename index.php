@@ -5,7 +5,6 @@ define('SCRIPT_START',microtime(true));
 // Model
 	require_once 'vendor/autoload.php';
 	require_once 'model/functions.php';
-	require_once 'model/rb.php';
 	require_once 'model/Condorcet_Vote.php';
 	require_once 'model/Events.class.php';
 
