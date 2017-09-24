@@ -63,6 +63,7 @@ else
 
 	// JS
 		define('CONFIG_JQUERY', '3.2.1');
+		define('CONFIG_JQUERY_SHA_384','sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f');
 
 
 	// Methodes de Condorcet

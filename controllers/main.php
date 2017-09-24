@@ -152,7 +152,7 @@ abstract class Controller
 			self::AddCSS(BASE_URL.'view/CSS/style_custom_bootstrap.css', 3);
 			self::AddCSS(BASE_URL.'view/CSS/style.css', 4);
 
-			self::AddJS('//ajax.googleapis.com/ajax/libs/jquery/'.CONFIG_JQUERY.'/jquery.min.js',1);
+			self::AddJS('//ajax.googleapis.com/ajax/libs/jquery/'.CONFIG_JQUERY.'/jquery.min.js',1,CONFIG_JQUERY_SHA_384,'anonymous');
 			self::AddJS('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', 2,'sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa','anonymous');
 			self::AddJS(BASE_URL.'view/JS/php.js',3);
 			self::AddJS(BASE_URL.'view/JS/self.js', 9);
