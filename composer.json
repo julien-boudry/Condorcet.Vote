@@ -1,0 +1,5 @@
+{
+    "require": {
+        "julien-boudry/condorcet": "1.3.2"
+    }
+}

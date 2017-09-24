@@ -1,3 +1,0 @@
-[submodule "model/Condorcet"]
-	path = model/Condorcet
-	url = https://github.com/julien-boudry/Condorcet.git

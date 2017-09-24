@@ -1,2 +1,5 @@
 config/prod.php
 .idea/*
+vendor/
+composer.lock
+composer.phar
