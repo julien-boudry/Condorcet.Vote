@@ -23,7 +23,7 @@
 		- Thousands of cumulative hours of development between the web service and the <a href="https://github.com/julien-boudry/Condorcet" target="_blank">Condorcet PHP library</a>.<br>
 		- Usual maintenance tasks.<br><br>
 
-		If the donations exceed the operating costs, which seems very unlikely. I will use them to speculate endlessly on the rising exchange rate of Bitcoin and enrich myself personally.</p>
+		If the donations exceed the operating costs, which seems very unlikely. I will use them to speculate endlessly on the rising exchange rate of Bitcoin and enrich myself.</p>
 	</section>
 
 	<hr class="clearfix">
