@@ -33,7 +33,9 @@
 				-->
 			</ul>
 			<div class="nav navbar-nav pull-right" style="margin-top:10px;">
-				<span class="label label-info"><strong>BETA</strong></span>
+				<a href="<?php echo BASE_URL ; ?>Donate">
+					<span class="label label-warning"><strong><i class="fa fa-btc"></i> DONATE</strong></span>
+				</a>
 			</div>
 		</nav><!--/.nav-collapse -->
 	</div>

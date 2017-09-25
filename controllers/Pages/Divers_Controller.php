@@ -11,3 +11,6 @@ class Condorcet_Methods_Controller extends Page
 
 class Manual_Controller extends Page
 { protected $_view = 'Manual' ; protected $_title = 'How to create an online Condorcet vote?' ; }
+
+class Donate_Controller extends Page
+{ protected $_view = 'Donate' ; protected $_title = 'Donate & Support Condorcet' ; }
