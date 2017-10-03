@@ -63,7 +63,6 @@ class Condorcet_Vote
 
 	protected function register (Condorcet\Election $vote, $title, $methods, $description = null, $open)
 	{
-		$true = true ;
 		$this->_isNew = true ;
 
 		$this->_bean = R::dispense( 'condorcet' );
@@ -78,8 +77,8 @@ class Condorcet_Vote
 		$this->_bean->last_update = $this->_bean->date;
 		$this->_bean->count_update = 0;
 
-		$this->_bean->read_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(5, $true)));
-		$this->_bean->admin_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(5, $true)));
+		$this->_bean->read_code = strtoupper(bin2hex(random_bytes(5)));
+		$this->_bean->admin_code = strtoupper(bin2hex(random_bytes(5)));
 
 		$this->setOpen(true);
 
@@ -311,7 +310,6 @@ class Condorcet_Vote
 
 	public function set_new_hashCode ()
 	{
-		$true = true ;
-		$this->_bean->hash_code = strtoupper(bin2hex(openssl_random_pseudo_bytes(5, $true)));
+		$this->_bean->hash_code = strtoupper(bin2hex(random_bytes(5)));
 	}
 }
