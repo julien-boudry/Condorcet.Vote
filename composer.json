@@ -1,6 +1,6 @@
 {
     "require": {
-        "julien-boudry/condorcet": "1.3.2",
+        "julien-boudry/condorcet": "1.3.3",
         "gabordemooij/redbean": "^4.3"
     }
 }
