@@ -68,7 +68,7 @@ else
 
 	// Methodes de Condorcet
 		define('CONDORCET_METHOD', serialize(array(
-			'Schulze (Winning variant, recommand by M.Schulze itself)' => 'Schulze',
+			'Schulze (Winning variant, recommended by M. Schulze himself)' => 'Schulze',
 			'Schulze (Margin variant)' => 'Schulze_Margin',
 			'Kemeny-Young' =>  'KemenyYoung',
 			'Ranked Pairs' =>  'RankedPairs',

@@ -94,7 +94,7 @@ B>C # Equivalent to B>C>A=D</code></pre>";
 
 		case 'delete_infos':
 			echo
-				'Vote tag or number separated by semicolon. The operation will be performed before adding your new votes.';
+				'Vote tags or numbers separated by semicolons. The operation will be performed before adding your new votes.';
 			break;
 
 		case 'personnal_vote':

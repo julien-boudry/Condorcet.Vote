@@ -77,7 +77,7 @@
 
 			<section>
 				<header class="page-header">
-					<h3><small>(Optionnal)</small> Description</h3>
+					<h3><small>(Optional)</small> Description</h3>
 				</header>
 				<textarea name="edit_description" class="form-control" rows="2" spellcheck="true"
 				maxlength=<?php echo CONFIG_DESCRIPTION_LENGHT ; ?>
@@ -105,7 +105,7 @@
 						<div class="alert alert-info text-center" role="alert">
 							<?php $freeVoteUrl = $this->_Condorcet_Vote->getFreeVoteUrl() ; ?>
 							<span class="glyphicon glyphicon-envelope pull-left ranking_icon"></span>
-							This URL can be use by anyone to vote... if you share it :
+							This URL can be used by anyone to vote... if you share it :
 							<a href="<?php echo $freeVoteUrl; ?>" class="alert-link"><?php echo $freeVoteUrl ; ?></a>
 						</div>
 

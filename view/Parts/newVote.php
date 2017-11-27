@@ -58,7 +58,7 @@
 
 					<section>
 							<header class="page-header">
-									<h3><small>(Optionnal)</small> Description</h3>
+									<h3><small>(Optional)</small> Description</h3>
 							</header>
 							<textarea spellcheck="true" name="description" class="form-control" rows="2"
 							maxlength=<?php echo CONFIG_DESCRIPTION_LENGHT ; ?>
