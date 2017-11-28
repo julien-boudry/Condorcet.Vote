@@ -76,7 +76,7 @@ else
 			'Minimax (Winning variant)' =>  'Minimax_Winning',
 			'Minimax (Margin variant)' =>  'Minimax_Margin',
 			'Minimax (Opposition variant)' =>  'Minimax_Opposition',
-			'Dodgson' => 'Dodgson'
+			'Dodgson Quick' => 'Dodgson Quick'
 		)));
 
 	//INTERFACE
