@@ -171,7 +171,7 @@ class Condorcet_Vote
 			{ return false ;}
 
 		$auth_methods = CONDORCET_METHOD;
-		foreach ($methods as $key => &$oneMethod)
+		foreach ($methods as &$oneMethod)
 		{
 			if ($oneMethod == 'Dodgson') {
 				$oneMethod = 'Dodgson Quick';
