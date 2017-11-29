@@ -40,7 +40,7 @@
 							</header>
 								<div class="row center-block">
 									<?php $i=1;
-									foreach(unserialize(CONDORCET_METHOD) as $title => $method) : ?>
+									foreach(CONDORCET_METHOD as $title => $method) : ?>
 									<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 										<div class="btn-group">
 											<span class="input-group-addon">

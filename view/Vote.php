@@ -166,7 +166,7 @@
 
 		<div class="panel-group" id="results_accordion">
 		<?php
-		foreach (unserialize(CONDORCET_METHOD) as $title => $method) : 
+		foreach (CONDORCET_METHOD as $title => $method) : 
 			if (!in_array($method, $allow_methods, true))
 			{
 				continue ;

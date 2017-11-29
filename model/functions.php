@@ -31,7 +31,7 @@
 			$post_methods = $_POST['methods'];
 		}
 
-		$accept_methods = unserialize(CONDORCET_METHOD);
+		$accept_methods = CONDORCET_METHOD;
 
 		foreach ($post_methods as $testMethod)
 		{

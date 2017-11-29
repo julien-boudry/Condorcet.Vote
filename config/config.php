@@ -62,12 +62,12 @@ else
 		Condorcet\Election::setMaxVoteNumber(100000);
 
 	// JS
-		define('CONFIG_JQUERY', '3.2.1');
-		define('CONFIG_JQUERY_SHA_384','sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f');
+		const CONFIG_JQUERY = '3.2.1';
+		const CONFIG_JQUERY_SHA_384 = 'sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f';
 
 
 	// Methodes de Condorcet
-		define('CONDORCET_METHOD', serialize(array(
+		const CONDORCET_METHOD = [
 			'Schulze (Winning variant, recommended by M. Schulze himself)' => 'Schulze',
 			'Schulze (Margin variant)' => 'Schulze_Margin',
 			'Kemeny-Young' =>  'KemenyYoung',
@@ -77,12 +77,12 @@ else
 			'Minimax (Margin variant)' =>  'Minimax_Margin',
 			'Minimax (Opposition variant)' =>  'Minimax_Opposition',
 			'Dodgson Quick' => 'Dodgson Quick'
-		)));
+		];
 
 	//INTERFACE
-	define('CONFIG_DESCRIPTION_LENGHT', 1000);
-	define('TITLE_MAX_LENGHT', 60);
-	define('NAME_MAX_LENGHT', 20);
+	const CONFIG_DESCRIPTION_LENGHT = 1000;
+	const TITLE_MAX_LENGHT = 60;
+	const NAME_MAX_LENGHT = 20;
 
 	// Title
-	define('SITE_HEAD_TITLE', 'Condorcet.Vote: Online Condorcet voting system | ');
+	const SITE_HEAD_TITLE = 'Condorcet.Vote: Online Condorcet voting system | ';

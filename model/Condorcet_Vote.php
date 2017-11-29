@@ -170,7 +170,7 @@ class Condorcet_Vote
 		if (!is_array($methods) || count($methods) > 12)
 			{ return false ;}
 
-		$auth_methods = unserialize(CONDORCET_METHOD);
+		$auth_methods = CONDORCET_METHOD;
 		foreach ($methods as $key => &$oneMethod)
 		{
 			if ($oneMethod == 'Dodgson') {
