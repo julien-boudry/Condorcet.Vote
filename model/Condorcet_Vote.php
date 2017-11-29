@@ -206,7 +206,9 @@ class Condorcet_Vote
 		foreach (unserialize($this->_bean->methods) as $method)
 		{
 			try {
-				$this->_objectCondorcet->computeResult($method);
+				if ($method !== 'Dodgson') {
+					$this->_objectCondorcet->computeResult($method);
+				}
 			} catch (Condorcet\CondorcetException $e) {
 				if ($e->getCode() !== 101 && $e->getCode() !== 6)
 					{ Events::add( new Error(500) ); }
