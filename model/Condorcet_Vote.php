@@ -171,8 +171,12 @@ class Condorcet_Vote
 			{ return false ;}
 
 		$auth_methods = unserialize(CONDORCET_METHOD);
-		foreach ($methods as $oneMethod)
+		foreach ($methods as $key => &$oneMethod)
 		{
+			if ($oneMethod == 'Dodgson') {
+				$oneMethod = 'Dodgson Quick';
+			}
+
 			if (!in_array($oneMethod, $auth_methods, true))
 				{ return false ; }
 		}
