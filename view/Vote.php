@@ -183,7 +183,7 @@
 					<div id="<?php echo $method ; ?>" class="panel-collapse collapse">
 					<div class="panel-body">
 					<?php 
-						if ($method === 'KemenyYoung' || $method === 'RankedPairs' ) :
+						if ($method === 'KemenyYoung' || $method === 'RankedPairsWinning' || $method === 'RankedPairsWinning' ) :
 							
 							// Limite de candidat
 							try

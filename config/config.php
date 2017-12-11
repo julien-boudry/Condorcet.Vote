@@ -68,14 +68,15 @@ else
 
 	// Methodes de Condorcet
 		const CONDORCET_METHOD = [
-			'Schulze (Winning variant, recommended by M. Schulze himself)' => 'Schulze',
-			'Schulze (Margin variant)' => 'Schulze_Margin',
+			'Schulze (Winning variant, recommended by M. Schulze himself)' => 'SchulzeWinning',
+			'Schulze (Margin variant)' => 'SchulzeMargin',
 			'Kemeny-Young' =>  'KemenyYoung',
-			'Ranked Pairs' =>  'RankedPairs',
+			'Ranked Pairs Margin' =>  'RankedPairsMargin',
+			'Ranked Pairs Winning' =>  'RankedPairsWinning',
 			'Copeland' => 'Copeland',
-			'Minimax (Winning variant)' =>  'Minimax_Winning',
-			'Minimax (Margin variant)' =>  'Minimax_Margin',
-			'Minimax (Opposition variant)' =>  'Minimax_Opposition',
+			'Minimax (Winning variant)' =>  'MinimaxWinning',
+			'Minimax (Margin variant)' =>  'MinimaxMargin',
+			'Minimax (Opposition variant)' =>  'MinimaxOpposition',
 			'Dodgson Quick' => 'DodgsonQuick'
 		];
 
