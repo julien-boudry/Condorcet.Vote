@@ -16,27 +16,6 @@ $chrono = new Condorcet\Timer\Chrono ($manager);
 
 while (!empty($election = R::findOne('condorcet',  " condorcet_version != -".Condorcet\Condorcet::getVersion('MAJOR'))))
 {
-    $nm = unserialize($election->methods);
-
-    foreach ($nm as &$checkMethod) {
-        $checkMethod = str_replace('_', '', $checkMethod);
-
-        if ($checkMethod === 'Schulze') {
-            $checkMethod = 'SchulzeWinning';
-        }
-        elseif ($checkMethod === 'RankedPairs') {
-            $checkMethod = 'RankedPairsWinning';
-        }
-    }
-    unset($checkMethod);
-
-    $election->methods = serialize($nm);
-
-    R::store($election);
-}
-
-while (!empty($election = R::findOne('condorcet',  " condorcet_version != -".Condorcet\Condorcet::getVersion('MAJOR'))))
-{
     ( new Condorcet_Vote ($election->read_code) );
 }
 
