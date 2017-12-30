@@ -16,6 +16,25 @@ $chrono = new Condorcet\Timer\Chrono ($manager);
 
 foreach ($to_update as $election)
 {
+    $nm = unserialize($election->methods);
+
+    foreach ($nm as &$checkMethod) {
+        $checkMethod = str_replace('_', '', $checkMethod);
+
+        if ($checkMethod === 'Schulze') {
+            $checkMethod = 'SchulzeWinning';
+        }
+        elseif ($checkMethod === 'RankedPairs') {
+            $checkMethod = 'RankedPairsWinning';
+        }
+    }
+    unset($checkMethod);
+
+    $election->methods = serialize($nm);
+}
+
+foreach ($to_update as $election)
+{
 	( new Condorcet_Vote ($election->read_code) );
 }
 
