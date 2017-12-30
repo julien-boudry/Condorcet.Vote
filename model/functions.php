@@ -6,7 +6,7 @@
 
 		if (CONFIG_ENV === 'DEV') {return FALSE ;}
 
-		Events::add(new Error(500, null, $type.' - '.$msg, null, 2, 3) );
+		Events::add(new EventsError(500, null, $type.' - '.$msg, null, 2, 3) );
 
 		( new Error_Controller() )->showPage();
 
