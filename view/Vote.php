@@ -254,7 +254,7 @@
 											echo 'To many candidate for Kemeny-Young to show it on a page.';
 										else :
 											print_r(
-												Condorcet\Condorcet::format(
+												Condorcet\CondorcetUtil::format(
 													$this->_objectCondorcet
 														->getResult($method)->getStats(),
 													false)
