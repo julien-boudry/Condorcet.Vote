@@ -77,7 +77,11 @@ else
 			'Minimax (Winning variant)' =>  'MinimaxWinning',
 			'Minimax (Margin variant)' =>  'MinimaxMargin',
 			'Minimax (Opposition variant)' =>  'MinimaxOpposition',
-			'Dodgson Quick' => 'DodgsonQuick'
+			'Dodgson Quick' => 'DodgsonQuick',
+			'Borda Count' => 'BordaCount',
+			'Dowdall system' => 'DowdallSystem',
+			'First-past-the-post' => 'FTPT',
+			'Instant-Runoff - Alternative Vote' => 'InstantRunoff'
 		];
 
 	//INTERFACE
