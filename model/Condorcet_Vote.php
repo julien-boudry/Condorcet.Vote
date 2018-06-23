@@ -160,7 +160,7 @@ class Condorcet_Vote
 			$oneVote = $NewoneVote;
 		}
 
-		$this->_bean->votes_list = serialize(Condorcet\CondorcetUtil::format($voteList,false,true));
+		$this->_bean->votes_list = serialize(Condorcet\CondorcetUtil::format($voteList,true));
 	}
 
 	public function update_methods ($methods, $prepare = true)

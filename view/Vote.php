@@ -257,7 +257,7 @@
 												Condorcet\CondorcetUtil::format(
 													$this->_objectCondorcet
 														->getResult($method)->getStats(),
-													false)
+													true)
 												);
 										endif;
 									?></pre>
