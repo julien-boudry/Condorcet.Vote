@@ -63,7 +63,7 @@ else
 
 	// JS
 		const CONFIG_JQUERY = '3.3.1';
-		const CONFIG_JQUERY_SHA_384 = 'sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f';
+		const CONFIG_JQUERY_SHA_384 = 'sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT';
 
 
 	// Methodes de Condorcet
