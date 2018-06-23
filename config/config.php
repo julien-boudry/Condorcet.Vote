@@ -62,7 +62,7 @@ else
 		Condorcet\Election::setMaxVoteNumber(100000);
 
 	// JS
-		const CONFIG_JQUERY = '3.2.1';
+		const CONFIG_JQUERY = '3.3.1';
 		const CONFIG_JQUERY_SHA_384 = 'sha384-xBuQ/xzmlsLoJpyjoggmTEz8OWUFM0/RC5BsqQBDX2v5cMvDHcMakNTNrHIW2I5f';
 
 
