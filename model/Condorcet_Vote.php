@@ -167,7 +167,7 @@ class Condorcet_Vote
 	{
 		// Check
 
-		if (!is_array($methods) || count($methods) > 12)
+		if (!is_array($methods) || count($methods) > count(CONDORCET_METHOD))
 			{ return false ;}
 
 		$auth_methods = CONDORCET_METHOD;
