@@ -1,12 +1,12 @@
 <div class="container">
 		<div class="text-center">
-			<a href="https://blockchain.info/address/1LhZZVxmNCTPWftKFTUKbRiUKzA67RPWez" target="_blank">
+			<a href="https://btc.com/bc1qtema3xewdwz9dluugez7c0pnelvthucempl838" target="_blank">
 				<img src="<?php echo BASE_URL . 'view/IMG/bitcoin-qr.png'; ?>" alt="condorcetVote-bitcoin-qrcode">
 			</a>
 		</div>
 		<div class="text-center">
 			<br>
-			<strong style="color:green;font-size:150%;">₿ 1LhZZVxmNCTPWftKFTUKbRiUKzA67RPWez</strong>
+			<strong style="color:green;font-size:150%;">₿ bc1qtema3xewdwz9dluugez7c0pnelvthucempl838</strong>
 		</div>
 	<hr class="clearfix">
 </div> <!-- /container -->
