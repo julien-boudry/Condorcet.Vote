@@ -1,4 +1,5 @@
 config/prod.php
+cache/*
 .idea/*
 vendor/
 composer.lock

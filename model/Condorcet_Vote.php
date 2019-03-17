@@ -90,7 +90,7 @@ class Condorcet_Vote
 
 		$this->prepareCondorcet();
 		$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
-		$this->_bean->condorcet_object = serialize($this->_objectCondorcet);
+		$this->writeVoteObject();
 	}
 
 	protected function load ($read_code)
@@ -104,7 +104,7 @@ class Condorcet_Vote
 			try	{
 				if ( $this->_bean->condorcet_version !== "-".Condorcet\Condorcet::getVersion('MAJOR') )
 					{ throw new Condorcet\CondorcetException(11); }
-				$this->_objectCondorcet = unserialize($this->_bean->condorcet_object) ;
+				$this->_objectCondorcet = $this->getVoteObject() ;
 				$this->prepareCondorcet(); 				
 			}
 			catch (Condorcet\CondorcetException $e) {
@@ -317,5 +317,20 @@ class Condorcet_Vote
 	public function set_new_hashCode ()
 	{
 		$this->_bean->hash_code = strtoupper(bin2hex(random_bytes(5)));
+	}
+
+	public writeVoteObject () : void
+	{
+		file_put_contents($this->getSavedVoteObjectPath(), serialize($this->_objectCondorcet));
+	}
+
+	public getVoteObject ()
+	{
+		return unserialize(file_get_contents($this->getSavedVoteObjectPath()));
+	}
+
+	public getSavedVoteObjectPath () : string
+	{
+		return __DIR__.'/../cache/'.$this->_bean->read_code.'.election';
 	}
 }
