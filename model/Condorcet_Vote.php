@@ -319,17 +319,17 @@ class Condorcet_Vote
 		$this->_bean->hash_code = strtoupper(bin2hex(random_bytes(5)));
 	}
 
-	public writeVoteObject () : void
+	public function writeVoteObject () : void
 	{
 		file_put_contents($this->getSavedVoteObjectPath(), serialize($this->_objectCondorcet));
 	}
 
-	public getVoteObject ()
+	public function getVoteObject ()
 	{
 		return unserialize(file_get_contents($this->getSavedVoteObjectPath()));
 	}
 
-	public getSavedVoteObjectPath () : string
+	public function getSavedVoteObjectPath () : string
 	{
 		return __DIR__.'/../cache/'.$this->_bean->read_code.'.election';
 	}
