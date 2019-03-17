@@ -32,7 +32,7 @@ class Condorcet_Vote
 			{
 				$this->saveVotesList();
 				$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
-				$this->_bean->condorcet_object = serialize($this->_objectCondorcet);
+				$this->writeVoteObject();
 			}
 		}
 
@@ -136,7 +136,7 @@ class Condorcet_Vote
 					$this->saveVotesList();
 					$this->prepareCondorcet();
 					$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
-					$this->_bean->condorcet_object = serialize($this->_objectCondorcet);
+					$this->writeVoteObject();
 				}
 				// Drôle d'erreur
 				else
