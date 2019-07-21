@@ -25,7 +25,7 @@
 				<ul>
 					<li>
 						<em>Compute by
-							<a href="https://github.com/julien-boudry/Condorcet" target="_blank">Condorcet Class</a>
+							<a href="https://github.com/julien-boudry/Condorcet" target="_blank">Condorcet PHP</a>
 							<span class="label label-info"><?php echo $this->_objectCondorcet->getObjectVersion('MAJOR'); ?></span>
 						</em>
 					</li>
