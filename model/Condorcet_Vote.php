@@ -85,7 +85,7 @@ class Condorcet_Vote
 		$this->setOpen(true);
 
 		$this->_objectCondorcet = $vote ;
-		$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion('MAJOR');
+		$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion(true);
 
 		$this->_bean->candidates = serialize($this->_objectCondorcet->getCandidatesList(true));
 		$this->saveVotesList();
@@ -104,7 +104,7 @@ class Condorcet_Vote
 		else
 		{
 			try	{
-				if ( $this->_bean->condorcet_version !== "-".CondorcetPHP\Condorcet\Condorcet::getVersion('MAJOR') )
+				if ( $this->_bean->condorcet_version !== "-".CondorcetPHP\Condorcet\Condorcet::getVersion(true) )
 					{ throw new CondorcetPHP\Condorcet\Throwable\ElectionObjectVersionMismatchException(); }
 				$this->_objectCondorcet = $this->getVoteObject() ;
 				$this->prepareCondorcet();
