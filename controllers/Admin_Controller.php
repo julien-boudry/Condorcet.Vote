@@ -19,7 +19,7 @@ class Admin_Controller extends Controller
 		if ($this->_Condorcet_Vote === false && isset($_GET['vote']) && isset($_GET['admin_code']))
 		{
 			try {
-				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);		
+				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);
 			} catch (Exception $e) {
 
 				Events::add( new EventsError (404, null, null, self::ERROR_URL) );
@@ -81,14 +81,14 @@ class Admin_Controller extends Controller
 
 				if (CondorcetPHP\Condorcet\CondorcetUtil::isJson($delete_votes))
 				{
-					$delete_votes = CondorcetPHP\Condorcet\Election::prepareJson($delete_votes);
+					$delete_votes = CondorcetPHP\Condorcet\CondorcetUtil::prepareJson($delete_votes);
 
 					if (!is_array($delete_votes))
 						{$delete_votes = array();}
 				}
 				else
 				{
-					$delete_votes = CondorcetPHP\Condorcet\Election::prepareParse($delete_votes, false);
+					$delete_votes = CondorcetPHP\Condorcet\CondorcetUtil::prepareParse($delete_votes, false);
 				}
 
 				foreach ($delete_votes as &$value) {
@@ -97,7 +97,7 @@ class Admin_Controller extends Controller
 				}
 
 				$delete_mode = ($_POST['delete_type'] === 'without') ? false : true ;
-				
+
 				$counter_remove = count($this->_Condorcet_Vote->_objectCondorcet->removeVote($delete_votes, $delete_mode));
 				$this->_Condorcet_Vote->prepareCondorcet();
 

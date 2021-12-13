@@ -59,7 +59,7 @@ abstract class Events
 	// Errors
 		public static function getFatalErrors ()
 		{
-			$retour = array();
+			$retour = [];
 
 			foreach (self::$_errors_list as $error)
 			{
@@ -107,7 +107,7 @@ abstract class Events
 			return null ;
 		}
 
-		public static function isAnyError ($minLevel = 0, $maxLevel = null)
+		public static function isAnyError ($minLevel = 0, $maxLevel = null): bool
 		{
 			if ($minLevel === 0 && empty(self::$_errors_list))
 				{ return false ; }
@@ -137,7 +137,7 @@ abstract class Events
 
 	// Success
 
-		public static function isAnysuccess ($minLevel = 0, $maxLevel = null)
+		public static function isAnysuccess ($minLevel = 0, $maxLevel = null): bool
 		{
 			if ($minLevel === 0 && empty(self::$_success_list))
 				{ return false ; }
@@ -167,7 +167,7 @@ abstract class Events
 
 	// Infos
 
-		public static function isAnyinfo ($minLevel = 0, $maxLevel = null)
+		public static function isAnyinfo ($minLevel = 0, $maxLevel = null): bool
 		{
 			if ($minLevel === 0 && empty(self::$_infos_list))
 				{ return false ; }
