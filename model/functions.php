@@ -17,16 +17,16 @@ declare(strict_types=1);
 
 // DIVERS
 
-	function myPregMatch ($pattern, $subject)
+	function myPregMatch (string $pattern, string $subject): int|false
 	{
 		return preg_match('/'.$pattern.'/', $subject);
 	}
 
-	function check_frontInput_method ()
+	function check_frontInput_method (): array|false
 	{
 		if (!isset($_POST['methods']) || !is_array($_POST['methods']))
 		{
-			$post_methods = array();
+			$post_methods = [];
 		}
 		else
 		{
@@ -46,7 +46,7 @@ declare(strict_types=1);
 		return $post_methods ;
 	}
 
-	function showOneTagClass ($tag)
+	function showOneTagClass (string $tag): string|void
 	{
 		if ($tag === 'Public-Vote')
 		{
@@ -64,7 +64,7 @@ declare(strict_types=1);
 
 	// Contenu des aides
 
-	function setHelper ($type, $color = 'info')
+	function setHelper (string $type, string $color = 'info'): void
 	{
 		echo '<aside class="bs-callout bs-callout-'.$color.'">';
 
@@ -121,7 +121,7 @@ B>C # Equivalent to B>C>A=D</code></pre>";
 	}
 
 
-	function setHtmlPairwise (array $pairwise)
+	function setHtmlPairwise (array $pairwise): void
 	{
 	?>
 		<table class="table table-bordered text-center">

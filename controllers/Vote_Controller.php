@@ -1,18 +1,19 @@
 <?php
 declare(strict_types=1);
 
+use CondorcetPHP\Condorcet\Election;
 
 class Vote_Controller extends Controller
 {
 	protected $_view = 'Vote' ;
 
-	protected $_Condorcet_Vote = false ;
-	protected $_objectCondorcet ;
+	protected Condorcet_Vote|false $_Condorcet_Vote = false ;
+	protected Election $_objectCondorcet ;
 
 		//////
 
 
-	public function __construct ($build = false)
+	public function __construct (bool $build = false)
 	{
 		parent::__construct();
 
@@ -46,7 +47,7 @@ class Vote_Controller extends Controller
 	}
 
 
-	protected function getTitle ()
+	protected function getTitle (): string
 	{
 		return 'Condorcet Vote: ' . $this->_Condorcet_Vote->getTitle() ;
 	}

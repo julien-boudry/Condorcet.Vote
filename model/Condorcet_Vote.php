@@ -1,15 +1,16 @@
 <?php
 declare(strict_types=1);
 
-
+use CondorcetPHP\Condorcet\Election;
+use RedBeanPHP\OODBBean;
 use RedBeanPHP\R;
 
 class Condorcet_Vote
 {
-	public $_bean ;
-	public $_objectCondorcet ;
-	protected $_isNew = false ;
-	protected $_checksum_change = false ;
+	public OODBBean $_bean ;
+	public Election $_objectCondorcet ;
+	protected bool $_isNew = false ;
+	protected bool $_checksum_change = false ;
 
 	public function __construct ($vote, $title = null, $methods = null, $description = null, $open = true)
 	{
@@ -45,7 +46,7 @@ class Condorcet_Vote
 		}
 	}
 
-		public function willUpdate ()
+		public function willUpdate (): bool
 		{
 			$this->_checksum_change = ($this->_bean->vote_checksum !== $this->_objectCondorcet->getChecksum()) ? true : false ;
 
@@ -63,7 +64,7 @@ class Condorcet_Vote
 			endif;
 		}
 
-	protected function register (CondorcetPHP\Condorcet\Election $vote, $title, $methods, $description = null, $open)
+	protected function register (CondorcetPHP\Condorcet\Election $vote, $title, $methods, $description = null, $open): void
 	{
 		$this->_isNew = true ;
 
@@ -95,7 +96,7 @@ class Condorcet_Vote
 		$this->writeVoteObject();
 	}
 
-	protected function load ($read_code)
+	protected function load ($read_code): void
 	{
 		$this->_bean = R::findOne( 'condorcet', ' read_code = ? ', [ $read_code ]);
 
@@ -142,7 +143,7 @@ class Condorcet_Vote
 		}
 	}
 
-	protected function saveVotesList ()
+	protected function saveVotesList (): void
 	{
 		$voteList = $this->_objectCondorcet->getVotesList();
 
@@ -157,7 +158,7 @@ class Condorcet_Vote
 		$this->_bean->votes_list = serialize(CondorcetPHP\Condorcet\CondorcetUtil::format($voteList,true));
 	}
 
-	public function update_methods ($methods, $prepare = true)
+	public function update_methods ($methods, $prepare = true): bool
 	{
 		// Check
 
@@ -190,7 +191,7 @@ class Condorcet_Vote
 		return false ;
 	}
 
-	public function prepareCondorcet ()
+	public function prepareCondorcet (): void
 	{
 		try {
 			$this->_objectCondorcet->getWinner();
@@ -213,14 +214,14 @@ class Condorcet_Vote
 
 		//////
 
-	public function getTitle ()
+	public function getTitle (): string
 	{
 		return htmlspecialchars($this->_bean->title ?? '') ;
 	}
 
-	public function getDescription ()
+	public function getDescription (): string
 	{
-		return  htmlspecialchars($this->_bean->description ?? '') ;
+		return htmlspecialchars($this->_bean->description ?? '') ;
 	}
 
 	public function getDate ()
@@ -233,70 +234,64 @@ class Condorcet_Vote
 		return $this->_bean->last_update ;
 	}
 
-	public function getCountUpdate ()
+	public function getCountUpdate (): int
 	{
 		return ($this->willUpdate()) ? $this->_bean->count_update + 1 : $this->_bean->count_update ;
 	}
 
-	public function isOpen ()
+	public function isOpen (): bool
 	{
 		return $this->_bean->open ;
 	}
 
-	public function setOpen ($state)
+	public function setOpen (bool $state): bool
 	{
-		if (!is_bool($state))
-			{return false ;}
-		else
+		if ($state && !$this->_bean->open)
 		{
-			if ($state && !$this->_bean->open)
-			{
-				$this->set_new_hashCode();
-				$this->_bean->open = true ;
-			}
-			else
-			{ $this->_bean->open = $state ; }
+			$this->set_new_hashCode();
+			$this->_bean->open = true ;
 		}
+		else
 
 		return $this->isOpen() ;
 	}
 
-	public function getPublicURL ()
+	public function getPublicURL (): string
 	{
 		return BASE_URL . 'Vote/' . $this->_bean->read_code . '/' ;
 	}
 
-	public function getAdminURL ()
+	public function getAdminURL (): string
 	{
 		return BASE_URL . 'Vote/' . $this->_bean->read_code . '/Admin/' . $this->getAdminCode() . '/' ;
 	}
 
-		public function getAdminCode ()
+		public function getAdminCode (): string
 		{
 			return $this->_bean->admin_code ;
 		}
 
-		public function getHashCode ()
+		public function getHashCode (): string
 		{
 			return $this->_bean->hash_code ;
 		}
 
-	public function getFreeVoteUrl ()
+	public function getFreeVoteUrl (): string
 	{
 		return BASE_URL . 'Vote/' . $this->_bean->read_code . '/Public/' . $this->getFreeVoteCode() . '/' ;
 	}
 
-		public function getFreeVoteCode ()
+		public function getFreeVoteCode (): string
 		{
 			return strtoupper(substr(hash('sha224', $this->_bean->admin_code . $this->_bean->hash_code), 5,8)) ;
 		}
 
-	public function getPersonnalVoteBaseUrl ()
+	public function getPersonnalVoteBaseUrl (): string
 	{
 		return BASE_URL . 'Vote/' . $this->_bean->read_code . '/Personnal/';
 	}
 
-	public function getPersonnalVoteCode ($name)
+	public function getPersonnalVoteCode (string $name): string
 	{
 		return strtoupper(
 							substr(
@@ -307,7 +302,7 @@ class Condorcet_Vote
 		 					10, 8) );
 	}
 
-	public function set_new_hashCode ()
+	public function set_new_hashCode (): void
 	{
 		$this->_bean->hash_code = strtoupper(bin2hex(random_bytes(5)));
 	}
@@ -317,7 +312,7 @@ class Condorcet_Vote
 		file_put_contents($this->getSavedVoteObjectPath(), serialize($this->_objectCondorcet));
 	}
 
-	public function getVoteObject ()
+	public function getVoteObject (): Election
 	{
 		return unserialize(file_get_contents($this->getSavedVoteObjectPath()));
 	}

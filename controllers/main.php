@@ -10,11 +10,11 @@ abstract class Controller
 
 	// Construction du head
 
-	private static $_head_JS ;
-	private static $_head_CSS ;
-	private static $_head_Canonical ;
+	private static array $_head_JS = [] ;
+	private static array $_head_CSS = [] ;
+	private static string $_head_Canonical ;
 
-	protected static function AddJS ($url, $priority = 0, $integrity = false, $crossorigin = false)
+	protected static function AddJS ($url, $priority = 0, $integrity = false, $crossorigin = false): void
 	{
 		if (!is_array(Controller::$_head_JS))
 			{ Controller::$_head_JS = array(); }
@@ -24,30 +24,21 @@ abstract class Controller
 		Controller::$_head_JS[$i] = ['url' => $url, 'integrity' => $integrity, 'crossorigin' => $crossorigin] ;
 	}
 
-	protected static function AddCSS ($url, $priority = 0, $integrity = false, $crossorigin = false)
+	protected static function AddCSS ($url, $priority = 0, $integrity = false, $crossorigin = false): void
 	{
-		if (!is_array(Controller::$_head_CSS))
-			{ Controller::$_head_CSS = array(); }
-
 		for ($i = $priority * 100 ; isset(Controller::$_head_CSS[$i]) ; $i++ ) {}
 		Controller::$_head_CSS[$i] = ['url' => $url, 'integrity' => $integrity, 'crossorigin' => $crossorigin] ;
 	}
 
-	protected static function AddCanonical ($url)
+	protected static function AddCanonical (string $url): void
 	{
 		self::$_head_Canonical = $url ;
 	}
 
-	protected static function setHead ()
+	protected static function setHead (): void
 	{
-		if (!is_array(Controller::$_head_JS))
-			{ Controller::$_head_JS = array(); }
-		if (!is_array(Controller::$_head_CSS))
-			{ Controller::$_head_CSS = array(); }
-
 		ksort(Controller::$_head_JS);
 		ksort(Controller::$_head_CSS);
-
 
 		foreach ( Controller::$_head_CSS as $input )
 		{
@@ -105,7 +96,7 @@ abstract class Controller
 		echo '<link rel="icon" type="image/png" href="'.BASE_URL.'view/IMG/favicon.png" />
 		' ;
 
-		if (!is_null(self::$_head_Canonical))
+		if (isset(self::$_head_Canonical))
 			{ echo '<link rel="canonical" href="'.self::$_head_Canonical.'" int>'; }
 	}
 
@@ -119,13 +110,13 @@ abstract class Controller
 	public function __construct ()
 	{}
 
-	protected function getTitle ()
+	protected function getTitle (): string
 	{
 		return SITE_HEAD_TITLE . ( (isset($this->_title)) ? $this->_title : $this->_view ) ;
 	}
 
 
-	public function showPage ($follow = null, $position = 'after')
+	public function showPage ($follow = null, string $position = 'after')
 	{
 		// On passe le partiel cas échant
 		if (is_object($follow))

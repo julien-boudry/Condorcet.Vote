@@ -108,7 +108,7 @@ class Add_Controller extends Controller
 		}
 	}
 
-	protected function try_add_vote ($name, $vote)
+	protected function try_add_vote ($name, $vote): bool
 	{
 		if	( $this->_mode === 'Public' && !empty($name) && !myPregMatch(REGEX_ADD_NAME, $name) )
 		{
@@ -137,13 +137,13 @@ class Add_Controller extends Controller
 	}
 
 
-	protected function getTitle ()
+	protected function getTitle (): string
 	{
 		return $this->_mode . ' Vote: ' . $this->_Condorcet_Vote->getTitle() ;
 	}
 
 
-	public function showPage ($follow = null, $position = 'after')
+	public function showPage ($follow = null, $position = 'after'): void
 	{
 		if ($this->_Condorcet_Vote !== false)
 		{

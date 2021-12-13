@@ -18,7 +18,7 @@ class Error_Controller extends Controller
 	}
 		//////
 
-	protected function getTitle ()
+	protected function getTitle (): string
 	{
 		return Events::getFatalErrors()[0]->_name ;
 	}

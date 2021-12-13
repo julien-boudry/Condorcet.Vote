@@ -18,7 +18,7 @@ class Create_Controller extends Admin_Controller
 		}
 	}
 
-	public function checkEmpty ()
+	public function checkEmpty (): bool
 	{
 		$this->_accept_methods = check_frontInput_method();
 
@@ -38,7 +38,7 @@ class Create_Controller extends Admin_Controller
 			}
 	}
 
-	public function registerCondorcet ()
+	public function registerCondorcet (): bool
 	{
 		try
 		{
@@ -83,7 +83,7 @@ class Create_Controller extends Admin_Controller
 		//////
 
 
-	public function showPage ($follow = null, $position = 'after')
+	public function showPage ($follow = null, $position = 'after'): void
 	{
 		if ($this->_inputError)
 		{

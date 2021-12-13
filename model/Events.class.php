@@ -6,11 +6,11 @@ use RedBeanPHP\R;
 
 abstract class Events
 {
-	public static $_errors_list = array() ;
-	public static $_success_list = array() ;
-	public static $_infos_list = array() ;
+	public static array $_errors_list = [];
+	public static array $_success_list = [];
+	public static array $_infos_list = [];
 
-	public static function add (Events $event)
+	public static function add (Events $event): void
 	{
 		if ($event instanceof EventsError) :
 			self::$_errors_list[] = $event ;
@@ -21,7 +21,7 @@ abstract class Events
 		endif;
 	}
 
-	public static function isAnyEvent ($minLevel = 0, $maxLevel = null)
+	public static function isAnyEvent ($minLevel = 0, $maxLevel = null): bool
 	{
 		if	(
 				self::isAnyError($minLevel, $maxLevel) ||
@@ -34,7 +34,7 @@ abstract class Events
 	}
 
 
-	public static function showMessages ($type, $mark = false)
+	public static function showMessages ($type, $mark = false): array
 	{
 		if		($type === 'Success')	{ $list =& self::$_success_list ; }
 		elseif	($type === 'Infos')		{ $list =& self::$_infos_list ; }
@@ -42,7 +42,7 @@ abstract class Events
 
 			///
 
-		$retour = array();
+		$retour = [];
 		foreach ($list as &$message)
 		{
 			if ($message->_show !== false && $mark)
@@ -276,7 +276,7 @@ class EventsError extends Events
 
 		//////
 
-	protected function autoComplete ()
+	protected function autoComplete (): void
 	{
 		if ($this->_server_code === 404)
 		{

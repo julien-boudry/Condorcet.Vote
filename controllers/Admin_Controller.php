@@ -137,13 +137,13 @@ class Admin_Controller extends Controller
 	}
 
 
-	protected function getTitle ()
+	protected function getTitle (): string
 	{
 		return 'Admin Vote: ' . $this->_Condorcet_Vote->getTitle() ;
 	}
 
 
-	public function showPage ($follow = null, $position = 'after')
+	public function showPage ($follow = null, $position = 'after'): void
 	{
 		if ($this->_Condorcet_Vote !== false)
 		{
