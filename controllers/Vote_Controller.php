@@ -31,10 +31,10 @@ class Vote_Controller extends Controller
 			try
 			{
 				$this->_Condorcet_Vote = new Condorcet_Vote ($_GET['vote']);
-				$this->_objectCondorcet = $this->_Condorcet_Vote->_objectCondorcet ;				
+				$this->_objectCondorcet = $this->_Condorcet_Vote->_objectCondorcet ;
 			}
 			catch (Exception $e) {
-				Events::add( new EventsError (404) );		
+				Events::add( new EventsError (server_code: 404, private_details: $e) );
 				$this->_Condorcet_Vote = false ;
 			}
 		}

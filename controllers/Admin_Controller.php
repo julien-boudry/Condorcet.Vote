@@ -22,7 +22,7 @@ class Admin_Controller extends Controller
 				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);
 			} catch (Exception $e) {
 
-				Events::add( new EventsError (404, null, null, self::ERROR_URL) );
+				Events::add( new EventsError (server_code: 404, name: null, private_details: $e, public_details: self::ERROR_URL) );
 
 				$this->_Condorcet_Vote = false ;
 
@@ -129,7 +129,7 @@ class Admin_Controller extends Controller
 			}
 			catch (CondorcetPHP\Condorcet\Throwable\CondorcetPublicApiException $e)
 			{
-				Events::add( new EventsError (502, null, null, $e->getMessage(), 2, 0) );
+				Events::add( new EventsError (502, null, $e, $e->getMessage(), 2, 0) );
 			}
 		}
 	}

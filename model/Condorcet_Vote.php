@@ -202,7 +202,7 @@ class Condorcet_Vote
 					$this->_objectCondorcet->computeResult($method);
 				}
 			} catch (CondorcetPHP\Condorcet\Throwable\CandidatesMaxNumberReachedException | CondorcetPHP\Condorcet\Throwable\ResultRequestedWithoutVotesException $e) {
-				Events::add( new EventsError(500) );
+				Events::add( new EventsError(server_code: 500, private_details: $e) );
 			}
 
 		}
