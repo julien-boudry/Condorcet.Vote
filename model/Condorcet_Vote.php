@@ -213,12 +213,12 @@ class Condorcet_Vote
 
 	public function getTitle ()
 	{
-		return htmlspecialchars($this->_bean->title) ;
+		return htmlspecialchars($this->_bean->title ?? '') ;
 	}
 
 	public function getDescription ()
 	{
-		return  htmlspecialchars($this->_bean->description) ;
+		return  htmlspecialchars($this->_bean->description ?? '') ;
 	}
 
 	public function getDate ()

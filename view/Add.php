@@ -10,7 +10,7 @@
 		</header>
 		<?php if ($this->_mode === 'Personnal') : ?>
 		<div class="text-center">
-			<strong style="font-weight:150%;"><?php echo htmlspecialchars($_GET['personnal_name']) ; ?></strong>
+			<strong style="font-weight:150%;"><?php echo htmlspecialchars($_GET['personnal_name'] ?? '') ; ?></strong>
 		</div>
 	<?php elseif ($this->_mode === 'Public') : ?>
 		<input type="text" name="add_name" pattern="<?php echo REGEX_ADD_NAME; ?>" maxlength="<?php echo NAME_MAX_LENGHT ; ?>" class="center-block" spellcheck="false">

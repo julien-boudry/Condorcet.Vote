@@ -77,7 +77,7 @@
 
 								<?php foreach ($vote->getTags() as $tag) : ?>
 
-									<span class="pull-right tag-icon label <?php echo showOneTagClass($tag); ?>"><?php echo htmlspecialchars($tag); ?></span>
+									<span class="pull-right tag-icon label <?php echo showOneTagClass($tag); ?>"><?php echo htmlspecialchars($tag ?? ''); ?></span>
 
 								<?php endforeach; ?>
 							</h4>
