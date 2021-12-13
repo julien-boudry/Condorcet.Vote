@@ -10,11 +10,11 @@ abstract class Events
 
 	public static function add (Events $event)
 	{
-		if (get_class($event) === 'Error') :
+		if ($event instanceof EventsError) :
 			self::$_errors_list[] = $event ;
-		elseif (get_class($event) === 'Success') :
+		elseif ($event instanceof Success) :
 			self::$_success_list[] = $event ;
-		elseif (get_class($event) === 'Info') :
+		elseif ($event instanceof Info) :
 			self::$_infos_list[] = $event ;
 		endif;
 	}
@@ -112,7 +112,7 @@ abstract class Events
 			if ($minLevel === 0 && empty(self::$_errors_list))
 				{ return false ; }
 			elseif ($maxLevel === null)
-			{ 
+			{
 				foreach (self::$_errors_list as $error)
 				{
 					if ($error->_level >= $minLevel)
@@ -122,7 +122,7 @@ abstract class Events
 				}
 			}
 			elseif ($maxLevel >= $minLevel)
-			{ 
+			{
 				foreach (self::$_errors_list as $error)
 				{
 					if ($error->_level >= $minLevel && $error->_level <= $maxLevel)
@@ -142,7 +142,7 @@ abstract class Events
 			if ($minLevel === 0 && empty(self::$_success_list))
 				{ return false ; }
 			elseif ($maxLevel === null)
-			{ 
+			{
 				foreach (self::$_success_list as $succes)
 				{
 					if ($succes->_level >= $minLevel)
@@ -152,7 +152,7 @@ abstract class Events
 				}
 			}
 			elseif ($maxLevel >= $minLevel)
-			{ 
+			{
 				foreach (self::$_success_list as $succes)
 				{
 					if ($succes->_level >= $minLevel && $succes->_level <= $maxLevel)
@@ -172,7 +172,7 @@ abstract class Events
 			if ($minLevel === 0 && empty(self::$_infos_list))
 				{ return false ; }
 			elseif ($maxLevel === null)
-			{ 
+			{
 				foreach (self::$_infos_list as $info)
 				{
 					if ($info->_level >= $minLevel)
@@ -182,7 +182,7 @@ abstract class Events
 				}
 			}
 			elseif ($maxLevel >= $minLevel)
-			{ 
+			{
 				foreach (self::$_infos_list as $info)
 				{
 					if ($info->_level >= $minLevel && $info->_level <= $maxLevel)
@@ -278,12 +278,12 @@ class EventsError extends Events
 	{
 		if ($this->_server_code === 404)
 		{
-			if (is_null($this->_name)) 
+			if (is_null($this->_name))
 				{ $this->_name = '404'; }
 		}
 		elseif ($this->_server_code === 500)
 		{
-			if (is_null($this->_name)) 
+			if (is_null($this->_name))
 				{ $this->_name = '500'; }
 		}
 
@@ -297,7 +297,7 @@ class EventsError extends Events
 }
 
 abstract class Message extends Events
-{	
+{
 	public function __construct ($public_details, $visibility = 2, $level = 0)
 	{
 		$this->_public_details = $public_details ;
