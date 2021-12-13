@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 
 class Add_Controller extends Controller
 {
@@ -14,7 +16,7 @@ class Add_Controller extends Controller
 	public function __construct ($condorcet_vote = null)
 	{
 		parent::__construct();
-		
+
 		if	(	isset($_GET['vote']) &&
 				isset($_GET['mode'])
 			)
@@ -56,7 +58,7 @@ class Add_Controller extends Controller
 				{
 					// Check vote déjà existant
 					if	(
-							!empty($_POST['add_name']) && 
+							!empty($_POST['add_name']) &&
 							!empty($this->_Condorcet_Vote->_objectCondorcet->getVotesList($_POST['add_name']))
 						)
 					{
@@ -126,7 +128,7 @@ class Add_Controller extends Controller
 			Events::add( new Success('Your vote has been succefull register') ) ;
 
 		} catch (Exception $e) {
-			
+
 			Events::add( new EventsError(502, 'Add Register Vote Error', $e, $e->getMessage(), 2 , 0) );
 			return false ;
 		}

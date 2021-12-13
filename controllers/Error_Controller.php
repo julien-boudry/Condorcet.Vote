@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 
 class Error_Controller extends Controller
 {

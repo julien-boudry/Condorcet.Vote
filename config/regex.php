@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 
 // Alphabet
 define('REGEX_ALPHABET', 'a-zA-ZàáâãäåçèéêëìíîïðòóôõöùúûüýÿAAAÃÄÅÇEEEËIIIÏÐOOOÕÖUUUÜÝŸ');
