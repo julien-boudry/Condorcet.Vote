@@ -133,7 +133,7 @@ class Condorcet_Vote
 					}
 
 				// Mise à jour
-				$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion('MAJOR');
+				$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion(true);
 				$this->saveVotesList();
 				$this->prepareCondorcet();
 				$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
