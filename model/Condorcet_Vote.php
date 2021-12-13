@@ -241,7 +241,7 @@ class Condorcet_Vote
 
 	public function isOpen (): bool
 	{
-		return $this->_bean->open ;
+		return (bool) $this->_bean->open ;
 	}
 
 	public function setOpen (bool $state): void
