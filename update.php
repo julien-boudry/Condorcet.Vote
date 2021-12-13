@@ -4,17 +4,17 @@ use RedBeanPHP\R;
 
 set_time_limit ( 600 );
 
-$manager = new CondorcetPHP\Timer\Manager;
-$chrono = new CondorcetPHP\Timer\Chrono ($manager);
+$manager = new CondorcetPHP\Condorcet\Timer\Manager;
+$chrono = new CondorcetPHP\Condorcet\Timer\Chrono ($manager);
 
-# $to_update = R::find( 'condorcet', " condorcet_version != -".CondorcetPHP\Condorcet::getVersion('MAJOR') );
+# $to_update = R::find( 'condorcet', " condorcet_version != -".CondorcetPHP\Condorcet\Condorcet::getVersion('MAJOR') );
 
 unset($chrono);
 $looking = $manager->getLastTimer();
 
-$chrono = new CondorcetPHP\Timer\Chrono ($manager);
+$chrono = new CondorcetPHP\Condorcet\Timer\Chrono ($manager);
 
-while (!empty($election = R::findOne('condorcet',  " condorcet_version != -".CondorcetPHP\Condorcet::getVersion('MAJOR'))))
+while (!empty($election = R::findOne('condorcet',  " condorcet_version != -".CondorcetPHP\Condorcet\Condorcet::getVersion('MAJOR'))))
 {
     ( new Condorcet_Vote ($election->read_code) );
 }

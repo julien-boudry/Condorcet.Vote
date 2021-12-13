@@ -58,8 +58,8 @@ else
 	date_default_timezone_set('UTC');
 
 	// Condorcet
-		CondorcetPHP\Election::setMaxParseIteration(50000);
-		CondorcetPHP\Election::setMaxVoteNumber(100000);
+		CondorcetPHP\Condorcet\Election::setMaxParseIteration(50000);
+		CondorcetPHP\Condorcet\Election::setMaxVoteNumber(100000);
 
 	// JS
 		const CONFIG_JQUERY = '3.3.1';

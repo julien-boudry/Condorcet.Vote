@@ -190,10 +190,10 @@
 							{
 								$test_kemeny = $this->_objectCondorcet->getResult($method);
 							}
-							catch (CondorcetPHP\CondorcetException $e) {
+							catch (CondorcetPHP\Condorcet\CondorcetException $e) {
 								if ($e->getCode() === 101) : ?>		
 									<em> You have to many candidate to use this method (limit is : <?php 
-										echo ('CondorcetPHP\Algo\Methods\\'.$method)::$_maxCandidates ;
+										echo ('CondorcetPHP\Condorcet\Algo\Methods\\'.$method)::$_maxCandidates ;
 										?> candidates) </em>
 									</div></div></section>
 								<?php endif; 
@@ -202,9 +202,9 @@
 
 							// Résultats arbitraire
 
-							if ( !empty($test_kemeny->getWarning(\CondorcetPHP\Algo\Methods\KemenyYoung::CONFLICT_WARNING_CODE)) ) :
+							if ( !empty($test_kemeny->getWarning(\CondorcetPHP\Condorcet\Algo\Methods\KemenyYoung::CONFLICT_WARNING_CODE)) ) :
 
-								$test_kemeny = explode(';', $test_kemeny->getWarning(\CondorcetPHP\Algo\Methods\KemenyYoung::CONFLICT_WARNING_CODE)[0]['msg']);
+								$test_kemeny = explode(';', $test_kemeny->getWarning(\CondorcetPHP\Condorcet\Algo\Methods\KemenyYoung::CONFLICT_WARNING_CODE)[0]['msg']);
 
 								echo '
 								<div class="kemeny-arbitrary">
@@ -254,7 +254,7 @@
 											echo 'To many candidate for Kemeny-Young to show it on a page.';
 										else :
 											print_r(
-												CondorcetPHP\CondorcetUtil::format(
+												CondorcetPHP\Condorcet\CondorcetUtil::format(
 													$this->_objectCondorcet
 														->getResult($method)->getStats(),
 													true)
