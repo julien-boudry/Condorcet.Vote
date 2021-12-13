@@ -86,7 +86,7 @@
 							<div class="panel-body">
 								<ul class="list-group">
 									<?php
-									$voteDate = date('l jS \of F Y, H:i:s',$vote->getTimestamp());
+									$voteDate = date('l jS \of F Y, H:i:s',(int) $vote->getTimestamp());
 
 									$i = 0 ;
 									foreach ($vote->getContextualRanking($this->_objectCondorcet) as $rank => $rank_vote) : ?>
