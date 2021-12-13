@@ -9,6 +9,10 @@ class Error_Controller extends Controller
 	public function __construct ()
 	{
 		parent::__construct();
+
+		foreach (Events::getFatalErrors() as $e) :
+			var_dump($e);
+		endforeach;
 	}
 		//////
 
