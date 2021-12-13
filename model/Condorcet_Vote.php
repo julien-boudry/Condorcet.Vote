@@ -244,16 +244,13 @@ class Condorcet_Vote
 		return $this->_bean->open ;
 	}
 
-	public function setOpen (bool $state): mixed
+	public function setOpen (bool $state): void
 	{
 		if ($state && !$this->_bean->open)
 		{
 			$this->set_new_hashCode();
 			$this->_bean->open = true ;
 		}
-		else
-
-		return $this->isOpen() ;
 	}
 
 	public function getPublicURL (): string
