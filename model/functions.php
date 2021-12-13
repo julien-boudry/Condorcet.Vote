@@ -6,7 +6,7 @@
 
 		if (CONFIG_ENV === 'DEV') {return FALSE ;}
 
-		Events::add(new EventsError(500, null, $type.' - '.$msg, null, 2, 3) );
+		Events::add(new EventsError(500, null, $type.' - '.$msg.' - '.$file.' - '.$line, null, 2, 3) );
 
 		( new Error_Controller() )->showPage();
 
@@ -115,12 +115,12 @@ B>C # Equivalent to B>C>A=D</code></pre>";
 				echo '????';
 		}
 
-		echo '</aside>';	
+		echo '</aside>';
 	}
 
 
 	function setHtmlPairwise (array $pairwise)
-	{ 
+	{
 	?>
 		<table class="table table-bordered text-center">
 			<tr>
@@ -158,7 +158,7 @@ B>C # Equivalent to B>C>A=D</code></pre>";
 							else:
 								$colorClass = 'info';
 							endif;
-							
+
 
 							echo '<td class="' . $colorClass . '">' .
 								$adversaireValue

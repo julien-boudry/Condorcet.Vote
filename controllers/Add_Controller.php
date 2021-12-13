@@ -127,7 +127,7 @@ class Add_Controller extends Controller
 
 		} catch (Exception $e) {
 			
-			Events::add( new EventsError(502, 'Add Register Vote Error', null, $e->getMessage(), 2 , 0) );
+			Events::add( new EventsError(502, 'Add Register Vote Error', $e, $e->getMessage(), 2 , 0) );
 			return false ;
 		}
 
