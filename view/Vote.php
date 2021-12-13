@@ -148,7 +148,7 @@
 				</header>
 				<div id="the_pairwise" class="panel-collapse collapse in">
 					<div class="panel-body">
-						<?php setHtmlPairwise($this->_objectCondorcet->getPairwise()); ?>
+						<?php setHtmlPairwise($this->_objectCondorcet->getPairwise()->getExplicitPairwise()); ?>
 					</div>
 				</div>
 			</div>
