@@ -61,7 +61,7 @@ class Condorcet_Vote
 			endif;
 		}
 
-	protected function register (Condorcet\Election $vote, $title, $methods, $description = null, $open)
+	protected function register (CondorcetPHP\Election $vote, $title, $methods, $description = null, $open)
 	{
 		$this->_isNew = true ;
 
@@ -102,17 +102,17 @@ class Condorcet_Vote
 		else
 		{
 			try	{
-				if ( $this->_bean->condorcet_version !== "-".Condorcet\Condorcet::getVersion('MAJOR') )
-					{ throw new Condorcet\CondorcetException(11); }
+				if ( $this->_bean->condorcet_version !== "-".CondorcetPHP\Condorcet::getVersion('MAJOR') )
+					{ throw new CondorcetPHP\CondorcetException(11); }
 				$this->_objectCondorcet = $this->getVoteObject() ;
 				$this->prepareCondorcet(); 				
 			}
-			catch (Condorcet\CondorcetException $e) {
+			catch (CondorcetPHP\CondorcetException $e) {
 
 				// Update de l'objet & reconstruction
 				if ($e->getCode() === 11)
 				{
-					$this->_objectCondorcet = new Condorcet\Election () ;
+					$this->_objectCondorcet = new CondorcetPHP\Election () ;
 
 					// Reconstruction
 
@@ -128,7 +128,7 @@ class Condorcet_Vote
 							unset($vote['tag']);
 							unset($vote['timestamp']);
 
-							$this->_objectCondorcet->addVote(new Condorcet\Vote ($vote, $tag, $timestamp));
+							$this->_objectCondorcet->addVote(new CondorcetPHP\Vote ($vote, $tag, $timestamp));
 						}
 
 					// Mise à jour
@@ -160,7 +160,7 @@ class Condorcet_Vote
 			$oneVote = $NewoneVote;
 		}
 
-		$this->_bean->votes_list = serialize(Condorcet\CondorcetUtil::format($voteList,true));
+		$this->_bean->votes_list = serialize(CondorcetPHP\CondorcetUtil::format($voteList,true));
 	}
 
 	public function update_methods ($methods, $prepare = true)
@@ -200,7 +200,7 @@ class Condorcet_Vote
 	{
 		try {
 			$this->_objectCondorcet->getWinner();
-		} catch (Condorcet\CondorcetException $e) {}
+		} catch (CondorcetPHP\CondorcetException $e) {}
 
 
 		foreach (unserialize($this->_bean->methods) as $method)
@@ -209,7 +209,7 @@ class Condorcet_Vote
 				if ($method !== 'Dodgson') {
 					$this->_objectCondorcet->computeResult($method);
 				}
-			} catch (Condorcet\CondorcetException $e) {
+			} catch (CondorcetPHP\CondorcetException $e) {
 				if ($e->getCode() !== 101 && $e->getCode() !== 6)
 					{ Events::add( new Error(500) ); }
 			}

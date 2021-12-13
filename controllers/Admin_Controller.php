@@ -79,16 +79,16 @@ class Admin_Controller extends Controller
 			{
 				$delete_votes = $_POST['delete_votes'];
 
-				if (Condorcet\CondorcetUtil::isJson($delete_votes))
+				if (CondorcetPHP\CondorcetUtil::isJson($delete_votes))
 				{
-					$delete_votes = Condorcet\Election::prepareJson($delete_votes);
+					$delete_votes = CondorcetPHP\Election::prepareJson($delete_votes);
 
 					if (!is_array($delete_votes))
 						{$delete_votes = array();}
 				}
 				else
 				{
-					$delete_votes = Condorcet\Election::prepareParse($delete_votes, false);
+					$delete_votes = CondorcetPHP\Election::prepareParse($delete_votes, false);
 				}
 
 				foreach ($delete_votes as &$value) {
@@ -113,7 +113,7 @@ class Admin_Controller extends Controller
 		{
 			try
 			{
-				if (Condorcet\CondorcetUtil::isJson($_POST['add_votes']))
+				if (CondorcetPHP\CondorcetUtil::isJson($_POST['add_votes']))
 				{
 					$counter = count($this->_Condorcet_Vote->_objectCondorcet->jsonVotes($_POST['add_votes']));
 				}
@@ -127,7 +127,7 @@ class Admin_Controller extends Controller
 				Events::add( new Success ($counter . ' recorded ' . (($counter > 1) ? 'votes' : 'vote')) );
 
 			}
-			catch (Condorcet\CondorcetException $e)
+			catch (CondorcetPHP\CondorcetException $e)
 			{
 				Events::add( new EventsError (502, null, null, $e->getMessage(), 2, 0) );
 			}
