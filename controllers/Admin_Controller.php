@@ -117,11 +117,11 @@ class Admin_Controller extends Controller
 			{
 				if (CondorcetPHP\Condorcet\CondorcetUtil::isJson($_POST['add_votes']))
 				{
-					$counter = count($this->_Condorcet_Vote->_objectCondorcet->jsonVotes($_POST['add_votes']));
+					$counter = $this->_Condorcet_Vote->_objectCondorcet->jsonVotes($_POST['add_votes']);
 				}
 				else
 				{
-					$counter = count($this->_Condorcet_Vote->_objectCondorcet->parseVotes($_POST['add_votes']));
+					$counter = $this->_Condorcet_Vote->_objectCondorcet->parseVotes($_POST['add_votes']);
 				}
 
 				$this->_Condorcet_Vote->prepareCondorcet();
