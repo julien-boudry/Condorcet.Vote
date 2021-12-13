@@ -201,9 +201,9 @@
 
 							// Résultats arbitraire
 
-							if ( !empty($test_kemeny->getWarning(\CondorcetPHP\Condorcet\Algo\Methods\KemenyYoung::CONFLICT_WARNING_CODE)) ) :
+							if ( !empty($test_kemeny->getWarning(\CondorcetPHP\Condorcet\Algo\Methods\KemenyYoung\KemenyYoung::CONFLICT_WARNING_CODE)) ) :
 
-								$test_kemeny = explode(';', $test_kemeny->getWarning(\CondorcetPHP\Condorcet\Algo\Methods\KemenyYoung::CONFLICT_WARNING_CODE)[0]['msg']);
+								$test_kemeny = explode(';', $test_kemeny->getWarning(\CondorcetPHP\Condorcet\Algo\Methods\KemenyYoung\KemenyYoung::CONFLICT_WARNING_CODE)[0]['msg']);
 
 								echo '
 								<div class="kemeny-arbitrary">
