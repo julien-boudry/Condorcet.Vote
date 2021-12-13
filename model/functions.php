@@ -46,7 +46,7 @@ declare(strict_types=1);
 		return $post_methods ;
 	}
 
-	function showOneTagClass (string $tag): string|void
+	function showOneTagClass (string $tag): string
 	{
 		if ($tag === 'Public-Vote')
 		{
