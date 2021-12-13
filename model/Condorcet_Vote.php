@@ -224,17 +224,17 @@ class Condorcet_Vote
 		return htmlspecialchars($this->_bean->description ?? '') ;
 	}
 
-	public function getDate ()
+	public function getDate (): string
 	{
 		return $this->_bean->date ;
 	}
 
-	public function getUpdateDate ()
+	public function getUpdateDate (): string
 	{
 		return $this->_bean->last_update ;
 	}
 
-	public function getCountUpdate (): int
+	public function getCountUpdate (): int|string
 	{
 		return ($this->willUpdate()) ? $this->_bean->count_update + 1 : $this->_bean->count_update ;
 	}
