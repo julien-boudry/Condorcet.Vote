@@ -60,7 +60,7 @@ class Add_Controller extends Controller
 							!empty($this->_Condorcet_Vote->_objectCondorcet->getVotesList($_POST['add_name']))
 						)
 					{
-						Events::add( new Error(502, 'Double', null, 'You have already vote', 2 , 0) );
+						Events::add( new EventsError(502, 'Double', null, 'You have already vote', 2 , 0) );
 						return false ;
 					}
 
@@ -87,7 +87,7 @@ class Add_Controller extends Controller
 				// Check vote déjà existant
 				if ( !empty($this->_Condorcet_Vote->_objectCondorcet->getVotesList($_GET['personnal_name'])) )
 				{
-					Events::add( new Error(502, 'Double', null, 'You have already vote', 2 , 0) );
+					Events::add( new EventsError(502, 'Double', null, 'You have already vote', 2 , 0) );
 					return false ;
 				}
 
@@ -110,7 +110,7 @@ class Add_Controller extends Controller
 	{
 		if	( $this->_mode === 'Public' && !empty($name) && !myPregMatch(REGEX_ADD_NAME, $name) )
 		{
-			Events::add( new Error(502, 'Add Register Vote Error', null, 'Incorrect Input', 2 , 0) );
+			Events::add( new EventsError(502, 'Add Register Vote Error', null, 'Incorrect Input', 2 , 0) );
 			return false ;
 		}
 
@@ -127,7 +127,7 @@ class Add_Controller extends Controller
 
 		} catch (Exception $e) {
 			
-			Events::add( new Error(502, 'Add Register Vote Error', null, $e->getMessage(), 2 , 0) );
+			Events::add( new EventsError(502, 'Add Register Vote Error', null, $e->getMessage(), 2 , 0) );
 			return false ;
 		}
 

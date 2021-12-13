@@ -74,7 +74,7 @@
 								<span class="glyphicon glyphicon-indent-left margin-icon"></span>
 								<span class="caret pull-right"></span>
 								Vote N° <?php echo $voteid ; ?>
-								
+
 								<?php foreach ($vote->getTags() as $tag) : ?>
 
 									<span class="pull-right tag-icon label <?php echo showOneTagClass($tag); ?>"><?php echo htmlspecialchars($tag); ?></span>
@@ -94,11 +94,11 @@
 										<span class="badge">
 											<?php echo $rank; ?>
 										</span>
-										<?php 
+										<?php
 											echo implode(' / ', $rank_vote);
 										?>
 									</li>
-									<?php 
+									<?php
 										$i++;
 										endforeach; ?>
 								</ul>
@@ -166,7 +166,7 @@
 
 		<div class="panel-group" id="results_accordion">
 		<?php
-		foreach (CONDORCET_METHOD as $title => $method) : 
+		foreach (CONDORCET_METHOD as $title => $method) :
 			if (!in_array($method, $allow_methods, true))
 			{
 				continue ;
@@ -182,21 +182,20 @@
 					</header>
 					<div id="<?php echo $method ; ?>" class="panel-collapse collapse">
 					<div class="panel-body">
-					<?php 
+					<?php
 						if ($method === 'KemenyYoung' || $method === 'RankedPairsWinning' || $method === 'RankedPairsWinning' ) :
-							
+
 							// Limite de candidat
 							try
 							{
 								$test_kemeny = $this->_objectCondorcet->getResult($method);
 							}
-							catch (CondorcetPHP\Condorcet\CondorcetException $e) {
-								if ($e->getCode() === 101) : ?>		
-									<em> You have to many candidate to use this method (limit is : <?php 
+							catch (CondorcetPHP\Condorcet\Throwable\CandidatesMaxNumberReachedException $e) { ?>
+									<em> You have to many candidate to use this method (limit is : <?php
 										echo ('CondorcetPHP\Condorcet\Algo\Methods\\'.$method)::$_maxCandidates ;
 										?> candidates) </em>
 									</div></div></section>
-								<?php endif; 
+								<?php
 								continue ;
 							}
 
@@ -229,19 +228,19 @@
 							<div class="tab-pane fade in active" id="<?php echo $method ; ?>_ranking">
 								<ul class="list-group">
 									<?php
-									foreach ($this->_objectCondorcet->getResult($method) as $rank => $rankContent) : 
+									foreach ($this->_objectCondorcet->getResult($method) as $rank => $rankContent) :
 
 										$rankContent = implode(' / ',$rankContent);
 										?>
 										<li class="list-group-item
 										<?php
 											echo ($rankContent === $this->_objectCondorcet->getWinner()) ? 'list-group-item-success ' : '' ;
-											echo ($rankContent === $this->_objectCondorcet->getLoser()) ? 'list-group-item-danger' : '' ;  
+											echo ($rankContent === $this->_objectCondorcet->getLoser()) ? 'list-group-item-danger' : '' ;
 										?>">
 											<span class="badge">
 												<?php echo $rank; ?>
 											</span>
-											<?php 
+											<?php
 												echo $rankContent;
 											?>
 										</li>
@@ -250,7 +249,7 @@
 							</div>
 							<div class="tab-pane fade in" id="<?php echo $method ; ?>_details">
 								<pre><?php
-										if ($method === 'KemenyYoung' && $this->_objectCondorcet->countCandidates() > 7) :											
+										if ($method === 'KemenyYoung' && $this->_objectCondorcet->countCandidates() > 7) :
 											echo 'To many candidate for Kemeny-Young to show it on a page.';
 										else :
 											print_r(

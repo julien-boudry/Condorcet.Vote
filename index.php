@@ -36,7 +36,7 @@ define('SCRIPT_START',microtime(true));
 	}
 	else
 	{
-		Events::add ( new Error(404, null, 'Route inexistante') );
+		Events::add ( new EventsError(404, null, 'Route inexistante') );
 
 		$controller = new Error_Controller() ;
 	}

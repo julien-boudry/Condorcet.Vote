@@ -127,7 +127,7 @@ class Admin_Controller extends Controller
 				Events::add( new Success ($counter . ' recorded ' . (($counter > 1) ? 'votes' : 'vote')) );
 
 			}
-			catch (CondorcetPHP\Condorcet\CondorcetException $e)
+			catch (CondorcetPHP\Condorcet\Throwable\CondorcetPublicApiException $e)
 			{
 				Events::add( new EventsError (502, null, null, $e->getMessage(), 2, 0) );
 			}

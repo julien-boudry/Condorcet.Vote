@@ -10,7 +10,7 @@ class Condorcet_Vote
 	protected $_checksum_change = false ;
 
 	public function __construct ($vote, $title = null, $methods = null, $description = null, $open = true)
-	{		
+	{
 		if (is_object($vote))
 		{
 			$this->register($vote, $title, $methods, $description, $open);
@@ -47,14 +47,14 @@ class Condorcet_Vote
 		{
 			$this->_checksum_change = ($this->_bean->vote_checksum !== $this->_objectCondorcet->getChecksum()) ? true : false ;
 
-			if	( 
+			if	(
 					!$this->_isNew && (
 					$this->_checksum_change
 					||
 					$this->_bean->hasChanged( 'methods' )
 					||
 					$this->_bean->hasChanged( 'description' )
-					)			
+					)
 				 )
 					: return true ;
 			else	: return false ;
@@ -103,46 +103,38 @@ class Condorcet_Vote
 		{
 			try	{
 				if ( $this->_bean->condorcet_version !== "-".CondorcetPHP\Condorcet\Condorcet::getVersion('MAJOR') )
-					{ throw new CondorcetPHP\Condorcet\CondorcetException(11); }
+					{ throw new CondorcetPHP\Condorcet\Throwable\ElectionObjectVersionMismatchException(); }
 				$this->_objectCondorcet = $this->getVoteObject() ;
-				$this->prepareCondorcet(); 				
+				$this->prepareCondorcet();
 			}
-			catch (CondorcetPHP\Condorcet\CondorcetException $e) {
+			catch (CondorcetPHP\Condorcet\Throwable\ElectionObjectVersionMismatchException $e) {
 
-				// Update de l'objet & reconstruction
-				if ($e->getCode() === 11)
-				{
-					$this->_objectCondorcet = new CondorcetPHP\Condorcet\Election () ;
+			// Update de l'objet & reconstruction
+				$this->_objectCondorcet = new CondorcetPHP\Condorcet\Election () ;
 
-					// Reconstruction
+				// Reconstruction
 
-						// Candidats
-						$this->_objectCondorcet->jsonCandidates(json_encode(unserialize($this->_bean->candidates)));
+					// Candidats
+					$this->_objectCondorcet->addCandidatesFromJson(json_encode(unserialize($this->_bean->candidates)));
 
-						// Votes
-						foreach ( unserialize($this->_bean->votes_list) as $vote )
-						{
-							$tag = $vote['tag'];
-							$timestamp = $vote['timestamp'];
+					// Votes
+					foreach ( unserialize($this->_bean->votes_list) as $vote )
+					{
+						$tag = $vote['tag'];
+						$timestamp = $vote['timestamp'];
 
-							unset($vote['tag']);
-							unset($vote['timestamp']);
+						unset($vote['tag']);
+						unset($vote['timestamp']);
 
-							$this->_objectCondorcet->addVote(new CondorcetPHP\Condorcet\Vote ($vote, $tag, $timestamp));
-						}
+						$this->_objectCondorcet->addVote(new CondorcetPHP\Condorcet\Vote ($vote, $tag, $timestamp));
+					}
 
-					// Mise à jour
-					$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion('MAJOR');
-					$this->saveVotesList();
-					$this->prepareCondorcet();
-					$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
-					$this->writeVoteObject();
-				}
-				// Drôle d'erreur
-				else
-				{
-					throw new Exception ('Impossible de reconstituer le vote');
-				}
+				// Mise à jour
+				$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion('MAJOR');
+				$this->saveVotesList();
+				$this->prepareCondorcet();
+				$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
+				$this->writeVoteObject();
 			}
 
 		}
@@ -200,7 +192,7 @@ class Condorcet_Vote
 	{
 		try {
 			$this->_objectCondorcet->getWinner();
-		} catch (CondorcetPHP\Condorcet\CondorcetException $e) {}
+		} catch (CondorcetPHP\Condorcet\Throwable\CondorcetPublicApiException $e) {}
 
 
 		foreach (unserialize($this->_bean->methods) as $method)
@@ -209,9 +201,8 @@ class Condorcet_Vote
 				if ($method !== 'Dodgson') {
 					$this->_objectCondorcet->computeResult($method);
 				}
-			} catch (CondorcetPHP\Condorcet\CondorcetException $e) {
-				if ($e->getCode() !== 101 && $e->getCode() !== 6)
-					{ Events::add( new Error(500) ); }
+			} catch (CondorcetPHP\Condorcet\Throwable\CandidatesMaxNumberReachedException | CondorcetPHP\Condorcet\Throwable\ResultRequestedWithoutVotesException $e) {
+				Events::add( new EventsError(500) );
 			}
 
 		}
@@ -305,11 +296,11 @@ class Condorcet_Vote
 
 	public function getPersonnalVoteCode ($name)
 	{
-		return strtoupper( 
+		return strtoupper(
 							substr(
 								hash('sha224',
-									$this->getAdminCode() . 
-									$this->getHashCode() . 
+									$this->getAdminCode() .
+									$this->getHashCode() .
 									$name),
 		 					10, 8) );
 	}
