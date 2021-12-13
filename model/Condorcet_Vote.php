@@ -244,7 +244,7 @@ class Condorcet_Vote
 		return $this->_bean->open ;
 	}
 
-	public function setOpen (bool $state): bool
+	public function setOpen (bool $state): mixed
 	{
 		if ($state && !$this->_bean->open)
 		{
