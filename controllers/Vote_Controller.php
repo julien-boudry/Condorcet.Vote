@@ -13,7 +13,7 @@ class Vote_Controller extends Controller
 		//////
 
 
-	public function __construct (bool $build = false)
+	public function __construct (Condorcet_Vote|false $build = false)
 	{
 		parent::__construct();
 
