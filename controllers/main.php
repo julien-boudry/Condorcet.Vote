@@ -140,13 +140,13 @@ abstract class Controller
 		// Un peu d'Ajax ?
 		if (!self::$_ajax && !$this->_partial)
 		{
-			self::AddCSS('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',1,'sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u','anonymous');
+			self::AddCSS('https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css',1,'sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu','anonymous');
 			self::AddCSS(BASE_URL.'view/CSS/font-awesome.min.css', 2);
 			self::AddCSS(BASE_URL.'view/CSS/style_custom_bootstrap.css', 3);
 			self::AddCSS(BASE_URL.'view/CSS/style.css', 4);
 
 			self::AddJS('//ajax.googleapis.com/ajax/libs/jquery/'.CONFIG_JQUERY.'/jquery.min.js',1,CONFIG_JQUERY_SHA_384,'anonymous');
-			self::AddJS('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', 2,'sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa','anonymous');
+			self::AddJS('https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', 2,'sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd','anonymous');
 			self::AddJS(BASE_URL.'view/JS/php.js',3);
 			self::AddJS(BASE_URL.'view/JS/self.js', 9);
 
