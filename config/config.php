@@ -14,16 +14,18 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost')
 	require_once 'config/prod.php';
 
 	// Analytics
-	define('GOOGLE_ANALYTICS', "
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	define('GOOGLE_ANALYTICS', 	<<<EOD
+									<!-- Global site tag (gtag.js) - Google Analytics -->
+									<script async src="https://www.googletagmanager.com/gtag/js?id=UA-53480205-1"></script>
+									<script>
+									window.dataLayer = window.dataLayer || [];
+									function gtag(){dataLayer.push(arguments);}
+									gtag('js', new Date());
 
-ga('create', 'UA-53480205-1', 'auto');
-ga('send', 'pageview');
-</script>");
+									gtag('config', 'UA-53480205-1');
+									</script>
+								EOD
+	);
 
 
 
