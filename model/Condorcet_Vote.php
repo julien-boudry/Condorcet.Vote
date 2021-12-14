@@ -204,7 +204,7 @@ class Condorcet_Vote
 				if ($method !== 'Dodgson') {
 					$this->_objectCondorcet->computeResult($method);
 				}
-			} catch (CondorcetPHP\Condorcet\Throwable\CandidatesMaxNumberReachedException | CondorcetPHP\Condorcet\Throwable\ResultRequestedWithoutVotesException $e) {
+			} catch (CondorcetPHP\Condorcet\Throwable\CandidatesMaxNumberReachedException) {
 				Events::add( new EventsError(server_code: 500, private_details: $e) );
 			} catch (CondorcetPHP\Condorcet\Throwable\ResultRequestedWithoutVotesException $e) {}
 
