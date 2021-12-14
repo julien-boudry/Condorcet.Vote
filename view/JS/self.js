@@ -1,11 +1,3 @@
-async function digestMessageSHA384(message) {
-	const msgUint8 = new TextEncoder().encode(message);                           // encode comme (utf-8) Uint8Array
-	const hashBuffer = await crypto.subtle.digest('SHA-384', msgUint8);           // fait le condensé
-	const hashArray = Array.from(new Uint8Array(hashBuffer));                     // convertit le buffer en tableau d'octet
-	const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join(''); // convertit le tableau en chaîne hexadélimale
-	return hashHex;
-}
-
 $(document).ready(function()
 {
 	// Tooltips
@@ -14,12 +6,12 @@ $(document).ready(function()
 
 	// Gestion de la génération d'adresses personnelles
 	$( "#edit_personnal_identifiant" ).on('ready change keyup click hover', null, function() {
-
+		
 		new_personnal_url = false ;
 
 		var valid = ( (new RegExp(REGEX_ADMIN_ADD_PERSONNAL_ID)).test($(this).val()) ) ? true : false ;
 
-		if (!valid) {
+		if (!valid) { 
 			$(this).addClass('red-background');
 			$('#keynote_add_button').attr('disabled', 'true');
 		}
@@ -29,11 +21,11 @@ $(document).ready(function()
 		}
 
 		// Hashing
-		var hash = await digestMessageSHA384(
+		var hash = CryptoJS.SHA224 (
 									$(this).data('admin_code') +
 									$(this).data('hash_code') +
 									$(this).val()
-									).substr(10,8).toUpperCase();
+									).toString(CryptoJS.enc.Hex).substr(10,8).toUpperCase();
 
 		$('#edit_personnal_code').text( ( ($(this).val() != '' && valid === true) ? '/'+hash : '/***' ) );
 
@@ -131,11 +123,11 @@ $(document).ready(function()
 		{
 			var button = $('form button[type="submit"]');
 
-			if (!valid) {
+			if (!valid) { 
 				$(boite).css('box-shadow', '0 0 2px 1px red');
 				$(button).attr('disabled', 'true');
 			}
-			else {
+			else { 
 				$(boite).css('box-shadow', 'none');
 				$(button).removeAttr('disabled');
 			}
