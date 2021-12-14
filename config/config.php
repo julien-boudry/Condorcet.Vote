@@ -16,13 +16,13 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost')
 	// Analytics
 	define('GOOGLE_ANALYTICS', 	<<<EOD
 									<!-- Global site tag (gtag.js) - Google Analytics -->
-									<script async src="https://www.googletagmanager.com/gtag/js?id=UA-53480205-1"></script>
+									<script async src="https://www.googletagmanager.com/gtag/js?id=G-LNELZF59QE"></script>
 									<script>
 									window.dataLayer = window.dataLayer || [];
 									function gtag(){dataLayer.push(arguments);}
 									gtag('js', new Date());
-
-									gtag('config', 'UA-53480205-1');
+									
+									gtag('config', 'G-LNELZF59QE');
 									</script>
 								EOD
 	);
