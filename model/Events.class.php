@@ -263,7 +263,7 @@ class EventsError extends Events
 			$bean->server_code = $this->_server_code;
 			$bean->name = $this->_name ;
 			$bean->public_details = $this->_public_details ;
-			$bean->private_details = $this->_private_details ;
+			$bean->private_details = (string) $this->_private_details ;
 			$bean->visibility = $this->_visibility ;
 			$bean->level = $this->_level ;
 			$bean->line = $this->_line ;
