@@ -7,7 +7,7 @@ use RedBeanPHP\R;
 
 class Condorcet_Vote
 {
-	public OODBBean $_bean ;
+	public ?OODBBean $_bean ;
 	public Election $_objectCondorcet ;
 	protected bool $_isNew = false ;
 	protected bool $_checksum_change = false ;
