@@ -1,7 +1,9 @@
 <?php
 declare(strict_types=1);
 
+use CondorcetPHP\Condorcet\Condorcet;
 use CondorcetPHP\Condorcet\Election;
+use CondorcetPHP\Condorcet\Throwable\ElectionObjectVersionMismatchException;
 use RedBeanPHP\OODBBean;
 use RedBeanPHP\R;
 
@@ -105,15 +107,17 @@ class Condorcet_Vote
 		else
 		{
 			try	{
-				if ( $this->_bean->condorcet_version !== "-".CondorcetPHP\Condorcet\Condorcet::getVersion(true) )
-					{ throw new CondorcetPHP\Condorcet\Throwable\ElectionObjectVersionMismatchException(); }
+				if ( $this->_bean->condorcet_version !== "-".Condorcet::getVersion(true) )
+					{ throw new ElectionObjectVersionMismatchException(); }
+
+
 				$this->_objectCondorcet = $this->getVoteObject() ;
 				$this->prepareCondorcet();
 			}
-			catch (CondorcetPHP\Condorcet\Throwable\ElectionObjectVersionMismatchException $e) {
+			catch (ElectionObjectVersionMismatchException|NoCache) {
 
 			// Update de l'objet & reconstruction
-				$this->_objectCondorcet = new CondorcetPHP\Condorcet\Election () ;
+				$this->_objectCondorcet = new Election;
 
 				// Reconstruction
 
@@ -310,7 +314,11 @@ class Condorcet_Vote
 
 	public function getVoteObject (): Election
 	{
-		return unserialize(file_get_contents($this->getSavedVoteObjectPath()));
+		$file_path = $this->getSavedVoteObjectPath();
+
+		file_exists($file_path) || throw new NoCache;
+
+		return unserialize(file_get_contents($file_path));
 	}
 
 	public function getSavedVoteObjectPath () : string
