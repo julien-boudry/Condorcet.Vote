@@ -114,7 +114,7 @@ class Condorcet_Vote
 				$this->_objectCondorcet = $this->getVoteObject() ;
 				$this->prepareCondorcet();
 			}
-			catch (ElectionObjectVersionMismatchException|NoCache) {
+			catch (ElectionObjectVersionMismatchException | NoCache) {
 
 			// Update de l'objet & reconstruction
 				$this->_objectCondorcet = new Election;
@@ -316,7 +316,9 @@ class Condorcet_Vote
 	{
 		$file_path = $this->getSavedVoteObjectPath();
 
-		file_exists($file_path) || throw new NoCache;
+		if (!file_exists($file_path)) {
+			throw new NoCache;
+		}
 
 		return unserialize(file_get_contents($file_path));
 	}
