@@ -5,13 +5,13 @@ declare(strict_types=1);
 use RedBeanPHP\R;
 
 // PROD
-if ($_SERVER['SERVER_NAME'] !== 'localhost')
+if ($_SERVER['SERVER_NAME'] !== 'localhost' || getenv('PRODUCTION') === 'true')
 {
 	define('CONFIG_ENV', 'PROD');
 	define('BASE_URL', 'https://www.condorcet.vote/');
 
-	// Ligne non-versionnées : BDD
-	require_once 'config/prod.php';
+	R::setup('mysql:host=mariadb;dbname=condorcet', 'condorcet_user', getenv('CONDORCETDB_USER_PASSWORD'));
+	// R::freeze( TRUE );
 
 	// Analytics
 	define('GOOGLE_ANALYTICS', 	<<<EOD
@@ -21,7 +21,7 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost')
 									window.dataLayer = window.dataLayer || [];
 									function gtag(){dataLayer.push(arguments);}
 									gtag('js', new Date());
-									
+
 									gtag('config', 'G-LNELZF59QE');
 									</script>
 								EOD
@@ -43,9 +43,9 @@ else
 
 
 	define('CONFIG_ENV', 'DEV');
-	define('BASE_URL', 'http://localhost/condorcet-vote/');
+	define('BASE_URL', 'http://localhost/');
 
-	R::setup('mysql:host=localhost;dbname=condorcet.vote','root','');
+	R::setup('mysql:host=mariadb;dbname=condorcet', 'condorcet_user', getenv('CONDORCETDB_USER_PASSWORD'));
 
 	// Gestionnaire d'exception
 	set_exception_handler( function ($exception) {

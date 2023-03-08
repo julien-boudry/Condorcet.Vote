@@ -1,0 +1,47 @@
+services:
+  web:
+    build: ./Docker/Web/.
+    environment:
+      - CONDORCETDB_USER_PASSWORD=${CONDORCETDB_USER_PASSWORD}
+    ports:
+      - '80:80'
+    volumes:
+      #- /Users/vincentb/Sites/_docker/apache:/etc/apache2/sites-enabled
+      - .:/var/www/html
+      # - ./php.ini:/usr/local/etc/php/php.ini
+    depends_on:
+      - mariadb
+    networks:
+      - condorcet-network
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - 8080:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    depends_on:
+      - mariadb
+    networks:
+      - condorcet-network
+  mariadb:
+    image: mariadb:latest
+    restart: always
+    volumes:
+      - condorcetdb:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${CONDORCETDB_ROOT_PASSWORD}
+      - MYSQL_USER=condorcet_user
+      - MYSQL_PASSWORD=${CONDORCETDB_USER_PASSWORD}
+      - MYSQL_DATABASE=condorcet
+    ports:
+      - 3306:3306
+    networks:
+      - condorcet-network
+
+networks:
+  condorcet-network: {}
+
+volumes:
+  condorcetdb:
+    external: true

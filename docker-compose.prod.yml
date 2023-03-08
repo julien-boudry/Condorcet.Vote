@@ -1,0 +1,6 @@
+services:
+  web:
+    #environment:
+      #PRODUCTION: 'true'
+    ports:
+      - '8042:80'

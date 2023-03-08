@@ -14,11 +14,11 @@ class Condorcet_Vote
 	protected bool $_isNew = false ;
 	protected bool $_checksum_change = false ;
 
-	public function __construct ($vote, $title = null, $methods = null, $description = null, $open = true)
+	public function __construct ($vote, $title = null, $methods = null, $description = null)
 	{
 		if (is_object($vote))
 		{
-			$this->register($vote, $title, $methods, $description, $open);
+			$this->register($vote, $title, $methods, $description);
 		}
 		else
 		{
@@ -66,7 +66,7 @@ class Condorcet_Vote
 			endif;
 		}
 
-	protected function register (CondorcetPHP\Condorcet\Election $vote, $title, $methods, $description = null, $open): void
+	protected function register (CondorcetPHP\Condorcet\Election $vote, $title, $methods, $description = null): void
 	{
 		$this->_isNew = true ;
 
