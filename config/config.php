@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 use RedBeanPHP\R;
 
+$port = !in_array($_SERVER['SERVER_PORT'], ['80', '443']) ? ':'.$_SERVER['SERVER_PORT'] : '';
+
 // PROD
 if ($_SERVER['SERVER_NAME'] !== 'localhost' || getenv('PRODUCTION') === 'true')
 {
 	define('CONFIG_ENV', 'PROD');
-	define('BASE_URL', 'https://www.condorcet.vote/');
+
+	define('BASE_URL', 'https://www.condorcet.vote'.$port.'/');
 
 	R::setup('mysql:host=mariadb;dbname=condorcet', 'condorcet_user', getenv('CONDORCETDB_USER_PASSWORD'));
 	// R::freeze( TRUE );
@@ -43,7 +46,7 @@ else
 
 
 	define('CONFIG_ENV', 'DEV');
-	define('BASE_URL', 'http://localhost/');
+	define('BASE_URL', 'http://localhost'.$port.'/');
 
 	R::setup('mysql:host=mariadb;dbname=condorcet', 'condorcet_user', getenv('CONDORCETDB_USER_PASSWORD'));
 
