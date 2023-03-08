@@ -73,7 +73,7 @@ class Condorcet_Vote
 		$this->_bean->title = $title;
 		$this->_bean->description = (empty($description)) ? null : $description;
 
-		$this->_bean->methods = serialize(array()) ;
+		$this->_bean->methods = json_encode(array()) ;
 		$this->update_methods($methods, false);
 
 		$this->_bean->date = R::isoDateTime();
@@ -88,7 +88,7 @@ class Condorcet_Vote
 		$this->_objectCondorcet = $vote ;
 		$this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion(true);
 
-		$this->_bean->candidates = serialize($this->_objectCondorcet->getCandidatesList(true));
+		$this->_bean->candidates = json_encode($this->_objectCondorcet->getCandidatesListAsString());
 		$this->saveVotesList();
 
 		$this->prepareCondorcet();
@@ -118,10 +118,10 @@ class Condorcet_Vote
 				// Reconstruction
 
 					// Candidats
-					$this->_objectCondorcet->addCandidatesFromJson(json_encode(unserialize($this->_bean->candidates)));
+					$this->_objectCondorcet->addCandidatesFromJson($this->_bean->candidates);
 
 					// Votes
-					foreach ( unserialize($this->_bean->votes_list) as $vote )
+					foreach ( json_decode($this->_bean->votes_list) as $vote )
 					{
 						$tag = $vote['tag'];
 						$timestamp = $vote['timestamp'];
@@ -155,7 +155,7 @@ class Condorcet_Vote
 			$oneVote = $NewoneVote;
 		}
 
-		$this->_bean->votes_list = serialize(CondorcetPHP\Condorcet\CondorcetUtil::format($voteList,true));
+		$this->_bean->votes_list = json_encode(CondorcetPHP\Condorcet\CondorcetUtil::format($voteList,true));
 	}
 
 	public function update_methods ($methods, $prepare = true): bool
@@ -176,7 +176,7 @@ class Condorcet_Vote
 				{ return false ; }
 		}
 
-		$new_methods = serialize($methods) ;
+		$new_methods = json_encode($methods) ;
 
 		if ($new_methods !== $this->_bean->methods)
 		{
@@ -198,7 +198,7 @@ class Condorcet_Vote
 		} catch (CondorcetPHP\Condorcet\Throwable\CondorcetPublicApiException $e) {}
 
 
-		foreach (unserialize($this->_bean->methods) as $method)
+		foreach (json_decode($this->_bean->methods) as $method)
 		{
 			try {
 				if ($method !== 'Dodgson') {
