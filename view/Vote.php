@@ -156,7 +156,7 @@
 	</section>
 
 	<?php
-	$allow_methods = unserialize($this->_Condorcet_Vote->_bean->methods);
+	$allow_methods = json_decode($this->_Condorcet_Vote->_bean->methods);
 
 	if (!empty($allow_methods)) : ?>
 	<section>
