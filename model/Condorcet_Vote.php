@@ -125,7 +125,7 @@ class Condorcet_Vote
 					$this->_objectCondorcet->addCandidatesFromJson($this->_bean->candidates);
 
 					// Votes
-					foreach ( json_decode($this->_bean->votes_list) as $vote )
+					foreach ( json_decode($this->_bean->votes_list, true) as $vote )
 					{
 						$ranking = $vote['ranking'];
 						$tag = $vote['tag'];
@@ -201,7 +201,7 @@ class Condorcet_Vote
 		} catch (CondorcetPHP\Condorcet\Throwable\CondorcetPublicApiException $e) {}
 
 
-		foreach (json_decode($this->_bean->methods) as $method)
+		foreach (json_decode($this->_bean->methods, true) as $method)
 		{
 			try {
 				if ($method !== 'Dodgson') {

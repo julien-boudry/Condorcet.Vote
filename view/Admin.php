@@ -54,7 +54,7 @@
 				</header>
 					<div class="row center-block">
 						<?php
-						$allow_methods = json_decode($this->_Condorcet_Vote->_bean->methods);
+						$allow_methods = json_decode($this->_Condorcet_Vote->_bean->methods, true);
 
 						$i=1;
 						foreach(CONDORCET_METHOD as $title => $method) : ?>
