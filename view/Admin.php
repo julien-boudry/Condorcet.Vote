@@ -1,4 +1,4 @@
-<div class="container"> 
+<div class="container">
 
 	<div id="vote_url_box">
 		<div class="alert alert-success text-center tooltips" role="alert" data-toggle="tooltip" data-placement="left"
@@ -53,8 +53,8 @@
 					<h3>Condorcet Methods</h3>
 				</header>
 					<div class="row center-block">
-						<?php 
-						$allow_methods = unserialize($this->_Condorcet_Vote->_bean->methods);
+						<?php
+						$allow_methods = json_decode($this->_Condorcet_Vote->_bean->methods);
 
 						$i=1;
 						foreach(CONDORCET_METHOD as $title => $method) : ?>
@@ -100,7 +100,7 @@
 				<section id="external_voting">
 					<?php setHelper('public_voting'); ?>
 					<?php setHelper('reset_url', 'danger'); ?>
-					
+
 					<?php if ($this->_Condorcet_Vote->_bean->open) : ?>
 						<div class="alert alert-info text-center" role="alert">
 							<?php $freeVoteUrl = $this->_Condorcet_Vote->getFreeVoteUrl() ; ?>
@@ -135,7 +135,7 @@
 				<span class="input-group-addon"><?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl(); ?></span>
 
 				<input type="text" id="edit_personnal_identifiant" class="form-control" spellcheck="false"
-				placeholder="name or identifiant (alphabetic, without space)" maxlength="<?php echo NAME_MAX_LENGHT ; ?>" size="25" 
+				placeholder="name or identifiant (alphabetic, without space)" maxlength="<?php echo NAME_MAX_LENGHT ; ?>" size="25"
 				pattern="<?php echo REGEX_ADMIN_ADD_PERSONNAL_ID; ?>"
 				required autocomplete="off"
 				data-admin_code="<?php echo $this->_Condorcet_Vote->getAdminCode(); ?>"
