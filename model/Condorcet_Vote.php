@@ -123,13 +123,11 @@ class Condorcet_Vote
 					// Votes
 					foreach ( json_decode($this->_bean->votes_list) as $vote )
 					{
+						$ranking = $vote['ranking'];
 						$tag = $vote['tag'];
 						$timestamp = $vote['timestamp'];
 
-						unset($vote['tag']);
-						unset($vote['timestamp']);
-
-						$this->_objectCondorcet->addVote(new CondorcetPHP\Condorcet\Vote ($vote, $tag, $timestamp));
+						$this->_objectCondorcet->addVote(new CondorcetPHP\Condorcet\Vote ($ranking, $tag, $timestamp));
 					}
 
 				// Mise à jour
@@ -148,14 +146,15 @@ class Condorcet_Vote
 		$voteList = $this->_objectCondorcet->getVotesList();
 
 		foreach ($voteList as &$oneVote) {
-			$NewoneVote = $oneVote->getRanking();
+			$NewoneVote = [];
+			$NewoneVote['ranking'] = $oneVote->getSimpleRanking();
 			$NewoneVote['tag'] = $oneVote->getTags();
 			$NewoneVote['timestamp'] = $oneVote->getTimestamp();
 
 			$oneVote = $NewoneVote;
 		}
 
-		$this->_bean->votes_list = json_encode(CondorcetPHP\Condorcet\CondorcetUtil::format($voteList,true));
+		$this->_bean->votes_list = json_encode($voteList);
 	}
 
 	public function update_methods ($methods, $prepare = true): bool
