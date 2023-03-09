@@ -1,7 +1,12 @@
+<?php use CondorcetPHP\Condorcet\Utils\CondorcetUtil; ?>
+
 <section class="container">
 
 	<header>
-		<h1 class="text-center"><?php echo $this->_Condorcet_Vote->getTitle(); ?> <small>Vote</small></h1>
+		<h1 class="text-center"><?php
+
+
+ echo $this->_Condorcet_Vote->getTitle(); ?> <small>Vote</small></h1>
 		<?php if (!empty($this->_Condorcet_Vote->getDescription())) : ?>
 		<p class="breadcrumb">
 			<?php echo $this->_Condorcet_Vote->getDescription(); ?>
@@ -253,7 +258,7 @@
 											echo 'To many candidate for Kemeny-Young to show it on a page.';
 										else :
 											print_r(
-												CondorcetPHP\Condorcet\CondorcetUtil::format(
+												CondorcetUtil::format(
 													$this->_objectCondorcet
 														->getResult($method)->getStats(),
 													true)

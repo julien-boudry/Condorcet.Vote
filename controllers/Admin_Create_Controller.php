@@ -1,6 +1,7 @@
 <?php
 declare(strict_types=1);
 
+use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
 
 class Create_Controller extends Admin_Controller
 {
@@ -44,7 +45,7 @@ class Create_Controller extends Admin_Controller
 		{
 			$new_condorcet = new CondorcetPHP\Condorcet\Election();
 
-			if (CondorcetPHP\Condorcet\CondorcetUtil::isJson ($_POST['candidates']))
+			if (CondorcetUtil::isValidJsonForCondorcet($_POST['candidates']))
 			{
 				$new_condorcet->addCandidatesFromJson($_POST['candidates']);
 			}
@@ -53,7 +54,7 @@ class Create_Controller extends Admin_Controller
 				$new_condorcet->parseCandidates($_POST['candidates']);
 			}
 
-			if (CondorcetPHP\Condorcet\CondorcetUtil::isJson ($_POST['votes']))
+			if (CondorcetUtil::isJson($_POST['votes']))
 			{
 				$new_condorcet->addVotesFromJson($_POST['votes']);
 			}
@@ -82,7 +83,7 @@ class Create_Controller extends Admin_Controller
 		//////
 
 
-	public function showPage ($follow = null, $position = 'after'): void
+	public function showPage (?Controller $follow = null, string $position = 'after'): void
 	{
 		if ($this->_inputError)
 		{

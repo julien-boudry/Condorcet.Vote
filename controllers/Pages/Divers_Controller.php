@@ -1,18 +1,32 @@
 <?php
+
 declare(strict_types=1);
 
 
 class Home_Controller extends Page
-{}
+{
+}
 
 class About_Controller extends Page
-{ protected $_view = 'About' ; protected $_title = 'About Condorcet.Vote' ; }
+{
+    protected string $_view = 'About';
+    protected string $_title = 'About Condorcet.Vote';
+}
 
 class Condorcet_Methods_Controller extends Page
-{ protected $_view = 'Methods' ; protected $_title = 'The Condorcet methods' ; }
+{
+    protected string $_view = 'Methods';
+    protected string $_title = 'The Condorcet methods';
+}
 
 class Manual_Controller extends Page
-{ protected $_view = 'Manual' ; protected $_title = 'How to create an online Condorcet vote?' ; }
+{
+    protected string $_view = 'Manual';
+    protected string $_title = 'How to create an online Condorcet vote?';
+}
 
 class Donate_Controller extends Page
-{ protected $_view = 'Donate' ; protected $_title = 'Donate & Support Condorcet' ; }
+{
+    protected string $_view = 'Donate';
+    protected string $_title = 'Donate & Support Condorcet';
+}

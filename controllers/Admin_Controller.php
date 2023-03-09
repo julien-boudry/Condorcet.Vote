@@ -1,16 +1,17 @@
 <?php
 declare(strict_types=1);
 
+use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
 
 class Admin_Controller extends Controller
 {
-	protected $_view = 'Admin' ;
+	protected string $_view = 'Admin' ;
 
 	const ERROR_URL = 'This vote or this admin code do not exist.' ;
 
 		//////
 
-	protected $_Condorcet_Vote = false ;
+	protected ?Condorcet_Vote $_Condorcet_Vote;
 
 
 	public function __construct ()
@@ -18,7 +19,7 @@ class Admin_Controller extends Controller
 		parent::__construct();
 
 		// Edit Controller est appelé directement via URL (pas d'API)
-		if ($this->_Condorcet_Vote === false && isset($_GET['vote']) && isset($_GET['admin_code']))
+		if (!isset($this->_Condorcet_Vote) && isset($_GET['vote']) && isset($_GET['admin_code']))
 		{
 			try {
 				$this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);
@@ -26,7 +27,7 @@ class Admin_Controller extends Controller
 
 				Events::add( new EventsError (server_code: 404, name: null, private_details: $e, public_details: self::ERROR_URL) );
 
-				$this->_Condorcet_Vote = false ;
+				$this->_Condorcet_Vote = null ;
 
 				return false ;
 			}
@@ -36,7 +37,7 @@ class Admin_Controller extends Controller
 			{
 				Events::add( new EventsError (404, null, null, self::ERROR_URL) );
 
-				$this->_Condorcet_Vote = false ;
+				$this->_Condorcet_Vote = null ;
 
 				return false ;
 			}
@@ -81,16 +82,16 @@ class Admin_Controller extends Controller
 			{
 				$delete_votes = $_POST['delete_votes'];
 
-				if (CondorcetPHP\Condorcet\CondorcetUtil::isJson($delete_votes))
+				if (CondorcetUtil::isValidJsonForCondorcet($delete_votes))
 				{
-					$delete_votes = CondorcetPHP\Condorcet\CondorcetUtil::prepareJson($delete_votes);
+					$delete_votes = CondorcetUtil::prepareJson($delete_votes);
 
 					if (!is_array($delete_votes))
-						{$delete_votes = array();}
+						{$delete_votes = [];}
 				}
 				else
 				{
-					$delete_votes = CondorcetPHP\Condorcet\CondorcetUtil::prepareParse($delete_votes, false);
+					$delete_votes = CondorcetUtil::prepareParse($delete_votes, false);
 				}
 
 				foreach ($delete_votes as &$value) {
@@ -100,7 +101,7 @@ class Admin_Controller extends Controller
 
 				$delete_mode = ($_POST['delete_type'] === 'without') ? false : true ;
 
-				$counter_remove = count($this->_Condorcet_Vote->_objectCondorcet->removeVote($delete_votes, $delete_mode));
+				$counter_remove = count($this->_Condorcet_Vote->_objectCondorcet->removeVotesByTags($delete_votes, $delete_mode));
 				$this->_Condorcet_Vote->prepareCondorcet();
 
 				Events::add( new Success ($counter_remove . ' deleted votes') );
@@ -115,7 +116,7 @@ class Admin_Controller extends Controller
 		{
 			try
 			{
-				if (CondorcetPHP\Condorcet\CondorcetUtil::isJson($_POST['add_votes']))
+				if (CondorcetUtil::isValidJsonForCondorcet($_POST['add_votes']))
 				{
 					$counter = $this->_Condorcet_Vote->_objectCondorcet->jsonVotes($_POST['add_votes']);
 				}
@@ -143,9 +144,9 @@ class Admin_Controller extends Controller
 	}
 
 
-	public function showPage ($follow = null, $position = 'after'): void
+	public function showPage (?Controller $follow = null, string $position = 'after'): void
 	{
-		if ($this->_Condorcet_Vote !== false)
+		if (isset($this->_Condorcet_Vote))
 		{
 			parent::AddJS(BASE_URL.'view/JS/sha224.js', 3);
 			parent::showPage(new Vote_Controller ($this->_Condorcet_Vote));

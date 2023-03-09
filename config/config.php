@@ -69,8 +69,8 @@ else
 		CondorcetPHP\Condorcet\Election::setMaxVoteNumber(100000);
 
 	// JS
-		const CONFIG_JQUERY = '3.6.0';
-		const CONFIG_JQUERY_SHA_384 = 'sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK';
+		const CONFIG_JQUERY = '3.6.4';
+		const CONFIG_JQUERY_HASH = 'sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=';
 
 
 	// Methodes de Condorcet

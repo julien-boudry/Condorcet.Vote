@@ -5,15 +5,15 @@ use CondorcetPHP\Condorcet\Election;
 
 class Vote_Controller extends Controller
 {
-	protected $_view = 'Vote' ;
+	protected string $_view = 'Vote' ;
 
-	protected Condorcet_Vote|false $_Condorcet_Vote = false ;
+	protected ?Condorcet_Vote $_Condorcet_Vote;
 	protected Election $_objectCondorcet ;
 
 		//////
 
 
-	public function __construct (Condorcet_Vote|false $build = false)
+	public function __construct (?Condorcet_Vote $build = null)
 	{
 		parent::__construct();
 
@@ -38,11 +38,11 @@ class Vote_Controller extends Controller
 			}
 			catch (Exception $e) {
 				Events::add( new EventsError (server_code: 404, private_details: $e) );
-				$this->_Condorcet_Vote = false ;
+				$this->_Condorcet_Vote = null;
 			}
 		}
 
-		if ($this->_Condorcet_Vote !== false)
+		if (isset($this->_Condorcet_Vote))
 			{ Controller::AddCanonical( $this->_Condorcet_Vote->getPublicURL() ); }
 	}
 

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 class Error_Controller extends Controller
 {
-	protected $_view = 'Error' ;
+	protected string $_view = 'Error' ;
 
 		//////
 

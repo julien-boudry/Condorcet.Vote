@@ -6,12 +6,12 @@ $(document).ready(function()
 
 	// Gestion de la génération d'adresses personnelles
 	$( "#edit_personnal_identifiant" ).on('ready change keyup click hover', null, function() {
-		
+
 		new_personnal_url = false ;
 
 		var valid = ( (new RegExp(REGEX_ADMIN_ADD_PERSONNAL_ID)).test($(this).val()) ) ? true : false ;
 
-		if (!valid) { 
+		if (!valid) {
 			$(this).addClass('red-background');
 			$('#keynote_add_button').attr('disabled', 'true');
 		}
@@ -123,11 +123,11 @@ $(document).ready(function()
 		{
 			var button = $('form button[type="submit"]');
 
-			if (!valid) { 
+			if (!valid) {
 				$(boite).css('box-shadow', '0 0 2px 1px red');
 				$(button).attr('disabled', 'true');
 			}
-			else { 
+			else {
 				$(boite).css('box-shadow', 'none');
 				$(button).removeAttr('disabled');
 			}

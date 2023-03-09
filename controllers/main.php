@@ -103,7 +103,7 @@ abstract class Controller
 
 		//////
 
-	protected $_view = 'Home' ;
+	protected string $_view = 'Home' ;
 	protected $_selfView = true ;
 	public $_partial = false ;
 
@@ -116,7 +116,7 @@ abstract class Controller
 	}
 
 
-	public function showPage ($follow = null, string $position = 'after')
+	public function showPage (?Controller $follow = null, string $position = 'after')
 	{
 		// On passe le partiel cas échant
 		if (is_object($follow))
@@ -145,7 +145,7 @@ abstract class Controller
 			self::AddCSS(BASE_URL.'view/CSS/style_custom_bootstrap.css', 3);
 			self::AddCSS(BASE_URL.'view/CSS/style.css', 4);
 
-			self::AddJS('//ajax.googleapis.com/ajax/libs/jquery/'.CONFIG_JQUERY.'/jquery.min.js',1,CONFIG_JQUERY_SHA_384,'anonymous');
+			self::AddJS('https://code.jquery.com/jquery-'.CONFIG_JQUERY.'.min.js',1,CONFIG_JQUERY_HASH,'anonymous');
 			self::AddJS('https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', 2,'sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd','anonymous');
 			self::AddJS(BASE_URL.'view/JS/php.js',3);
 			self::AddJS(BASE_URL.'view/JS/self.js', 9);

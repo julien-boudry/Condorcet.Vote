@@ -4,16 +4,16 @@ declare(strict_types=1);
 
 class Add_Controller extends Controller
 {
-	protected $_view = 'Add' ;
+	protected string $_view = 'Add' ;
 
 		//////
 
-	protected $_Condorcet_Vote = false ;
+	protected ?Condorcet_Vote $_Condorcet_Vote;
 
-	protected $_mode ;
+	protected string $_mode ;
 
 
-	public function __construct ($condorcet_vote = null)
+	public function __construct ()
 	{
 		parent::__construct();
 
@@ -82,7 +82,7 @@ class Add_Controller extends Controller
 				if	( $this->_Condorcet_Vote->getPersonnalVoteCode($_GET['personnal_name']) !== $_GET['personnal_code'] )
 				{
 					Events::add( new EventsError (404, null, null, 'This vote or this code are false') );
-					$this->_Condorcet_Vote = false ;
+					$this->_Condorcet_Vote = null;
 					return false ;
 				}
 
@@ -102,13 +102,13 @@ class Add_Controller extends Controller
 			}
 			else
 			{
-				$this->_Condorcet_Vote = false ;
+				$this->_Condorcet_Vote = null;
 				return false ;
 			}
 		}
 	}
 
-	protected function try_add_vote ($name, $vote): bool
+	protected function try_add_vote (string $name, string $vote): bool
 	{
 		if	( $this->_mode === 'Public' && !empty($name) && !myPregMatch(REGEX_ADD_NAME, $name) )
 		{
@@ -143,9 +143,9 @@ class Add_Controller extends Controller
 	}
 
 
-	public function showPage ($follow = null, $position = 'after'): void
+	public function showPage (?Controller $follow = null, string $position = 'after'): void
 	{
-		if ($this->_Condorcet_Vote !== false)
+		if (isset($this->_Condorcet_Vote))
 		{
 			if (Events::isAnysuccess())
 				{$this->_selfView = false ;}
