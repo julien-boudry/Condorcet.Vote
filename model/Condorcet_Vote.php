@@ -4,6 +4,7 @@ declare(strict_types=1);
 use CondorcetPHP\Condorcet\Condorcet;
 use CondorcetPHP\Condorcet\Election;
 use CondorcetPHP\Condorcet\Throwable\ElectionObjectVersionMismatchException;
+use CondorcetPHP\Condorcet\Vote;
 use RedBeanPHP\OODBBean;
 use RedBeanPHP\R;
 
@@ -13,6 +14,7 @@ class Condorcet_Vote
 	public Election $_objectCondorcet ;
 	protected bool $_isNew = false ;
 	protected bool $_checksum_change = false ;
+	protected bool $_forceUpdateCache = false;
 
 	public function __construct (Election|string $vote, $title = null, $methods = null, $description = null)
 	{
@@ -39,6 +41,10 @@ class Condorcet_Vote
 				$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
 				$this->writeVoteObject();
 			}
+		}
+
+		if ($this->_forceUpdateCache) {
+			$this->writeVoteObject();
 		}
 
 		// Enregistrement final conditionné à l'absence totale d'erreur
@@ -116,7 +122,7 @@ class Condorcet_Vote
 			}
 			catch (ElectionObjectVersionMismatchException | NoCache) {
 
-			// Update de l'objet & reconstruction
+				// Update de l'objet & reconstruction
 				$this->_objectCondorcet = new Election;
 
 				// Reconstruction
@@ -125,13 +131,13 @@ class Condorcet_Vote
 					$this->_objectCondorcet->addCandidatesFromJson($this->_bean->candidates);
 
 					// Votes
-					foreach ( json_decode($this->_bean->votes_list, true) as $vote )
+					foreach (json_decode($this->_bean->votes_list, true) as $vote)
 					{
 						$ranking = $vote['ranking'];
 						$tag = $vote['tag'];
 						$timestamp = $vote['timestamp'];
 
-						$this->_objectCondorcet->addVote(new CondorcetPHP\Condorcet\Vote ($ranking, $tag, $timestamp));
+						$this->_objectCondorcet->addVote(new Vote ($ranking, $tag, $timestamp));
 					}
 
 				// Mise à jour
@@ -139,7 +145,7 @@ class Condorcet_Vote
 				$this->saveVotesList();
 				$this->prepareCondorcet();
 				$this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
-				$this->writeVoteObject();
+				$this->_forceUpdateCache = true;
 			}
 
 		}
