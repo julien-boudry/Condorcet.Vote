@@ -13,7 +13,11 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost' || getenv('PRODUCTION') === 'true')
 
 	define('BASE_URL', 'https://www.condorcet.vote'.$port.'/');
 
-	R::setup('mysql:host=mariadb;dbname=condorcet', 'condorcet_user', getenv('CONDORCETDB_USER_PASSWORD'));
+	if (file_exists($config_path = 'config/prod.php')) {
+		require_once $config_path;
+	} else {
+		R::setup('mysql:host=mariadb;dbname=condorcet', 'condorcet_user', getenv('CONDORCETDB_USER_PASSWORD'));
+	}
 	// R::freeze( TRUE );
 
 	// Analytics
