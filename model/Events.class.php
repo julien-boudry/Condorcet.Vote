@@ -208,13 +208,13 @@ abstract class Events
 
 class EventsError extends Events
 {
-	public int $_server_code ;
-	public string $_name ;
-	public string $_private_details ;
-	protected string $_IP ;
+	public ?int $_server_code ;
+	public ?string $_name ;
+	public $_private_details ;
+	protected ?string $_IP ;
 
-	protected string $_line ;
-	protected int $_timestamp ;
+	protected $_line ;
+	protected ?int $_timestamp ;
 
 		//////
 

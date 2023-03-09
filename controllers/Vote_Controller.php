@@ -18,7 +18,7 @@ class Vote_Controller extends Controller
 		parent::__construct();
 
 		// Construction depuis Edit
-		if (is_object($build))
+		if ($build !== null)
 		{
 			$this->_Condorcet_Vote = $build ;
 			$this->_objectCondorcet = $this->_Condorcet_Vote->_objectCondorcet ;

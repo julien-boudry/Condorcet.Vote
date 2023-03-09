@@ -14,7 +14,7 @@ class Condorcet_Vote
 	protected bool $_isNew = false ;
 	protected bool $_checksum_change = false ;
 
-	public function __construct ($vote, $title = null, $methods = null, $description = null)
+	public function __construct (Election|string $vote, $title = null, $methods = null, $description = null)
 	{
 		if (is_object($vote))
 		{
@@ -66,7 +66,7 @@ class Condorcet_Vote
 			endif;
 		}
 
-	protected function register (CondorcetPHP\Condorcet\Election $vote, $title, $methods, $description = null): void
+	protected function register (Election $vote, $title, $methods, $description = null): void
 	{
 		$this->_isNew = true ;
 
@@ -98,11 +98,11 @@ class Condorcet_Vote
 		$this->writeVoteObject();
 	}
 
-	protected function load ($read_code): void
+	protected function load (?string $read_code): void
 	{
 		$this->_bean = R::findOne( 'condorcet', ' read_code = ? ', [ $read_code ]);
 
-		if (is_null($this->_bean))
+		if ($this->_bean === null)
 			{ throw new Exception ('Vote inexistant'); }
 		else
 		{
