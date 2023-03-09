@@ -54,7 +54,7 @@ class Create_Controller extends Admin_Controller
 				$new_condorcet->parseCandidates($_POST['candidates']);
 			}
 
-			if (CondorcetUtil::isJson($_POST['votes']))
+			if (CondorcetUtil::isValidJsonForCondorcet($_POST['votes']))
 			{
 				$new_condorcet->addVotesFromJson($_POST['votes']);
 			}
