@@ -1,139 +1,139 @@
 .home-button-wrapper a:hover, .home-button-wrapper a:focus, .home-button-wrapper a:visited {
-	text-decoration:none;
-	color:white;
+    text-decoration:none;
+    color:white;
 }
 
 .home-section {
-	margin-top:5%;
+    margin-top:5%;
 }
 
 .page-section {
-	margin-top:5%;
+    margin-top:5%;
 }
 
 .page-section h1 {
-	padding-top:3%;
-	padding-bottom:5%;
+    padding-top:3%;
+    padding-bottom:5%;
 }
 
 .page-section h2, .page-section h1 {
-	text-align:center;
+    text-align:center;
 }
 
 .navbar-nav .label {
-	font-size:100%;
+    font-size:100%;
 }
 
 .page-section h2 {
-	margin-top:5%;
+    margin-top:5%;
 }
 
 .home-icon {
-	font-size:140px;
-	color:black;
-	max-height:140px;
+    font-size:140px;
+    color:black;
+    max-height:140px;
 }
 
 @media (max-width:767px){
-	.home-icon {
-		font-size:70px;
-	}
+    .home-icon {
+        font-size:70px;
+    }
 }
 
 .page-icon {
-	float:left;
+    float:left;
 }
 
 @media (max-width:500px){
-	.home-icon {
-		float:none;
-	}
+    .home-icon {
+        float:none;
+    }
 
-	.page-section {
-		text-align:center;
-	}
+    .page-section {
+        text-align:center;
+    }
 }
 
 .ranking_icon {
-	font-size:150%;
+    font-size:150%;
 }
 
 .margin-icon {
-	margin-right:1%;
+    margin-right:1%;
 }
 
 .tag-icon {
-	margin-left:1%;
+    margin-left:1%;
 }
 
 .panel-title .caret {
-	margin-left:5%;
+    margin-left:5%;
 }
 
 #vote_url_box .alert {
-	border:none;
-	border-radius:0px;
+    border:none;
+    border-radius:0px;
 }
 
 #vote_url_box .alert:first-of-type {
-	margin-bottom:0px;
-	margin-top:2%;
+    margin-bottom:0px;
+    margin-top:2%;
 }
 
 .red-background {
-	background-color:#A94442;
+    background-color:#A94442;
 }
 
 #personnal_keynote {
-	width:100%;
-	background-color:#F5F5F5;
-	border:none;
+    width:100%;
+    background-color:#F5F5F5;
+    border:none;
 }
 
 input:invalid {
-	box-shadow: 0 0 2px 1px red;
+    box-shadow: 0 0 2px 1px red;
 }
 
 .method_description {
-	padding-top: 3%;
-	border-bottom: 1px solid #808080;
-	padding-bottom: 2%;
+    padding-top: 3%;
+    border-bottom: 1px solid #808080;
+    padding-bottom: 2%;
 }
 
-	.method_description:last-of-type {
-		border-bottom:none;
-		padding-bottom:0px;
-	}
+    .method_description:last-of-type {
+        border-bottom:none;
+        padding-bottom:0px;
+    }
 
 .method_description h3
 {
-	float:left;
-	margin-bottom:3%;
+    float:left;
+    margin-bottom:3%;
 }
 
 .method_description h4
 {
-	clear:both;
+    clear:both;
 }
 
 .method_description aside
 {
-	float:right;
-	font-style:italic;
-	margin-top: 20px;
+    float:right;
+    font-style:italic;
+    margin-top: 20px;
 }
 
 .wikitable .green-cell {
-	background:#9F9;vertical-align:middle;text-align:center;
+    background:#9F9;vertical-align:middle;text-align:center;
 }
 
 .wikitable .red-cell {
-	background:#F99;vertical-align:middle;text-align:center;
+    background:#F99;vertical-align:middle;text-align:center;
 }
 
 .kemeny-arbitrary {
-	color:red;
-	margin-bottom:2%;
+    color:red;
+    margin-bottom:2%;
 }
 
 .anchor{
@@ -144,5 +144,5 @@ input:invalid {
 }
 
 .pairwise-line th {
-	width:10%;
+    width:10%;
 }

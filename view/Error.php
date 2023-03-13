@@ -2,11 +2,11 @@
 
 <?php foreach (Events::getFatalErrors() as $error) : ?>
 
-	<h1 class="text-center">Error : <?php echo $error->_name ; ?></h1>
+    <h1 class="text-center">Error : <?php echo $error->_name ; ?></h1>
 
-		<h2 class="text-center">
-			<small><?php echo $error->_public_details ; ?></small>
-		</h2>
+        <h2 class="text-center">
+            <small><?php echo $error->_public_details ; ?></small>
+        </h2>
 
 <?php endforeach; ?>
 
