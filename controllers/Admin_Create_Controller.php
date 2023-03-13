@@ -1,17 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
 use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
 
 class Create_Controller extends Admin_Controller
 {
-    protected $_inputError = true ;
+    protected $_inputError = true;
 
-    public function __construct ()
+    public function __construct()
     {
-        if ($this->checkEmpty() && $this->registerCondorcet())
-        {
-            $this->_inputError = false ;
+        if ($this->checkEmpty() && $this->registerCondorcet()) {
+            $this->_inputError = false;
 
             // Events::add( new Info('Your vote has been register') );
 
@@ -19,79 +19,66 @@ class Create_Controller extends Admin_Controller
         }
     }
 
-    public function checkEmpty (): bool
+    public function checkEmpty(): bool
     {
         $this->_accept_methods = check_frontInput_method();
 
-        if	(
-                !empty($_POST['candidates']) &&
-                isset($_POST['votes']) &&
-                isset($_POST['title']) && myPregMatch(REGEX_TITLE, $_POST['title']) &&
-                isset($_POST['description']) && strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT &&
-                $this->_accept_methods !== false
-            )
-            { return true ;	}
-        else
-            {
-                $this->_inputError = 'Wrong input format';
+        if (
+            !empty($_POST['candidates']) &&
+            isset($_POST['votes'], $_POST['title'])
+             && myPregMatch(REGEX_TITLE, $_POST['title']) &&
+            isset($_POST['description']) && \strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT &&
+            $this->_accept_methods !== false
+        ) {
+            return true;
+        } else {
+            $this->_inputError = 'Wrong input format';
 
-                return false ;
-            }
+            return false;
+        }
     }
 
-    public function registerCondorcet (): bool
+    public function registerCondorcet(): bool
     {
-        try
-        {
-            $new_condorcet = new CondorcetPHP\Condorcet\Election();
+        try {
+            $new_condorcet = new CondorcetPHP\Condorcet\Election;
 
-            if (CondorcetUtil::isValidJsonForCondorcet($_POST['candidates']))
-            {
+            if (CondorcetUtil::isValidJsonForCondorcet($_POST['candidates'])) {
                 $new_condorcet->addCandidatesFromJson($_POST['candidates']);
-            }
-            else
-            {
+            } else {
                 $new_condorcet->parseCandidates($_POST['candidates']);
             }
 
-            if (CondorcetUtil::isValidJsonForCondorcet($_POST['votes']))
-            {
+            if (CondorcetUtil::isValidJsonForCondorcet($_POST['votes'])) {
                 $new_condorcet->addVotesFromJson($_POST['votes']);
-            }
-            else
-            {
+            } else {
                 $new_condorcet->parseVotes($_POST['votes']);
             }
-        }
-        catch (Exception $e)
-        {
-            $this->_inputError = $e->getMessage() ;
+        } catch (Exception $e) {
+            $this->_inputError = $e->getMessage();
 
-            return false ;
+            return false;
         }
 
         $this->_Condorcet_Vote = new Condorcet_Vote(
-            $new_condorcet
-            , $_POST['title']
-            , $this->_accept_methods
-            , (strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT && !empty($_POST['description'])) ? $_POST['description'] : null
+            $new_condorcet,
+            $_POST['title'],
+            $this->_accept_methods,
+            (\strlen($_POST['description']) <= CONFIG_DESCRIPTION_LENGHT && !empty($_POST['description'])) ? $_POST['description'] : null
         );
 
-        return true ;
+        return true;
     }
 
         //////
 
 
-    public function showPage (?Controller $follow = null, string $position = 'after'): void
+    public function showPage(?Controller $follow = null, string $position = 'after'): void
     {
-        if ($this->_inputError)
-        {
-            Events::add( new EventsError (502, null, null, $this->_inputError) );
-            parent::showPage() ;
-        }
-        else
-        {
+        if ($this->_inputError) {
+            Events::add(new EventsError(502, null, null, $this->_inputError));
+            parent::showPage();
+        } else {
             header('Location: ' . $this->_Condorcet_Vote->getAdminURL());
         }
     }

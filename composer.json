@@ -2,5 +2,8 @@
     "require": {
         "julien-boudry/condorcet": "4.2.x",
         "gabordemooij/redbean": "^5.0"
+    },
+    "require-dev": {
+        "laravel/pint": "^1.6"
     }
 }

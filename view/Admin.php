@@ -5,13 +5,13 @@
         title="You can share this address or keep it to yourself, Condorcet-Vote does not index it.">
             <span class="glyphicon glyphicon-globe pull-left ranking_icon"></span>
             This vote is publicly accessible by this link:
-            <a href="<?php echo $this->_Condorcet_Vote->getPublicURL() ; ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getPublicURL() ; ?></a>
+            <a href="<?php echo $this->_Condorcet_Vote->getPublicURL(); ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getPublicURL(); ?></a>
         </div>
         <div class="alert alert-danger text-center tooltips" role="alert" data-toggle="tooltip" data-placement="left"
         title="Do not lose this link, in which case you can not manage your vote! Do not share that by measuring the consequence of such an act.">
             <span class="glyphicon glyphicon-eye-close pull-left ranking_icon"></span>
             You can admin this vote by this link :
-            <a href="<?php echo $this->_Condorcet_Vote->getAdminURL() ; ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getAdminURL() ; ?></a>
+            <a href="<?php echo $this->_Condorcet_Vote->getAdminURL(); ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getAdminURL(); ?></a>
             (not share it !)
         </div>
     </div>
@@ -21,7 +21,7 @@
             <h2 class="text-center"><?php echo $this->_Condorcet_Vote->getTitle(); ?> <small>Editor</small></h2>
         </header>
 
-        <form name="edit_vote" action="<?php echo $this->_Condorcet_Vote->getAdminURL() ; ?>" method="post">
+        <form name="edit_vote" action="<?php echo $this->_Condorcet_Vote->getAdminURL(); ?>" method="post">
             <input type="hidden" name="is_edit" value="true">
             <section>
                 <header class="page-header">
@@ -56,13 +56,13 @@
                         <?php
                         $allow_methods = json_decode($this->_Condorcet_Vote->_bean->methods, true);
 
-                        $i=1;
-                        foreach(CONDORCET_METHOD as $title => $method) : ?>
+            $i=1;
+            foreach (CONDORCET_METHOD as $title => $method) { ?>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="btn-group">
                                 <span class="input-group-addon">
                                     <input type="checkbox" name="edit_methods[]" value="<?php echo $method; ?>"
-            <?php echo (in_array($method, $allow_methods, true)) ? 'checked' : '' ; ?>
+            <?php echo (\in_array($method, $allow_methods, true)) ? 'checked' : ''; ?>
                                     >
                                 </span>
                                 <span class="input-group-addon alert-danger">
@@ -70,7 +70,7 @@
                                 </span>
                             </div><!-- /input-group -->
                         </div>
-                        <?php endforeach; ?>
+                        <?php } ?>
                     </div><!-- /.row -->
                     <?php setHelper('methods_infos', 'warning'); ?>
             </section>
@@ -80,8 +80,8 @@
                     <h3><small>(Optional)</small> Description</h3>
                 </header>
                 <textarea name="edit_description" class="form-control" rows="2" spellcheck="true"
-                maxlength=<?php echo CONFIG_DESCRIPTION_LENGHT ; ?>
-                ><?php echo htmlspecialchars($this->_Condorcet_Vote->getDescription()) ; ?></textarea>
+                maxlength=<?php echo CONFIG_DESCRIPTION_LENGHT; ?>
+                ><?php echo htmlspecialchars($this->_Condorcet_Vote->getDescription()); ?></textarea>
             </section>
 
             <section>
@@ -92,7 +92,7 @@
                         >
                             Disallow any method of public voting
                             <input type="checkbox" name="close"
-                            <?php echo (!$this->_Condorcet_Vote->_bean->open) ? 'checked' : '' ; ?>
+                            <?php echo (!$this->_Condorcet_Vote->_bean->open) ? 'checked' : ''; ?>
                             >
                         </small>
                     </h3>
@@ -101,19 +101,19 @@
                     <?php setHelper('public_voting'); ?>
                     <?php setHelper('reset_url', 'danger'); ?>
 
-                    <?php if ($this->_Condorcet_Vote->_bean->open) : ?>
+                    <?php if ($this->_Condorcet_Vote->_bean->open) { ?>
                         <div class="alert alert-info text-center" role="alert">
-                            <?php $freeVoteUrl = $this->_Condorcet_Vote->getFreeVoteUrl() ; ?>
+                            <?php $freeVoteUrl = $this->_Condorcet_Vote->getFreeVoteUrl(); ?>
                             <span class="glyphicon glyphicon-envelope pull-left ranking_icon"></span>
                             This URL can be used by anyone to vote... if you share it :
-                            <a href="<?php echo $freeVoteUrl; ?>" class="alert-link"><?php echo $freeVoteUrl ; ?></a>
+                            <a href="<?php echo $freeVoteUrl; ?>" class="alert-link"><?php echo $freeVoteUrl; ?></a>
                         </div>
 
                         <div class="alert alert-warning text-center" role="alert">
                             <span class="glyphicon glyphicon-list-alt pull-left ranking_icon"></span>
                         <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#edit_personnal">Set personnal & unique access</button>
                         </div>
-                    <?php endif; ?>
+                    <?php } ?>
                 </section>
             </section>
 
@@ -135,12 +135,12 @@
                 <span class="input-group-addon"><?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl(); ?></span>
 
                 <input type="text" id="edit_personnal_identifiant" class="form-control" spellcheck="false"
-                placeholder="name or identifiant (alphabetic, without space)" maxlength="<?php echo NAME_MAX_LENGHT ; ?>" size="25"
+                placeholder="name or identifiant (alphabetic, without space)" maxlength="<?php echo NAME_MAX_LENGHT; ?>" size="25"
                 pattern="<?php echo REGEX_ADMIN_ADD_PERSONNAL_ID; ?>"
                 required autocomplete="off"
                 data-admin_code="<?php echo $this->_Condorcet_Vote->getAdminCode(); ?>"
                 data-hash_code="<?php echo $this->_Condorcet_Vote->getHashCode(); ?>"
-                data-base_url="<?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl() ; ?>"
+                data-base_url="<?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl(); ?>"
                 >
 
                 <span id="edit_personnal_code" class="input-group-addon">/***</span>

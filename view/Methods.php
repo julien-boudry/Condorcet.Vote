@@ -395,7 +395,7 @@
         <span class="anchor" id="supported_methods"></span>
         <h2>Supported method on Condorcet-Vote.org</h2>
 
-        <?php require 'view/Parts/methods_list.php' ; ?>
+        <?php require 'view/Parts/methods_list.php'; ?>
 
         <span class="anchor" id="methods_overview"></span>
         <h2>Condorcet Methods Overview</h2>

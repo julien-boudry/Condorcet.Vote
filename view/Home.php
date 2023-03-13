@@ -45,9 +45,9 @@
 
         <b>Complete list of supported method by Condorcet-Vote.org :</b>
         <br><br>
-        <?php require 'view/Parts/methods_list.php' ; ?>
+        <?php require 'view/Parts/methods_list.php'; ?>
         <br><br>
-        <span class="home-button-wrapper"><a href="<?php echo BASE_URL.'Condorcet_Methods' ; ?>">
+        <span class="home-button-wrapper"><a href="<?php echo BASE_URL.'Condorcet_Methods'; ?>">
             <button class="btn btn-success btn-lg center-block">
                 Learn more about methods &rarr;
             </button>
@@ -70,7 +70,7 @@
 
             It is also possible to choose the results of advanced display methods, and associate each vote one or more tags (useful for associating a vote and a person).</p>
         <br><br>
-        <span class="home-button-wrapper"><a href="<?php echo BASE_URL.'Manual' ; ?>">
+        <span class="home-button-wrapper"><a href="<?php echo BASE_URL.'Manual'; ?>">
             <button class="btn btn-success btn-lg center-block">
                 Go to manual &rarr;
             </button>

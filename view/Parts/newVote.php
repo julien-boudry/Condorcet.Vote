@@ -40,7 +40,7 @@
                             </header>
                                 <div class="row center-block">
                                     <?php $i=1;
-                                    foreach(CONDORCET_METHOD as $title => $method) : ?>
+            foreach (CONDORCET_METHOD as $title => $method) { ?>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="btn-group">
                                             <span class="input-group-addon">
@@ -51,7 +51,7 @@
                                             </span>
                                         </div><!-- /input-group -->
                                     </div>
-                                    <?php endforeach; ?>
+                                    <?php } ?>
                                 </div><!-- /.row -->
                             <?php setHelper('methods_infos', 'warning'); ?>
                     </section>
@@ -61,14 +61,14 @@
                                     <h3><small>(Optional)</small> Description</h3>
                             </header>
                             <textarea spellcheck="true" name="description" class="form-control" rows="2"
-                            maxlength=<?php echo CONFIG_DESCRIPTION_LENGHT ; ?>
+                            maxlength=<?php echo CONFIG_DESCRIPTION_LENGHT; ?>
                             ></textarea>
                     </section>
 
             </div>
             <div class="modal-footer">
                 <div class="input-group col-xs-12 col-sm-8 col-md-7 col-lg-6 pull-right">
-                        <input name="title" type="text" class="form-control" placeholder="Vote Title" required spellcheck="true" pattern="<?php echo REGEX_TITLE ; ?>">
+                        <input name="title" type="text" class="form-control" placeholder="Vote Title" required spellcheck="true" pattern="<?php echo REGEX_TITLE; ?>">
                         <span class="input-group-btn">
                                 <button class="btn btn-success" type="submit">Create Vote!</button>
                         </span>

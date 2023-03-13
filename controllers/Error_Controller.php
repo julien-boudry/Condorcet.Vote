@@ -1,26 +1,26 @@
 <?php
+
 declare(strict_types=1);
 
 
 class Error_Controller extends Controller
 {
-    protected string $_view = 'Error' ;
+    protected string $_view = 'Error';
 
-        //////
+    //////
 
-    public function __construct ()
+    public function __construct()
     {
         parent::__construct();
 
-        foreach (Events::getFatalErrors() as $e) :
+        foreach (Events::getFatalErrors() as $e) {
             var_dump($e);
-        endforeach;
+        }
     }
         //////
 
-    protected function getTitle (): string
+    protected function getTitle(): string
     {
-        return (string) Events::getFatalErrors()[0]->_name ;
+        return (string) Events::getFatalErrors()[0]->_name;
     }
-
 }

@@ -14,9 +14,9 @@
         <nav class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <li class="active" data-toggle="modal" data-target="#new_vote"><a href="#">New Vote</a></li>
-                <li><a href="<?php echo BASE_URL ; ?>Condorcet_Methods">Condorcet methods</a></li>
-                <li><a href="<?php echo BASE_URL ; ?>Manual">Help</a></li>
-                <li><a href="<?php echo BASE_URL ; ?>About">About</a></li>
+                <li><a href="<?php echo BASE_URL; ?>Condorcet_Methods">Condorcet methods</a></li>
+                <li><a href="<?php echo BASE_URL; ?>Manual">Help</a></li>
+                <li><a href="<?php echo BASE_URL; ?>About">About</a></li>
                  <!--
                  <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
@@ -33,7 +33,7 @@
                 -->
             </ul>
             <div class="nav navbar-nav pull-right" style="margin-top:10px;">
-                <a href="<?php echo BASE_URL ; ?>Donate">
+                <a href="<?php echo BASE_URL; ?>Donate">
                     <span class="label label-warning"><strong><i class="fa fa-btc"></i> DONATE</strong></span>
                 </a>
             </div>
