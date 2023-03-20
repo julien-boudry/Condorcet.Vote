@@ -1,6 +1,6 @@
 {
     "require": {
-        "julien-boudry/condorcet": "4.2.x",
+        "julien-boudry/condorcet": "4.3.x",
         "gabordemooij/redbean": "^5.0"
     },
     "require-dev": {
