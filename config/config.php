@@ -11,7 +11,7 @@ $port = !\in_array($_SERVER['SERVER_PORT'], ['80', '443'], true) ? ':'.$_SERVER[
 if ($_SERVER['SERVER_NAME'] !== 'localhost' || getenv('PRODUCTION') === 'true') {
     \define('CONFIG_ENV', 'PROD');
 
-    \define('BASE_URL', 'https://www.condorcet.vote'.$port.'/');
+    \define('BASE_URL', 'https://'.$_SERVER['SERVER_NAME'].$port.'/');
 
     if (file_exists($config_path = 'config/prod.php')) {
         require_once $config_path;
