@@ -4,7 +4,7 @@ services:
     environment:
       - CONDORCETDB_USER_PASSWORD=${CONDORCETDB_USER_PASSWORD}
     ports:
-      - '80:80'
+      - '8042:80'
     volumes:
       #- /Users/vincentb/Sites/_docker/apache:/etc/apache2/sites-enabled
       - .:/var/www/html
@@ -34,8 +34,8 @@ services:
       - MYSQL_USER=condorcet_user
       - MYSQL_PASSWORD=${CONDORCETDB_USER_PASSWORD}
       - MYSQL_DATABASE=condorcet
-    ports:
-      - 3306:3306
+    #ports:
+      #- 3306:3306
     networks:
       - condorcet-network
 
