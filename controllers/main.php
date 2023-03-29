@@ -5,7 +5,7 @@ declare(strict_types=1);
 
 abstract class Controller
 {
-    public static $_ajax = false;
+    public static bool $_ajax = false;
 
     ///////
 

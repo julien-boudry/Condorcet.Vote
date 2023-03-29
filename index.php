@@ -36,6 +36,9 @@ if (!isset($_GET['route'])) {
     $controller_name = $_GET['route'].'_Controller';
 
     $controller = new $controller_name;
+} elseif (strtolower($_GET['route']) === 'phpinfo') {
+    phpinfo();
+    exit();
 } else {
     Events::add(new EventsError(404, null, 'Route inexistante'));
 
