@@ -7,6 +7,7 @@ use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
 class Create_Controller extends Admin_Controller
 {
     protected $_inputError = true;
+    protected array|false $_accept_methods;
 
     public function __construct()
     {
