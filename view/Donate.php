@@ -1,12 +1,14 @@
 <div class="container">
         <div class="text-center">
-            <a href="https://blockchair.com/bitcoin/address/bc1qtema3xewdwz9dluugez7c0pnelvthucempl838" target="_blank">
+            <!--
+            <a href="https://blockchair.com/bitcoin/address/bc1qjev4uxw8dpygwejcz9wpd8h5vsu2fs8ulagvlr" target="_blank">
                 <img src="<?php echo BASE_URL . 'view/IMG/bitcoin-qr.png'; ?>" alt="condorcetVote-bitcoin-qrcode">
             </a>
+            -->
         </div>
         <div class="text-center">
             <br>
-            <strong style="color:green;font-size:150%;">₿ bc1qtema3xewdwz9dluugez7c0pnelvthucempl838</strong>
+            <strong style="color:green;font-size:150%;">₿ bc1qjev4uxw8dpygwejcz9wpd8h5vsu2fs8ulagvlr</strong>
         </div>
     <hr class="clearfix">
 </div> <!-- /container -->
