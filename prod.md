@@ -3,6 +3,7 @@ Initial volume creation:
 docker volume create condorcetdb
 ```
 
+Services launch:
 ```shell
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 ```
