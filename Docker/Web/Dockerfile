@@ -1,4 +1,4 @@
-FROM php:8.2-apache-bullseye
+FROM php:8.2-apache-bookworm
 
 RUN apt-get update
 RUN apt-get install --no-install-recommends --fix-missing -yqq git unzip curl libzip-dev
