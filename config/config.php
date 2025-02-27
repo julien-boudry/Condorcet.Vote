@@ -53,9 +53,9 @@ else {
     // Gestionnaire d'exception
     set_exception_handler(
         static function ($exception): void {
-        echo '<h1>Exception non-attrapée</h1>';
-        var_dump($exception);
-    }
+            echo '<h1>Exception non-attrapée</h1>';
+            var_dump($exception);
+        }
     );
 
     // Analytics

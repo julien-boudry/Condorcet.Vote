@@ -17,7 +17,7 @@ class Error_Controller extends Controller
             var_dump($e);
         }
     }
-        //////
+    //////
 
     protected function getTitle(): string
     {

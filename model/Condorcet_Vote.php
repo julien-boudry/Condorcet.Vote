@@ -46,24 +46,24 @@ class Condorcet_Vote
         }
     }
 
-        public function willUpdate(): bool
-        {
-            $this->_checksum_change = ($this->_bean->vote_checksum !== $this->_objectCondorcet->getChecksum()) ? true : false;
+    public function willUpdate(): bool
+    {
+        $this->_checksum_change = ($this->_bean->vote_checksum !== $this->_objectCondorcet->getChecksum()) ? true : false;
 
-            if (
-                !$this->_isNew && (
-                    $this->_checksum_change
-                    ||
-                    $this->_bean->hasChanged('methods')
-                    ||
-                    $this->_bean->hasChanged('description')
-                )
-            ) {
-                return true;
-            } else {
-                return false;
-            }
+        if (
+            !$this->_isNew && (
+                $this->_checksum_change
+                ||
+                $this->_bean->hasChanged('methods')
+                ||
+                $this->_bean->hasChanged('description')
+            )
+        ) {
+            return true;
+        } else {
+            return false;
         }
+    }
 
     protected function register(Election $vote, $title, $methods, $description = null): void
     {
@@ -211,7 +211,7 @@ class Condorcet_Vote
     }
 
 
-        //////
+    //////
 
     public function getTitle(): string
     {
@@ -261,25 +261,25 @@ class Condorcet_Vote
         return BASE_URL . 'Vote/' . $this->_bean->read_code . '/Admin/' . $this->getAdminCode() . '/';
     }
 
-        public function getAdminCode(): string
-        {
-            return $this->_bean->admin_code;
-        }
+    public function getAdminCode(): string
+    {
+        return $this->_bean->admin_code;
+    }
 
-        public function getHashCode(): string
-        {
-            return $this->_bean->hash_code;
-        }
+    public function getHashCode(): string
+    {
+        return $this->_bean->hash_code;
+    }
 
     public function getFreeVoteUrl(): string
     {
         return BASE_URL . 'Vote/' . $this->_bean->read_code . '/Public/' . $this->getFreeVoteCode() . '/';
     }
 
-        public function getFreeVoteCode(): string
-        {
-            return strtoupper(substr(hash('sha224', $this->_bean->admin_code . $this->_bean->hash_code), 5, 8));
-        }
+    public function getFreeVoteCode(): string
+    {
+        return strtoupper(substr(hash('sha224', $this->_bean->admin_code . $this->_bean->hash_code), 5, 8));
+    }
 
     public function getPersonnalVoteBaseUrl(): string
     {

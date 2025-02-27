@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 class Request
@@ -7,7 +8,7 @@ class Request
 
     public static function init(): void
     {
-        self::$get = new self();
+        self::$get = new self;
     }
 
     public string $route = 'home'; // Valeur par défaut
@@ -25,11 +26,11 @@ class Request
 
     private function parseUri(): void
     {
-        $uri = strtok($_SERVER["REQUEST_URI"], '?'); // Supprime les paramètres GET
+        $uri = strtok($_SERVER['REQUEST_URI'], '?'); // Supprime les paramètres GET
         $segments = explode('/', trim($uri, '/'));
 
         // Vérifie et applique les règles
-        if (count($segments) >= 2 && $segments[0] === 'Vote') {
+        if (\count($segments) >= 2 && $segments[0] === 'Vote') {
             $this->vote = $segments[1];
 
             if (isset($segments[2])) {

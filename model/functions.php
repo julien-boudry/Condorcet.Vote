@@ -11,7 +11,7 @@ set_error_handler(static function ($type, $msg, $file, $line, $context = []) {
 
     Events::add(new EventsError(500, null, $type.' - '.$msg.' - '.$file.' - '.$line, null, 2, 3));
 
-    ( new Error_Controller )->showPage();
+    (new Error_Controller)->showPage();
 
     exit();
 });
@@ -149,7 +149,7 @@ function setHtmlPairwise(array $pairwise): void
 
             $j++;
         }
-        echo  (\count($pairwise) === $i) ? '<td>-</td>' : '';
+        echo (\count($pairwise) === $i) ? '<td>-</td>' : '';
         echo '
 				</tr>';
 

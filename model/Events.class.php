@@ -39,9 +39,9 @@ abstract class Events
     public static function showMessages($type, $mark = false): array|false
     {
         if ($type === 'Success') {
-            $list =& self::$_success_list;
+            $list = & self::$_success_list;
         } elseif ($type === 'Infos') {
-            $list =& self::$_infos_list;
+            $list = & self::$_infos_list;
         } else {
             return false;
         }
@@ -66,120 +66,120 @@ abstract class Events
 
 
     // Errors
-        public static function getFatalErrors()
-        {
-            $retour = [];
+    public static function getFatalErrors()
+    {
+        $retour = [];
 
-            foreach (self::$_errors_list as $error) {
-                if ($error->_visibility > 0 && $error->_level > 0) {
-                    $retour[] = $error;
-                }
+        foreach (self::$_errors_list as $error) {
+            if ($error->_visibility > 0 && $error->_level > 0) {
+                $retour[] = $error;
             }
-
-            return (!empty($retour)) ? $retour : null;
         }
 
-        public static function showNormalErrors($mark = false)
-        {
-            $retour = [];
+        return (!empty($retour)) ? $retour : null;
+    }
 
-            foreach (self::$_errors_list as &$error) {
-                if ($error->_show !== false && $mark) {
-                    continue;
-                }
+    public static function showNormalErrors($mark = false)
+    {
+        $retour = [];
 
-                if ($error->_visibility > 0 && $error->_level === 0) {
-                    $retour[] = $error;
-
-                    if ($mark) {
-                        $error->_show = true;
-                    }
-                }
+        foreach (self::$_errors_list as &$error) {
+            if ($error->_show !== false && $mark) {
+                continue;
             }
 
-            return (!empty($retour)) ? $retour : null;
+            if ($error->_visibility > 0 && $error->_level === 0) {
+                $retour[] = $error;
+
+                if ($mark) {
+                    $error->_show = true;
+                }
+            }
         }
 
-        public static function getErrorCode()
-        {
-            foreach (self::$_errors_list as $error) {
-                if (\is_int($error->_server_code)) {
-                    return $error->_server_code;
-                }
-            }
+        return (!empty($retour)) ? $retour : null;
+    }
 
-            // Pas d'erreur :
-            return null;
+    public static function getErrorCode()
+    {
+        foreach (self::$_errors_list as $error) {
+            if (\is_int($error->_server_code)) {
+                return $error->_server_code;
+            }
         }
 
-        public static function isAnyError($minLevel = 0, $maxLevel = null): bool
-        {
-            if ($minLevel === 0 && empty(self::$_errors_list)) {
-                return false;
-            } elseif ($maxLevel === null) {
-                foreach (self::$_errors_list as $error) {
-                    if ($error->_level >= $minLevel) {
-                        return true;
-                    }
-                }
-            } elseif ($maxLevel >= $minLevel) {
-                foreach (self::$_errors_list as $error) {
-                    if ($error->_level >= $minLevel && $error->_level <= $maxLevel) {
-                        return true;
-                    }
-                }
-            }
+        // Pas d'erreur :
+        return null;
+    }
 
+    public static function isAnyError($minLevel = 0, $maxLevel = null): bool
+    {
+        if ($minLevel === 0 && empty(self::$_errors_list)) {
             return false;
+        } elseif ($maxLevel === null) {
+            foreach (self::$_errors_list as $error) {
+                if ($error->_level >= $minLevel) {
+                    return true;
+                }
+            }
+        } elseif ($maxLevel >= $minLevel) {
+            foreach (self::$_errors_list as $error) {
+                if ($error->_level >= $minLevel && $error->_level <= $maxLevel) {
+                    return true;
+                }
+            }
         }
+
+        return false;
+    }
 
     // Success
 
-        public static function isAnysuccess($minLevel = 0, $maxLevel = null): bool
-        {
-            if ($minLevel === 0 && empty(self::$_success_list)) {
-                return false;
-            } elseif ($maxLevel === null) {
-                foreach (self::$_success_list as $succes) {
-                    if ($succes->_level >= $minLevel) {
-                        return true;
-                    }
-                }
-            } elseif ($maxLevel >= $minLevel) {
-                foreach (self::$_success_list as $succes) {
-                    if ($succes->_level >= $minLevel && $succes->_level <= $maxLevel) {
-                        return true;
-                    }
+    public static function isAnysuccess($minLevel = 0, $maxLevel = null): bool
+    {
+        if ($minLevel === 0 && empty(self::$_success_list)) {
+            return false;
+        } elseif ($maxLevel === null) {
+            foreach (self::$_success_list as $succes) {
+                if ($succes->_level >= $minLevel) {
+                    return true;
                 }
             }
-
-            return false;
+        } elseif ($maxLevel >= $minLevel) {
+            foreach (self::$_success_list as $succes) {
+                if ($succes->_level >= $minLevel && $succes->_level <= $maxLevel) {
+                    return true;
+                }
+            }
         }
+
+        return false;
+    }
 
     // Infos
 
-        public static function isAnyinfo($minLevel = 0, $maxLevel = null): bool
-        {
-            if ($minLevel === 0 && empty(self::$_infos_list)) {
-                return false;
-            } elseif ($maxLevel === null) {
-                foreach (self::$_infos_list as $info) {
-                    if ($info->_level >= $minLevel) {
-                        return true;
-                    }
-                }
-            } elseif ($maxLevel >= $minLevel) {
-                foreach (self::$_infos_list as $info) {
-                    if ($info->_level >= $minLevel && $info->_level <= $maxLevel) {
-                        return true;
-                    }
+    public static function isAnyinfo($minLevel = 0, $maxLevel = null): bool
+    {
+        if ($minLevel === 0 && empty(self::$_infos_list)) {
+            return false;
+        } elseif ($maxLevel === null) {
+            foreach (self::$_infos_list as $info) {
+                if ($info->_level >= $minLevel) {
+                    return true;
                 }
             }
-
-            return false;
+        } elseif ($maxLevel >= $minLevel) {
+            foreach (self::$_infos_list as $info) {
+                if ($info->_level >= $minLevel && $info->_level <= $maxLevel) {
+                    return true;
+                }
+            }
         }
 
-        //////
+        return false;
+    }
+
+    //////
 
     public int $_level;  // 0=service normal / 1=Erreur remarquable / 3=Erreur grave
     public $_public_details;
@@ -208,8 +208,7 @@ class EventsError extends Events
         int $visibility = 2,
         int $level = 2,
         $line = null
-    )
-    {
+    ) {
         $this->_server_code = $server_code;
         $this->_name = $name;
         $this->_private_details = $private_details;
@@ -253,7 +252,7 @@ class EventsError extends Events
         }
     }
 
-        //////
+    //////
 
     protected function autoComplete(): void
     {

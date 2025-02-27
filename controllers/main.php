@@ -45,7 +45,7 @@ abstract class Controller
         ksort(self::$_head_CSS);
 
         foreach (self::$_head_CSS as $input) {
-            $sup ='';
+            $sup = '';
 
             if ($input['integrity'] !== false) {
                 $sup .= 'integrity="'.$input['integrity'].'" ';
@@ -75,7 +75,7 @@ abstract class Controller
         echo '</script>';
 
         foreach (self::$_head_JS as $input) {
-            $sup ='';
+            $sup = '';
 
             if ($input['integrity'] !== false) {
                 $sup .= 'integrity="'.$input['integrity'].'" ';
@@ -102,7 +102,7 @@ abstract class Controller
     }
 
 
-        //////
+    //////
 
     protected string $_view = 'Home';
     protected $_selfView = true;
@@ -127,7 +127,7 @@ abstract class Controller
 
         // On veut une erreur
         if ($this->_view !== 'Error' && Events::getFatalErrors() !== null) {
-            ( new Error_Controller )->showPage();
+            (new Error_Controller)->showPage();
 
             return Events::getFatalErrors();
         }

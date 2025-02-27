@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use CondorcetPHP\Condorcet\{Candidate, Vote};
+use CondorcetPHP\Condorcet\{Candidate};
 use RedBeanPHP\R;
 
 set_time_limit(600);
@@ -68,7 +68,7 @@ $chrono = new CondorcetPHP\Condorcet\Timer\Chrono($manager);
 // exit();
 
 while (!empty($election = R::findOne('condorcet', ' condorcet_version != -'.CondorcetPHP\Condorcet\Condorcet::getVersion(true)))) {
-    ( new Condorcet_Vote($election->read_code) );
+    (new Condorcet_Vote($election->read_code));
 }
 
 unset($chrono);

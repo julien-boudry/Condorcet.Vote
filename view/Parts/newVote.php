@@ -39,7 +39,7 @@
                                     <h3>Condorcet Methods</h3>
                             </header>
                                 <div class="row center-block">
-                                    <?php $i=1;
+                                    <?php $i = 1;
             foreach (CONDORCET_METHOD as $title => $method) { ?>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="btn-group">

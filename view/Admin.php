@@ -56,7 +56,7 @@
                         <?php
                         $allow_methods = json_decode($this->_Condorcet_Vote->_bean->methods, true);
 
-            $i=1;
+            $i = 1;
             foreach (CONDORCET_METHOD as $title => $method) { ?>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                             <div class="btn-group">
