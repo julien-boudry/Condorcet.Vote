@@ -71,8 +71,8 @@ CondorcetPHP\Condorcet\Election::setMaxParseIteration(50000);
 CondorcetPHP\Condorcet\Election::setMaxVoteNumber(100000);
 
 // JS
-const CONFIG_JQUERY = '3.6.4';
-const CONFIG_JQUERY_HASH = 'sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=';
+const CONFIG_JQUERY = '3.7.1';
+const CONFIG_JQUERY_HASH = 'sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=';
 
 
 // Methodes de Condorcet
