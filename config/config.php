@@ -45,10 +45,8 @@ else {
     ini_set('display_errors', 1);
     error_reporting(\E_ALL);
 
-
-
     \define('CONFIG_ENV', 'DEV');
-    \define('BASE_URL', 'http://localhost'.$port.'/');
+    \define('BASE_URL', 'https://localhost'.$port.'/');
 
     R::setup('mysql:host=mariadb;dbname=condorcet', 'condorcet_user', getenv('CONDORCETDB_USER_PASSWORD'));
 

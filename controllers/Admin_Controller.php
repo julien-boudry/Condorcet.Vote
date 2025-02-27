@@ -20,9 +20,9 @@ class Admin_Controller extends Controller
         parent::__construct();
 
         // Edit Controller est appelé directement via URL (pas d'API)
-        if (!isset($this->_Condorcet_Vote) && isset($_GET['vote'], $_GET['admin_code'])) {
+        if (!isset($this->_Condorcet_Vote) && isset(Request::$get->vote, Request::$get->admin_code)) {
             try {
-                $this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);
+                $this->_Condorcet_Vote = new Condorcet_Vote(Request::$get->vote);
             } catch (Exception $e) {
                 Events::add(new EventsError(server_code: 404, name: null, private_details: $e, public_details: self::ERROR_URL));
 
@@ -32,7 +32,7 @@ class Admin_Controller extends Controller
             }
 
             // Controle de la validité du code
-            if ($this->_Condorcet_Vote->_bean->admin_code !== $_GET['admin_code']) {
+            if ($this->_Condorcet_Vote->_bean->admin_code !== Request::$get->admin_code) {
                 Events::add(new EventsError(404, null, null, self::ERROR_URL));
 
                 $this->_Condorcet_Vote = null;

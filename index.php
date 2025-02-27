@@ -15,11 +15,13 @@ require_once 'model/Condorcet_Vote.php';
 require_once 'model/Events.class.php';
 require_once 'model/NoCache.php';
 
+// Request
+require_once 'controllers/Request.php';
+Request::init();
 
 
 // Controller
 require_once 'controllers/main.php';
-
 // Update Script
 if (isset($_GET['update'])) {
     require_once 'update.php';
@@ -30,13 +32,13 @@ if (isset($_GET['ajax'])) {
 }
 
 
-if (!isset($_GET['route'])) {
+if (!isset(Request::$get->route)) {
     $controller = new Home_Controller;
-} elseif (class_exists($_GET['route'].'_Controller')) {
-    $controller_name = $_GET['route'].'_Controller';
+} elseif (class_exists(Request::$get->route.'_Controller')) {
+    $controller_name = Request::$get->route.'_Controller';
 
     $controller = new $controller_name;
-} elseif (strtolower($_GET['route']) === 'phpinfo') {
+} elseif (strtolower(Request::$get->route) === 'phpinfo') {
     phpinfo();
     exit();
 } else {

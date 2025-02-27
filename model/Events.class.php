@@ -36,7 +36,7 @@ abstract class Events
     }
 
 
-    public static function showMessages($type, $mark = false): array
+    public static function showMessages($type, $mark = false): array|false
     {
         if ($type === 'Success') {
             $list =& self::$_success_list;
@@ -181,9 +181,9 @@ abstract class Events
 
         //////
 
-    public $_level;  // 0=service normal / 1=Erreur remarquable / 3=Erreur grave
+    public int $_level;  // 0=service normal / 1=Erreur remarquable / 3=Erreur grave
     public $_public_details;
-    public $_visibility; // 2 = tjs visible / 1 = Visible en mode DEV / 0 = Jamais visible
+    public int $_visibility; // 2 = tjs visible / 1 = Visible en mode DEV / 0 = Jamais visible
     public $_show = false;
 }
 
@@ -205,8 +205,8 @@ class EventsError extends Events
         $name = null,
         $private_details = null,
         $public_details = null,
-        $visibility = 2,
-        $level = 2,
+        int $visibility = 2,
+        int $level = 2,
         $line = null
     )
     {
@@ -277,7 +277,7 @@ class EventsError extends Events
 
 abstract class Message extends Events
 {
-    public function __construct($public_details, $visibility = 2, $level = 0)
+    public function __construct($public_details, int $visibility = 2, int $level = 0)
     {
         $this->_public_details = $public_details;
         $this->_visibility = $visibility;

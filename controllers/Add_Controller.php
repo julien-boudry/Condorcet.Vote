@@ -18,11 +18,11 @@ class Add_Controller extends Controller
     {
         parent::__construct();
 
-        if (isset($_GET['vote'], $_GET['mode'])
+        if (isset(Request::$get->vote, Request::$get->mode)
 
         ) {
             try {
-                $this->_Condorcet_Vote = new Condorcet_Vote($_GET['vote']);
+                $this->_Condorcet_Vote = new Condorcet_Vote(Request::$get->vote);
             } catch (Exception $e) {
                 Events::add(new EventsError(404));
                 return false;
@@ -36,12 +36,12 @@ class Add_Controller extends Controller
 
             // Public Mode
             if (
-                $_GET['mode'] === 'Public' &&
-                isset($_GET['free_vote_code'])
+                Request::$get->mode === 'Public' &&
+                isset(Request::$get->free_vote_code)
             ) {
                 $this->_mode = 'Public';
 
-                if ($this->_Condorcet_Vote->getFreeVoteCode() !== $_GET['free_vote_code']) {
+                if ($this->_Condorcet_Vote->getFreeVoteCode() !== Request::$get->free_vote_code) {
                     Events::add(new EventsError(404));
                     return false;
                 }
@@ -66,20 +66,20 @@ class Add_Controller extends Controller
             }
             // Personnal mode
             elseif (
-                $_GET['mode'] === 'Personnal' &&
-                isset($_GET['personnal_name']) && !empty($_GET['personnal_name']) &&
-                isset($_GET['personnal_code'])
+                Request::$get->mode === 'Personnal' &&
+                isset(Request::$get->personnal_name) && !empty(Request::$get->personnal_name) &&
+                isset(Request::$get->personnal_code)
             ) {
                 $this->_mode = 'Personnal';
 
-                if ($this->_Condorcet_Vote->getPersonnalVoteCode($_GET['personnal_name']) !== $_GET['personnal_code']) {
+                if ($this->_Condorcet_Vote->getPersonnalVoteCode(Request::$get->personnal_name) !== Request::$get->personnal_code) {
                     Events::add(new EventsError(404, null, null, 'This vote or this code are false'));
                     $this->_Condorcet_Vote = null;
                     return false;
                 }
 
                 // Check vote déjà existant
-                if (!empty($this->_Condorcet_Vote->_objectCondorcet->getVotesList($_GET['personnal_name']))) {
+                if (!empty($this->_Condorcet_Vote->_objectCondorcet->getVotesList(Request::$get->personnal_name))) {
                     Events::add(new EventsError(502, 'Double', null, 'You have already vote', 2, 0));
                     return false;
                 }
@@ -87,7 +87,7 @@ class Add_Controller extends Controller
                 // Reception des votes
                 if (isset($_POST['add_vote_content'])) {
                     // Test d'enregistrement
-                    $this->try_add_vote($_GET['personnal_name'], $_POST['add_vote_content']);
+                    $this->try_add_vote(Request::$get->personnal_name, $_POST['add_vote_content']);
                 }
             } else {
                 $this->_Condorcet_Vote = null;

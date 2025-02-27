@@ -114,7 +114,7 @@ abstract class Controller
 
     protected function getTitle(): string
     {
-        return SITE_HEAD_TITLE . ((isset($this->_title)) ? $this->_title : $this->_view);
+        return SITE_HEAD_TITLE . ($this->_title ?? $this->_view);
     }
 
 
