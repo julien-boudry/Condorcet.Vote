@@ -1,6 +1,6 @@
 services:
-  web:
-    #environment:
-      #PRODUCTION: 'true'
-    ports:
-      - '8042:80'
+  php:
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    tty: false

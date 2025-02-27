@@ -8,6 +8,8 @@ services:
       - "443:443/udp" # HTTP/3
     volumes:
       - ./:/app/public
+      - caddy_data:/data
+      - caddy_config:/config
     # commentez la ligne suivante en production, elle permet d'avoir de beaux logs lisibles en dev
     tty: true
     networks:
@@ -51,3 +53,5 @@ networks:
 volumes:
   condorcetdb:
     external: true
+  caddy_data:
+  caddy_config:
