@@ -8,6 +8,6 @@ services:
       - caddy_config:/config
     tty: false
 
-phpmyadmin:
-  ports:
-    -
+  phpmyadmin:
+    ports:
+      -
