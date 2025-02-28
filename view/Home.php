@@ -15,7 +15,7 @@
 
     <section class="home-section" style="margin-top:0px;">
         <header class="text-center">
-            <img src="<?php echo BASE_URL . 'view/IMG/condorcet-black.png'; ?>" alt="condorcet black">
+            <img src="<?php echo BASE_URL . 'assets/IMG/condorcet-black.png'; ?>" alt="condorcet black">
             <h2>What is Condorcet Method ?</h2>
         </header>
         <p>Marie Jean Antoine Nicolas de Caritat, Marquis de Condorcet, who died March 29, 1794. Was a philosopher, mathematician, and French politician, representative of the Enlightenment.</p>
@@ -45,14 +45,14 @@
 
         <b>Complete list of supported method by Condorcet-Vote.org :</b>
         <br><br>
-        <?php require 'view/Parts/methods_list.php'; ?>
+        <?php require '../view/Parts/methods_list.php'; ?>
         <br><br>
         <span class="home-button-wrapper"><a href="<?php echo BASE_URL.'Condorcet_Methods'; ?>">
             <button class="btn btn-success btn-lg center-block">
                 Learn more about methods &rarr;
             </button>
         </a></span>
-        
+
     </section>
     <hr class="clearfix">
 

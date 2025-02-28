@@ -13,7 +13,7 @@ if ($_SERVER['SERVER_NAME'] !== 'localhost' || getenv('PRODUCTION') === 'true') 
 
     \define('BASE_URL', 'https://'.$_SERVER['SERVER_NAME'].$port.'/');
 
-    if (file_exists($config_path = 'config/prod.php')) {
+    if (file_exists($config_path = '../config/prod.php')) {
         require_once $config_path;
     } else {
         R::setup('mysql:host=mariadb;dbname=condorcet', 'condorcet_user', getenv('CONDORCETDB_USER_PASSWORD'));

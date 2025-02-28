@@ -7,7 +7,7 @@ services:
       - "443:443" # HTTPS
       - "443:443/udp" # HTTP/3
     volumes:
-      - ./:/app/public
+      - ./:/app
       - caddy_data:/data
       - caddy_config:/config
     # commentez la ligne suivante en production, elle permet d'avoir de beaux logs lisibles en dev

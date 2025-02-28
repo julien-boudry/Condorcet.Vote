@@ -8,14 +8,14 @@
 
         <span class="anchor" id="introduction"></span>
         <h2>Introduction</h2>
-        
+
         <p>These methods are modern mathematical algorithms, sometimes heavy, to extend and complement the original methods of the Marquis de Condorcet, without ever results do contradict.</p>
 
         <p>Specifically, these methods can overcome shortages such as the <a href="https://en.wikipedia.org/wiki/Voting_paradox" target="_blank">Condorcet paradox</a>. A special case where no winner or loser can not normally be determined.
         These methods are also used to represent a complete ranking of the election.</p>
 
         <p>Each has its biases, its advantages and disadvantages, and may require more computing power or less. Meet certain anti-manipulation advanced criteria like "independence of clone", "Smith criterion" or "local independence".</p>
-        
+
         <p><strong>If you do not have specific needs, we recommend the use of Schulze Winning method.</strong></p>
 
         <span class="anchor" id="specifications"></span>
@@ -395,7 +395,7 @@
         <span class="anchor" id="supported_methods"></span>
         <h2>Supported method on Condorcet-Vote.org</h2>
 
-        <?php require 'view/Parts/methods_list.php'; ?>
+        <?php require '../view/Parts/methods_list.php'; ?>
 
         <span class="anchor" id="methods_overview"></span>
         <h2>Condorcet Methods Overview</h2>
@@ -439,8 +439,8 @@
             <h4>Documentation</h4>
 
             <ul>
-                <li><a href="<?php echo BASE_URL; ?>view/DOCS/IndependenceofClones.pdf" target="_blank">Independence of Clones</a></li>
-                <li><a href="<?php echo BASE_URL; ?>view/DOCS/CompleteIndependenceofClones.pdf" target="_blank">Complete Independence of Clones</a></li>
+                <li><a href="<?php echo BASE_URL; ?>assets/DOCS/IndependenceofClones.pdf" target="_blank">Independence of Clones</a></li>
+                <li><a href="<?php echo BASE_URL; ?>assets/DOCS/CompleteIndependenceofClones.pdf" target="_blank">Complete Independence of Clones</a></li>
             </ul>
 
             <h4>Note</h4>

@@ -5,26 +5,27 @@ declare(strict_types=1);
 \define('SCRIPT_START', microtime(true));
 
 // Config
-require_once 'vendor/autoload.php';
-require_once 'config/config.php';
-require_once 'config/regex.php';
+require_once '../vendor/autoload.php';
+require_once '../config/config.php';
+require_once '../config/regex.php';
 
 // Model
-require_once 'model/functions.php';
-require_once 'model/Condorcet_Vote.php';
-require_once 'model/Events.class.php';
-require_once 'model/NoCache.php';
+require_once '../model/functions.php';
+require_once '../model/Condorcet_Vote.php';
+require_once '../model/Events.class.php';
+require_once '../model/NoCache.php';
 
 // Request
-require_once 'controllers/Request.php';
+require_once '../http/Request.php';
 Request::init();
 
 
 // Controller
-require_once 'controllers/main.php';
+require_once '../controllers/main.php';
+
 // Update Script
 if (isset($_GET['update'])) {
-    require_once 'update.php';
+    require_once '../update.php';
 }
 
 if (isset($_GET['ajax'])) {

@@ -130,7 +130,7 @@ class Admin_Controller extends Controller
     public function showPage(?Controller $follow = null, string $position = 'after'): void
     {
         if (isset($this->_Condorcet_Vote)) {
-            parent::AddJS(BASE_URL.'view/JS/sha224.js', 3);
+            parent::AddJS(BASE_URL.'assets/JS/sha224.js', 3);
             parent::showPage(new Vote_Controller($this->_Condorcet_Vote));
         } else {
             parent::showPage();

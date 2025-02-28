@@ -1,7 +1,7 @@
 <div class="container">
         <div class="text-center">
             <a href="https://blockchair.com/bitcoin/address/bc1qjev4uxw8dpygwejcz9wpd8h5vsu2fs8ulagvlr" target="_blank">
-                <img src="<?php echo BASE_URL . 'view/IMG/bitcoin-qr.png'; ?>" alt="condorcetVote-bitcoin-qrcode">
+                <img src="<?php echo BASE_URL . 'assets/IMG/bitcoin-qr.png'; ?>" alt="condorcetVote-bitcoin-qrcode">
             </a>
         </div>
         <div class="text-center">

@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <img id="logo" src="<?php echo BASE_URL; ?>view/IMG/mini-logo.png" alt="Logo">
+            <img id="logo" src="<?php echo BASE_URL; ?>assets/IMG/mini-logo.png" alt="Logo">
             <a class="navbar-brand" href="<?php echo BASE_URL; ?>">Condorcet Vote</a>
         </div>
         <nav class="navbar-collapse collapse">

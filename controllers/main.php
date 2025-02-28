@@ -93,7 +93,7 @@ abstract class Controller
 
 		';
 
-        echo '<link rel="icon" type="image/png" href="'.BASE_URL.'view/IMG/favicon.png" />
+        echo '<link rel="icon" type="image/png" href="'.BASE_URL.'assets/IMG/favicon.png" />
 		';
 
         if (isset(self::$_head_Canonical)) {
@@ -141,17 +141,17 @@ abstract class Controller
         // Un peu d'Ajax ?
         if (!self::$_ajax && !$this->_partial) {
             self::AddCSS('https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css', 1, 'sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu', 'anonymous');
-            self::AddCSS(BASE_URL.'view/CSS/font-awesome.min.css', 2);
-            self::AddCSS(BASE_URL.'view/CSS/style_custom_bootstrap.css', 3);
-            self::AddCSS(BASE_URL.'view/CSS/style.css', 4);
+            self::AddCSS(BASE_URL.'assets/CSS/font-awesome.min.css', 2);
+            self::AddCSS(BASE_URL.'assets/CSS/style_custom_bootstrap.css', 3);
+            self::AddCSS(BASE_URL.'assets/CSS/style.css', 4);
 
             self::AddJS('https://code.jquery.com/jquery-'.CONFIG_JQUERY.'.min.js', 1, CONFIG_JQUERY_HASH, 'anonymous');
             self::AddJS('https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js', 2, 'sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd', 'anonymous');
-            self::AddJS(BASE_URL.'view/JS/php.js', 3);
-            self::AddJS(BASE_URL.'view/JS/self.js', 9);
+            self::AddJS(BASE_URL.'assets/JS/php.js', 3);
+            self::AddJS(BASE_URL.'assets/JS/self.js', 9);
 
-            require_once 'view/Skeleton/head.php';
-            require_once 'view/Skeleton/header.php';
+            require_once '../view/Skeleton/head.php';
+            require_once '../view/Skeleton/header.php';
         }
 
         // Route classique
@@ -161,12 +161,12 @@ abstract class Controller
 
         // Message d'erreurs
         if (Events::isAnyEvent(0, 0)) {
-            require 'view/Parts/message.php';
+            require '../view/Parts/message.php';
         }
 
         // Base
         if ($this->_selfView) {
-            require_once 'view'.\DIRECTORY_SEPARATOR.$this->_view .'.php';
+            require_once '../view/'.$this->_view.'.php';
         }
 
         if (\is_object($follow) && $position === 'after') {
@@ -176,8 +176,8 @@ abstract class Controller
 
         // Un peu d'Ajax ?
         if (!self::$_ajax || $this->_partial) {
-            require_once 'view/Parts/newVote.php';
-            require_once 'view/Skeleton/footer.php';
+            require_once '../view/Parts/newVote.php';
+            require_once '../view/Skeleton/footer.php';
         }
     }
 }

@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="http://www.condorcet.vote/view/IMG/condorcet-black.png" alt="Condorcet Class" width="12%">
+  <img src="http://www.condorcet.vote/assets/IMG/condorcet-black.png" alt="Condorcet Class" width="12%">
 </p>   
 
 www.Condorcet.Vote Source Code

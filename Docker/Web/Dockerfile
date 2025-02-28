@@ -15,4 +15,4 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 ENV COMPOSER_ALLOW_SUPERUSER=1
 
 # Copiez les fichiers PHP de votre projet dans le répertoire public
-COPY . /app/public
+COPY . /app
