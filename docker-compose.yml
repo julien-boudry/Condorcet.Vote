@@ -19,7 +19,7 @@ services:
       - mariadb
     environment:
       - CONDORCETDB_USER_PASSWORD=${CONDORCETDB_USER_PASSWORD}
-      - CADY_EXTRA_CONFIG=${CADY_EXTRA_CONFIG}
+      - CADDY_EXTRA_CONFIG=${CADDY_EXTRA_CONFIG}
 
   phpmyadmin:
     image: phpmyadmin:latest
