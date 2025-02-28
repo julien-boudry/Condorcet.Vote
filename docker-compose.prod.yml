@@ -1,6 +1,5 @@
 services:
   php:
-    command: ["cp", '-f', '$PHP_INI_DIR/php.ini-production', '$PHP_INI_DIR/php.ini']
     environment:
       - SERVER_NAME=${CONDORCETVOTE_PROD_DOMAIN}
       - CONDORCETDB_USER_PASSWORD=${CONDORCETDB_USER_PASSWORD}
