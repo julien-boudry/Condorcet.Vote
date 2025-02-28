@@ -9,7 +9,9 @@ RUN install-php-extensions \
 	opcache
 
 RUN cp $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini
-ADD opcache.ini "$PHP_INI_DIR/opcache.ini"
+RUN if [ -n "$SERVER_NAME" ] ; then cp -f $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini ; fi
+
+ADD opcache.ini "$PHP_INI_DIR/conf.d/opcache.ini"
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 ENV COMPOSER_ALLOW_SUPERUSER=1

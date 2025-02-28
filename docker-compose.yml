@@ -1,3 +1,4 @@
+name: condorcet_vote
 services:
   php:
     build: ./Docker/Web/.
