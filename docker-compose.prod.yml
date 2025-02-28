@@ -9,4 +9,4 @@ services:
     tty: false
 
   phpmyadmin:
-    ports: []
+    ports: !reset []
