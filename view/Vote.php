@@ -1,4 +1,6 @@
 <?php declare(strict_types=1);
+
+use CondorcetPHP\Condorcet\Condorcet;
 use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
 
 ?>
@@ -195,7 +197,7 @@ use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
                                 $test_kemeny = $this->_objectCondorcet->getResult($method);
                             } catch (CondorcetPHP\Condorcet\Throwable\CandidatesMaxNumberReachedException $e) { ?>
                                     <em> You have to many candidate to use this method (limit is : <?php
-                                        echo ('CondorcetPHP\Condorcet\Algo\Methods\\'.$method)::$maxCandidates;
+                                        echo Condorcet::getMethodClass($method)::$maxCandidates;
                                 ?> candidates) </em>
                                     </div></div></section>
                                 <?php
