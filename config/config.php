@@ -11,6 +11,8 @@ $port = !\in_array($_SERVER['SERVER_PORT'], ['80', '443'], true) ? ':'.$_SERVER[
 if ($_SERVER['SERVER_NAME'] !== 'localhost' || getenv('PRODUCTION') === 'true') {
     \define('CONFIG_ENV', 'PROD');
 
+    error_reporting(\E_ALL & ~\E_DEPRECATED & ~\E_USER_DEPRECATED);
+
     \define('BASE_URL', 'https://'.$_SERVER['SERVER_NAME'].$port.'/');
 
     if (file_exists($config_path = '../config/prod.php')) {
