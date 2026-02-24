@@ -87,7 +87,7 @@ class Condorcet_Vote
         $this->setOpen(true);
 
         $this->_objectCondorcet = $vote;
-        $this->_bean->condorcet_version = '-'.$this->_objectCondorcet->version;
+        $this->_bean->condorcet_version = '-'.$this->_objectCondorcet->buildByCondorcetVersion;
 
         $this->_bean->candidates = json_encode($this->_objectCondorcet->getCandidatesListAsString());
         $this->saveVotesList();
