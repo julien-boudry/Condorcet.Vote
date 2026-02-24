@@ -36,7 +36,7 @@ use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
                     <li>
                         <em>Compute by
                             <a href="https://github.com/julien-boudry/Condorcet" target="_blank">Condorcet PHP</a>
-                            <span class="label label-info"><?php echo $this->_objectCondorcet->getObjectVersion(true); ?></span>
+                            <span class="label label-info"><?php echo $this->_objectCondorcet->getCondorcetBuilderVersion(true); ?></span>
                         </em>
                     </li>
                     <li>
@@ -84,7 +84,7 @@ use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
                                 <span class="caret pull-right"></span>
                                 Vote N° <?php echo $voteid; ?>
 
-                                <?php foreach ($vote->getTags() as $tag) { ?>
+                                <?php foreach ($vote->tags as $tag) { ?>
 
                                     <span class="pull-right tag-icon label <?php echo showOneTagClass($tag); ?>"><?php echo htmlspecialchars($tag ?? ''); ?></span>
 
@@ -95,10 +95,10 @@ use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
                             <div class="panel-body">
                                 <ul class="list-group">
                                     <?php
-                $voteDate = date('l jS \of F Y, H:i:s', (int) $vote->getTimestamp());
+                $voteDate = date('l jS \of F Y, H:i:s', (int) $vote->updatedAt);
 
                     $i = 0;
-                    foreach ($vote->getContextualRanking($this->_objectCondorcet) as $rank => $rank_vote) { ?>
+                    foreach ($vote->getRanking(context: $this->_objectCondorcet) as $rank => $rank_vote) { ?>
                                     <li class="list-group-item <?php echo ($i === 0) ? 'list-group-item-success' : ''; ?>">
                                         <span class="badge">
                                             <?php echo $rank; ?>
@@ -258,7 +258,7 @@ use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
                                             print_r(
                                                 CondorcetUtil::format(
                                                     $this->_objectCondorcet
-                                                        ->getResult($method)->getStats(),
+                                                        ->getResult($method)->stats,
                                                     true
                                                 )
                                             );

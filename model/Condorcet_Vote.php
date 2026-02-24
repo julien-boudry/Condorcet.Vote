@@ -87,7 +87,7 @@ class Condorcet_Vote
         $this->setOpen(true);
 
         $this->_objectCondorcet = $vote;
-        $this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion(true);
+        $this->_bean->condorcet_version = '-'.$this->_objectCondorcet->version;
 
         $this->_bean->candidates = json_encode($this->_objectCondorcet->getCandidatesListAsString());
         $this->saveVotesList();
@@ -131,7 +131,7 @@ class Condorcet_Vote
                 }
 
                 // Mise à jour
-                $this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getObjectVersion(true);
+                $this->_bean->condorcet_version = '-'.$this->_objectCondorcet->getCondorcetBuilderVersion(true);
                 $this->saveVotesList();
                 $this->prepareCondorcet();
                 $this->_bean->vote_checksum = $this->_objectCondorcet->getChecksum();
@@ -146,9 +146,9 @@ class Condorcet_Vote
 
         foreach ($voteList as &$oneVote) {
             $NewoneVote = [];
-            $NewoneVote['ranking'] = $oneVote->getSimpleRanking();
-            $NewoneVote['tag'] = $oneVote->getTags();
-            $NewoneVote['timestamp'] = $oneVote->getTimestamp();
+            $NewoneVote['ranking'] = $oneVote->getRankingAsString();
+            $NewoneVote['tag'] = $oneVote->tags;
+            $NewoneVote['timestamp'] = $oneVote->updatedAt;
 
             $oneVote = $NewoneVote;
         }
