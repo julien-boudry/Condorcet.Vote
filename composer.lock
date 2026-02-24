@@ -113,16 +113,16 @@
         },
         {
             "name": "julien-boudry/condorcet",
-            "version": "v5.0.5",
+            "version": "v5.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/julien-boudry/Condorcet.git",
-                "reference": "1229954abf3c84a663aaee2eda82362c7e3deab4"
+                "reference": "8e499001c5e090c50750404c55710eda128ccfa4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/julien-boudry/Condorcet/zipball/1229954abf3c84a663aaee2eda82362c7e3deab4",
-                "reference": "1229954abf3c84a663aaee2eda82362c7e3deab4",
+                "url": "https://api.github.com/repos/julien-boudry/Condorcet/zipball/8e499001c5e090c50750404c55710eda128ccfa4",
+                "reference": "8e499001c5e090c50750404c55710eda128ccfa4",
                 "shasum": ""
             },
             "require": {
@@ -187,7 +187,7 @@
             ],
             "support": {
                 "issues": "https://github.com/julien-boudry/Condorcet/issues",
-                "source": "https://github.com/julien-boudry/Condorcet/tree/v5.0.5"
+                "source": "https://github.com/julien-boudry/Condorcet/tree/v5.0.6"
             },
             "funding": [
                 {
@@ -199,7 +199,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2026-02-21T21:28:57+00:00"
+            "time": "2026-02-24T21:57:08+00:00"
         },
         {
             "name": "psr/container",
