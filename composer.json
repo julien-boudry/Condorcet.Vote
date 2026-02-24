@@ -1,6 +1,6 @@
 {
     "require": {
-        "php": "8.4.x",
+        "php": "8.5.*",
         "julien-boudry/condorcet": "4.7.x",
         "gabordemooij/redbean": "^5.7"
     },

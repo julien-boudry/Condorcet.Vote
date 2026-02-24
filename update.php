@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use CondorcetPHP\Condorcet\{Candidate};
+use CondorcetPHP\Condorcet\Candidate;
 use RedBeanPHP\R;
 
 set_time_limit(600);
