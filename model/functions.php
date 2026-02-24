@@ -9,6 +9,10 @@ set_error_handler(static function ($type, $msg, $file, $line, $context = []) {
         return false;
     }
 
+    if ($type & (\E_DEPRECATED | \E_USER_DEPRECATED)) {
+        return false;
+    }
+
     Events::add(new EventsError(500, null, $type.' - '.$msg.' - '.$file.' - '.$line, null, 2, 3));
 
     (new Error_Controller)->showPage();
