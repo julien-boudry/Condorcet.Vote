@@ -6,7 +6,7 @@
     <form name="add_vote" method="post">
     <section>
         <header class="page-header">
-            <h3>Your Identifiant <small>(Optional)</small></h3>
+            <h3>Your Identifier <small>(Optional)</small></h3>
         </header>
         <?php if ($this->_mode === 'Personnal') { ?>
         <div class="text-center">
@@ -30,7 +30,7 @@
     </section>
 
     <hr>
-    <button class="btn btn-info center-block" type="submit">Add you vote</button>
+    <button class="btn btn-info center-block" type="submit">Add your vote</button>
 
     </form>
 

@@ -8,11 +8,11 @@
 
         <h2 style="margin-top:5%;">Introduction</h2>
 
-            <p>Condorcet-Vote is a simple and powerful tools allowing you to either create tests results quite private and unlimited. But also open to the public consultation results, allow the person to vote identified itself or the full public opening.
+            <p>Condorcet-Vote is a simple and powerful tool allowing you to create private and unlimited election results. You can also open the results to public consultation, allow identified persons to vote, or fully open the vote to the public.
 
-            The voting list is editable from the creation or after creation, in addition and deletion.
+            The voting list is editable at creation or afterwards, with the ability to add and delete votes.
 
-            It is also possible to choose the results of advanced display methods, and associate each vote one or more tags (useful for associating a vote and a person).</p>
+            It is also possible to choose which advanced methods to display in the results, and associate one or more tags with each vote (useful for linking a vote to a person).</p>
 
         <h2>1 - Create a vote</h2>
         <p></p>

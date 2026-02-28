@@ -65,7 +65,7 @@ function setHelper(string $type, string $color = 'info'): void
 
     switch ($type) {
         case 'enter_candidates':
-            echo 'Each separated by a semicolon candidate. A candidate may take up to 30 alphanumeric characters but can not be a number. The front and rear spaces will be ignored.
+            echo 'Each candidate separated by a semicolon. A candidate name may be up to 30 alphanumeric characters but cannot be a number. Leading and trailing spaces will be ignored.
 					Of course, a minimum vote requires two candidates.';
             break;
 
@@ -83,7 +83,7 @@ B>C # Equivalent to B>C>A=D</code></pre>";
             break;
 
         case 'methods_infos':
-            echo 'All these methods meet the criteria of Condorcet. For more information on the different methods of calculation, look <a href="'.BASE_URL.'Condorcet_Methods" target="_blank">this page</a>.';
+            echo 'All these methods meet the Condorcet criteria. For more information on the different calculation methods, see <a href="'.BASE_URL.'Condorcet_Methods" target="_blank">this page</a>.';
             break;
 
         case 'delete_infos':
@@ -91,16 +91,16 @@ B>C # Equivalent to B>C>A=D</code></pre>";
             break;
 
         case 'personnal_vote':
-            echo 'The staff is used to allow voting once the voting for a person identified by name. The vote will then be provided specifically identifiable by a tag matching that name. <br>
-				You must individually contact the url provided to the voter. ';
+            echo 'This feature is used to allow a person identified by name to vote once. The vote will then be specifically identifiable by a tag matching that name. <br>
+				You must individually share the provided URL with the voter. ';
             break;
 
         case 'public_voting':
-            echo 'If checked the vote will be disabled as well as the URL of public vote that personal URL.';
+            echo 'If checked, voting will be disabled, as well as both the public vote URL and the personal URLs.';
             break;
 
         case 'reset_url':
-            echo 'Warning: Disable and re-enable the external voting also resets all URL. Public or personnal vote.';
+            echo 'Warning: Disabling and re-enabling external voting also resets all URLs, both public and personal.';
             break;
 
         default:

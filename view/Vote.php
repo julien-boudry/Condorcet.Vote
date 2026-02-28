@@ -40,7 +40,7 @@ use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
                         </em>
                     </li>
                     <li>
-                        <strong>Create on:</strong>
+                        <strong>Created on:</strong>
                         UTC <?php echo $this->_Condorcet_Vote->getDate(); ?>
                     </li>
                     <li>
@@ -196,7 +196,7 @@ use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
                             try {
                                 $test_kemeny = $this->_objectCondorcet->getResult($method);
                             } catch (CondorcetPHP\Condorcet\Throwable\CandidatesMaxNumberReachedException $e) { ?>
-                                    <em> You have to many candidate to use this method (limit is : <?php
+                                    <em> You have too many candidates to use this method (limit is: <?php
                                         echo Condorcet::getMethodClass($method)::$MaxCandidates;
                                 ?> candidates) </em>
                                     </div></div></section>
@@ -253,7 +253,7 @@ use CondorcetPHP\Condorcet\Utils\CondorcetUtil;
                             <div class="tab-pane fade in" id="<?php echo $method; ?>_details">
                                 <pre><?php
                                         if ($method === 'KemenyYoung' && $this->_objectCondorcet->countCandidates() > 7) {
-                                            echo 'To many candidate for Kemeny-Young to show it on a page.';
+                                            echo 'Too many candidates for Kemeny-Young to display on a page.';
                                         } else {
                                             print_r(
                                                 CondorcetUtil::format(

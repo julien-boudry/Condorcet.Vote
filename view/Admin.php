@@ -8,11 +8,11 @@
             <a href="<?php echo $this->_Condorcet_Vote->getPublicURL(); ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getPublicURL(); ?></a>
         </div>
         <div class="alert alert-danger text-center tooltips" role="alert" data-toggle="tooltip" data-placement="left"
-        title="Do not lose this link, in which case you can not manage your vote! Do not share that by measuring the consequence of such an act.">
+        title="Do not lose this link, otherwise you will not be able to manage your vote! Do not share it without considering the consequences.">
             <span class="glyphicon glyphicon-eye-close pull-left ranking_icon"></span>
-            You can admin this vote by this link :
+            You can administer this vote using this link:
             <a href="<?php echo $this->_Condorcet_Vote->getAdminURL(); ?>" class="alert-link"><?php echo $this->_Condorcet_Vote->getAdminURL(); ?></a>
-            (not share it !)
+            (do not share it!)
         </div>
     </div>
 
@@ -37,7 +37,7 @@
                 </header>
                     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                         <input type="text" name="delete_votes" class="form-control"
-                        placeholder="Julian;Mike;Christelle # All votes with one of this three tags will be deleting (before adding your new votes)"
+                        placeholder="Julian;Mike;Christelle # All votes with any of these tags will be deleted (before adding your new votes)"
                         pattern="<?php echo REGEX_ADMIN_DELETE_VOTE; ?>" spellcheck="false"
                         >
                     </div>
@@ -111,7 +111,7 @@
 
                         <div class="alert alert-warning text-center" role="alert">
                             <span class="glyphicon glyphicon-list-alt pull-left ranking_icon"></span>
-                        <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#edit_personnal">Set personnal & unique access</button>
+                        <button type="button" class="btn btn-warning"  data-toggle="modal" data-target="#edit_personnal">Set personal & unique access</button>
                         </div>
                     <?php } ?>
                 </section>
@@ -126,7 +126,7 @@
     <div class="modal-content">
         <header class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title">Personnal Vote</h4>
+            <h4 class="modal-title">Personal Vote</h4>
         </header>
         <div class="modal-body">
             <?php setHelper('personnal_vote'); ?>
@@ -135,7 +135,7 @@
                 <span class="input-group-addon"><?php echo $this->_Condorcet_Vote->getPersonnalVoteBaseUrl(); ?></span>
 
                 <input type="text" id="edit_personnal_identifiant" class="form-control" spellcheck="false"
-                placeholder="name or identifiant (alphabetic, without space)" maxlength="<?php echo NAME_MAX_LENGHT; ?>" size="25"
+                placeholder="name or identifier (alphabetic, without spaces)" maxlength="<?php echo NAME_MAX_LENGHT; ?>" size="25"
                 pattern="<?php echo REGEX_ADMIN_ADD_PERSONNAL_ID; ?>"
                 required autocomplete="off"
                 data-admin_code="<?php echo $this->_Condorcet_Vote->getAdminCode(); ?>"
