@@ -146,3 +146,41 @@ input:invalid {
 .pairwise-line th {
     width:10%;
 }
+
+/* Maintenance banner */
+#maintenance-banner {
+    background-color: #fff3cd;
+    border-bottom: 2px solid #ffc107;
+    color: #664d03;
+    padding: 14px 0;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#maintenance-banner p {
+    margin: 4px 0;
+    font-size: 15px;
+}
+
+#maintenance-banner a {
+    color: #664d03;
+    text-decoration: underline;
+}
+
+#maintenance-banner a:hover {
+    color: #3d2e02;
+}
+
+.maintenance-banner-btn {
+    margin-top: 6px;
+    background-color: #ffc107;
+    color: #664d03 !important;
+    text-decoration: none !important;
+    font-weight: bold;
+    border: none;
+}
+
+.maintenance-banner-btn:hover {
+    background-color: #e0a800;
+    color: #3d2e02 !important;
+}

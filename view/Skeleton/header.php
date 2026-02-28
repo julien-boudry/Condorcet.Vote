@@ -40,3 +40,17 @@
         </nav><!--/.nav-collapse -->
     </div>
 </header>
+
+<div id="maintenance-banner">
+    <div class="container">
+        <p>
+            <strong><i class="fa fa-info-circle"></i> This website is no longer actively maintained.</strong>
+        </p>
+        <p>
+            Try <a href="https://desktop.condorcet.vote" target="_blank" rel="noopener"><strong>Condorcet Desktop</strong></a> &mdash; a full-featured app to compute Condorcet elections, right from your browser or locally.
+        </p>
+        <a href="https://desktop.condorcet.vote" target="_blank" rel="noopener" class="btn btn-sm maintenance-banner-btn">
+            Try Condorcet Desktop &rarr;
+        </a>
+    </div>
+</div>
